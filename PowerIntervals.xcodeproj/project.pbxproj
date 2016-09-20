@@ -13,6 +13,8 @@
 		9E3888CF1D862E8900DFC271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E3888CE1D862E8900DFC271 /* Assets.xcassets */; };
 		9E3888D21D862E8900DFC271 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E3888D01D862E8900DFC271 /* LaunchScreen.storyboard */; };
 		9E3888DD1D862E8A00DFC271 /* PowerIntervalsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3888DC1D862E8A00DFC271 /* PowerIntervalsTests.swift */; };
+		9E4472181D90EFB600CFECCE /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4472161D90EFB600CFECCE /* Fabric.framework */; };
+		9E4472191D90EFB600CFECCE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4472171D90EFB600CFECCE /* Crashlytics.framework */; };
 		9E8BB37D1D86323500367E60 /* PowerSensorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BB37C1D86323500367E60 /* PowerSensorDelegate.swift */; };
 		9E8BB37F1D86337700367E60 /* FakePowerMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BB37E1D86337700367E60 /* FakePowerMeter.swift */; };
 		9EABF6B71D8C46C200B8AC27 /* IntTimeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EABF6B61D8C46C200B8AC27 /* IntTimeExtension.swift */; };
@@ -44,6 +46,8 @@
 		9E3888D81D862E8900DFC271 /* PowerIntervalsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PowerIntervalsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E3888DC1D862E8A00DFC271 /* PowerIntervalsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerIntervalsTests.swift; sourceTree = "<group>"; };
 		9E3888DE1D862E8A00DFC271 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E4472161D90EFB600CFECCE /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		9E4472171D90EFB600CFECCE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		9E8BB37C1D86323500367E60 /* PowerSensorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSensorDelegate.swift; sourceTree = "<group>"; };
 		9E8BB37E1D86337700367E60 /* FakePowerMeter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakePowerMeter.swift; sourceTree = "<group>"; };
 		9EABF6B61D8C46C200B8AC27 /* IntTimeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntTimeExtension.swift; sourceTree = "<group>"; };
@@ -62,8 +66,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EFDBB081D8852C200C56D97 /* WFConnector.framework in Frameworks */,
+				9E4472181D90EFB600CFECCE /* Fabric.framework in Frameworks */,
 				9EFDBB061D88518800C56D97 /* CoreBluetooth.framework in Frameworks */,
 				9EFDBB041D88518300C56D97 /* ExternalAccessory.framework in Frameworks */,
+				9E4472191D90EFB600CFECCE /* Crashlytics.framework in Frameworks */,
 				9EFDBB021D88517E00C56D97 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,6 +134,8 @@
 		9EFDBAFE1D88517400C56D97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9E4472161D90EFB600CFECCE /* Fabric.framework */,
+				9E4472171D90EFB600CFECCE /* Crashlytics.framework */,
 				9EFDBB071D8852C200C56D97 /* WFConnector.framework */,
 				9EFDBB051D88518800C56D97 /* CoreBluetooth.framework */,
 				9EFDBB031D88518300C56D97 /* ExternalAccessory.framework */,
@@ -146,6 +154,7 @@
 				9E3888C01D862E8900DFC271 /* Sources */,
 				9E3888C11D862E8900DFC271 /* Frameworks */,
 				9E3888C21D862E8900DFC271 /* Resources */,
+				9E4472151D90EF8F00CFECCE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -234,6 +243,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9E4472151D90EF8F00CFECCE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 4b46703db98701784c4043e084776733025ee139 4c5362aedb1b37e306e3b58d92ad274b0f151735a4d80d27cc85e3a2b9ea2c9e";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9E3888C01D862E8900DFC271 /* Sources */ = {
@@ -397,6 +422,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PowerIntervals",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PowerIntervals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -418,6 +444,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PowerIntervals",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PowerIntervals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
