@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FakePowerMeter {
+class FakePowerMeter: PowerMeter {
     let powerSensorDelegate : PowerSensorDelegate
     var powerValueToSend = 145
     var range = 20
@@ -16,17 +16,14 @@ class FakePowerMeter {
     init(delegate : PowerSensorDelegate) {
         powerSensorDelegate = delegate
     }
-    
+    func name() -> (String) {
+        return "Fake Power Meter"
+    }
     func start() {
         let newTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-            print("Hey the timer fired")
-            
-            let random = Int(arc4random_uniform(UInt32(self.range))) + self.powerValueToSend
-            
-            self.powerSensorDelegate.receivedPowerReading(powerReading: random)
+//            let random = Int(arc4random_uniform(UInt32(self.range))) + self.powerValueToSend
+           // self.powerSensorDelegate.receivedPowerReading(sensor: self, powerReading: random)
         }
-        //newTimer.fire()
         timer = newTimer
-    }
-    
+    }    
 }

@@ -11,10 +11,11 @@ import UIKit
 class ViewController: UIViewController, PowerSensorDelegate {
     
     var currentReading = 0
-    var powerMeter : FakePowerMeter?
+    var fakePowerMeter : FakePowerMeter?
     var startupTimer : Timer?
     var workoutTimer : Timer?
     var intervalHistory = [Int]()
+    var wahooDelegate : WahooHardware?
     
     //MARK: IBOutlets
     
@@ -22,15 +23,15 @@ class ViewController: UIViewController, PowerSensorDelegate {
     @IBOutlet weak var wattsLabel: UILabel?
     @IBOutlet weak var timeLabel: UILabel?
     @IBOutlet weak var startupTimerLabel: UILabel?
+    @IBOutlet weak var debugTextView: UITextView?
 
     
     //MARK: PowerSensorDelegate methods
     
-    internal func receivedPowerReading(powerReading: Int) {
-        print("We got a new power reading", powerReading)
+    internal func receivedPowerReading(sensor: PowerMeter, powerReading: Int) {
         currentReading = 0
         wattsLabel?.text = powerReading.description
-        
+        alertText(message: powerReading.description + " " + sensor.name())
         guard let workoutTimer = workoutTimer, workoutTimer.isValid else {
             return
         }
@@ -42,6 +43,18 @@ class ViewController: UIViewController, PowerSensorDelegate {
         avgWattsLabel?.text = average.description
     }
     
+    internal func hardwareConnectedState(sensor: PowerMeter, connected: Bool) {
+        if connected {
+            alertText(message: "hardware is connected")
+        } else {
+            alertText(message: "hardware is NOT connected")
+        }
+    }
+    
+    internal func hardwareDebug(sensor: PowerMeter, message: String) {
+        alertText(message: message)
+    }
+    
     //MARK: IBActions
     
     @IBAction func viewTapped(recognizer : UITapGestureRecognizer) {
@@ -50,26 +63,26 @@ class ViewController: UIViewController, PowerSensorDelegate {
         sheet.addAction(UIAlertAction.init(title: "5 min", style: .default, handler: { (action) in
             self.startInterval(duration: 5*60)
             // update the test powerMeter
-            self.powerMeter?.powerValueToSend = 280
-            self.powerMeter?.range = 20
+            self.fakePowerMeter?.powerValueToSend = 280
+            self.fakePowerMeter?.range = 20
         }))
         
         sheet.addAction(UIAlertAction.init(title: "1 min", style: .default, handler: { (action) in
             self.startInterval(duration: 60)
-            self.powerMeter?.powerValueToSend = 340
-            self.powerMeter?.range = 30
+            self.fakePowerMeter?.powerValueToSend = 340
+            self.fakePowerMeter?.range = 30
         }))
         
         sheet.addAction(UIAlertAction.init(title: "30 sec", style: .default, handler: { (action) in
             self.startInterval(duration: 30)
-            self.powerMeter?.powerValueToSend = 450
-            self.powerMeter?.range = 50
+            self.fakePowerMeter?.powerValueToSend = 450
+            self.fakePowerMeter?.range = 50
         }))
         
         sheet.addAction(UIAlertAction.init(title: "5 sec", style: .default, handler: { (action) in
             self.startInterval(duration: 5)
-            self.powerMeter?.powerValueToSend = 685
-            self.powerMeter?.range = 50
+            self.fakePowerMeter?.powerValueToSend = 685
+            self.fakePowerMeter?.range = 50
         }))
         
         sheet.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
@@ -79,8 +92,8 @@ class ViewController: UIViewController, PowerSensorDelegate {
     }
     
     @IBAction func changeSlider(slider : UISlider) {
-        powerMeter?.powerValueToSend = Int(slider.value)
-        powerMeter?.range = Int(slider.value) / 10
+        fakePowerMeter?.powerValueToSend = Int(slider.value)
+        fakePowerMeter?.range = Int(slider.value) / 10
     }
     
     // MARK: Private methods
@@ -117,8 +130,8 @@ class ViewController: UIViewController, PowerSensorDelegate {
             if (currentTime <= 0) {
                 timer.invalidate()
                 print("THE INTERVAL IS DONE")
-                self.powerMeter?.powerValueToSend = 100
-                self.powerMeter?.range = 20
+                self.fakePowerMeter?.powerValueToSend = 100
+                self.fakePowerMeter?.range = 20
                 self.startupTimerLabel?.text = "Done"
             }
         })
@@ -126,33 +139,37 @@ class ViewController: UIViewController, PowerSensorDelegate {
     
     //MARK: ViewController lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // setup a dumb power meter
+    override func viewDidAppear(_ animated: Bool) {
+        
+        // setup a dummy power meter
         let newPowerMeter = FakePowerMeter(delegate: self)
         newPowerMeter.start()
-        powerMeter = newPowerMeter
+        fakePowerMeter = newPowerMeter
+        
+        // setup the real hardware
+        let hardware = WahooHardware(powerSensorDelegate: self)
+        hardware.startHardware()
+        wahooDelegate = hardware
         
         // set the default text for the labels
         timeLabel?.text = 0.stringForTime()
         startupTimerLabel?.text = ""
-        avgWattsLabel?.text = "0 w"
-        wattsLabel?.text = "0 w"
+        super.viewDidAppear(animated)
     }
-
+    
+    // just a helper method
+    func alertText(message: String) {
+        debugTextView?.text.append(message+"\n")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 }
 
-extension Int {
-    func stringForTime() -> String {
-        let hours = Int(self) / 3600
-        let minutes = Int(self) / 60 % 60
-        let seconds = Int(self) % 60
-        return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+extension UIViewController {
+    @IBAction func unwindToWorkoutView(sender: UIStoryboardSegue){
     }
 }
 

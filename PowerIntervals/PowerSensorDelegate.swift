@@ -8,7 +8,13 @@
 
 import Foundation
 
+protocol PowerMeter {
+    func name() -> (String)
+}
+
 protocol PowerSensorDelegate {
-    func receivedPowerReading(powerReading : Int)
+    func receivedPowerReading(sensor: PowerMeter, powerReading: Int)
+    func hardwareConnectedState(sensor: PowerMeter, connected: Bool)
+    func hardwareDebug(sensor: PowerMeter, message: String)
 }
 

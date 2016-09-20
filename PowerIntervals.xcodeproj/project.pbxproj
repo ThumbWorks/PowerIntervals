@@ -15,6 +15,12 @@
 		9E3888DD1D862E8A00DFC271 /* PowerIntervalsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3888DC1D862E8A00DFC271 /* PowerIntervalsTests.swift */; };
 		9E8BB37D1D86323500367E60 /* PowerSensorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BB37C1D86323500367E60 /* PowerSensorDelegate.swift */; };
 		9E8BB37F1D86337700367E60 /* FakePowerMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BB37E1D86337700367E60 /* FakePowerMeter.swift */; };
+		9EABF6B71D8C46C200B8AC27 /* IntTimeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EABF6B61D8C46C200B8AC27 /* IntTimeExtension.swift */; };
+		9EFDBB021D88517E00C56D97 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EFDBB011D88517E00C56D97 /* SystemConfiguration.framework */; };
+		9EFDBB041D88518300C56D97 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EFDBB031D88518300C56D97 /* ExternalAccessory.framework */; };
+		9EFDBB061D88518800C56D97 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EFDBB051D88518800C56D97 /* CoreBluetooth.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		9EFDBB081D8852C200C56D97 /* WFConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EFDBB071D8852C200C56D97 /* WFConnector.framework */; };
+		9EFDBB0E1D8854A600C56D97 /* WahooHardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFDBB0D1D8854A600C56D97 /* WahooHardware.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +46,14 @@
 		9E3888DE1D862E8A00DFC271 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E8BB37C1D86323500367E60 /* PowerSensorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSensorDelegate.swift; sourceTree = "<group>"; };
 		9E8BB37E1D86337700367E60 /* FakePowerMeter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakePowerMeter.swift; sourceTree = "<group>"; };
+		9EABF6B61D8C46C200B8AC27 /* IntTimeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntTimeExtension.swift; sourceTree = "<group>"; };
+		9EFDBB011D88517E00C56D97 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9EFDBB031D88518300C56D97 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		9EFDBB051D88518800C56D97 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		9EFDBB071D8852C200C56D97 /* WFConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WFConnector.framework; path = PowerIntervals/WFConnector.framework; sourceTree = "<group>"; };
+		9EFDBB091D88534700C56D97 /* PowerIntervals-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PowerIntervals-Bridging-Header.h"; sourceTree = "<group>"; };
+		9EFDBB0D1D8854A600C56D97 /* WahooHardware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WahooHardware.swift; sourceTree = "<group>"; };
+		9EFDBB0F1D8861ED00C56D97 /* PowerIntervals.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PowerIntervals.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +61,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EFDBB081D8852C200C56D97 /* WFConnector.framework in Frameworks */,
+				9EFDBB061D88518800C56D97 /* CoreBluetooth.framework in Frameworks */,
+				9EFDBB041D88518300C56D97 /* ExternalAccessory.framework in Frameworks */,
+				9EFDBB021D88517E00C56D97 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +84,7 @@
 				9E3888C61D862E8900DFC271 /* PowerIntervals */,
 				9E3888DB1D862E8900DFC271 /* PowerIntervalsTests */,
 				9E3888C51D862E8900DFC271 /* Products */,
+				9EFDBAFE1D88517400C56D97 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +100,7 @@
 		9E3888C61D862E8900DFC271 /* PowerIntervals */ = {
 			isa = PBXGroup;
 			children = (
+				9EFDBB0F1D8861ED00C56D97 /* PowerIntervals.entitlements */,
 				9E3888C71D862E8900DFC271 /* AppDelegate.swift */,
 				9E3888C91D862E8900DFC271 /* ViewController.swift */,
 				9E3888CB1D862E8900DFC271 /* Main.storyboard */,
@@ -89,6 +109,9 @@
 				9E3888D01D862E8900DFC271 /* LaunchScreen.storyboard */,
 				9E3888D31D862E8900DFC271 /* Info.plist */,
 				9E8BB37C1D86323500367E60 /* PowerSensorDelegate.swift */,
+				9EFDBB0D1D8854A600C56D97 /* WahooHardware.swift */,
+				9EFDBB091D88534700C56D97 /* PowerIntervals-Bridging-Header.h */,
+				9EABF6B61D8C46C200B8AC27 /* IntTimeExtension.swift */,
 			);
 			path = PowerIntervals;
 			sourceTree = "<group>";
@@ -100,6 +123,17 @@
 				9E3888DE1D862E8A00DFC271 /* Info.plist */,
 			);
 			path = PowerIntervalsTests;
+			sourceTree = "<group>";
+		};
+		9EFDBAFE1D88517400C56D97 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9EFDBB071D8852C200C56D97 /* WFConnector.framework */,
+				9EFDBB051D88518800C56D97 /* CoreBluetooth.framework */,
+				9EFDBB031D88518300C56D97 /* ExternalAccessory.framework */,
+				9EFDBB011D88517E00C56D97 /* SystemConfiguration.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +186,7 @@
 				TargetAttributes = {
 					9E3888C31D862E8900DFC271 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = F4WTN36U2F;
 						LastSwiftMigration = 0800;
 					};
 					9E3888D71D862E8900DFC271 = {
@@ -209,6 +244,8 @@
 				9E3888CA1D862E8900DFC271 /* ViewController.swift in Sources */,
 				9E3888C81D862E8900DFC271 /* AppDelegate.swift in Sources */,
 				9E8BB37D1D86323500367E60 /* PowerSensorDelegate.swift in Sources */,
+				9EABF6B71D8C46C200B8AC27 /* IntTimeExtension.swift in Sources */,
+				9EFDBB0E1D8854A600C56D97 /* WahooHardware.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +310,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -292,6 +330,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lstdc++",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -321,6 +363,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -333,6 +376,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"-lstdc++",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -344,10 +391,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = PowerIntervals/PowerIntervals.entitlements;
+				DEVELOPMENT_TEAM = F4WTN36U2F;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PowerIntervals",
+				);
 				INFOPLIST_FILE = PowerIntervals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.thumbworks.PowerIntervals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PowerIntervals/PowerIntervals-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -356,10 +412,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = PowerIntervals/PowerIntervals.entitlements;
+				DEVELOPMENT_TEAM = F4WTN36U2F;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PowerIntervals",
+				);
 				INFOPLIST_FILE = PowerIntervals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.thumbworks.PowerIntervals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PowerIntervals/PowerIntervals-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
