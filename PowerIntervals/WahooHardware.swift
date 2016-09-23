@@ -9,7 +9,6 @@
 import Foundation
 import UIKit //for now
 
-
 class SensorDelegate : NSObject, WFSensorConnectionDelegate {
     let debugObject : PowerSensorDelegate
     var powerMeterForDebugging: PowerMeter
@@ -31,8 +30,6 @@ class SensorDelegate : NSObject, WFSensorConnectionDelegate {
         }
         
         let params = WFConnectionParams()
-        debugObject.hardwareDebug(sensor: powerMeterForDebugging, message: params.description)
-
         params.sensorType = WF_SENSORTYPE_BIKE_POWER
         debugObject.hardwareDebug(sensor: powerMeterForDebugging, message: "after setting the type")
         
@@ -63,9 +60,8 @@ class SensorDelegate : NSObject, WFSensorConnectionDelegate {
 
 class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
     var powerDelegate: PowerSensorDelegate
-    var sensorConnection: WFSensorConnection?
+    var sensorConnection: WFBikePowerConnection?
     var sensorConnectionDelegate: SensorDelegate?
-    
     init(powerSensorDelegate: PowerSensorDelegate) {
         powerDelegate = powerSensorDelegate
         super.init()
@@ -82,7 +78,7 @@ class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
         powerDelegate.hardwareDebug(sensor: self, message: "start hardware")
         let connectionParams = WFConnectionParams()
         connectionParams.sensorType = WF_SENSORTYPE_BIKE_POWER
-        sensorConnection = connector?.requestSensorConnection(connectionParams)
+        sensorConnection = connector?.requestSensorConnection(connectionParams) as! WFBikePowerConnection?
     
         powerDelegate.hardwareDebug(sensor: self, message: "setup sensorConnectionDelegate object")
         sensorConnectionDelegate = SensorDelegate(debugger: powerDelegate, powerMeter: self)
@@ -98,25 +94,23 @@ class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
         }
     }
 
+    // This comes back on a background thread
     func hardwareConnector(_ hwConnector: WFHardwareConnector!, connectedSensor sensor: WFSensorConnection) {
-        let string = sensor.deviceIDString + sensor.deviceInformation.batteryLevel.description + sensor.sensorType.rawValue.description
-        powerDelegate.hardwareDebug(sensor: self, message: string)
+        sensor.delegate = sensorConnectionDelegate
+        sensorConnection = sensor as? WFBikePowerConnection
     }
     
     func hardwareConnector(_ hwConnector: WFHardwareConnector!, stateChanged currentState: WFHardwareConnectorState_t) {
-        
-        if let hwConnector = hwConnector {
-            let string = "The state for the hardware connector \(hwConnector) changed to \(currentState.rawValue)"
+        if (hwConnector) != nil {
+            let string = "The state for the hardware connector changed to \(currentState.rawValue)"
             powerDelegate.hardwareDebug(sensor: self, message: string)
         }
-        
         // CONNECTED and ACTIVE
         if currentState.rawValue == 3 {
             // tell the sensorDelegate to start searching
             powerDelegate.hardwareDebug(sensor: self, message: "We got a 3, start up the sensorConnectionDelegate")
             sensorConnectionDelegate?.start(hardwareConnection: hwConnector)
         }
-        return
     }
     
     func hardwareConnector(_ hwConnector: WFHardwareConnector!, didCompleteCheckingAvailibleFirmwareFor connectionInfo: WFSensorConnection!, error: Error!) {
@@ -140,14 +134,18 @@ class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
     
     override func attemptRecovery(fromError error: Error, optionIndex recoveryOptionIndex: Int, delegate: Any?, didRecoverSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         print("attempt recovery:", error, "option index:", recoveryOptionIndex)
-//        error.localizedDescription
         powerDelegate.hardwareDebug(sensor: self, message: "Got an error of some type. Need to attempt to recover")
     }
     
     func hardwareConnectorHasData() {
         //alertText(message: "Hardware connector has data")
-//        powerDelegate.hardwareDebug(sensor: self, message: "Hardware Connector has data")
-//        powerDelegate.receivedPowerReading(sensor: self, powerReading: 100)
+        if let data = sensorConnection?.getBikePowerData() {
+            let accumulatedPower = data.accumulatedPower
+            let instantPower = data.instantPower
+            let powerString = "Accumulated: " + accumulatedPower.description + "instant: " + instantPower.description
+            powerDelegate.hardwareDebug(sensor: self, message: "Hardware Connector has data " + powerString)
+            powerDelegate.receivedPowerReading(sensor: self, powerReading: instantPower.toIntMax())
+        }
     }
     
 }

@@ -13,7 +13,7 @@ protocol PowerMeter {
 }
 
 protocol PowerSensorDelegate {
-    func receivedPowerReading(sensor: PowerMeter, powerReading: Int)
+    func receivedPowerReading(sensor: PowerMeter, powerReading: IntMax)
     func hardwareConnectedState(sensor: PowerMeter, connected: Bool)
     func hardwareDebug(sensor: PowerMeter, message: String)
 }

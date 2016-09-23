@@ -14,7 +14,7 @@ class ViewController: UIViewController, PowerSensorDelegate {
     var fakePowerMeter : FakePowerMeter?
     var startupTimer : Timer?
     var workoutTimer : Timer?
-    var intervalHistory = [Int]()
+    var intervalHistory = [IntMax]()
     var wahooDelegate : WahooHardware?
     
     //MARK: IBOutlets
@@ -24,11 +24,11 @@ class ViewController: UIViewController, PowerSensorDelegate {
     @IBOutlet weak var timeLabel: UILabel?
     @IBOutlet weak var startupTimerLabel: UILabel?
     @IBOutlet weak var debugTextView: UITextView?
-
+    @IBOutlet weak var slider: UISlider!
     
     //MARK: PowerSensorDelegate methods
     
-    internal func receivedPowerReading(sensor: PowerMeter, powerReading: Int) {
+    internal func receivedPowerReading(sensor: PowerMeter, powerReading: IntMax) {
         currentReading = 0
         wattsLabel?.text = powerReading.description
         alertText(message: powerReading.description + " " + sensor.name())
@@ -39,7 +39,7 @@ class ViewController: UIViewController, PowerSensorDelegate {
             print("adding something to the history")
             intervalHistory.append(powerReading)
         }
-        let average = intervalHistory.reduce(0, +) / intervalHistory.count
+        let average = intervalHistory.reduce(0, +) / intervalHistory.count.toIntMax()
         avgWattsLabel?.text = average.description
     }
     
@@ -91,6 +91,17 @@ class ViewController: UIViewController, PowerSensorDelegate {
        self.present(sheet, animated: true, completion: nil)
     }
     
+    @IBAction func debugButtonPressed(_ sender: AnyObject) {
+        debugTextView?.isHidden = !(debugTextView?.isHidden)!
+        slider.isHidden = !slider.isHidden
+        if slider.isHidden {
+            fakePowerMeter?.stop()
+        } else {
+            fakePowerMeter?.start()
+        }
+        
+    }
+    
     @IBAction func changeSlider(slider : UISlider) {
         fakePowerMeter?.powerValueToSend = Int(slider.value)
         fakePowerMeter?.range = Int(slider.value) / 10
@@ -98,6 +109,7 @@ class ViewController: UIViewController, PowerSensorDelegate {
     
     // MARK: Private methods
     // MARK: Timers
+    
     func startInterval(duration: Int) {
         // a few cleanup things
         workoutTimer?.invalidate()
@@ -143,7 +155,6 @@ class ViewController: UIViewController, PowerSensorDelegate {
         
         // setup a dummy power meter
         let newPowerMeter = FakePowerMeter(delegate: self)
-        newPowerMeter.start()
         fakePowerMeter = newPowerMeter
         
         // setup the real hardware
@@ -159,7 +170,13 @@ class ViewController: UIViewController, PowerSensorDelegate {
     
     // just a helper method
     func alertText(message: String) {
-        debugTextView?.text.append(message+"\n")
+        if(Thread.isMainThread) {
+            debugTextView?.text.append(message+"\n")
+        } else {
+            DispatchQueue.main.async {
+                self.debugTextView?.text.append("FROM A BACKGROUND QUEUE "+message+"\n")
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {

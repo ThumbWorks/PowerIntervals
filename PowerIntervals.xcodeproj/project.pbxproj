@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E1CC2B71D911527008AF139 /* DejaVuSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E1CC2B61D911527008AF139 /* DejaVuSans.ttf */; };
 		9E3888C81D862E8900DFC271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3888C71D862E8900DFC271 /* AppDelegate.swift */; };
 		9E3888CA1D862E8900DFC271 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3888C91D862E8900DFC271 /* ViewController.swift */; };
 		9E3888CD1D862E8900DFC271 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E3888CB1D862E8900DFC271 /* Main.storyboard */; };
@@ -15,6 +16,9 @@
 		9E3888DD1D862E8A00DFC271 /* PowerIntervalsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3888DC1D862E8A00DFC271 /* PowerIntervalsTests.swift */; };
 		9E4472181D90EFB600CFECCE /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4472161D90EFB600CFECCE /* Fabric.framework */; };
 		9E4472191D90EFB600CFECCE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4472171D90EFB600CFECCE /* Crashlytics.framework */; };
+		9E452FDA1D956FA600C96165 /* DeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E452FD91D956FA600C96165 /* DeviceListViewController.swift */; };
+		9E452FDD1D95813B00C96165 /* PowerSensorDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E452FDC1D95813B00C96165 /* PowerSensorDevice.swift */; };
+		9E452FE01D9581D600C96165 /* DeviceListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E452FDF1D9581D600C96165 /* DeviceListDataSource.swift */; };
 		9E8BB37D1D86323500367E60 /* PowerSensorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BB37C1D86323500367E60 /* PowerSensorDelegate.swift */; };
 		9E8BB37F1D86337700367E60 /* FakePowerMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BB37E1D86337700367E60 /* FakePowerMeter.swift */; };
 		9EABF6B71D8C46C200B8AC27 /* IntTimeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EABF6B61D8C46C200B8AC27 /* IntTimeExtension.swift */; };
@@ -36,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E1CC2B61D911527008AF139 /* DejaVuSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DejaVuSans.ttf; sourceTree = "<group>"; };
 		9E3888C41D862E8900DFC271 /* PowerIntervals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PowerIntervals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E3888C71D862E8900DFC271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E3888C91D862E8900DFC271 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +53,9 @@
 		9E3888DE1D862E8A00DFC271 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E4472161D90EFB600CFECCE /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		9E4472171D90EFB600CFECCE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		9E452FD91D956FA600C96165 /* DeviceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceListViewController.swift; sourceTree = "<group>"; };
+		9E452FDC1D95813B00C96165 /* PowerSensorDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PowerSensorDevice.swift; path = Model/PowerSensorDevice.swift; sourceTree = "<group>"; };
+		9E452FDF1D9581D600C96165 /* DeviceListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceListDataSource.swift; path = DeviceListView/DeviceListDataSource.swift; sourceTree = "<group>"; };
 		9E8BB37C1D86323500367E60 /* PowerSensorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSensorDelegate.swift; sourceTree = "<group>"; };
 		9E8BB37E1D86337700367E60 /* FakePowerMeter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakePowerMeter.swift; sourceTree = "<group>"; };
 		9EABF6B61D8C46C200B8AC27 /* IntTimeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntTimeExtension.swift; sourceTree = "<group>"; };
@@ -106,6 +114,8 @@
 		9E3888C61D862E8900DFC271 /* PowerIntervals */ = {
 			isa = PBXGroup;
 			children = (
+				9E452FDE1D9581A100C96165 /* DeviceListView */,
+				9E452FDB1D95811F00C96165 /* Model */,
 				9EFDBB0F1D8861ED00C56D97 /* PowerIntervals.entitlements */,
 				9E3888C71D862E8900DFC271 /* AppDelegate.swift */,
 				9E3888C91D862E8900DFC271 /* ViewController.swift */,
@@ -116,8 +126,8 @@
 				9E3888D31D862E8900DFC271 /* Info.plist */,
 				9E8BB37C1D86323500367E60 /* PowerSensorDelegate.swift */,
 				9EFDBB0D1D8854A600C56D97 /* WahooHardware.swift */,
-				9EFDBB091D88534700C56D97 /* PowerIntervals-Bridging-Header.h */,
-				9EABF6B61D8C46C200B8AC27 /* IntTimeExtension.swift */,
+				9E452FE21D95841800C96165 /* Utility */,
+				9E452FE11D9583F700C96165 /* Resources */,
 			);
 			path = PowerIntervals;
 			sourceTree = "<group>";
@@ -129,6 +139,40 @@
 				9E3888DE1D862E8A00DFC271 /* Info.plist */,
 			);
 			path = PowerIntervalsTests;
+			sourceTree = "<group>";
+		};
+		9E452FDB1D95811F00C96165 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9E452FDC1D95813B00C96165 /* PowerSensorDevice.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		9E452FDE1D9581A100C96165 /* DeviceListView */ = {
+			isa = PBXGroup;
+			children = (
+				9E452FD91D956FA600C96165 /* DeviceListViewController.swift */,
+				9E452FDF1D9581D600C96165 /* DeviceListDataSource.swift */,
+			);
+			name = DeviceListView;
+			sourceTree = "<group>";
+		};
+		9E452FE11D9583F700C96165 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9E1CC2B61D911527008AF139 /* DejaVuSans.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		9E452FE21D95841800C96165 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				9EFDBB091D88534700C56D97 /* PowerIntervals-Bridging-Header.h */,
+				9EABF6B61D8C46C200B8AC27 /* IntTimeExtension.swift */,
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		9EFDBAFE1D88517400C56D97 /* Frameworks */ = {
@@ -231,6 +275,7 @@
 			files = (
 				9E3888D21D862E8900DFC271 /* LaunchScreen.storyboard in Resources */,
 				9E3888CF1D862E8900DFC271 /* Assets.xcassets in Resources */,
+				9E1CC2B71D911527008AF139 /* DejaVuSans.ttf in Resources */,
 				9E3888CD1D862E8900DFC271 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,11 +311,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E8BB37F1D86337700367E60 /* FakePowerMeter.swift in Sources */,
+				9E452FDD1D95813B00C96165 /* PowerSensorDevice.swift in Sources */,
 				9E3888CA1D862E8900DFC271 /* ViewController.swift in Sources */,
 				9E3888C81D862E8900DFC271 /* AppDelegate.swift in Sources */,
 				9E8BB37D1D86323500367E60 /* PowerSensorDelegate.swift in Sources */,
 				9EABF6B71D8C46C200B8AC27 /* IntTimeExtension.swift in Sources */,
+				9E452FE01D9581D600C96165 /* DeviceListDataSource.swift in Sources */,
 				9EFDBB0E1D8854A600C56D97 /* WahooHardware.swift in Sources */,
+				9E452FDA1D956FA600C96165 /* DeviceListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

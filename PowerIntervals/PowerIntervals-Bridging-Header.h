@@ -8,3 +8,5 @@
 #import "WFConnector/WFConnectionParams.h"
 #import "WFConnector/WFDeviceParams.h"
 #import "WFConnector/hardware_connector_types.h"
+#import "WFConnector/WFBikePowerConnection.h"
+#import "WFConnector/WFBikePowerData.h"

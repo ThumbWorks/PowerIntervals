@@ -21,9 +21,13 @@ class FakePowerMeter: PowerMeter {
     }
     func start() {
         let newTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-//            let random = Int(arc4random_uniform(UInt32(self.range))) + self.powerValueToSend
-           // self.powerSensorDelegate.receivedPowerReading(sensor: self, powerReading: random)
+            let random = Int(arc4random_uniform(UInt32(self.range))) + self.powerValueToSend
+            self.powerSensorDelegate.receivedPowerReading(sensor: self, powerReading: random.toIntMax())
         }
         timer = newTimer
-    }    
+    }
+    
+    func stop() {
+        timer?.invalidate()
+    }
 }
