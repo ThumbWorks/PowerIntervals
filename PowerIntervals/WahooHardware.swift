@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit //for now
+import RealmSwift
 
 class SensorDelegate : NSObject, WFSensorConnectionDelegate {
     let debugObject : PowerSensorDelegate
@@ -49,7 +50,6 @@ class SensorDelegate : NSObject, WFSensorConnectionDelegate {
     
     func connectionDidTimeout(_ connectionInfo: WFSensorConnection!) {
         debugObject.hardwareDebug(sensor: powerMeterForDebugging, message: "connectionDidTimeout")
-
     }
     
     internal func connection(_ connectionInfo: WFSensorConnection!, stateChanged connState: WFSensorConnectionStatus_t) {
@@ -93,11 +93,22 @@ class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
             powerDelegate.hardwareDebug(sensor: self, message: "case not handled for current state of connector")
         }
     }
-
-    // This comes back on a background thread
-    func hardwareConnector(_ hwConnector: WFHardwareConnector!, connectedSensor sensor: WFSensorConnection) {
-        sensor.delegate = sensorConnectionDelegate
-        sensorConnection = sensor as? WFBikePowerConnection
+    
+    func hardwareConnector(_ hwConnector: WFHardwareConnector!, hasFirmwareUpdateAvailableFor connectionInfo: WFSensorConnection!, required: Bool, withWahooUtilityAppURL wahooUtilityAppURL: URL!) {
+        powerDelegate.hardwareDebug(sensor: self, message: "hasFirmwareUpdateAvailableFor")
+    }
+    
+    func hardwareConnector(_ hwConnector: WFHardwareConnector!, antBridgeStateChanged eState: WFAntBridgeState_t, onDevice deviceUUIDString: String!) {
+        var msg = "Hardwareconnector " + hwConnector.description
+        msg = msg + " ant bridge state changed to:" + eState.rawValue.description
+        msg = msg + " on device " + deviceUUIDString
+        powerDelegate.hardwareDebug(sensor: self, message: "ant bridge state changed")
+    }
+    
+    func hardwareConnector(_ hwConnector: WFHardwareConnector!, disconnectedSensor connectionInfo: WFSensorConnection!) {
+        powerDelegate.hardwareDebug(sensor: self, message: "disconnectedSensor")
+        // we need to delete this
+        PowerSensorDevice.deleteDevice(identifierString: connectionInfo.deviceIDString)
     }
     
     func hardwareConnector(_ hwConnector: WFHardwareConnector!, stateChanged currentState: WFHardwareConnectorState_t) {
@@ -112,32 +123,20 @@ class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
             sensorConnectionDelegate?.start(hardwareConnection: hwConnector)
         }
     }
-    
-    func hardwareConnector(_ hwConnector: WFHardwareConnector!, didCompleteCheckingAvailibleFirmwareFor connectionInfo: WFSensorConnection!, error: Error!) {
-        powerDelegate.hardwareDebug(sensor: self, message: "didCompleteCheckingAvailibleFirmwareFor")
+
+    // This comes back on a background thread
+    // TODO need to store each one of these that comes back in some sort of array
+    //    That way I'll be able to check all of them when some data comes back and I 
+    //    can update the persistently stored object
+    func hardwareConnector(_ hwConnector: WFHardwareConnector!, connectedSensor sensor: WFSensorConnection) {
+        sensor.delegate = sensorConnectionDelegate
+        sensorConnection = sensor as? WFBikePowerConnection
+        if let device = sensorConnection {
+            PowerSensorDevice.deviceWithBikePowerConection(pm: device)
+        }
     }
-    
-    func hardwareConnector(_ hwConnector: WFHardwareConnector!, hasFirmwareUpdateAvailableFor connectionInfo: WFSensorConnection!, required: Bool, withWahooUtilityAppURL wahooUtilityAppURL: URL!) {
-        powerDelegate.hardwareDebug(sensor: self, message: "hasFirmwareUpdateAvailableFor")
-    }
-    
-    func hardwareConnector(_ hwConnector: WFHardwareConnector!, disconnectedSensor connectionInfo: WFSensorConnection!) {
-        powerDelegate.hardwareDebug(sensor: self, message: "disconnectedSensor")
-    }
-    
-    func hardwareConnector(_ hwConnector: WFHardwareConnector!, antBridgeStateChanged eState: WFAntBridgeState_t, onDevice deviceUUIDString: String!) {
-        var msg = "Hardwareconnector " + hwConnector.description
-        msg = msg + " ant bridge state changed to:" + eState.rawValue.description
-        msg = msg + " on device " + deviceUUIDString
-        powerDelegate.hardwareDebug(sensor: self, message: "ant bridge state changed")
-    }
-    
-    override func attemptRecovery(fromError error: Error, optionIndex recoveryOptionIndex: Int, delegate: Any?, didRecoverSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
-        print("attempt recovery:", error, "option index:", recoveryOptionIndex)
-        powerDelegate.hardwareDebug(sensor: self, message: "Got an error of some type. Need to attempt to recover")
-    }
-    
-    func hardwareConnectorHasData() {
+
+     func hardwareConnectorHasData() {
         //alertText(message: "Hardware connector has data")
         if let data = sensorConnection?.getBikePowerData() {
             let accumulatedPower = data.accumulatedPower
@@ -146,7 +145,61 @@ class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
             powerDelegate.hardwareDebug(sensor: self, message: "Hardware Connector has data " + powerString)
             powerDelegate.receivedPowerReading(sensor: self, powerReading: instantPower.toIntMax())
         }
+        
+        //TODO. I need to check all devices to see if they have updates maybe. If they do, get it and update.
     }
     
 }
 
+extension PowerSensorDevice {
+    class func deviceWithBikePowerConection(pm: WFBikePowerConnection) {
+        let device = PowerSensorDevice()
+        device.deviceID = pm.deviceIDString
+        device.antBridgeSupport = pm.hasAntBridgeSupport
+        device.antConnection = pm.isANTConnection
+        device.connected = pm.isConnected
+        device.deviceBTLEUUID = pm.deviceUUIDString
+        device.deviceNumber = NSNumber(integerLiteral: Int(pm.deviceNumber))
+        device.didTimeout = pm.didTimeout
+        device.hasError = pm.hasError
+        switch(pm.networkType) {
+        case WF_NETWORKTYPE_UNSPECIFIED:
+            device.networkType = .unspecified
+        case WF_NETWORKTYPE_ANTPLUS:
+            device.networkType = .ant
+        case WF_NETWORKTYPE_BTLE:
+            device.networkType = .btle
+        case WF_NETWORKTYPE_SUUNTO:
+            device.networkType = .suunto
+        case WF_NETWORKTYPE_ANY:
+            device.networkType = .wildcard
+        default:
+            device.networkType = .unspecified
+        }
+        device.timeSinceLastMessage = pm.timeSinceLastMessage
+        device.valid = pm.isValid;
+        device.validParameters = pm.hasValidParams
+        device.wildcardParams = pm.hasWildcardParams
+        
+        device.currentData = PowerSensorData()
+        
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.add(device)
+        }
+    }
+    
+    class func deleteDevice(identifierString: String) {
+        // do a query here
+        let realm = try! Realm()
+        guard  let matchingDevice = realm.objects(PowerSensorDevice.self).filter("deviceID = '\(identifierString)'").first else {
+            // we didn't get a match on this string, bail
+            return
+        }
+        // Delete an object with a transaction
+        try! realm.write {
+            realm.delete(matchingDevice)
+        }
+    }
+}

@@ -19,6 +19,8 @@
 		9E452FDA1D956FA600C96165 /* DeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E452FD91D956FA600C96165 /* DeviceListViewController.swift */; };
 		9E452FDD1D95813B00C96165 /* PowerSensorDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E452FDC1D95813B00C96165 /* PowerSensorDevice.swift */; };
 		9E452FE01D9581D600C96165 /* DeviceListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E452FDF1D9581D600C96165 /* DeviceListDataSource.swift */; };
+		9E452FE41D958BDE00C96165 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E452FE31D958BDE00C96165 /* RealmSwift.framework */; };
+		9E452FE61D958BE600C96165 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E452FE51D958BE600C96165 /* Realm.framework */; };
 		9E8BB37D1D86323500367E60 /* PowerSensorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BB37C1D86323500367E60 /* PowerSensorDelegate.swift */; };
 		9E8BB37F1D86337700367E60 /* FakePowerMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BB37E1D86337700367E60 /* FakePowerMeter.swift */; };
 		9EABF6B71D8C46C200B8AC27 /* IntTimeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EABF6B61D8C46C200B8AC27 /* IntTimeExtension.swift */; };
@@ -56,6 +58,8 @@
 		9E452FD91D956FA600C96165 /* DeviceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceListViewController.swift; sourceTree = "<group>"; };
 		9E452FDC1D95813B00C96165 /* PowerSensorDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PowerSensorDevice.swift; path = Model/PowerSensorDevice.swift; sourceTree = "<group>"; };
 		9E452FDF1D9581D600C96165 /* DeviceListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceListDataSource.swift; path = DeviceListView/DeviceListDataSource.swift; sourceTree = "<group>"; };
+		9E452FE31D958BDE00C96165 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		9E452FE51D958BE600C96165 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		9E8BB37C1D86323500367E60 /* PowerSensorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSensorDelegate.swift; sourceTree = "<group>"; };
 		9E8BB37E1D86337700367E60 /* FakePowerMeter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakePowerMeter.swift; sourceTree = "<group>"; };
 		9EABF6B61D8C46C200B8AC27 /* IntTimeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntTimeExtension.swift; sourceTree = "<group>"; };
@@ -73,6 +77,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E452FE61D958BE600C96165 /* Realm.framework in Frameworks */,
+				9E452FE41D958BDE00C96165 /* RealmSwift.framework in Frameworks */,
 				9EFDBB081D8852C200C56D97 /* WFConnector.framework in Frameworks */,
 				9E4472181D90EFB600CFECCE /* Fabric.framework in Frameworks */,
 				9EFDBB061D88518800C56D97 /* CoreBluetooth.framework in Frameworks */,
@@ -178,6 +184,8 @@
 		9EFDBAFE1D88517400C56D97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9E452FE51D958BE600C96165 /* Realm.framework */,
+				9E452FE31D958BDE00C96165 /* RealmSwift.framework */,
 				9E4472161D90EFB600CFECCE /* Fabric.framework */,
 				9E4472171D90EFB600CFECCE /* Crashlytics.framework */,
 				9EFDBB071D8852C200C56D97 /* WFConnector.framework */,
@@ -199,6 +207,7 @@
 				9E3888C11D862E8900DFC271 /* Frameworks */,
 				9E3888C21D862E8900DFC271 /* Resources */,
 				9E4472151D90EF8F00CFECCE /* ShellScript */,
+				9E452FE71D958BFF00C96165 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -302,6 +311,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Fabric.framework/run 4b46703db98701784c4043e084776733025ee139 4c5362aedb1b37e306e3b58d92ad274b0f151735a4d80d27cc85e3a2b9ea2c9e";
+		};
+		9E452FE71D958BFF00C96165 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -471,6 +495,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PowerIntervals",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = PowerIntervals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -493,6 +518,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PowerIntervals",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = PowerIntervals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

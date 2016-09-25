@@ -94,17 +94,25 @@ class ViewController: UIViewController, PowerSensorDelegate {
     @IBAction func debugButtonPressed(_ sender: AnyObject) {
         debugTextView?.isHidden = !(debugTextView?.isHidden)!
         slider.isHidden = !slider.isHidden
-        if slider.isHidden {
-            fakePowerMeter?.stop()
-        } else {
-            fakePowerMeter?.start()
-        }
         
     }
     
     @IBAction func changeSlider(slider : UISlider) {
         fakePowerMeter?.powerValueToSend = Int(slider.value)
         fakePowerMeter?.range = Int(slider.value) / 10
+    }
+    
+    @IBAction func startFakePowerMeter(_ sender : AnyObject) {
+        if let poweMeterTimer = fakePowerMeter?.timer {
+            if poweMeterTimer.isValid {
+                fakePowerMeter?.stop()
+            } else {
+                fakePowerMeter?.start()
+            }
+        }
+        else {
+             fakePowerMeter?.start()
+        }
     }
     
     // MARK: Private methods
@@ -151,9 +159,8 @@ class ViewController: UIViewController, PowerSensorDelegate {
     
     //MARK: ViewController lifecycle
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-        // setup a dummy power meter
+    override func viewDidLoad() {
+        // setup a fake power meter
         let newPowerMeter = FakePowerMeter(delegate: self)
         fakePowerMeter = newPowerMeter
         
@@ -161,7 +168,9 @@ class ViewController: UIViewController, PowerSensorDelegate {
         let hardware = WahooHardware(powerSensorDelegate: self)
         hardware.startHardware()
         wahooDelegate = hardware
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         // set the default text for the labels
         timeLabel?.text = 0.stringForTime()
         startupTimerLabel?.text = ""

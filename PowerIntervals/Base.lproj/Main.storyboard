@@ -74,7 +74,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deA-qQ-lLc">
-                                <state key="normal" title="d"/>
+                                <state key="normal" title="debug"/>
                                 <connections>
                                     <action selector="debugButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wWc-9x-ksF"/>
                                 </connections>
@@ -83,6 +83,12 @@
                                 <state key="normal" title="Sensors"/>
                                 <connections>
                                     <segue destination="4U5-9q-t9i" kind="show" id="maZ-88-dUu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTa-hA-rqW">
+                                <state key="normal" title="start pm"/>
+                                <connections>
+                                    <action selector="startFakePowerMeter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4ey-rx-nRF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -96,6 +102,8 @@
                             <constraint firstItem="O0o-za-AdU" firstAttribute="top" secondItem="DCn-xI-23h" secondAttribute="bottom" id="7Ex-CV-hnC"/>
                             <constraint firstItem="DCn-xI-23h" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="85D-oJ-PJ9"/>
                             <constraint firstItem="Vho-eF-ibw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="9eE-zo-bNo"/>
+                            <constraint firstItem="rTa-hA-rqW" firstAttribute="top" secondItem="deA-qQ-lLc" secondAttribute="bottom" constant="3" id="9w7-3B-yzV"/>
+                            <constraint firstItem="rTa-hA-rqW" firstAttribute="leading" secondItem="deA-qQ-lLc" secondAttribute="leading" id="HvV-2e-O2L"/>
                             <constraint firstItem="X9k-lG-ZkP" firstAttribute="top" secondItem="O0o-za-AdU" secondAttribute="bottom" constant="25" id="Igz-tL-6sf"/>
                             <constraint firstItem="eFn-kj-BjL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="R5g-T3-udV"/>
                             <constraint firstItem="X9k-lG-ZkP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="RHf-uG-SLu"/>
@@ -170,36 +178,32 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="124" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ug1-nf-I1N">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="n0l-sO-3v8">
-                                    <rect key="frame" x="0.0" y="152" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="152" width="375" height="1"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="1" green="1" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SensorCellID" rowHeight="124" id="7HG-2a-6cy" customClass="SensorCell" customModule="PowerIntervals" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SensorCellID" id="7HG-2a-6cy" customClass="SensorCell" customModule="PowerIntervals" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7HG-2a-6cy" id="0b3-HR-XwD">
                                             <frame key="frameInset" width="375" height="123"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sensor ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exd-jz-Aj8">
-                                                    <frame key="frameInset" minX="8" minY="8" width="140" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="main data point" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="enf-kY-8D5">
-                                                    <frame key="frameInset" minX="8" minY="37" width="140" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor Info" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exd-jz-Aj8">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Exd-jz-Aj8" secondAttribute="bottom" id="Cvh-v8-rVX"/>
+                                                <constraint firstAttribute="topMargin" secondItem="Exd-jz-Aj8" secondAttribute="top" id="EFO-3F-iwA"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="Exd-jz-Aj8" secondAttribute="leading" id="MlG-xf-tEj"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Exd-jz-Aj8" secondAttribute="trailing" id="S2J-nE-rrt"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="sensorData" destination="enf-kY-8D5" id="2bp-Kd-KGs"/>
                                             <outlet property="sensorID" destination="Exd-jz-Aj8" id="44n-YI-Y2c"/>
                                         </connections>
                                     </tableViewCell>
@@ -209,6 +213,12 @@
                                     <outlet property="delegate" destination="OLd-7e-keT" id="4xg-ZV-e2v"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="131-1B-j3V">
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="addAnObject:" destination="4U5-9q-t9i" eventType="touchUpInside" id="3xq-c2-2cS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -221,8 +231,10 @@
                             <constraint firstItem="ug1-nf-I1N" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leading" id="grM-9j-sIb"/>
                             <constraint firstItem="PJJ-mw-RbX" firstAttribute="top" secondItem="i4e-QG-kAU" secondAttribute="bottom" id="jxb-qm-pRD"/>
                             <constraint firstItem="YVD-yo-Id3" firstAttribute="centerX" secondItem="AsX-J7-rTX" secondAttribute="centerX" id="nMV-A7-Ed3"/>
+                            <constraint firstItem="K0C-5q-mEt" firstAttribute="top" secondItem="131-1B-j3V" secondAttribute="bottom" constant="20" id="pUA-Px-Zfs"/>
                             <constraint firstItem="K0C-5q-mEt" firstAttribute="top" secondItem="YVD-yo-Id3" secondAttribute="bottom" constant="20" id="uvl-cU-TMd"/>
                             <constraint firstItem="ug1-nf-I1N" firstAttribute="top" secondItem="iqS-CO-dVw" secondAttribute="bottom" constant="7.5" id="xAd-jQ-A96"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="131-1B-j3V" secondAttribute="leading" id="yaB-Jk-WeV"/>
                             <constraint firstAttribute="trailing" secondItem="iqS-CO-dVw" secondAttribute="trailing" constant="16" id="yll-Nf-ZRl"/>
                         </constraints>
                     </view>

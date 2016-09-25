@@ -8,22 +8,29 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class DeviceListDataSource: NSObject {
-    var devices : [PowerSensorDevice] = Array<PowerSensorDevice>()
+    var devices: Results<PowerSensorDevice>
+    
+    override init() {
+        let realm = try! Realm()
+        devices = realm.objects(PowerSensorDevice.self)
+    }
 }
 
 extension DeviceListDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return devices.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView .dequeueReusableCell(withIdentifier: "SensorCellID", for: indexPath) as! SensorCell
-        cell.sensorID?.text = "SensorID: ABC"
-        cell.sensorData?.text = "Data: 100w"
+        let device = devices[indexPath.row]
+        cell.sensorID?.text = device.description
         return cell
     }
+    
 }
 
 class SensorCell: UITableViewCell {
