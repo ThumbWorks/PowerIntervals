@@ -79,7 +79,7 @@ class PowerSensorData: Object {
     dynamic var accumulatedTorque: Double = 0
     dynamic var cadenceSupported = false
     dynamic var crankRevolutions: Double = 0
-    dynamic var crankRevolutionSupported: Double = 0.0
+    dynamic var crankRevolutionSupported: Bool = false
     dynamic var crankTime: TimeInterval = 0
     dynamic var crankTimestamp: TimeInterval = 0
     dynamic var crankTimestampOverflow = false

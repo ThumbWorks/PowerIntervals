@@ -60,8 +60,9 @@ class SensorDelegate : NSObject, WFSensorConnectionDelegate {
 
 class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
     var powerDelegate: PowerSensorDelegate
-    var sensorConnection: WFBikePowerConnection?
     var sensorConnectionDelegate: SensorDelegate?
+    var connectedWahooDevices = Set<WFBikePowerConnection>()
+    
     init(powerSensorDelegate: PowerSensorDelegate) {
         powerDelegate = powerSensorDelegate
         super.init()
@@ -78,13 +79,14 @@ class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
         powerDelegate.hardwareDebug(sensor: self, message: "start hardware")
         let connectionParams = WFConnectionParams()
         connectionParams.sensorType = WF_SENSORTYPE_BIKE_POWER
-        sensorConnection = connector?.requestSensorConnection(connectionParams) as! WFBikePowerConnection?
+        if let unwrappedSensorConnection = connector?.requestSensorConnection(connectionParams) as! WFBikePowerConnection? {
+            unwrappedSensorConnection.delegate = sensorConnectionDelegate
+        }
     
         powerDelegate.hardwareDebug(sensor: self, message: "setup sensorConnectionDelegate object")
         sensorConnectionDelegate = SensorDelegate(debugger: powerDelegate, powerMeter: self)
         
         powerDelegate.hardwareDebug(sensor: self, message: "set the sensorConnectionDelegate to the delegate of sensorConnection")
-        sensorConnection?.delegate = sensorConnectionDelegate
         
         switch Int((connector?.currentState().rawValue)!) {
         case 0: // not connected
@@ -130,63 +132,120 @@ class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
     //    can update the persistently stored object
     func hardwareConnector(_ hwConnector: WFHardwareConnector!, connectedSensor sensor: WFSensorConnection) {
         sensor.delegate = sensorConnectionDelegate
-        sensorConnection = sensor as? WFBikePowerConnection
-        if let device = sensorConnection {
-            PowerSensorDevice.deviceWithBikePowerConection(pm: device)
+        
+        if let unwrappedSensor = sensor as? WFBikePowerConnection {
+            connectedWahooDevices.insert(unwrappedSensor)
+            PowerSensorDevice.deviceWithBikePowerConection(pm: unwrappedSensor)
         }
     }
 
      func hardwareConnectorHasData() {
-        //alertText(message: "Hardware connector has data")
-        if let data = sensorConnection?.getBikePowerData() {
-            let accumulatedPower = data.accumulatedPower
-            let instantPower = data.instantPower
-            let powerString = "Accumulated: " + accumulatedPower.description + "instant: " + instantPower.description
-            powerDelegate.hardwareDebug(sensor: self, message: "Hardware Connector has data " + powerString)
-            powerDelegate.receivedPowerReading(sensor: self, powerReading: instantPower.toIntMax())
-        }
         
-        //TODO. I need to check all devices to see if they have updates maybe. If they do, get it and update.
+        let devicesWithData = connectedWahooDevices.filter { (connection) -> Bool in
+            return connection.hasData()
+        }
+
+        let realm = try! Realm()
+
+        // Get those realm objects
+        for device in devicesWithData {
+            // get the realm object
+            let predicate = NSPredicate(format: "deviceID == %@", device.deviceIDString)
+            let object = realm.objects(PowerSensorDevice.self).filter(predicate)
+            if let realmDevice = object.first {
+                try! realm.write {
+                    // update the latest state of the device
+                    realmDevice.update(pm: device)
+                    
+                    if let data = realmDevice.currentData {
+                        // put the new data in it
+                        data.update(powerData: device.getBikePowerData())
+                        
+                        let accumulatedPower = data.accumulatedPower
+                        let instantPower = data.instantPower
+                        let powerString = "Accumulated: " + accumulatedPower.description + "instant: " + instantPower.description
+                        powerDelegate.hardwareDebug(sensor: self, message: "Hardware Connector has data " + powerString)
+                        powerDelegate.receivedPowerReading(sensor: self, powerReading: IntMax(instantPower.intValue))
+                    }
+                }
+            }
+        }
     }
-    
 }
 
+extension PowerSensorData {
+    func update(powerData: WFBikePowerData) {
+        formattedCadence = powerData.formattedCadence(true)
+        formattedDistance = powerData.formattedDistance(true)
+        formattedPower = powerData.formattedPower(true)
+        formattedSpeed = powerData.formattedSpeed(true)
+        isCoasting = powerData.isCoasting()
+        accumulatedEventCount = Int(powerData.accumulatedEventCount)
+        accumulatedPower = powerData.accumulatedPower
+        accumulatedTime = powerData.accumulatedTime
+        accumulatedTimestamp = powerData.accumulatedTimestamp
+        accumulatedTimestampOverflow = powerData.accumulatedTimestampOverflow
+        accumulatedTorque = powerData.accumulatedTorque
+        cadenceSupported = powerData.cadenceSupported
+        crankRevolutions = powerData.crankRevolutions
+        crankRevolutionSupported = powerData.isCrankRevolutionSupported
+        crankTime = powerData.crankTime
+        crankTimestamp = powerData.crankTimestamp
+        crankTimestampOverflow = powerData.crankTimestampOverflow
+        instantPower = NSNumber(value: powerData.instantPower)
+        if let speed = powerData.instantSpeed {
+            instantSpeed = speed
+        }
+        instantWheelRPM = NSNumber(value: powerData.instantWheelRPM)
+        isDataStale = powerData.isDataStale
+        //        var sensorType: PowerMeterType = .unknown
+        wheelRevolutions = powerData.wheelRevolutions
+        wheelRevolutionSupported = powerData.isWheelRevolutionSupported
+        wheelTime = powerData.wheelTime
+        wheelTimestamp = powerData.wheelTimestamp
+        wheelTimestampOverflow = powerData.wheelTimestampOverflow
+    }
+}
 extension PowerSensorDevice {
-    class func deviceWithBikePowerConection(pm: WFBikePowerConnection) {
-        let device = PowerSensorDevice()
-        device.deviceID = pm.deviceIDString
-        device.antBridgeSupport = pm.hasAntBridgeSupport
-        device.antConnection = pm.isANTConnection
-        device.connected = pm.isConnected
-        device.deviceBTLEUUID = pm.deviceUUIDString
-        device.deviceNumber = NSNumber(integerLiteral: Int(pm.deviceNumber))
-        device.didTimeout = pm.didTimeout
-        device.hasError = pm.hasError
+
+    // this could be renamed
+    func update(pm: WFBikePowerConnection) {
+        antBridgeSupport = pm.hasAntBridgeSupport
+        antConnection = pm.isANTConnection
+        connected = pm.isConnected
+        deviceBTLEUUID = pm.deviceUUIDString
+        deviceNumber = NSNumber(integerLiteral: Int(pm.deviceNumber))
+        didTimeout = pm.didTimeout
+        hasError = pm.hasError
         switch(pm.networkType) {
         case WF_NETWORKTYPE_UNSPECIFIED:
-            device.networkType = .unspecified
+            networkType = .unspecified
         case WF_NETWORKTYPE_ANTPLUS:
-            device.networkType = .ant
+            networkType = .ant
         case WF_NETWORKTYPE_BTLE:
-            device.networkType = .btle
+            networkType = .btle
         case WF_NETWORKTYPE_SUUNTO:
-            device.networkType = .suunto
+            networkType = .suunto
         case WF_NETWORKTYPE_ANY:
-            device.networkType = .wildcard
+            networkType = .wildcard
         default:
-            device.networkType = .unspecified
+            networkType = .unspecified
         }
-        device.timeSinceLastMessage = pm.timeSinceLastMessage
-        device.valid = pm.isValid;
-        device.validParameters = pm.hasValidParams
-        device.wildcardParams = pm.hasWildcardParams
-        
-        device.currentData = PowerSensorData()
-        
+        timeSinceLastMessage = pm.timeSinceLastMessage
+        valid = pm.isValid;
+        validParameters = pm.hasValidParams
+        wildcardParams = pm.hasWildcardParams
+    }
+    
+    class func deviceWithBikePowerConection(pm: WFBikePowerConnection) {
+        let powerSensorDevice = PowerSensorDevice()
+        powerSensorDevice.deviceID = pm.deviceIDString
+        powerSensorDevice.update(pm: pm)
+        powerSensorDevice.currentData = PowerSensorData()
+        powerSensorDevice.currentData?.update(powerData: pm.getBikePowerData())
         let realm = try! Realm()
-        
         try! realm.write {
-            realm.add(device)
+            realm.add(powerSensorDevice)
         }
     }
     

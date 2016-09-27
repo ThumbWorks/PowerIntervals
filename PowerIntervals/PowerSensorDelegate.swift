@@ -13,6 +13,7 @@ protocol PowerMeter {
 }
 
 protocol PowerSensorDelegate {
+// Realm somewhat eliminates the need for this delegate callback
     func receivedPowerReading(sensor: PowerMeter, powerReading: IntMax)
     func hardwareConnectedState(sensor: PowerMeter, connected: Bool)
     func hardwareDebug(sensor: PowerMeter, message: String)
