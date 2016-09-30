@@ -20,21 +20,43 @@ class DeviceListDataSource: NSObject {
 }
 
 extension DeviceListDataSource: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return devices.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView .dequeueReusableCell(withIdentifier: "SensorCellID", for: indexPath) as! SensorCell
+        let cell = tableView .dequeueReusableCell(withIdentifier: "FormattedSensorCellID", for: indexPath) as! FormattedSensorCell
         let device = devices[indexPath.row]
-        cell.sensorID?.text = device.description
+        cell.sensorID.text = device.deviceID
+        if let data = device.currentData {
+            cell.power.text = data.formattedPower
+            cell.accumPower.text = data.accumulatedPower.description
+            cell.time.text = data.accumulatedTime.stringForTime()
+            cell.speed.text = data.formattedSpeed
+            cell.torque.text = data.accumulatedTorque.description
+            cell.distance.text = data.formattedDistance
+            cell.revolutions.text = data.wheelRevolutions.description
+        }
         return cell
     }
     
+    // Delete
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.delete(devices[indexPath.row])
+        }
+    }
 }
 
-class SensorCell: UITableViewCell {
+class FormattedSensorCell: UITableViewCell {
     @IBOutlet weak var sensorID: UILabel!
-    @IBOutlet weak var sensorData: UILabel!
-    
+    @IBOutlet weak var power: UILabel!
+    @IBOutlet weak var accumPower: UILabel!
+    @IBOutlet weak var time: UILabel!
+    @IBOutlet weak var speed: UILabel!
+    @IBOutlet weak var torque: UILabel!
+    @IBOutlet weak var distance: UILabel!
+    @IBOutlet weak var revolutions: UILabel!
 }

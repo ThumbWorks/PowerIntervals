@@ -14,22 +14,34 @@ class FakePowerMeter: PowerMeter {
     var powerValueToSend = 145
     var range = 20
     var timer : Timer?
+    var time = 0.0
     var deviceInstance: PowerSensorDevice?
     let realm = try! Realm()
 
     init(delegate : PowerSensorDelegate) {
         powerSensorDelegate = delegate
     }
+    
     func name() -> (String) {
         return "Fake Power Meter"
     }
+    
     func start() {
         createFakeDevice()
         let newTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+            self.time += 1
             let random = Int(arc4random_uniform(UInt32(self.range))) + self.powerValueToSend
             self.powerSensorDelegate.receivedPowerReading(sensor: self, powerReading: random.toIntMax())
             try! self.realm.write {
-                self.deviceInstance?.currentData?.instantPower = NSNumber(integerLiteral: random)
+                // this is all of the data we currently show in the device list
+                let data = self.deviceInstance?.currentData
+                data?.formattedPower = NSNumber(integerLiteral: random).description + " watts"
+                data?.accumulatedTime = self.time
+                data?.accumulatedPower = Double(random)
+                data?.formattedDistance = "100 miles"
+                data?.accumulatedTorque = Double(random)
+                data?.formattedSpeed = (random / 10).description
+                data?.wheelRevolutions = self.time
             }
         }
         timer = newTimer

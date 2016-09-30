@@ -24,7 +24,7 @@ class DeviceListViewController: UIViewController {
         tableView.estimatedRowHeight = 140
 
         tableDataSource = DeviceListDataSource()
-        tableDelegate = DeviceListDelegate()
+        tableView.delegate = self
         
         token = tableDataSource?.devices.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
             guard let tableView = self?.tableView else { return }
@@ -40,6 +40,7 @@ class DeviceListViewController: UIViewController {
                 tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
                 tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .none)
                 tableView.endUpdates()
+                
                 break
             case .error(let error):
                 // An error occurred while opening the Realm file on the background worker thread
@@ -47,12 +48,12 @@ class DeviceListViewController: UIViewController {
                 break
             }
         }
-        
     }
 
     deinit {
         token?.stop()
     }
+    
     @IBAction func addAnObject(_ sender: AnyObject) {
         let device = PowerSensorDevice()
         device.deviceID = NSDate().description
@@ -62,7 +63,7 @@ class DeviceListViewController: UIViewController {
     }
 }
 
-class DeviceListDelegate: NSObject, UITableViewDelegate {
+extension DeviceListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected ")
     }

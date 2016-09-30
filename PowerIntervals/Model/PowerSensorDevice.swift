@@ -41,7 +41,10 @@ enum SensorSubType {
     case tickrRun
 }
 
-class PowerSensorDevice: Object {
+class PowerSensorDevice: Object, PowerMeter {
+    func name() -> (String) {
+        return deviceID
+    }
     override static func primaryKey() -> String? {
         return "deviceID"
     }

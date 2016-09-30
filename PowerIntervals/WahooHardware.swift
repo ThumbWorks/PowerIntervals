@@ -164,8 +164,8 @@ class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
                         let accumulatedPower = data.accumulatedPower
                         let instantPower = data.instantPower
                         let powerString = "Accumulated: " + accumulatedPower.description + "instant: " + instantPower.description
-                        powerDelegate.hardwareDebug(sensor: self, message: "Hardware Connector has data " + powerString)
-                        powerDelegate.receivedPowerReading(sensor: self, powerReading: IntMax(instantPower.intValue))
+                        powerDelegate.hardwareDebug(sensor: realmDevice, message: "Hardware Connector has data " + powerString)
+                        powerDelegate.receivedPowerReading(sensor: realmDevice, powerReading: IntMax(instantPower.intValue))
                     }
                 }
             }
@@ -206,8 +206,8 @@ extension PowerSensorData {
         wheelTimestampOverflow = powerData.wheelTimestampOverflow
     }
 }
-extension PowerSensorDevice {
 
+extension PowerSensorDevice {
     // this could be renamed
     func update(pm: WFBikePowerConnection) {
         antBridgeSupport = pm.hasAntBridgeSupport
