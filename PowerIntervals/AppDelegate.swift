@@ -1,3 +1,4 @@
+
 //
 //  AppDelegate.swift
 //  PowerIntervals
@@ -17,6 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        let isRunningTests = NSClassFromString("XCTestCase") != nil
+        if isRunningTests {
+            return true
+        }
+        
         Fabric.with([Crashlytics.self])
         return true
     }

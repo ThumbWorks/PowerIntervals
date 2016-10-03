@@ -59,4 +59,15 @@ class FormattedSensorCell: UITableViewCell {
     @IBOutlet weak var torque: UILabel!
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var revolutions: UILabel!
+    
+    override func prepareForReuse() {
+        sensorID.text = nil
+        power.text = nil
+        accumPower.text = nil
+        time.text = nil
+        speed.text = nil
+        torque.text = nil
+        distance.text = nil
+        revolutions.text = nil
+    }
 }

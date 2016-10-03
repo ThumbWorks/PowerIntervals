@@ -13,12 +13,18 @@ import RealmSwift
 class DeviceListViewController: UIViewController {
     var token: NotificationToken?
     var realm: Realm?
+    var fakePowerMeter : FakePowerMeter?
+
     @IBOutlet var tableDataSource: DeviceListDataSource?
     @IBOutlet var tableDelegate: UITableViewDelegate?
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
+        
+        let newPowerMeter = FakePowerMeter()
+        fakePowerMeter = newPowerMeter
+
         realm = try! Realm()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
@@ -50,16 +56,55 @@ class DeviceListViewController: UIViewController {
         }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let selectedPath = tableView.indexPathForSelectedRow, let powerMeterViewController = segue.destination as? PowerMeterDetailViewController {
+            powerMeterViewController.powerMeter = tableDataSource?.devices[selectedPath.row]
+        }
+    }
+    
     deinit {
         token?.stop()
     }
     
+    @IBAction func startFakePM(_ sender: AnyObject) {
+        fakePowerMeter?.startButton()
+    }
+    
+    // A PowerSensorDevice with a bunch of random data
     @IBAction func addAnObject(_ sender: AnyObject) {
+        createObject()
+    }
+}
+
+extension DeviceListViewController {
+    func createObject() {
         let device = PowerSensorDevice()
-        device.deviceID = NSDate().description
+        
+        // The deviceID is the date plus a random seed so we don't have any collisions
+        device.deviceID = NSDate().description + "\(arc4random() % 500)"
+        let data = PowerSensorData()
+        device.currentData = data
+        data.accumulatedEventCount = Int(arc4random()) % 400
+        data.accumulatedPower = Double(arc4random() % 1000)
+        data.accumulatedTime = Double(arc4random() % 1000)
+        data.accumulatedTimestamp = data.accumulatedTime.truncatingRemainder(dividingBy: 1000)
+        data.accumulatedTorque = Double(arc4random() % 1000)
+        data.crankRevolutions = Double(arc4random() % 10000)
+        data.crankTime = Double(arc4random())
+        data.crankTimestamp = Double(arc4random() % 10000)
+        data.formattedCadence = "123 cadences"
+        data.formattedPower = String(arc4random() % 1000) + " watts"
+        data.formattedDistance = String(arc4random() % 1000) + " miles"
+        data.formattedSpeed = String(arc4random() % 100) + " mph"
+        
         try! realm?.write {
             realm!.add(device)
         }
+    }
+}
+
+extension DeviceListViewController {
+    @IBAction func unwindToDeviceListView(sender: UIStoryboardSegue){
     }
 }
 

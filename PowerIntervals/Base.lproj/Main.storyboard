@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="D7d-8a-rbx">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -12,10 +12,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Power Meter Detail View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PowerIntervals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="PowerMeterDetailViewController" customModule="PowerIntervals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -24,7 +24,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="55" translatesAutoresizingMaskIntoConstraints="NO" id="O0o-za-AdU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="55" translatesAutoresizingMaskIntoConstraints="NO" id="O0o-za-AdU">
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="109"/>
                                 <color key="textColor" red="0.062745098039215685" green="0.062745098039215685" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -34,14 +34,6 @@
                                 <color key="textColor" red="0.062745098039215685" green="0.062745098039215685" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="2000" translatesAutoresizingMaskIntoConstraints="NO" id="eFn-kj-BjL">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="x4D-Wa-I5C"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="changeSliderWithSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="XsR-B3-VDI"/>
-                                </connections>
-                            </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.2.1 timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfH-Sq-2DG">
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="29"/>
                                 <color key="textColor" red="0.062745098039215685" green="0.062745098039215685" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -65,63 +57,45 @@
                                 <color key="textColor" red="0.062745098039215685" green="0.062745098039215685" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lLx-hB-cZh">
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="DBW-hh-nPP"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deA-qQ-lLc">
                                 <state key="normal" title="debug"/>
                                 <connections>
                                     <action selector="debugButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wWc-9x-ksF"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vho-eF-ibw">
-                                <state key="normal" title="Sensors"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E1Z-F7-WjZ">
+                                <state key="normal" title="back"/>
                                 <connections>
-                                    <segue destination="4U5-9q-t9i" kind="show" id="maZ-88-dUu"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTa-hA-rqW">
-                                <state key="normal" title="start pm"/>
-                                <connections>
-                                    <action selector="startFakePowerMeter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4ey-rx-nRF"/>
+                                    <segue destination="Jde-cW-BJN" kind="unwind" unwindAction="unwindToDeviceListViewWithSender:" id="j1b-oa-qcx"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Vho-eF-ibw" secondAttribute="trailing" id="1Zv-aQ-U8j"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="O0o-za-AdU" secondAttribute="trailing" constant="10" id="2ys-3z-QYn"/>
                             <constraint firstItem="S6T-zO-X7e" firstAttribute="centerY" secondItem="O0o-za-AdU" secondAttribute="centerY" id="3Ly-UW-hzn"/>
-                            <constraint firstItem="lLx-hB-cZh" firstAttribute="top" secondItem="eFn-kj-BjL" secondAttribute="bottom" constant="8.5" id="3Pn-YK-KxX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="X9k-lG-ZkP" secondAttribute="trailing" constant="10" id="3T4-TP-UWA"/>
                             <constraint firstItem="O0o-za-AdU" firstAttribute="top" secondItem="DCn-xI-23h" secondAttribute="bottom" id="7Ex-CV-hnC"/>
                             <constraint firstItem="DCn-xI-23h" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="85D-oJ-PJ9"/>
-                            <constraint firstItem="Vho-eF-ibw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="9eE-zo-bNo"/>
-                            <constraint firstItem="rTa-hA-rqW" firstAttribute="top" secondItem="deA-qQ-lLc" secondAttribute="bottom" constant="3" id="9w7-3B-yzV"/>
-                            <constraint firstItem="rTa-hA-rqW" firstAttribute="leading" secondItem="deA-qQ-lLc" secondAttribute="leading" id="HvV-2e-O2L"/>
+                            <constraint firstItem="E1Z-F7-WjZ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="BlK-XM-Z3R"/>
                             <constraint firstItem="X9k-lG-ZkP" firstAttribute="top" secondItem="O0o-za-AdU" secondAttribute="bottom" constant="25" id="Igz-tL-6sf"/>
-                            <constraint firstItem="eFn-kj-BjL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="R5g-T3-udV"/>
                             <constraint firstItem="X9k-lG-ZkP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="RHf-uG-SLu"/>
-                            <constraint firstItem="O0o-za-AdU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RPr-om-zUZ"/>
-                            <constraint firstAttribute="trailing" secondItem="eFn-kj-BjL" secondAttribute="trailing" constant="16" id="UDQ-Gg-Kdh"/>
                             <constraint firstItem="rfH-Sq-2DG" firstAttribute="top" secondItem="X9k-lG-ZkP" secondAttribute="bottom" constant="10" id="YNd-ig-TwS"/>
                             <constraint firstAttribute="trailing" secondItem="rfH-Sq-2DG" secondAttribute="trailing" constant="26" id="a1O-ZX-WUa"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="lLx-hB-cZh" secondAttribute="trailing" constant="10" id="dbH-Cp-TTP"/>
-                            <constraint firstItem="deA-qQ-lLc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="gYG-v4-Y2D"/>
+                            <constraint firstItem="E1Z-F7-WjZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="aue-Vk-0Fs"/>
+                            <constraint firstItem="deA-qQ-lLc" firstAttribute="top" secondItem="E1Z-F7-WjZ" secondAttribute="bottom" id="hep-bK-PZt"/>
                             <constraint firstItem="raU-kZ-awH" firstAttribute="leading" secondItem="DCn-xI-23h" secondAttribute="trailing" id="i1G-W1-IWh"/>
                             <constraint firstItem="rfH-Sq-2DG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="jao-Jn-xWc"/>
                             <constraint firstItem="X9k-lG-ZkP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="l9l-er-L2C"/>
                             <constraint firstItem="DCn-xI-23h" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="m49-5F-0pv"/>
-                            <constraint firstItem="lLx-hB-cZh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="mwJ-su-PCG"/>
                             <constraint firstItem="raU-kZ-awH" firstAttribute="centerY" secondItem="DCn-xI-23h" secondAttribute="centerY" id="owm-qg-b1A"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lLx-hB-cZh" secondAttribute="bottom" constant="7" id="rol-uE-ayl"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="DCn-xI-23h" secondAttribute="trailing" constant="10" id="tHu-5z-0Kb"/>
+                            <constraint firstItem="DCn-xI-23h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="uvA-d3-BlZ"/>
                             <constraint firstItem="deA-qQ-lLc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="y09-OF-bvE"/>
+                            <constraint firstItem="O0o-za-AdU" firstAttribute="centerX" secondItem="DCn-xI-23h" secondAttribute="centerX" id="yTZ-8R-Q7D"/>
                             <constraint firstItem="S6T-zO-X7e" firstAttribute="leading" secondItem="O0o-za-AdU" secondAttribute="trailing" id="z1B-XK-P4H"/>
+                            <constraint firstItem="O0o-za-AdU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="zuR-Ja-lwM"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="jb8-gt-JaM" appends="YES" id="zPh-8q-er0"/>
@@ -129,23 +103,96 @@
                     </view>
                     <connections>
                         <outlet property="avgWattsLabel" destination="DCn-xI-23h" id="iJy-4T-BiB"/>
-                        <outlet property="debugTextView" destination="lLx-hB-cZh" id="H3r-Kj-MTc"/>
-                        <outlet property="slider" destination="eFn-kj-BjL" id="qh6-uf-tNx"/>
                         <outlet property="startupTimerLabel" destination="rfH-Sq-2DG" id="2kd-8M-FmA"/>
                         <outlet property="timeLabel" destination="X9k-lG-ZkP" id="s4L-Ds-eh9"/>
                         <outlet property="wattsLabel" destination="O0o-za-AdU" id="hPL-9h-ebh"/>
-                        <segue destination="4U5-9q-t9i" kind="presentation" identifier="HardwareNotConnectedSegueID" id="Njb-jk-Djg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="F5f-jA-4Ge" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="jb8-gt-JaM">
                     <connections>
                         <action selector="viewTappedWithRecognizer:" destination="BYZ-38-t0r" id="Bg1-rQ-qjz"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="140" y="137.18140929535232"/>
+            <point key="canvasLocation" x="1399" y="94"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lGl-gz-QEq">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="D7d-8a-rbx" sceneMemberID="viewController">
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Y7H-ND-KK1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="CbC-GR-6Bo" kind="relationship" relationship="rootViewController" id="UF8-sL-fMn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RgX-R9-Zni" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-924" y="93"/>
+        </scene>
+        <!--Hardware Connect View Controller-->
+        <scene sceneID="Ual-kY-RYu">
+            <objects>
+                <viewController id="CbC-GR-6Bo" customClass="HardwareConnectViewController" customModule="PowerIntervals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="e1E-ZX-JYR"/>
+                        <viewControllerLayoutGuide type="bottom" id="biH-LY-RHb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yC6-9B-dry">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="sKA-5E-4Iw">
+                                <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect a Wahoo Fitness Dongle to view Power Meter Data" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2f-9j-VNo">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XIJ-4n-05Y">
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09y-6x-tWz">
+                                <state key="normal" title="Debug Connect"/>
+                                <connections>
+                                    <action selector="debugConnectHardware:" destination="CbC-GR-6Bo" eventType="touchUpInside" id="bcH-3e-fsE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="biH-LY-RHb" firstAttribute="top" secondItem="09y-6x-tWz" secondAttribute="bottom" constant="20" id="26p-Yv-yYx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="v2f-9j-VNo" secondAttribute="trailing" id="AeU-o2-uNp"/>
+                            <constraint firstItem="sKA-5E-4Iw" firstAttribute="centerY" secondItem="yC6-9B-dry" secondAttribute="centerY" id="H8E-4i-sqn"/>
+                            <constraint firstItem="v2f-9j-VNo" firstAttribute="top" secondItem="sKA-5E-4Iw" secondAttribute="bottom" constant="7.5" id="HbI-SI-bdS"/>
+                            <constraint firstItem="biH-LY-RHb" firstAttribute="top" secondItem="XIJ-4n-05Y" secondAttribute="bottom" constant="20" id="TpA-b7-s4W"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XIJ-4n-05Y" secondAttribute="trailing" id="bMw-xT-3PG"/>
+                            <constraint firstItem="XIJ-4n-05Y" firstAttribute="top" secondItem="v2f-9j-VNo" secondAttribute="bottom" constant="8" id="n1C-3V-iYF"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="XIJ-4n-05Y" secondAttribute="leading" id="njK-a7-2OR"/>
+                            <constraint firstItem="sKA-5E-4Iw" firstAttribute="centerX" secondItem="yC6-9B-dry" secondAttribute="centerX" id="pWd-Oz-mzx"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="09y-6x-tWz" secondAttribute="leading" id="pZ8-lG-V9N"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="v2f-9j-VNo" secondAttribute="leading" id="y0O-pJ-2as"/>
+                            <constraint firstItem="v2f-9j-VNo" firstAttribute="centerX" secondItem="sKA-5E-4Iw" secondAttribute="centerX" id="yRw-Z1-u5V"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZyE-cT-sU7"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="debugTextField" destination="XIJ-4n-05Y" id="DTG-3n-vkY"/>
+                        <outlet property="spinner" destination="sKA-5E-4Iw" id="PP3-7Z-Cce"/>
+                        <segue destination="4U5-9q-t9i" kind="show" identifier="HardwareConnectedSegueID" id="wFU-7D-SOi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dRJ-XS-LXs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-122.40000000000001" y="92.203898050974516"/>
         </scene>
         <!--Device List View Controller-->
         <scene sceneID="tQb-pf-BTz">
@@ -159,12 +206,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVD-yo-Id3">
-                                <state key="normal" title="Dismiss"/>
-                                <connections>
-                                    <segue destination="F5f-jA-4Ge" kind="unwind" unwindAction="unwindToWorkoutViewWithSender:" id="s01-Qw-27g"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="124" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ug1-nf-I1N">
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="n0l-sO-3v8">
@@ -177,7 +218,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jv0-RJ-IbO" id="L2c-2Z-Oby">
-                                            <frame key="frameInset" width="375" height="123.5"/>
+                                            <frame key="frameInset" width="375" height="123"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="formatted power" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDB-1x-Ulu">
@@ -251,6 +292,7 @@
                                             <outlet property="speed" destination="UKc-6H-bIj" id="1Ra-7i-L9a"/>
                                             <outlet property="time" destination="Led-FN-gtB" id="bsd-5g-nN8"/>
                                             <outlet property="torque" destination="JVq-ve-m5O" id="Qef-My-s7k"/>
+                                            <segue destination="BYZ-38-t0r" kind="show" identifier="TapPowerMeterSegueID" id="0f7-vC-uPA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -260,21 +302,27 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="131-1B-j3V">
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="+"/>
                                 <connections>
                                     <action selector="addAnObject:" destination="4U5-9q-t9i" eventType="touchUpInside" id="3xq-c2-2cS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Yk-e0-dvU">
+                                <state key="normal" title="Fake PM"/>
+                                <connections>
+                                    <action selector="startFakePM:" destination="4U5-9q-t9i" eventType="touchUpInside" id="cvB-VT-Sw9"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="YVD-yo-Id3" firstAttribute="top" secondItem="ug1-nf-I1N" secondAttribute="bottom" constant="8" id="MSi-92-GdC"/>
+                            <constraint firstItem="K0C-5q-mEt" firstAttribute="top" secondItem="ug1-nf-I1N" secondAttribute="bottom" constant="58" id="2kk-Bv-eIw"/>
                             <constraint firstItem="ug1-nf-I1N" firstAttribute="top" secondItem="i4e-QG-kAU" secondAttribute="bottom" id="Mfn-IX-NET"/>
                             <constraint firstAttribute="trailing" secondItem="ug1-nf-I1N" secondAttribute="trailing" id="d6N-Vr-HwP"/>
                             <constraint firstItem="ug1-nf-I1N" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leading" id="grM-9j-sIb"/>
-                            <constraint firstItem="YVD-yo-Id3" firstAttribute="centerX" secondItem="AsX-J7-rTX" secondAttribute="centerX" id="nMV-A7-Ed3"/>
+                            <constraint firstItem="2Yk-e0-dvU" firstAttribute="leading" secondItem="131-1B-j3V" secondAttribute="trailing" constant="8" id="pST-Ud-RTN"/>
                             <constraint firstItem="K0C-5q-mEt" firstAttribute="top" secondItem="131-1B-j3V" secondAttribute="bottom" constant="20" id="pUA-Px-Zfs"/>
-                            <constraint firstItem="K0C-5q-mEt" firstAttribute="top" secondItem="YVD-yo-Id3" secondAttribute="bottom" constant="20" id="uvl-cU-TMd"/>
+                            <constraint firstItem="2Yk-e0-dvU" firstAttribute="centerY" secondItem="131-1B-j3V" secondAttribute="centerY" id="qwk-KI-Sdb"/>
                             <constraint firstAttribute="leadingMargin" secondItem="131-1B-j3V" secondAttribute="leading" id="yaB-Jk-WeV"/>
                         </constraints>
                     </view>
@@ -285,13 +333,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eeb-dx-hfS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Jde-cW-BJN" userLabel="Exit" sceneMemberID="exit"/>
                 <customObject id="OLd-7e-keT" customClass="DeviceListDelegate" customModule="PowerIntervals" customModuleProvider="target"/>
                 <customObject id="sA6-tO-nNK" customClass="DeviceListDataSource" customModule="PowerIntervals" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="949.60000000000002" y="136.28185907046478"/>
+            <point key="canvasLocation" x="607" y="94"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="maZ-88-dUu"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -11,11 +11,11 @@ import UIKit //for now
 import RealmSwift
 
 class SensorDelegate : NSObject, WFSensorConnectionDelegate {
-    let debugObject : PowerSensorDelegate
+    let debugObject : WahooHardwareDelegate
     var powerMeterForDebugging: PowerMeter
     var sensorConnection : WFSensorConnection?
     
-    init(debugger: PowerSensorDelegate, powerMeter: PowerMeter) {
+    init(debugger: WahooHardwareDelegate, powerMeter: PowerMeter) {
         debugObject = debugger
         powerMeterForDebugging = powerMeter
         debugObject.hardwareDebug(sensor: powerMeterForDebugging, message: "Set up sensor delegate")
@@ -45,7 +45,6 @@ class SensorDelegate : NSObject, WFSensorConnectionDelegate {
     
     func connection(_ connectionInfo: WFSensorConnection!, rejectedByDeviceNamed deviceName: String!, appAlreadyConnected appName: String!) {
         debugObject.hardwareDebug(sensor: powerMeterForDebugging, message: "rejectedByDeviceNamed")
-
     }
     
     func connectionDidTimeout(_ connectionInfo: WFSensorConnection!) {
@@ -54,17 +53,16 @@ class SensorDelegate : NSObject, WFSensorConnectionDelegate {
     
     internal func connection(_ connectionInfo: WFSensorConnection!, stateChanged connState: WFSensorConnectionStatus_t) {
         debugObject.hardwareDebug(sensor: powerMeterForDebugging, message: "sensorDelegate stateChanged")
-
     }
 }
 
 class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
-    var powerDelegate: PowerSensorDelegate
+    var powerDelegate: WahooHardwareDelegate
     var sensorConnectionDelegate: SensorDelegate?
     var connectedWahooDevices = Set<WFBikePowerConnection>()
     
-    init(powerSensorDelegate: PowerSensorDelegate) {
-        powerDelegate = powerSensorDelegate
+    init(hardwareDelegate: WahooHardwareDelegate) {
+        powerDelegate = hardwareDelegate
         super.init()
     }
     
@@ -88,12 +86,8 @@ class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
         
         powerDelegate.hardwareDebug(sensor: self, message: "set the sensorConnectionDelegate to the delegate of sensorConnection")
         
-        switch Int((connector?.currentState().rawValue)!) {
-        case 0: // not connected
-            powerDelegate.hardwareDebug(sensor: self, message: "not connected")
-        default:
-            powerDelegate.hardwareDebug(sensor: self, message: "case not handled for current state of connector")
-        }
+        let state = connector?.currentState().rawValue
+        powerDelegate.hardwareConnectedState(sensor: self, connected: state == 3)
     }
     
     func hardwareConnector(_ hwConnector: WFHardwareConnector!, hasFirmwareUpdateAvailableFor connectionInfo: WFSensorConnection!, required: Bool, withWahooUtilityAppURL wahooUtilityAppURL: URL!) {
@@ -109,6 +103,9 @@ class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
     
     func hardwareConnector(_ hwConnector: WFHardwareConnector!, disconnectedSensor connectionInfo: WFSensorConnection!) {
         powerDelegate.hardwareDebug(sensor: self, message: "disconnectedSensor")
+        if let disconnectingSensor = connectionInfo as? WFBikePowerConnection{
+            connectedWahooDevices.remove(disconnectingSensor)
+        }
         // we need to delete this
         PowerSensorDevice.deleteDevice(identifierString: connectionInfo.deviceIDString)
     }
@@ -121,21 +118,19 @@ class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
         // CONNECTED and ACTIVE
         if currentState.rawValue == 3 {
             // tell the sensorDelegate to start searching
+            powerDelegate.hardwareConnectedState(sensor: self, connected: true)
             powerDelegate.hardwareDebug(sensor: self, message: "We got a 3, start up the sensorConnectionDelegate")
             sensorConnectionDelegate?.start(hardwareConnection: hwConnector)
         }
     }
 
     // This comes back on a background thread
-    // TODO need to store each one of these that comes back in some sort of array
-    //    That way I'll be able to check all of them when some data comes back and I 
-    //    can update the persistently stored object
     func hardwareConnector(_ hwConnector: WFHardwareConnector!, connectedSensor sensor: WFSensorConnection) {
         sensor.delegate = sensorConnectionDelegate
         
         if let unwrappedSensor = sensor as? WFBikePowerConnection {
             connectedWahooDevices.insert(unwrappedSensor)
-            PowerSensorDevice.deviceWithBikePowerConection(pm: unwrappedSensor)
+            PowerSensorDevice.deviceWithBikePowerConnection(pm: unwrappedSensor)
         }
     }
 
@@ -165,7 +160,6 @@ class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
                         let instantPower = data.instantPower
                         let powerString = "Accumulated: " + accumulatedPower.description + "instant: " + instantPower.description
                         powerDelegate.hardwareDebug(sensor: realmDevice, message: "Hardware Connector has data " + powerString)
-                        powerDelegate.receivedPowerReading(sensor: realmDevice, powerReading: IntMax(instantPower.intValue))
                     }
                 }
             }
@@ -217,35 +211,50 @@ extension PowerSensorDevice {
         deviceNumber = NSNumber(integerLiteral: Int(pm.deviceNumber))
         didTimeout = pm.didTimeout
         hasError = pm.hasError
-        switch(pm.networkType) {
-        case WF_NETWORKTYPE_UNSPECIFIED:
-            networkType = .unspecified
-        case WF_NETWORKTYPE_ANTPLUS:
-            networkType = .ant
-        case WF_NETWORKTYPE_BTLE:
-            networkType = .btle
-        case WF_NETWORKTYPE_SUUNTO:
-            networkType = .suunto
-        case WF_NETWORKTYPE_ANY:
-            networkType = .wildcard
-        default:
-            networkType = .unspecified
-        }
+        //TODO was causing a crash. Let's see what we can do without this https://fabric.io/thumbworks/ios/apps/io.thumbworks.powerintervals/issues/57f1a8890aeb16625b10020c
+//        switch(pm.networkType) {
+//        case WF_NETWORKTYPE_UNSPECIFIED:
+//            networkType = .unspecified
+//        case WF_NETWORKTYPE_ANTPLUS:
+//            networkType = .ant
+//        case WF_NETWORKTYPE_BTLE:
+//            networkType = .btle
+//        case WF_NETWORKTYPE_SUUNTO:
+//            networkType = .suunto
+//        case WF_NETWORKTYPE_ANY:
+//            networkType = .wildcard
+//        default:
+//            networkType = .unspecified
+//        }
         timeSinceLastMessage = pm.timeSinceLastMessage
         valid = pm.isValid;
         validParameters = pm.hasValidParams
         wildcardParams = pm.hasWildcardParams
     }
     
-    class func deviceWithBikePowerConection(pm: WFBikePowerConnection) {
-        let powerSensorDevice = PowerSensorDevice()
-        powerSensorDevice.deviceID = pm.deviceIDString
-        powerSensorDevice.update(pm: pm)
-        powerSensorDevice.currentData = PowerSensorData()
-        powerSensorDevice.currentData?.update(powerData: pm.getBikePowerData())
+    class func deviceWithBikePowerConnection(pm: WFBikePowerConnection) {
+        
+        // query first
         let realm = try! Realm()
-        try! realm.write {
-            realm.add(powerSensorDevice)
+
+        let predicate = NSPredicate(format: "deviceID == %@", pm.deviceIDString)
+
+        var powerSensorDevice = realm.objects(PowerSensorDevice.self).filter(predicate).first
+        
+        // create a new one if we don't have it
+        if powerSensorDevice == nil {
+            powerSensorDevice = PowerSensorDevice()
+            // set the deviceIDString only when we create it
+            powerSensorDevice?.deviceID = pm.deviceIDString
+        }
+        
+        if let powerSensorDevice = powerSensorDevice {
+            try! realm.write {
+                powerSensorDevice.update(pm: pm)
+                powerSensorDevice.currentData = PowerSensorData()
+                powerSensorDevice.currentData?.update(powerData: pm.getBikePowerData())
+                realm.add(powerSensorDevice)
+            }
         }
     }
     

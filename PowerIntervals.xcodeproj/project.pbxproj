@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E145EC31DA1CD6F008F88AE /* HardwareConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E145EC21DA1CD6F008F88AE /* HardwareConnectViewController.swift */; };
+		9E145EC41DA21D4E008F88AE /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E452FE51D958BE600C96165 /* Realm.framework */; };
+		9E145EC51DA21D52008F88AE /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E452FE31D958BDE00C96165 /* RealmSwift.framework */; };
 		9E1CC2B71D911527008AF139 /* DejaVuSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E1CC2B61D911527008AF139 /* DejaVuSans.ttf */; };
 		9E3888C81D862E8900DFC271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3888C71D862E8900DFC271 /* AppDelegate.swift */; };
-		9E3888CA1D862E8900DFC271 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3888C91D862E8900DFC271 /* ViewController.swift */; };
+		9E3888CA1D862E8900DFC271 /* PowerMeterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3888C91D862E8900DFC271 /* PowerMeterDetailViewController.swift */; };
 		9E3888CD1D862E8900DFC271 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E3888CB1D862E8900DFC271 /* Main.storyboard */; };
 		9E3888CF1D862E8900DFC271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E3888CE1D862E8900DFC271 /* Assets.xcassets */; };
 		9E3888D21D862E8900DFC271 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E3888D01D862E8900DFC271 /* LaunchScreen.storyboard */; };
@@ -42,10 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E145EC21DA1CD6F008F88AE /* HardwareConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HardwareConnectViewController.swift; path = HardwareConnectionFlow/HardwareConnectViewController.swift; sourceTree = "<group>"; };
 		9E1CC2B61D911527008AF139 /* DejaVuSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DejaVuSans.ttf; sourceTree = "<group>"; };
 		9E3888C41D862E8900DFC271 /* PowerIntervals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PowerIntervals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E3888C71D862E8900DFC271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9E3888C91D862E8900DFC271 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9E3888C91D862E8900DFC271 /* PowerMeterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerMeterDetailViewController.swift; sourceTree = "<group>"; };
 		9E3888CC1D862E8900DFC271 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9E3888CE1D862E8900DFC271 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E3888D11D862E8900DFC271 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -92,12 +96,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E145EC51DA21D52008F88AE /* RealmSwift.framework in Frameworks */,
+				9E145EC41DA21D4E008F88AE /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E145EC11DA1CD52008F88AE /* HardwareConnectionFlow */ = {
+			isa = PBXGroup;
+			children = (
+				9E145EC21DA1CD6F008F88AE /* HardwareConnectViewController.swift */,
+			);
+			name = HardwareConnectionFlow;
+			sourceTree = "<group>";
+		};
 		9E3888BB1D862E8900DFC271 = {
 			isa = PBXGroup;
 			children = (
@@ -120,11 +134,12 @@
 		9E3888C61D862E8900DFC271 /* PowerIntervals */ = {
 			isa = PBXGroup;
 			children = (
+				9E145EC11DA1CD52008F88AE /* HardwareConnectionFlow */,
 				9E452FDE1D9581A100C96165 /* DeviceListView */,
 				9E452FDB1D95811F00C96165 /* Model */,
 				9EFDBB0F1D8861ED00C56D97 /* PowerIntervals.entitlements */,
 				9E3888C71D862E8900DFC271 /* AppDelegate.swift */,
-				9E3888C91D862E8900DFC271 /* ViewController.swift */,
+				9E3888C91D862E8900DFC271 /* PowerMeterDetailViewController.swift */,
 				9E3888CB1D862E8900DFC271 /* Main.storyboard */,
 				9E8BB37E1D86337700367E60 /* FakePowerMeter.swift */,
 				9E3888CE1D862E8900DFC271 /* Assets.xcassets */,
@@ -336,11 +351,12 @@
 			files = (
 				9E8BB37F1D86337700367E60 /* FakePowerMeter.swift in Sources */,
 				9E452FDD1D95813B00C96165 /* PowerSensorDevice.swift in Sources */,
-				9E3888CA1D862E8900DFC271 /* ViewController.swift in Sources */,
+				9E3888CA1D862E8900DFC271 /* PowerMeterDetailViewController.swift in Sources */,
 				9E3888C81D862E8900DFC271 /* AppDelegate.swift in Sources */,
 				9E8BB37D1D86323500367E60 /* PowerSensorDelegate.swift in Sources */,
 				9EABF6B71D8C46C200B8AC27 /* IntTimeExtension.swift in Sources */,
 				9E452FE01D9581D600C96165 /* DeviceListDataSource.swift in Sources */,
+				9E145EC31DA1CD6F008F88AE /* HardwareConnectViewController.swift in Sources */,
 				9EFDBB0E1D8854A600C56D97 /* WahooHardware.swift in Sources */,
 				9E452FDA1D956FA600C96165 /* DeviceListViewController.swift in Sources */,
 			);
@@ -533,6 +549,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = PowerIntervalsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.thumbworks.PowerIntervalsTests;
@@ -546,6 +566,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = PowerIntervalsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.thumbworks.PowerIntervalsTests;
