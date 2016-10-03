@@ -27,6 +27,7 @@
 		9E8BB37D1D86323500367E60 /* PowerSensorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BB37C1D86323500367E60 /* PowerSensorDelegate.swift */; };
 		9E8BB37F1D86337700367E60 /* FakePowerMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BB37E1D86337700367E60 /* FakePowerMeter.swift */; };
 		9EABF6B71D8C46C200B8AC27 /* IntTimeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EABF6B61D8C46C200B8AC27 /* IntTimeExtension.swift */; };
+		9EC2F8A01DA31C6B00F31CD6 /* beep-hightone.aif in Resources */ = {isa = PBXBuildFile; fileRef = 9EC2F89F1DA31C6B00F31CD6 /* beep-hightone.aif */; };
 		9EFDBB021D88517E00C56D97 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EFDBB011D88517E00C56D97 /* SystemConfiguration.framework */; };
 		9EFDBB041D88518300C56D97 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EFDBB031D88518300C56D97 /* ExternalAccessory.framework */; };
 		9EFDBB061D88518800C56D97 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EFDBB051D88518800C56D97 /* CoreBluetooth.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -67,6 +68,7 @@
 		9E8BB37C1D86323500367E60 /* PowerSensorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSensorDelegate.swift; sourceTree = "<group>"; };
 		9E8BB37E1D86337700367E60 /* FakePowerMeter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakePowerMeter.swift; sourceTree = "<group>"; };
 		9EABF6B61D8C46C200B8AC27 /* IntTimeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntTimeExtension.swift; sourceTree = "<group>"; };
+		9EC2F89F1DA31C6B00F31CD6 /* beep-hightone.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-hightone.aif"; sourceTree = "<group>"; };
 		9EFDBB011D88517E00C56D97 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9EFDBB031D88518300C56D97 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		9EFDBB051D88518800C56D97 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -182,6 +184,7 @@
 		9E452FE11D9583F700C96165 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9EC2F89F1DA31C6B00F31CD6 /* beep-hightone.aif */,
 				9E1CC2B61D911527008AF139 /* DejaVuSans.ttf */,
 			);
 			name = Resources;
@@ -301,6 +304,7 @@
 				9E3888CF1D862E8900DFC271 /* Assets.xcassets in Resources */,
 				9E1CC2B71D911527008AF139 /* DejaVuSans.ttf in Resources */,
 				9E3888CD1D862E8900DFC271 /* Main.storyboard in Resources */,
+				9EC2F8A01DA31C6B00F31CD6 /* beep-hightone.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

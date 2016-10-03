@@ -26,22 +26,22 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="55" translatesAutoresizingMaskIntoConstraints="NO" id="O0o-za-AdU">
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="109"/>
-                                <color key="textColor" red="0.062745098039215685" green="0.062745098039215685" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="X9k-lG-ZkP">
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="80"/>
-                                <color key="textColor" red="0.062745098039215685" green="0.062745098039215685" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.2.1 timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfH-Sq-2DG">
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="29"/>
-                                <color key="textColor" red="0.062745098039215685" green="0.062745098039215685" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="55" translatesAutoresizingMaskIntoConstraints="NO" id="DCn-xI-23h">
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="109"/>
-                                <color key="textColor" red="0.062745098039215685" green="0.062745098039215685" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="avg w" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="raU-kZ-awH">
@@ -49,20 +49,14 @@
                                     <constraint firstAttribute="width" constant="54" id="geh-CM-aqU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
-                                <color key="textColor" red="0.062745098039215685" green="0.062745098039215685" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="w" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6T-zO-X7e">
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
-                                <color key="textColor" red="0.062745098039215685" green="0.062745098039215685" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deA-qQ-lLc">
-                                <state key="normal" title="debug"/>
-                                <connections>
-                                    <action selector="debugButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wWc-9x-ksF"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E1Z-F7-WjZ">
                                 <state key="normal" title="back"/>
                                 <connections>
@@ -70,7 +64,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="O0o-za-AdU" secondAttribute="trailing" constant="10" id="2ys-3z-QYn"/>
@@ -84,7 +78,6 @@
                             <constraint firstItem="rfH-Sq-2DG" firstAttribute="top" secondItem="X9k-lG-ZkP" secondAttribute="bottom" constant="10" id="YNd-ig-TwS"/>
                             <constraint firstAttribute="trailing" secondItem="rfH-Sq-2DG" secondAttribute="trailing" constant="26" id="a1O-ZX-WUa"/>
                             <constraint firstItem="E1Z-F7-WjZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="aue-Vk-0Fs"/>
-                            <constraint firstItem="deA-qQ-lLc" firstAttribute="top" secondItem="E1Z-F7-WjZ" secondAttribute="bottom" id="hep-bK-PZt"/>
                             <constraint firstItem="raU-kZ-awH" firstAttribute="leading" secondItem="DCn-xI-23h" secondAttribute="trailing" id="i1G-W1-IWh"/>
                             <constraint firstItem="rfH-Sq-2DG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="jao-Jn-xWc"/>
                             <constraint firstItem="X9k-lG-ZkP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="l9l-er-L2C"/>
@@ -92,7 +85,6 @@
                             <constraint firstItem="raU-kZ-awH" firstAttribute="centerY" secondItem="DCn-xI-23h" secondAttribute="centerY" id="owm-qg-b1A"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="DCn-xI-23h" secondAttribute="trailing" constant="10" id="tHu-5z-0Kb"/>
                             <constraint firstItem="DCn-xI-23h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="uvA-d3-BlZ"/>
-                            <constraint firstItem="deA-qQ-lLc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="y09-OF-bvE"/>
                             <constraint firstItem="O0o-za-AdU" firstAttribute="centerX" secondItem="DCn-xI-23h" secondAttribute="centerX" id="yTZ-8R-Q7D"/>
                             <constraint firstItem="S6T-zO-X7e" firstAttribute="leading" secondItem="O0o-za-AdU" secondAttribute="trailing" id="z1B-XK-P4H"/>
                             <constraint firstItem="O0o-za-AdU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="zuR-Ja-lwM"/>
@@ -146,16 +138,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="sKA-5E-4Iw">
-                                <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="sKA-5E-4Iw"/>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect a Wahoo Fitness Dongle to view Power Meter Data" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2f-9j-VNo">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XIJ-4n-05Y">
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XIJ-4n-05Y">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -165,19 +154,45 @@
                                     <action selector="debugConnectHardware:" destination="CbC-GR-6Bo" eventType="touchUpInside" id="bcH-3e-fsE"/>
                                 </connections>
                             </button>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AntKey" translatesAutoresizingMaskIntoConstraints="NO" id="Us7-Ra-flF">
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="2fa-G1-SxT" appends="YES" id="7cc-sx-Pgi"/>
+                                </connections>
+                            </imageView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="30PinToLightningAdapter" translatesAutoresizingMaskIntoConstraints="NO" id="39b-Jk-HMX">
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Byw-6c-yne" appends="YES" id="pjO-tL-cVf"/>
+                                </connections>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Phone" translatesAutoresizingMaskIntoConstraints="NO" id="2GT-Yn-GW9"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFo-0T-vh7" userLabel="Connected Label ✅">
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="39b-Jk-HMX" firstAttribute="centerX" secondItem="yC6-9B-dry" secondAttribute="centerX" id="21O-vk-wTg"/>
                             <constraint firstItem="biH-LY-RHb" firstAttribute="top" secondItem="09y-6x-tWz" secondAttribute="bottom" constant="20" id="26p-Yv-yYx"/>
+                            <constraint firstItem="2GT-Yn-GW9" firstAttribute="centerX" secondItem="yC6-9B-dry" secondAttribute="centerX" id="AKm-Wu-Ssc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="v2f-9j-VNo" secondAttribute="trailing" id="AeU-o2-uNp"/>
+                            <constraint firstItem="sKA-5E-4Iw" firstAttribute="top" secondItem="Us7-Ra-flF" secondAttribute="bottom" constant="10" id="B63-Ic-cxN"/>
                             <constraint firstItem="sKA-5E-4Iw" firstAttribute="centerY" secondItem="yC6-9B-dry" secondAttribute="centerY" id="H8E-4i-sqn"/>
                             <constraint firstItem="v2f-9j-VNo" firstAttribute="top" secondItem="sKA-5E-4Iw" secondAttribute="bottom" constant="7.5" id="HbI-SI-bdS"/>
+                            <constraint firstItem="Us7-Ra-flF" firstAttribute="top" secondItem="39b-Jk-HMX" secondAttribute="bottom" constant="10" id="JGW-rx-ijm"/>
                             <constraint firstItem="biH-LY-RHb" firstAttribute="top" secondItem="XIJ-4n-05Y" secondAttribute="bottom" constant="20" id="TpA-b7-s4W"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XIJ-4n-05Y" secondAttribute="trailing" id="bMw-xT-3PG"/>
+                            <constraint firstItem="VFo-0T-vh7" firstAttribute="centerY" secondItem="sKA-5E-4Iw" secondAttribute="centerY" id="kuV-mR-E3D"/>
                             <constraint firstItem="XIJ-4n-05Y" firstAttribute="top" secondItem="v2f-9j-VNo" secondAttribute="bottom" constant="8" id="n1C-3V-iYF"/>
+                            <constraint firstItem="Us7-Ra-flF" firstAttribute="centerX" secondItem="yC6-9B-dry" secondAttribute="centerX" id="n7F-QK-RZY"/>
                             <constraint firstAttribute="leadingMargin" secondItem="XIJ-4n-05Y" secondAttribute="leading" id="njK-a7-2OR"/>
+                            <constraint firstItem="VFo-0T-vh7" firstAttribute="centerX" secondItem="sKA-5E-4Iw" secondAttribute="centerX" id="oH2-Tr-oWV"/>
                             <constraint firstItem="sKA-5E-4Iw" firstAttribute="centerX" secondItem="yC6-9B-dry" secondAttribute="centerX" id="pWd-Oz-mzx"/>
                             <constraint firstAttribute="leadingMargin" secondItem="09y-6x-tWz" secondAttribute="leading" id="pZ8-lG-V9N"/>
+                            <constraint firstItem="Us7-Ra-flF" firstAttribute="top" secondItem="2GT-Yn-GW9" secondAttribute="bottom" constant="99" id="qNq-81-Ulc"/>
                             <constraint firstAttribute="leadingMargin" secondItem="v2f-9j-VNo" secondAttribute="leading" id="y0O-pJ-2as"/>
                             <constraint firstItem="v2f-9j-VNo" firstAttribute="centerX" secondItem="sKA-5E-4Iw" secondAttribute="centerX" id="yRw-Z1-u5V"/>
                         </constraints>
@@ -185,12 +200,26 @@
                     <navigationItem key="navigationItem" id="ZyE-cT-sU7"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="adapterDongleVerticalConstraint" destination="JGW-rx-ijm" id="XMX-L4-IPY"/>
+                        <outlet property="connectedLabel" destination="VFo-0T-vh7" id="l9l-fJ-pGt"/>
                         <outlet property="debugTextField" destination="XIJ-4n-05Y" id="DTG-3n-vkY"/>
+                        <outlet property="instructionsLabel" destination="v2f-9j-VNo" id="J2A-UB-oOx"/>
+                        <outlet property="phoneDongleVerticalConstraint" destination="qNq-81-Ulc" id="kwH-e2-MjF"/>
                         <outlet property="spinner" destination="sKA-5E-4Iw" id="PP3-7Z-Cce"/>
                         <segue destination="4U5-9q-t9i" kind="show" identifier="HardwareConnectedSegueID" id="wFU-7D-SOi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dRJ-XS-LXs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="2fa-G1-SxT">
+                    <connections>
+                        <action selector="tapAntKey:" destination="CbC-GR-6Bo" id="G7X-i2-oIV"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Byw-6c-yne">
+                    <connections>
+                        <action selector="tap30PinConnector:" destination="CbC-GR-6Bo" id="KJj-qN-2fc"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-122.40000000000001" y="92.203898050974516"/>
         </scene>
@@ -206,15 +235,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="124" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ug1-nf-I1N">
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="n0l-sO-3v8">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jgp-Rr-sOx" userLabel="Header">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nearby Power Meters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugg-fX-P75">
+                                        <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="4ij-0H-msI"/>
+                                    <constraint firstItem="Ugg-fX-P75" firstAttribute="centerY" secondItem="Jgp-Rr-sOx" secondAttribute="centerY" id="cbc-RT-PFn"/>
+                                    <constraint firstItem="Ugg-fX-P75" firstAttribute="centerX" secondItem="Jgp-Rr-sOx" secondAttribute="centerX" id="eZg-eL-iiF"/>
+                                </constraints>
+                            </view>
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="124" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ug1-nf-I1N">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="n0l-sO-3v8" userLabel="Oversized Footer">
                                     <rect key="frame" x="0.0" y="152" width="375" height="1"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="1" green="1" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FormattedSensorCellID" id="Jv0-RJ-IbO" customClass="FormattedSensorCell" customModule="PowerIntervals" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FormattedSensorCellID" id="Jv0-RJ-IbO" customClass="FormattedSensorCell" customModule="PowerIntervals" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jv0-RJ-IbO" id="L2c-2Z-Oby">
@@ -222,42 +266,42 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="formatted power" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDB-1x-Ulu">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="torque" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVq-ve-m5O">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="f distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEk-Db-Rdi">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="f distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEk-Db-Rdi">
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Led-FN-gtB">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="revolutions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z27-vN-pOX">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="accumulated power" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cgp-cn-5MX">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ra-tY-6EF">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKc-6H-bIj">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -298,7 +342,6 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="sA6-tO-nNK" id="em7-Tt-muO"/>
-                                    <outlet property="delegate" destination="OLd-7e-keT" id="4xg-ZV-e2v"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="131-1B-j3V">
@@ -314,30 +357,36 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="K0C-5q-mEt" firstAttribute="top" secondItem="ug1-nf-I1N" secondAttribute="bottom" constant="58" id="2kk-Bv-eIw"/>
-                            <constraint firstItem="ug1-nf-I1N" firstAttribute="top" secondItem="i4e-QG-kAU" secondAttribute="bottom" id="Mfn-IX-NET"/>
+                            <constraint firstItem="K0C-5q-mEt" firstAttribute="top" secondItem="ug1-nf-I1N" secondAttribute="bottom" id="2kk-Bv-eIw"/>
+                            <constraint firstItem="Jgp-Rr-sOx" firstAttribute="top" secondItem="i4e-QG-kAU" secondAttribute="bottom" id="bL1-fy-khp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jgp-Rr-sOx" secondAttribute="trailing" constant="-16" id="bsz-of-SRV"/>
                             <constraint firstAttribute="trailing" secondItem="ug1-nf-I1N" secondAttribute="trailing" id="d6N-Vr-HwP"/>
+                            <constraint firstItem="Jgp-Rr-sOx" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leadingMargin" constant="-16" id="fJf-XM-oWQ"/>
                             <constraint firstItem="ug1-nf-I1N" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leading" id="grM-9j-sIb"/>
                             <constraint firstItem="2Yk-e0-dvU" firstAttribute="leading" secondItem="131-1B-j3V" secondAttribute="trailing" constant="8" id="pST-Ud-RTN"/>
                             <constraint firstItem="K0C-5q-mEt" firstAttribute="top" secondItem="131-1B-j3V" secondAttribute="bottom" constant="20" id="pUA-Px-Zfs"/>
                             <constraint firstItem="2Yk-e0-dvU" firstAttribute="centerY" secondItem="131-1B-j3V" secondAttribute="centerY" id="qwk-KI-Sdb"/>
+                            <constraint firstItem="ug1-nf-I1N" firstAttribute="top" secondItem="Jgp-Rr-sOx" secondAttribute="bottom" id="yIA-ud-6BZ"/>
                             <constraint firstAttribute="leadingMargin" secondItem="131-1B-j3V" secondAttribute="leading" id="yaB-Jk-WeV"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="tableDataSource" destination="sA6-tO-nNK" id="qng-E9-wuW"/>
-                        <outlet property="tableDelegate" destination="OLd-7e-keT" id="Wjx-6k-TGI"/>
                         <outlet property="tableView" destination="ug1-nf-I1N" id="0bO-77-umn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eeb-dx-hfS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Jde-cW-BJN" userLabel="Exit" sceneMemberID="exit"/>
-                <customObject id="OLd-7e-keT" customClass="DeviceListDelegate" customModule="PowerIntervals" customModuleProvider="target"/>
                 <customObject id="sA6-tO-nNK" customClass="DeviceListDataSource" customModule="PowerIntervals" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="607" y="94"/>
+            <point key="canvasLocation" x="605.60000000000002" y="93.103448275862078"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="30PinToLightningAdapter" width="76" height="79"/>
+        <image name="AntKey" width="76" height="65"/>
+        <image name="Phone" width="192" height="384"/>
+    </resources>
 </document>

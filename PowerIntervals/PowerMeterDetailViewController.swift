@@ -97,7 +97,6 @@ class PowerMeterDetailViewController: UIViewController {
         // set the default text for the labels
         timeLabel?.text = 0.stringForTime()
         startupTimerLabel?.text = ""
-        navigationController?.isNavigationBarHidden = true
         super.viewDidAppear(animated)
     }
     
