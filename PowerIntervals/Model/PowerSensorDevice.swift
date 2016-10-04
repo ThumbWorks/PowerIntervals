@@ -48,6 +48,7 @@ class PowerSensorDevice: Object, PowerMeter {
     override static func primaryKey() -> String? {
         return "deviceID"
     }
+    dynamic var userDefinedName: String?
     dynamic var deviceID: String = ""
     dynamic var deviceNumber: NSNumber = 0
     dynamic var deviceBTLEUUID: String?

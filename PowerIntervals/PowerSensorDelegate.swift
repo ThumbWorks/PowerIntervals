@@ -9,7 +9,6 @@
 import Foundation
 
 protocol PowerMeter {
-    func name() -> (String)
 }
 
 protocol WahooHardwareDelegate {

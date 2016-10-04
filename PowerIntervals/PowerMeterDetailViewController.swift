@@ -20,12 +20,35 @@ class PowerMeterDetailViewController: UIViewController {
     var powerMeter: PowerSensorDevice?
     //MARK: IBOutlets
     
+    @IBOutlet weak var deviceNameLabel: UIButton!
     @IBOutlet weak var avgWattsLabel: UILabel?
     @IBOutlet weak var wattsLabel: UILabel?
     @IBOutlet weak var timeLabel: UILabel?
     @IBOutlet weak var startupTimerLabel: UILabel?
     
     //MARK: IBActions
+    
+    @IBAction func changeName(_ sender: AnyObject) {
+        let alert = UIAlertController(title: "Change device name", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+            print("Change the name")
+            let realm = try! Realm()
+            try! realm.write {
+                if let text = alert.textFields?[0].text {
+                    self.powerMeter?.userDefinedName = text
+                    self.deviceNameLabel.setTitle(text, for: .normal)
+                    self.deviceNameLabel.setTitleColor(.white, for: .normal)
+                }
+            }
+        }))
+        alert.addTextField { (textField) in
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+            print("Cancel")
+        }))
+
+        present(alert, animated: true, completion: nil)
+    }
     
     @IBAction func viewTapped(recognizer : UITapGestureRecognizer) {
         print("tapped")
@@ -104,6 +127,13 @@ class PowerMeterDetailViewController: UIViewController {
         
         timeLabel?.text = 0.stringForTime()
         startupTimerLabel?.text = ""
+        if let userDefinedName = powerMeter?.userDefinedName {
+            deviceNameLabel.setTitle(userDefinedName, for: .normal)
+            deviceNameLabel.setTitleColor(.white, for: .normal)
+        } else {
+            deviceNameLabel.setTitle(powerMeter?.name(), for: .normal)
+            deviceNameLabel.setTitleColor(.gray, for: .normal)
+        }
         
         let realm = try! Realm()
         token = realm.addNotificationBlock { notification, realm in

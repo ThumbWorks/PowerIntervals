@@ -28,7 +28,11 @@ extension DeviceListDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView .dequeueReusableCell(withIdentifier: "FormattedSensorCellID", for: indexPath) as! FormattedSensorCell
         let device = devices[indexPath.row]
-        cell.sensorID.text = device.deviceID
+        if let name = device.userDefinedName {
+            cell.sensorID.text = name
+        } else {
+            cell.sensorID.text = device.deviceID
+        }
         if let data = device.currentData {
             cell.power.text = data.formattedPower
             cell.accumPower.text = data.accumulatedPower.description

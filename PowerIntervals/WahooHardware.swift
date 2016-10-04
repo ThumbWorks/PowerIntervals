@@ -111,14 +111,12 @@ class WahooHardware : NSObject, WFHardwareConnectorDelegate, PowerMeter {
     }
     
     func hardwareConnector(_ hwConnector: WFHardwareConnector!, stateChanged currentState: WFHardwareConnectorState_t) {
-        if (hwConnector) != nil {
-            let string = "The state for the hardware connector changed to \(currentState.rawValue)"
-            powerDelegate.hardwareDebug(sensor: self, message: string)
-        }
+        powerDelegate.hardwareDebug(sensor: self, message: "StateChanged: We got a \(currentState.rawValue)")
+        powerDelegate.hardwareConnectedState(sensor: self, connected: currentState.rawValue == 3)
+        
         // CONNECTED and ACTIVE
         if currentState.rawValue == 3 {
             // tell the sensorDelegate to start searching
-            powerDelegate.hardwareConnectedState(sensor: self, connected: true)
             powerDelegate.hardwareDebug(sensor: self, message: "We got a 3, start up the sensorConnectionDelegate")
             sensorConnectionDelegate?.start(hardwareConnection: hwConnector)
         }

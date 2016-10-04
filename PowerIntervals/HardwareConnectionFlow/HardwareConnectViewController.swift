@@ -96,7 +96,8 @@ extension HardwareConnectViewController: WahooHardwareDelegate {
                 self.performSegue(withIdentifier: "HardwareConnectedSegueID", sender: self)
             }
         } else {
-            instructionsLabel?.text = "Connect a Wahoo Fitness Dongle to view Power Meter Data"
+            spinner.startAnimating()
+            instructionsLabel?.text = "Connect a Wahoo Fitness Dongle and an Apple 30-pin to Lightning adapter to view Power Meter Data.\n\nYou can tap the on the hardware above to order."
             // display some text stating that we need to connect hardware
             _ = self.navigationController?.popToRootViewController(animated: true)
         }
