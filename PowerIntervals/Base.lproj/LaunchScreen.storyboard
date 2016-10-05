@@ -18,16 +18,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🚴" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9G-K7-pF0">
-                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="mJB-2F-Pgv"/>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AntKey" translatesAutoresizingMaskIntoConstraints="NO" id="XYs-IE-ibI">
+                                <gestureRecognizers/>
+                            </imageView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="30PinToLightningAdapter" translatesAutoresizingMaskIntoConstraints="NO" id="jPr-PH-LOO">
+                                <gestureRecognizers/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Phone" translatesAutoresizingMaskIntoConstraints="NO" id="VFF-Z5-h8c"/>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="k9G-K7-pF0" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="TA3-ky-nT8"/>
-                            <constraint firstItem="k9G-K7-pF0" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="zHb-5Q-Xrd"/>
+                            <constraint firstItem="VFF-Z5-h8c" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="2IC-vQ-VLP"/>
+                            <constraint firstItem="XYs-IE-ibI" firstAttribute="top" secondItem="jPr-PH-LOO" secondAttribute="bottom" constant="10" id="7R0-NJ-gR5"/>
+                            <constraint firstItem="mJB-2F-Pgv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="8tS-6R-gTb"/>
+                            <constraint firstItem="mJB-2F-Pgv" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="DO8-JN-waV"/>
+                            <constraint firstItem="mJB-2F-Pgv" firstAttribute="top" secondItem="XYs-IE-ibI" secondAttribute="bottom" constant="10" id="PT2-wH-kqC"/>
+                            <constraint firstItem="XYs-IE-ibI" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Xru-e9-reS"/>
+                            <constraint firstItem="jPr-PH-LOO" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="s9U-XI-zO4"/>
+                            <constraint firstItem="XYs-IE-ibI" firstAttribute="top" secondItem="VFF-Z5-h8c" secondAttribute="bottom" constant="99" id="zDB-e5-xyP"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -36,4 +45,9 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="30PinToLightningAdapter" width="76" height="79"/>
+        <image name="AntKey" width="76" height="65"/>
+        <image name="Phone" width="192" height="384"/>
+    </resources>
 </document>

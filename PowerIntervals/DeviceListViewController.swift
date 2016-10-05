@@ -15,10 +15,21 @@ class DeviceListViewController: UIViewController {
     var realm: Realm?
     var fakePowerMeter : FakePowerMeter?
 
+    
+    @IBOutlet var debugButtons: [UIButton]!
+    
     @IBOutlet var tableDataSource: DeviceListDataSource?
     @IBOutlet var tableDelegate: UITableViewDelegate?
     
     @IBOutlet weak var tableView: UITableView!
+    
+    #if !DEBUG
+    override func viewWillAppear(_ animated: Bool) {
+        for button in debugButtons {
+            button.isHidden = true
+        }
+    }
+    #endif
     
     override func viewDidLoad() {
         

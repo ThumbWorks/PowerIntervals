@@ -519,6 +519,7 @@
 				);
 				INFOPLIST_FILE = PowerIntervals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = io.thumbworks.PowerIntervals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PowerIntervals/PowerIntervals-Bridging-Header.h";
@@ -542,6 +543,7 @@
 				);
 				INFOPLIST_FILE = PowerIntervals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = io.thumbworks.PowerIntervals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PowerIntervals/PowerIntervals-Bridging-Header.h";

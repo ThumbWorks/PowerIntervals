@@ -20,6 +20,7 @@ class HardwareConnectViewController: UIViewController {
     @IBOutlet weak var phoneDongleVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var adapterDongleVerticalConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var debugButton: UIButton!
     @IBOutlet weak var debugTextField: UITextView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
@@ -47,6 +48,12 @@ class HardwareConnectViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        #if !DEBUG
+            debugButton.isHidden = true
+            debugTextField.isHidden = true
+        #endif
+        
         if wahooHardware == nil {
             let hardware = WahooHardware(hardwareDelegate: self)
             hardware.startHardware()
