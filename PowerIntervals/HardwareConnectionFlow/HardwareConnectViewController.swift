@@ -71,6 +71,7 @@ class HardwareConnectViewController: UIViewController {
         }
     }
     
+    //TODO: Make the label here hidden in release builds
     @IBAction func debugConnectHardware(_ sender: AnyObject) {
         hardwareConnectedState(sensor: FakePowerMeter(), connected: true)
     }

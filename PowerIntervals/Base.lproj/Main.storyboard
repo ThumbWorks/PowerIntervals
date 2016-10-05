@@ -179,7 +179,9 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09y-6x-tWz">
-                                <state key="normal" title="Debug Connect"/>
+                                <state key="normal" title="Debug Connect">
+                                    <color key="titleColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="debugConnectHardware:" destination="CbC-GR-6Bo" eventType="touchUpInside" id="bcH-3e-fsE"/>
                                 </connections>
@@ -295,32 +297,12 @@
                                             <frame key="frameInset" width="375" height="123"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="formatted power" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDB-1x-Ulu">
-                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="torque" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVq-ve-m5O">
-                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="f distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEk-Db-Rdi">
-                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Power" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDB-1x-Ulu">
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="30"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Led-FN-gtB">
-                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="revolutions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z27-vN-pOX">
-                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="accumulated power" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cgp-cn-5MX">
                                                     <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -337,35 +319,23 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="nEk-Db-Rdi" firstAttribute="top" secondItem="gDB-1x-Ulu" secondAttribute="bottom" id="88V-Yi-HgK"/>
+                                                <constraint firstItem="UKc-6H-bIj" firstAttribute="top" secondItem="gDB-1x-Ulu" secondAttribute="bottom" constant="10" id="6nB-HC-Iyb"/>
                                                 <constraint firstItem="6Ra-tY-6EF" firstAttribute="leading" secondItem="L2c-2Z-Oby" secondAttribute="leadingMargin" constant="10" id="GTa-PU-idu"/>
-                                                <constraint firstItem="UKc-6H-bIj" firstAttribute="top" secondItem="JVq-ve-m5O" secondAttribute="bottom" constant="3" id="Q8T-EP-qa2"/>
+                                                <constraint firstItem="6Ra-tY-6EF" firstAttribute="centerY" secondItem="L2c-2Z-Oby" secondAttribute="centerY" id="HNR-7L-ZFz"/>
+                                                <constraint firstItem="gDB-1x-Ulu" firstAttribute="top" secondItem="Led-FN-gtB" secondAttribute="bottom" constant="10" id="J3z-0A-NPl"/>
                                                 <constraint firstItem="gDB-1x-Ulu" firstAttribute="centerY" secondItem="L2c-2Z-Oby" secondAttribute="centerY" id="Ray-na-RxL"/>
                                                 <constraint firstItem="Led-FN-gtB" firstAttribute="top" secondItem="L2c-2Z-Oby" secondAttribute="topMargin" id="SpE-iO-W1V"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="z27-vN-pOX" secondAttribute="bottom" id="URO-86-Q3P"/>
-                                                <constraint firstItem="gDB-1x-Ulu" firstAttribute="leading" secondItem="L2c-2Z-Oby" secondAttribute="leadingMargin" constant="10" id="Vs2-QW-8s5"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="nEk-Db-Rdi" secondAttribute="trailing" id="Z9g-NF-b8I"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="z27-vN-pOX" secondAttribute="trailing" id="Zgf-iv-7kv"/>
-                                                <constraint firstItem="nEk-Db-Rdi" firstAttribute="top" secondItem="UKc-6H-bIj" secondAttribute="bottom" constant="4" id="aDv-of-eng"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="UKc-6H-bIj" secondAttribute="trailing" id="apK-9N-9Q9"/>
-                                                <constraint firstItem="Cgp-cn-5MX" firstAttribute="leading" secondItem="L2c-2Z-Oby" secondAttribute="leadingMargin" constant="10" id="gSs-Lb-HTR"/>
-                                                <constraint firstItem="Cgp-cn-5MX" firstAttribute="top" secondItem="gDB-1x-Ulu" secondAttribute="bottom" constant="-1" id="jRG-fa-xnx"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Led-FN-gtB" secondAttribute="trailing" id="lil-9C-ICx"/>
-                                                <constraint firstItem="z27-vN-pOX" firstAttribute="top" secondItem="nEk-Db-Rdi" secondAttribute="bottom" id="nfr-EJ-U1e"/>
-                                                <constraint firstItem="JVq-ve-m5O" firstAttribute="top" secondItem="Led-FN-gtB" secondAttribute="bottom" id="ork-c8-s86"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="JVq-ve-m5O" secondAttribute="trailing" id="sHA-0P-EfP"/>
-                                                <constraint firstAttribute="topMargin" secondItem="6Ra-tY-6EF" secondAttribute="top" id="sdf-he-KN4"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="UKc-6H-bIj" secondAttribute="bottom" constant="10" id="oP7-d4-Z3D"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="gDB-1x-Ulu" secondAttribute="trailing" constant="10" id="uKB-MB-WTY"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="accumPower" destination="Cgp-cn-5MX" id="wLd-Gh-M6P"/>
-                                            <outlet property="distance" destination="nEk-Db-Rdi" id="xbl-Pg-1UD"/>
                                             <outlet property="power" destination="gDB-1x-Ulu" id="GkN-T8-Ljc"/>
-                                            <outlet property="revolutions" destination="z27-vN-pOX" id="A9r-iy-fs5"/>
                                             <outlet property="sensorID" destination="6Ra-tY-6EF" id="oZd-tN-hsZ"/>
                                             <outlet property="speed" destination="UKc-6H-bIj" id="1Ra-7i-L9a"/>
                                             <outlet property="time" destination="Led-FN-gtB" id="bsd-5g-nN8"/>
-                                            <outlet property="torque" destination="JVq-ve-m5O" id="Qef-My-s7k"/>
                                             <segue destination="BYZ-38-t0r" kind="show" identifier="TapPowerMeterSegueID" id="0f7-vC-uPA"/>
                                         </connections>
                                     </tableViewCell>

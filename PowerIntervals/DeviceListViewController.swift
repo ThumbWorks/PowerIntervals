@@ -78,7 +78,7 @@ extension DeviceListViewController {
         data.formattedCadence = "123 cadences"
         data.formattedPower = String(arc4random() % 1000) + " watts"
         data.formattedDistance = String(arc4random() % 1000) + " miles"
-        data.formattedSpeed = String(arc4random() % 100) + " mph"
+        data.formattedSpeed = String(arc4random() % 20) + " mph"
         
         try! realm?.write {
             realm!.add(device)

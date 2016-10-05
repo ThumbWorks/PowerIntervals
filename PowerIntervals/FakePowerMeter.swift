@@ -49,7 +49,7 @@ class FakePowerMeter: PowerMeter {
                 data.accumulatedPower = Double(random)
                 data.formattedDistance = "100 miles"
                 data.accumulatedTorque = Double(random)
-                data.formattedSpeed = (random / 10).description
+                data.formattedSpeed = (random / 10).description + " mph"
                 data.wheelRevolutions = self.time
             }
         }

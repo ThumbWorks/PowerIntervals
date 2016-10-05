@@ -35,12 +35,8 @@ extension DeviceListDataSource: UITableViewDataSource {
         }
         if let data = device.currentData {
             cell.power.text = data.formattedPower
-            cell.accumPower.text = data.accumulatedPower.description
             cell.time.text = data.accumulatedTime.stringForTime()
             cell.speed.text = data.formattedSpeed
-            cell.torque.text = data.accumulatedTorque.description
-            cell.distance.text = data.formattedDistance
-            cell.revolutions.text = data.wheelRevolutions.description
         }
         return cell
     }
@@ -57,21 +53,13 @@ extension DeviceListDataSource: UITableViewDataSource {
 class FormattedSensorCell: UITableViewCell {
     @IBOutlet weak var sensorID: UILabel!
     @IBOutlet weak var power: UILabel!
-    @IBOutlet weak var accumPower: UILabel!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var speed: UILabel!
-    @IBOutlet weak var torque: UILabel!
-    @IBOutlet weak var distance: UILabel!
-    @IBOutlet weak var revolutions: UILabel!
     
     override func prepareForReuse() {
         sensorID.text = nil
-        power.text = nil
-        accumPower.text = nil
-        time.text = nil
-        speed.text = nil
-        torque.text = nil
-        distance.text = nil
-        revolutions.text = nil
+        power.text = "0"
+        time.text = 0.stringForTime()
+        speed.text = "0"
     }
 }
