@@ -112,7 +112,11 @@ class PowerMeterDetailViewController: UIViewController {
         sheet.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
             print("Cancel")
         }))
-       self.present(sheet, animated: true, completion: nil)
+        sheet.popoverPresentationController?.sourceView = view
+        let touchPoint = recognizer.location(in: view)
+        let rect = CGRect(x: touchPoint.x, y: touchPoint.y, width: 0, height: 0)
+        sheet.popoverPresentationController?.sourceRect = rect
+        self.present(sheet, animated: true, completion: nil)
     }
     
     // MARK: Private methods
@@ -178,6 +182,7 @@ class PowerMeterDetailViewController: UIViewController {
         token = realm.addNotificationBlock { notification, realm in
             self.currentReading = 0
             guard let instantPower = self.powerMeter?.currentData?.instantPower.intValue.toIntMax() else {
+                self.wattsLabel?.text = "0"
                 return
             }
             self.wattsLabel?.text = instantPower.description

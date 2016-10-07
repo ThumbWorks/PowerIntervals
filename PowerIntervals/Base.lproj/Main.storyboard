@@ -132,7 +132,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="jb8-gt-JaM">
                     <connections>
-                        <action selector="viewTappedWithRecognizer:" destination="BYZ-38-t0r" id="Bg1-rQ-qjz"/>
+                        <action selector="viewTappedWithRecognizer:" destination="BYZ-38-t0r" id="fwJ-OB-pjF"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -148,7 +148,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="CbC-GR-6Bo" kind="relationship" relationship="rootViewController" id="UF8-sL-fMn"/>
+                        <segue destination="4U5-9q-t9i" kind="relationship" relationship="rootViewController" id="g5i-Sc-DOv"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RgX-R9-Zni" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -254,7 +254,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-122.40000000000001" y="92.203898050974516"/>
+            <point key="canvasLocation" x="-231" y="739"/>
         </scene>
         <!--Device List View Controller-->
         <scene sceneID="tQb-pf-BTz">
@@ -295,7 +295,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jv0-RJ-IbO" id="L2c-2Z-Oby">
-                                            <frame key="frameInset" width="375" height="123"/>
+                                            <frame key="frameInset" width="375" height="123.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Power" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDB-1x-Ulu">
@@ -373,6 +373,7 @@
                             <constraint firstAttribute="leadingMargin" secondItem="131-1B-j3V" secondAttribute="leading" id="yaB-Jk-WeV"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="GGB-2X-Zb7"/>
                     <connections>
                         <outlet property="tableDataSource" destination="sA6-tO-nNK" id="qng-E9-wuW"/>
                         <outlet property="tableView" destination="ug1-nf-I1N" id="0bO-77-umn"/>
@@ -392,4 +393,7 @@
         <image name="AntKey" width="76" height="65"/>
         <image name="Phone" width="192" height="384"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="wFU-7D-SOi"/>
+    </inferredMetricsTieBreakers>
 </document>

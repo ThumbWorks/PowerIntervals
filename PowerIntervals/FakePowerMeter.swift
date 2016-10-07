@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class FakePowerMeter: PowerMeter {
+class FakePowerMeter {
     var powerValueToSend = 145
     var timer : Timer?
     var time = 0.0

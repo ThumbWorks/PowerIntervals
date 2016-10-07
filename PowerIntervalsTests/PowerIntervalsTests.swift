@@ -11,15 +11,6 @@ import RealmSwift
 
 @testable import PowerIntervals
 
-class FakeDelegate: WahooHardwareDelegate {
-    func hardwareConnectedState(sensor: PowerMeter, connected: Bool) {
-        print("hardwareConnected")
-    }
-    func hardwareDebug(sensor: PowerMeter, message: String) {
-        print("hardwareDebug")
-    }
-}
-
 class WFBikePowerConnectionMock: WFBikePowerConnection {
     var deviceID: String
     override var deviceIDString: String! {
@@ -47,15 +38,13 @@ class WFBikePowerDataMock: WFBikePowerData {
 class PowerIntervalsTests: XCTestCase {
     var hardware: WahooHardware?
     var mockConnector: WFHardwareConnectorMock?
-    var hardwareDelegate: FakeDelegate?
     
     override func setUp() {
         super.setUp()
         Realm.Configuration.defaultConfiguration.inMemoryIdentifier = self.name
         mockConnector = WFHardwareConnectorMock()
 
-        let hardwareDelegate = FakeDelegate()
-        hardware = WahooHardware(hardwareDelegate: hardwareDelegate)
+        hardware = WahooHardware()
         hardware?.startHardware()
     }
     

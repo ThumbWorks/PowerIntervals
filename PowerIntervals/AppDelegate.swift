@@ -15,14 +15,22 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var btDelegate: BluetoothDelegate?
+    var wahooHardware: WahooHardware?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let isRunningTests = NSClassFromString("XCTestCase") != nil
         if isRunningTests {
             return true
         }
+        // Create the Bluetooth Delegate
+        btDelegate = BluetoothDelegate()
+        btDelegate?.start()
+        
+        // Create the Ant Hardware
+        wahooHardware = WahooHardware()
+        wahooHardware?.startHardware()
         
         Fabric.with([Crashlytics.self])
         return true

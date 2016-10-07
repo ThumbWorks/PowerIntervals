@@ -49,15 +49,16 @@ class HardwareConnectViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
+        //TODO take out this return. Using it for testing stuff
+        return
+        
         #if !DEBUG
             debugButton.isHidden = true
             debugTextField.isHidden = true
         #endif
         
         if wahooHardware == nil {
-            let hardware = WahooHardware(hardwareDelegate: self)
-            hardware.startHardware()
-            wahooHardware = hardware
+   
         }
         startAnimation()
     }
@@ -80,35 +81,6 @@ class HardwareConnectViewController: UIViewController {
     
     //TODO: Make the label here hidden in release builds
     @IBAction func debugConnectHardware(_ sender: AnyObject) {
-        hardwareConnectedState(sensor: FakePowerMeter(), connected: true)
-    }
-}
-
-extension HardwareConnectViewController: WahooHardwareDelegate {
-    func hardwareDebug(sensor: PowerMeter, message: String) {
-        print("hardware connection flow \(message)")
-        self.debugTextField?.text.append(message+"\n")
-    }
-    
-    func hardwareConnectedState(sensor: PowerMeter, connected: Bool) {
-        debugTextField?.text.append("connection state \(connected)\n")
-        
-        // If we are connected, unhide the connected label ✅
-        connectedLabel.isHidden = !connected
-        
-        if connected {
-            spinner.stopAnimating()
-            instructionsLabel?.text = "Wahoo Fitness Dongle Connected"
-            successSound?.play()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.performSegue(withIdentifier: "HardwareConnectedSegueID", sender: self)
-            }
-        } else {
-            spinner.startAnimating()
-            instructionsLabel?.text = "Connect a Wahoo Fitness Dongle and an Apple 30-pin to Lightning adapter to view Power Meter Data.\n\nYou can tap the on the hardware above to order."
-            // display some text stating that we need to connect hardware
-            _ = self.navigationController?.popToRootViewController(animated: true)
-        }
     }
 }
 

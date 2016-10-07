@@ -41,7 +41,7 @@ enum SensorSubType {
     case tickrRun
 }
 
-class PowerSensorDevice: Object, PowerMeter {
+class PowerSensorDevice: Object {
     func name() -> (String) {
         return deviceID
     }
@@ -72,7 +72,7 @@ class PowerSensorDevice: Object, PowerMeter {
 class PowerSensorData: Object {
     dynamic var formattedCadence = ""
     dynamic var formattedDistance = ""
-    dynamic var formattedPower = ""
+    dynamic var formattedPower = "0 watts"
     dynamic var formattedSpeed = ""
     dynamic var isCoasting = true
     dynamic var accumulatedEventCount: Int = 0
