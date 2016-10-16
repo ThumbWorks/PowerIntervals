@@ -10,3 +10,8 @@
 #import "WFConnector/hardware_connector_types.h"
 #import "WFConnector/WFBikePowerConnection.h"
 #import "WFConnector/WFBikePowerData.h"
+
+#import <UIKit/UIKit.h>
+#import "JBChartView.h"
+#import "JBBarChartView.h"
+#import "JBLineChartView.h"

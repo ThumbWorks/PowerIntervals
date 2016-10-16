@@ -21,6 +21,7 @@ class PowerMeterDetailViewController: UIViewController {
    
     var picker: IntervalPicker?
     var pickerButton: UIButton?
+    var color: UIColor = .blue
     
     //MARK: IBOutlets
     
@@ -29,7 +30,7 @@ class PowerMeterDetailViewController: UIViewController {
     @IBOutlet weak var wattsLabel: UILabel?
     @IBOutlet weak var timeLabel: UILabel?
     @IBOutlet weak var startupTimerLabel: UILabel?
-    
+    @IBOutlet weak var headerView: UIView!
     
     //MARK: IBActions
     
@@ -48,10 +49,7 @@ class PowerMeterDetailViewController: UIViewController {
         }))
         alert.addTextField { (textField) in
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
-            print("Cancel")
-        }))
-
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(alert, animated: true, completion: nil)
     }
 
@@ -91,7 +89,6 @@ class PowerMeterDetailViewController: UIViewController {
     }
     
     @IBAction func viewTapped(recognizer : UITapGestureRecognizer) {
-        print("tapped")
         let sheet = UIAlertController.init(title: "Select Interval", message: nil, preferredStyle: .actionSheet)
         sheet.addAction(UIAlertAction.init(title: "Custom time", style: .default, handler: { (action) in
             self.customInterval()
@@ -109,9 +106,7 @@ class PowerMeterDetailViewController: UIViewController {
             self.startInterval(duration: 5)
         }))
         
-        sheet.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
-            print("Cancel")
-        }))
+        sheet.addAction(UIAlertAction.init(title: "Cancel", style: .cancel))
         sheet.popoverPresentationController?.sourceView = view
         let touchPoint = recognizer.location(in: view)
         let rect = CGRect(x: touchPoint.x, y: touchPoint.y, width: 0, height: 0)
@@ -168,6 +163,7 @@ class PowerMeterDetailViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        headerView.backgroundColor = color
         timeLabel?.text = 0.stringForTime()
         startupTimerLabel?.text = ""
         if let userDefinedName = powerMeter?.userDefinedName {

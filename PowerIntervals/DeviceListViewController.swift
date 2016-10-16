@@ -11,114 +11,135 @@ import UIKit
 import RealmSwift
 
 class DeviceListViewController: UIViewController {
+    var generalToken: NotificationToken?
     var token: NotificationToken?
-    var realm: Realm?
-    var fakePowerMeter : FakePowerMeter?
-
     
+    var fakePowerMeters = [FakePowerMeter]()
+    
+    var workoutManager: WorkoutManager?
+    var workout: GroupWorkout?
+    
+    @IBOutlet weak var chartView: JBLineChartView!
     @IBOutlet var debugButtons: [UIButton]!
     
-    @IBOutlet var tableDataSource: DeviceListDataSource?
-    @IBOutlet var tableDelegate: UITableViewDelegate?
+    @IBOutlet var dataSource: DeviceListDataSource?
+    @IBOutlet weak var collectionView: UICollectionView!
     
-    @IBOutlet weak var tableView: UITableView!
     
-    #if !DEBUG
     override func viewWillAppear(_ animated: Bool) {
-        for button in debugButtons {
-            button.isHidden = true
-        }
+        #if !DEBUG
+            for button in debugButtons {
+                button.isHidden = true
+            }
+        #endif
+        chartView.reloadData()
+
     }
-    #endif
-    
-    override func viewDidLoad() {
         
-        let newPowerMeter = FakePowerMeter()
-        fakePowerMeter = newPowerMeter
+    override func viewDidLoad() {
 
-        realm = try! Realm()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 140
+        dataSource = DeviceListDataSource()
 
-        tableDataSource = DeviceListDataSource()
-        tableView.delegate = self
+        chartView.dataSource = self
+        chartView.delegate = self
         
         setupNotificationToken()
     }
 
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let selectedPath = tableView.indexPathForSelectedRow, let powerMeterViewController = segue.destination as? PowerMeterDetailViewController {
-            powerMeterViewController.powerMeter = tableDataSource?.devices[selectedPath.row]
+        
+        if let selectedPath = collectionView.indexPathsForSelectedItems?.first, let powerMeterViewController = segue.destination as? PowerMeterDetailViewController {
+            powerMeterViewController.color = UIColor.theme(offset: selectedPath.row)
+            powerMeterViewController.powerMeter = dataSource?.devices[selectedPath.row]
         }
     }
     
     deinit {
+        generalToken?.stop()
         token?.stop()
     }
     
-    @IBAction func startFakePM(_ sender: AnyObject) {
-        fakePowerMeter?.startButton()
+    @IBAction func startWorkout(_ sender: AnyObject) {
+        guard let workoutManager = workoutManager else {
+            print("Need a workout manager")
+            return
+        }
+        workout = workoutManager.startWorkout()
     }
     
-    // A PowerSensorDevice with a bunch of random data
-    @IBAction func addAnObject(_ sender: AnyObject) {
-        createObject()
+    @IBAction func startFakePM(_ sender: AnyObject) {
+        let newPowerMeter = FakePowerMeter()
+        newPowerMeter.startButton()
+        fakePowerMeters.append(newPowerMeter)
+    }
+    
+    @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
+        print("long press")
+        if sender.state == .began {
+            let location = sender.location(in: collectionView)
+            guard let indexPath = collectionView.indexPathForItem(at: location) else {
+                print("Long press not on a cell")
+                return
+            }
+            let realm = try! Realm()
+            try! realm.write {
+                guard let device = dataSource?.devices[indexPath.row] else {
+                    print("The device doesn't exist at this index path")
+                    return
+                }
+                realm.delete(device)
+            }
+        }
     }
 }
 
 extension DeviceListViewController {
-    
-    
-}
-extension DeviceListViewController {
-    func createObject() {
-        let device = PowerSensorDevice()
-        
-        // The deviceID is the date plus a random seed so we don't have any collisions
-        device.deviceID = "fake \(arc4random() % 5000)"
-        let data = PowerSensorData()
-        device.currentData = data
-        data.accumulatedEventCount = Int(arc4random()) % 400
-        data.accumulatedPower = Double(arc4random() % 1000)
-        data.accumulatedTime = Double(arc4random() % 1000)
-        data.accumulatedTimestamp = data.accumulatedTime.truncatingRemainder(dividingBy: 1000)
-        data.accumulatedTorque = Double(arc4random() % 1000)
-        data.crankRevolutions = Double(arc4random() % 10000)
-        data.crankTime = Double(arc4random())
-        data.crankTimestamp = Double(arc4random() % 10000)
-        data.formattedCadence = "123 cadences"
-        data.formattedPower = String(arc4random() % 1000) + " watts"
-        data.formattedDistance = String(arc4random() % 1000) + " miles"
-        data.formattedSpeed = String(arc4random() % 20) + " mph"
-        
-        try! realm?.write {
-            realm!.add(device)
-        }
-    }
-    
     func setupNotificationToken() {
-        token = tableDataSource?.devices.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
-            guard let tableView = self?.tableView else { return }
-            switch changes {
-            case .initial:
-                // Results are now populated and can be accessed without blocking the UI
-                tableView.reloadData()
-                break
-            case .update(_, let deletions, let insertions, let modifications):
-                // Query results have changed, so apply them to the UITableView
-                tableView.beginUpdates()
-                tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .none)
-                tableView.endUpdates()
-                
-                break
-            case .error(let error):
-                // An error occurred while opening the Realm file on the background worker thread
-                fatalError("\(error)")
-                break
+        let realm = try! Realm()
+        generalToken = realm.addNotificationBlock { notification, realm in
+            self.chartView.reloadData()
+        }
+        token = dataSource?.devices.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+            if let collectionView = self?.collectionView {
+                collectionView.reloadData()
             }
         }
+
+    }
+}
+
+extension DeviceListViewController: JBLineChartViewDataSource, JBLineChartViewDelegate {
+    func numberOfLines(in lineChartView: JBLineChartView!) -> UInt {
+        let realm = try! Realm()
+        let connectedDevices = realm.objects(PowerSensorDevice.self).filter("connected = true")
+        return UInt(connectedDevices.count)
+    }
+    
+    func lineChartView(_ lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
+        
+        if let workout = workout, let device = dataSource?.devices[Int(lineIndex)] {
+            let predicate = NSPredicate(format: "deviceID = %@ and watts > 0", device.deviceID)
+            return UInt(workout.dataPoints.filter(predicate).count)
+        }
+        return 0
+    }
+    
+    func lineChartView(_ lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
+        
+        if let workout = workout, let device = dataSource?.devices[Int(lineIndex)]  {
+            let predicate = NSPredicate(format: "time == %d and deviceID == %@ and watts > 0", horizontalIndex, device.deviceID)
+            guard let dataPoint = workout.dataPoints.filter(predicate).first else {
+                return nan("no data")
+            }
+            let watts = CGFloat(dataPoint.watts)
+            return watts
+        }
+        return 0
+    }
+    
+    func lineChartView(_ lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        return UIColor.theme(offset: Int(lineIndex))
     }
 }
 
@@ -127,9 +148,27 @@ extension DeviceListViewController {
     }
 }
 
-extension DeviceListViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected ")
+extension UIColor {
+    class func theme(offset: Int) -> UIColor {
+        // Colors derived from this
+        // https://color.adobe.com/create/color-wheel/?base=4&rule=Analogous&selected=4&name=My%20Color%20Theme&mode=rgb&rgbvalues=0.04498904441069794,0.4317081288788194,0.899780888213958,0.046989044410697935,0.6858450512468613,0.9397808882139579,0.046989044410697935,0.9397808882139579,0.7075278201582945,0.04498904441069794,0.899780888213958,0.43549101375918065,0,0.8317051612442924,0.8497808882139579&swatchOrder=0,1,2,3,4
+        let colors = [UIColor(netHex:0x0B6EE5),
+                      UIColor(netHex:0x0CAFF0),
+                      UIColor(netHex:0x0CF0B4),
+                      UIColor(netHex:0x0BE56F),
+                      UIColor(netHex:0x00D4D9)]
+        return colors[offset % colors.count]
+    }
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(netHex:Int) {
+        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
     }
 }
+

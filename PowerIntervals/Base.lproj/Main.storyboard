@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -52,6 +53,7 @@
                                 <constraints>
                                     <constraint firstItem="n5M-kf-T5S" firstAttribute="centerY" secondItem="E1Z-F7-WjZ" secondAttribute="centerY" id="0v7-DM-uil"/>
                                     <constraint firstAttribute="bottom" secondItem="E1Z-F7-WjZ" secondAttribute="bottom" constant="11" id="B3G-Fl-5qT"/>
+                                    <constraint firstItem="n5M-kf-T5S" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="E1Z-F7-WjZ" secondAttribute="trailing" constant="10" id="Hft-YQ-9oa"/>
                                     <constraint firstItem="E1Z-F7-WjZ" firstAttribute="leading" secondItem="j3M-zW-ozi" secondAttribute="leading" constant="10" id="Xo6-pn-qco"/>
                                     <constraint firstItem="n5M-kf-T5S" firstAttribute="centerX" secondItem="j3M-zW-ozi" secondAttribute="centerX" id="bSx-fU-jX3"/>
                                     <constraint firstAttribute="height" constant="62" id="jyX-c0-yWN"/>
@@ -124,6 +126,7 @@
                     <connections>
                         <outlet property="avgWattsLabel" destination="DCn-xI-23h" id="iJy-4T-BiB"/>
                         <outlet property="deviceNameLabel" destination="n5M-kf-T5S" id="n2h-Eu-buf"/>
+                        <outlet property="headerView" destination="j3M-zW-ozi" id="QeL-oY-5Hr"/>
                         <outlet property="startupTimerLabel" destination="rfH-Sq-2DG" id="2kd-8M-FmA"/>
                         <outlet property="timeLabel" destination="X9k-lG-ZkP" id="s4L-Ds-eh9"/>
                         <outlet property="wattsLabel" destination="O0o-za-AdU" id="hPL-9h-ebh"/>
@@ -143,7 +146,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="D7d-8a-rbx" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y7H-ND-KK1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Y7H-ND-KK1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -275,76 +278,94 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eAz-R6-ZEE">
+                                        <state key="normal" title="Start">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="startWorkout:" destination="4U5-9q-t9i" eventType="touchUpInside" id="2jp-4t-mi9"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="4ij-0H-msI"/>
                                     <constraint firstItem="Ugg-fX-P75" firstAttribute="centerY" secondItem="Jgp-Rr-sOx" secondAttribute="centerY" id="cbc-RT-PFn"/>
                                     <constraint firstItem="Ugg-fX-P75" firstAttribute="centerX" secondItem="Jgp-Rr-sOx" secondAttribute="centerX" id="eZg-eL-iiF"/>
+                                    <constraint firstAttribute="trailing" secondItem="eAz-R6-ZEE" secondAttribute="trailing" constant="8" id="etc-Kc-rsF"/>
+                                    <constraint firstItem="eAz-R6-ZEE" firstAttribute="centerY" secondItem="Ugg-fX-P75" secondAttribute="centerY" id="hVf-BH-OXv"/>
                                 </constraints>
                             </view>
-                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="124" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ug1-nf-I1N">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qpo-wJ-uWc">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="n0l-sO-3v8" userLabel="Oversized Footer">
-                                    <rect key="frame" x="0.0" y="152" width="375" height="1"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </view>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FormattedSensorCellID" id="Jv0-RJ-IbO" customClass="FormattedSensorCell" customModule="PowerIntervals" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="124"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jv0-RJ-IbO" id="L2c-2Z-Oby">
-                                            <frame key="frameInset" width="375" height="123.5"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="156" id="yKb-Ur-c0k"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="3" minimumInteritemSpacing="3" id="0nY-jA-F18">
+                                    <size key="itemSize" width="150" height="150"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="3" minY="0.0" maxX="3" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FormattedCollectionViewSensorCellID" id="Lrv-N3-b0r" customClass="FormattedCollectionViewSensorCell" customModule="PowerIntervals" customModuleProvider="target">
+                                        <rect key="frame" x="3" y="3" width="150" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Power" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDB-1x-Ulu">
-                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="30"/>
-                                                    <nil key="textColor"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MiB-IK-bxd" userLabel="BackgroundView">
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Luk-z7-uXc">
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="31"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Led-FN-gtB">
-                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGC-Pf-pCM">
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="31"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ra-tY-6EF">
-                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKc-6H-bIj">
-                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFe-Z6-1UO">
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="14"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="UKc-6H-bIj" firstAttribute="top" secondItem="gDB-1x-Ulu" secondAttribute="bottom" constant="10" id="6nB-HC-Iyb"/>
-                                                <constraint firstItem="6Ra-tY-6EF" firstAttribute="leading" secondItem="L2c-2Z-Oby" secondAttribute="leadingMargin" constant="10" id="GTa-PU-idu"/>
-                                                <constraint firstItem="6Ra-tY-6EF" firstAttribute="centerY" secondItem="L2c-2Z-Oby" secondAttribute="centerY" id="HNR-7L-ZFz"/>
-                                                <constraint firstItem="gDB-1x-Ulu" firstAttribute="top" secondItem="Led-FN-gtB" secondAttribute="bottom" constant="10" id="J3z-0A-NPl"/>
-                                                <constraint firstItem="gDB-1x-Ulu" firstAttribute="centerY" secondItem="L2c-2Z-Oby" secondAttribute="centerY" id="Ray-na-RxL"/>
-                                                <constraint firstItem="Led-FN-gtB" firstAttribute="top" secondItem="L2c-2Z-Oby" secondAttribute="topMargin" id="SpE-iO-W1V"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="UKc-6H-bIj" secondAttribute="trailing" id="apK-9N-9Q9"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Led-FN-gtB" secondAttribute="trailing" id="lil-9C-ICx"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="UKc-6H-bIj" secondAttribute="bottom" constant="10" id="oP7-d4-Z3D"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="gDB-1x-Ulu" secondAttribute="trailing" constant="10" id="uKB-MB-WTY"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="MiB-IK-bxd" secondAttribute="bottom" id="0Ch-AW-lKV"/>
+                                            <constraint firstItem="Luk-z7-uXc" firstAttribute="centerY" secondItem="Lrv-N3-b0r" secondAttribute="centerY" multiplier="0.66" id="Au1-st-Fmw"/>
+                                            <constraint firstItem="MiB-IK-bxd" firstAttribute="top" secondItem="Lrv-N3-b0r" secondAttribute="top" id="JfM-ep-su0"/>
+                                            <constraint firstItem="XFe-Z6-1UO" firstAttribute="top" secondItem="Lrv-N3-b0r" secondAttribute="topMargin" id="RRq-6b-aIC"/>
+                                            <constraint firstItem="cGC-Pf-pCM" firstAttribute="centerX" secondItem="Lrv-N3-b0r" secondAttribute="centerX" id="Uhv-sW-H8z"/>
+                                            <constraint firstAttribute="trailing" secondItem="MiB-IK-bxd" secondAttribute="trailing" id="Wdp-el-8eI"/>
+                                            <constraint firstItem="Luk-z7-uXc" firstAttribute="centerX" secondItem="Lrv-N3-b0r" secondAttribute="centerX" id="bPb-iq-rRe"/>
+                                            <constraint firstItem="cGC-Pf-pCM" firstAttribute="centerY" secondItem="Lrv-N3-b0r" secondAttribute="centerY" multiplier="1.33" id="eQH-Zm-BhU"/>
+                                            <constraint firstAttribute="leadingMargin" secondItem="XFe-Z6-1UO" secondAttribute="leading" id="p4B-w8-9tZ"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="XFe-Z6-1UO" secondAttribute="trailing" id="wZP-7e-KdE"/>
+                                            <constraint firstItem="MiB-IK-bxd" firstAttribute="leading" secondItem="Lrv-N3-b0r" secondAttribute="leading" id="yOF-AH-N3s"/>
+                                        </constraints>
                                         <connections>
-                                            <outlet property="power" destination="gDB-1x-Ulu" id="GkN-T8-Ljc"/>
-                                            <outlet property="sensorID" destination="6Ra-tY-6EF" id="oZd-tN-hsZ"/>
-                                            <outlet property="speed" destination="UKc-6H-bIj" id="1Ra-7i-L9a"/>
-                                            <outlet property="time" destination="Led-FN-gtB" id="bsd-5g-nN8"/>
-                                            <segue destination="BYZ-38-t0r" kind="show" identifier="TapPowerMeterSegueID" id="0f7-vC-uPA"/>
+                                            <outlet property="averagePower" destination="Luk-z7-uXc" id="cZr-qe-7Oi"/>
+                                            <outlet property="background" destination="MiB-IK-bxd" id="zju-DY-8ET"/>
+                                            <outlet property="power" destination="cGC-Pf-pCM" id="eyk-2n-vye"/>
+                                            <outlet property="sensorID" destination="XFe-Z6-1UO" id="BAH-7W-BRQ"/>
+                                            <segue destination="BYZ-38-t0r" kind="show" id="fOA-yj-Tfy"/>
                                         </connections>
-                                    </tableViewCell>
-                                </prototypes>
+                                    </collectionViewCell>
+                                </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="sA6-tO-nNK" id="em7-Tt-muO"/>
+                                    <outlet property="dataSource" destination="sA6-tO-nNK" id="u2g-mH-IPu"/>
+                                    <outletCollection property="gestureRecognizers" destination="ZSU-eY-Mo7" appends="YES" id="dyJ-aM-BDF"/>
                                 </connections>
-                            </tableView>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niy-MS-2gu" customClass="JBLineChartView">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="131-1B-j3V">
                                 <state key="normal" title="+"/>
                                 <connections>
@@ -360,23 +381,27 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="K0C-5q-mEt" firstAttribute="top" secondItem="ug1-nf-I1N" secondAttribute="bottom" id="2kk-Bv-eIw"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="top" secondItem="qpo-wJ-uWc" secondAttribute="bottom" id="0so-Eb-vgz"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leadingMargin" constant="-16" id="FT5-Tw-jnq"/>
+                            <constraint firstItem="qpo-wJ-uWc" firstAttribute="top" secondItem="Jgp-Rr-sOx" secondAttribute="bottom" id="Obg-hN-c1B"/>
+                            <constraint firstAttribute="trailing" secondItem="qpo-wJ-uWc" secondAttribute="trailing" id="PlH-bb-Te7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="niy-MS-2gu" secondAttribute="trailing" constant="-16" id="a9Q-lS-T8z"/>
                             <constraint firstItem="Jgp-Rr-sOx" firstAttribute="top" secondItem="i4e-QG-kAU" secondAttribute="bottom" id="bL1-fy-khp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Jgp-Rr-sOx" secondAttribute="trailing" constant="-16" id="bsz-of-SRV"/>
-                            <constraint firstAttribute="trailing" secondItem="ug1-nf-I1N" secondAttribute="trailing" id="d6N-Vr-HwP"/>
                             <constraint firstItem="Jgp-Rr-sOx" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leadingMargin" constant="-16" id="fJf-XM-oWQ"/>
-                            <constraint firstItem="ug1-nf-I1N" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leading" id="grM-9j-sIb"/>
+                            <constraint firstItem="K0C-5q-mEt" firstAttribute="top" secondItem="niy-MS-2gu" secondAttribute="bottom" id="pEq-bC-G3w"/>
                             <constraint firstItem="2Yk-e0-dvU" firstAttribute="leading" secondItem="131-1B-j3V" secondAttribute="trailing" constant="8" id="pST-Ud-RTN"/>
                             <constraint firstItem="K0C-5q-mEt" firstAttribute="top" secondItem="131-1B-j3V" secondAttribute="bottom" constant="20" id="pUA-Px-Zfs"/>
+                            <constraint firstItem="qpo-wJ-uWc" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leading" id="q4V-q8-VNs"/>
                             <constraint firstItem="2Yk-e0-dvU" firstAttribute="centerY" secondItem="131-1B-j3V" secondAttribute="centerY" id="qwk-KI-Sdb"/>
-                            <constraint firstItem="ug1-nf-I1N" firstAttribute="top" secondItem="Jgp-Rr-sOx" secondAttribute="bottom" id="yIA-ud-6BZ"/>
                             <constraint firstAttribute="leadingMargin" secondItem="131-1B-j3V" secondAttribute="leading" id="yaB-Jk-WeV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GGB-2X-Zb7"/>
                     <connections>
-                        <outlet property="tableDataSource" destination="sA6-tO-nNK" id="qng-E9-wuW"/>
-                        <outlet property="tableView" destination="ug1-nf-I1N" id="0bO-77-umn"/>
+                        <outlet property="chartView" destination="niy-MS-2gu" id="NKd-WQ-fgn"/>
+                        <outlet property="collectionView" destination="qpo-wJ-uWc" id="A5S-O7-ViC"/>
+                        <outlet property="dataSource" destination="sA6-tO-nNK" id="5S5-F1-x7m"/>
                         <outletCollection property="debugButtons" destination="2Yk-e0-dvU" collectionClass="NSMutableArray" id="3eK-sn-tYP"/>
                         <outletCollection property="debugButtons" destination="131-1B-j3V" collectionClass="NSMutableArray" id="uda-Fn-Udq"/>
                     </connections>
@@ -384,6 +409,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eeb-dx-hfS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Jde-cW-BJN" userLabel="Exit" sceneMemberID="exit"/>
                 <customObject id="sA6-tO-nNK" customClass="DeviceListDataSource" customModule="PowerIntervals" customModuleProvider="target"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ZSU-eY-Mo7">
+                    <connections>
+                        <action selector="longPress:" destination="4U5-9q-t9i" id="GZF-Rg-Jgb"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="605.60000000000002" y="93.103448275862078"/>
         </scene>

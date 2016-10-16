@@ -16,10 +16,6 @@ class FakePowerMeter {
     var deviceInstance: PowerSensorDevice?
     let realm = try! Realm()
     
-    func name() -> (String) {
-        return "Fake Power Meter"
-    }
-    
     func startButton() {
         if let poweMeterTimer = timer {
             if poweMeterTimer.isValid {
@@ -44,7 +40,7 @@ class FakePowerMeter {
                     return
                 }
                 data.instantPower = NSNumber(integerLiteral: random)
-                data.formattedPower = data.instantPower.description + " watts"
+                data.formattedPower = data.instantPower.description + " w"
                 data.accumulatedTime = self.time
                 data.accumulatedPower = Double(random)
                 data.formattedDistance = "100 miles"
@@ -57,13 +53,16 @@ class FakePowerMeter {
     }
     
     func createFakeDevice() {
-        let queryResults = realm.objects(PowerSensorDevice.self).filter("deviceID = 'FakeDeviceID'")
+        let name = "fake \(arc4random() % 2000)"
+        let predicate = NSPredicate(format: "deviceID = %@", name)
+        let queryResults = realm.objects(PowerSensorDevice.self).filter(predicate)
         if let persistedDevice = queryResults.first {
             deviceInstance = persistedDevice
         } else {
             deviceInstance = PowerSensorDevice()
             deviceInstance?.currentData = PowerSensorData()
-            deviceInstance?.deviceID = "FakeDeviceID"
+            deviceInstance?.deviceID = name
+            deviceInstance?.connected = true
             try! realm.write {
                 realm.add(deviceInstance!)
             }

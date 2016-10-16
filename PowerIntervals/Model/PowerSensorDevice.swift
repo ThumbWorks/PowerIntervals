@@ -72,7 +72,7 @@ class PowerSensorDevice: Object {
 class PowerSensorData: Object {
     dynamic var formattedCadence = ""
     dynamic var formattedDistance = ""
-    dynamic var formattedPower = "0 watts"
+    dynamic var formattedPower = "0 w"
     dynamic var formattedSpeed = ""
     dynamic var isCoasting = true
     dynamic var accumulatedEventCount: Int = 0

@@ -169,7 +169,7 @@ extension PeripheralDelegate: CBPeripheralDelegate {
         if let device = realm.objects(PowerSensorDevice.self).filter(predicate).first {
             try! realm.write {
                 device.currentData?.instantPower = NSNumber(value: characteristic.toPowerData())
-                device.currentData?.formattedPower = String(format: "%d watts", characteristic.toPowerData())
+                device.currentData?.formattedPower = String(format: "%d w", characteristic.toPowerData())
             }
         }
     }

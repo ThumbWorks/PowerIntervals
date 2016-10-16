@@ -19,14 +19,13 @@ class DeviceListDataSource: NSObject {
     }
 }
 
-extension DeviceListDataSource: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension DeviceListDataSource: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return devices.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView .dequeueReusableCell(withIdentifier: "FormattedSensorCellID", for: indexPath) as! FormattedSensorCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FormattedCollectionViewSensorCellID", for: indexPath) as! FormattedCollectionViewSensorCell
         let device = devices[indexPath.row]
         if let name = device.userDefinedName {
             cell.sensorID.text = name
@@ -35,31 +34,40 @@ extension DeviceListDataSource: UITableViewDataSource {
         }
         if let data = device.currentData {
             cell.power.text = data.formattedPower
-            cell.time.text = data.accumulatedTime.stringForTime()
-            cell.speed.text = data.formattedSpeed
+            cell.averagePower.text = data.formattedSpeed
+            cell.background.backgroundColor = UIColor.theme(offset: indexPath.row)
         }
         return cell
     }
+}
+
+class FormattedCollectionViewSensorCell: UICollectionViewCell {
     
-    // Delete
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        let realm = try! Realm()
-        try! realm.write {
-            realm.delete(devices[indexPath.row])
-        }
+    @IBOutlet weak var background: UIView!
+    @IBOutlet weak var sensorID: UILabel!
+    @IBOutlet weak var power: UILabel!
+    @IBOutlet weak var averagePower: UILabel!
+    
+    override func prepareForReuse() {
+        sensorID.text = nil
+        power.text = "0"
+        averagePower.text = "0"
+    }
+    
+    override func awakeFromNib() {
+        layer.cornerRadius = 8.0
+        clipsToBounds = true
     }
 }
 
 class FormattedSensorCell: UITableViewCell {
     @IBOutlet weak var sensorID: UILabel!
     @IBOutlet weak var power: UILabel!
-    @IBOutlet weak var time: UILabel!
     @IBOutlet weak var speed: UILabel!
     
     override func prepareForReuse() {
         sensorID.text = nil
         power.text = "0"
-        time.text = 0.stringForTime()
         speed.text = "0"
     }
 }
