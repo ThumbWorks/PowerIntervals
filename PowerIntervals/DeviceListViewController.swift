@@ -19,38 +19,51 @@ class DeviceListViewController: UIViewController {
     var workoutManager: WorkoutManager?
     var workout: GroupWorkout?
     
-    @IBOutlet weak var chartView: JBLineChartView!
-    @IBOutlet var debugButtons: [UIButton]!
+    var selectedDevice: PowerSensorDevice?
     
     @IBOutlet var dataSource: DeviceListDataSource?
+    
+    // UIViews
+    @IBOutlet weak var chartView: JBLineChartView!
+    @IBOutlet weak var maxLabel: UILabel!
+    @IBOutlet weak var minLabel: UILabel!
+    @IBOutlet var debugButtons: [UIButton]!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
+    // zone label constraints
+    @IBOutlet weak var vo2MaxVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var lactateThresholdVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var activeRecoveryVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var anaerobicVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var neromuscularVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tempoVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var enduranceVerticalConstraint: NSLayoutConstraint!
+   
     override func viewWillAppear(_ animated: Bool) {
         #if !DEBUG
             for button in debugButtons {
                 button.isHidden = true
             }
         #endif
-        chartView.reloadData()
-
+        chartView.reloadData(animated: true)
     }
         
     override func viewDidLoad() {
-
+        // Set up the data source for the collection view
         dataSource = DeviceListDataSource()
-
+        
+        // Chart setup
         chartView.dataSource = self
         chartView.delegate = self
         
-        setupNotificationToken()
+        chartView.minimumValue = PowerZone.ActiveRecovery.watts - 40
+        setupNotificationTokens()
     }
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let selectedPath = collectionView.indexPathsForSelectedItems?.first, let powerMeterViewController = segue.destination as? PowerMeterDetailViewController {
-            powerMeterViewController.color = UIColor.theme(offset: selectedPath.row)
             powerMeterViewController.powerMeter = dataSource?.devices[selectedPath.row]
         }
     }
@@ -65,6 +78,11 @@ class DeviceListViewController: UIViewController {
             print("Need a workout manager")
             return
         }
+        
+        if collectionView.indexPathsForSelectedItems?.count == 0 {
+            selectedDevice = dataSource?.devices.first
+        }
+        
         workout = workoutManager.startWorkout()
     }
     
@@ -88,37 +106,75 @@ class DeviceListViewController: UIViewController {
                     print("The device doesn't exist at this index path")
                     return
                 }
+                for powerMeter in fakePowerMeters {
+                    if powerMeter.deviceInstance == device {
+                        powerMeter.stop()
+                    }
+                }
                 realm.delete(device)
             }
+        }
+    }
+    
+    func updateZoneLabels() {
+        let max = chartView.maximumValue
+        if max == 0 {
+            return
+        }
+        let min = chartView.minimumValue
+        minLabel.text = String(format: "%.0f", min)
+        maxLabel.text = String(format: "%.0f", max)
+        let chartHeight = chartView.frame.height
+       
+        let vo2Max = PowerZone.VO2Max.watts
+        let lt = PowerZone.LactateThreshold.watts
+        let activeRecover = PowerZone.ActiveRecovery.watts
+        let anaerobic = PowerZone.AnaerobicCapacity.watts
+        let endurance = PowerZone.Endurance.watts
+        let tempo = PowerZone.Tempo.watts
+        let neromuscular = PowerZone.NeroMuscular.watts
+        
+        // Formula is ((zone - min) * height) / (max - min)
+        let chartHeightOverMaxMinusMin = chartHeight / (max - min)
+        
+        vo2MaxVerticalConstraint.constant = chartHeightOverMaxMinusMin * (vo2Max - min)
+        lactateThresholdVerticalConstraint.constant = chartHeightOverMaxMinusMin * (lt - min)
+        activeRecoveryVerticalConstraint.constant = chartHeightOverMaxMinusMin * (activeRecover - min)
+        anaerobicVerticalConstraint.constant = chartHeightOverMaxMinusMin * (anaerobic - min)
+        enduranceVerticalConstraint.constant = chartHeightOverMaxMinusMin * (endurance - min)
+        tempoVerticalConstraint.constant = chartHeightOverMaxMinusMin * (tempo - min)
+        neromuscularVerticalConstraint.constant = chartHeightOverMaxMinusMin * (neromuscular - min)
+        UIView.animate(withDuration: 1) {
+            self.view.setNeedsLayout()
         }
     }
 }
 
 extension DeviceListViewController {
-    func setupNotificationToken() {
+    func setupNotificationTokens() {
         let realm = try! Realm()
+        //TODO: This chart reload is happening entirely too often a simple timer would be more efficient
         generalToken = realm.addNotificationBlock { notification, realm in
-            self.chartView.reloadData()
+            self.chartView.reloadData(animated: true)
+            self.minLabel.text = String(format: "%.0f", self.chartView.minimumValue)
+            self.maxLabel.text = String(format: "%.0f", self.chartView.maximumValue)
+            self.updateZoneLabels()
         }
         token = dataSource?.devices.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
             if let collectionView = self?.collectionView {
                 collectionView.reloadData()
             }
         }
-
     }
 }
-
 extension DeviceListViewController: JBLineChartViewDataSource, JBLineChartViewDelegate {
+
     func numberOfLines(in lineChartView: JBLineChartView!) -> UInt {
-        let realm = try! Realm()
-        let connectedDevices = realm.objects(PowerSensorDevice.self).filter("connected = true")
-        return UInt(connectedDevices.count)
+        return 8
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
-        
-        if let workout = workout, let device = dataSource?.devices[Int(lineIndex)] {
+        if let workout = workout, let device = selectedDevice {
             let predicate = NSPredicate(format: "deviceID = %@ and watts > 0", device.deviceID)
             return UInt(workout.dataPoints.filter(predicate).count)
         }
@@ -126,8 +182,13 @@ extension DeviceListViewController: JBLineChartViewDataSource, JBLineChartViewDe
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
+        // zone lines
+        if let zone = PowerZone(rawValue: lineIndex) {
+            return zone.watts
+        }
         
-        if let workout = workout, let device = dataSource?.devices[Int(lineIndex)]  {
+        // device data
+        if let workout = workout, let device = selectedDevice  {
             let predicate = NSPredicate(format: "time == %d and deviceID == %@ and watts > 0", horizontalIndex, device.deviceID)
             guard let dataPoint = workout.dataPoints.filter(predicate).first else {
                 return nan("no data")
@@ -136,10 +197,78 @@ extension DeviceListViewController: JBLineChartViewDataSource, JBLineChartViewDe
             return watts
         }
         return 0
+
+    }
+    
+    func lineChartView(_ lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
+        return 1.0
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
-        return UIColor.theme(offset: Int(lineIndex))
+        
+        if let zone = PowerZone(rawValue: lineIndex) {
+            return zone.color
+        }
+        return .black
+    }
+    
+    func lineChartView(_ lineChartView: JBLineChartView!, smoothLineAtLineIndex lineIndex: UInt) -> Bool {
+        return true
+    }
+    
+    func lineChartView(_ lineChartView: JBLineChartView!, fillColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        if let zone = PowerZone(rawValue: lineIndex) {
+            return zone.fill
+        }
+        return nil
+    }
+}
+//NOTE: BELOW THIS IS THE ALL ON THE SAME CHART IMPLEMENTATION
+//extension DeviceListViewController: JBLineChartViewDataSource, JBLineChartViewDelegate {
+//    func numberOfLines(in lineChartView: JBLineChartView!) -> UInt {
+//        let realm = try! Realm()
+//        let connectedDevices = realm.objects(PowerSensorDevice.self).filter("connected = true")
+//        return UInt(connectedDevices.count)
+//    }
+//    
+//    func lineChartView(_ lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
+//        if let workout = workout, let device = dataSource?.devices[Int(lineIndex)] {
+//            let predicate = NSPredicate(format: "deviceID = %@ and watts > 0", device.deviceID)
+//            return UInt(workout.dataPoints.filter(predicate).count)
+//        }
+//        return 0
+//    }
+//    
+//    func lineChartView(_ lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
+//        
+//        if let workout = workout, let device = dataSource?.devices[Int(lineIndex)]  {
+//            let predicate = NSPredicate(format: "time == %d and deviceID == %@ and watts > 0", horizontalIndex, device.deviceID)
+//            guard let dataPoint = workout.dataPoints.filter(predicate).first else {
+//                return nan("no data")
+//            }
+//            let watts = CGFloat(dataPoint.watts)
+//            return watts
+//        }
+//        return 0
+//    }
+//    
+//    func lineChartView(_ lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+//        return UIColor.theme(offset: Int(lineIndex))
+//    }
+//    
+//    func lineChartView(_ lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
+//        return 1.0
+//    }
+//}
+
+extension DeviceListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let dataSource = dataSource {
+            let aDevice = dataSource.devices[indexPath.row]
+            selectedDevice = aDevice
+            chartView.reloadData(animated: true)
+            updateZoneLabels()
+        }
     }
 }
 
@@ -147,28 +276,3 @@ extension DeviceListViewController {
     @IBAction func unwindToDeviceListView(sender: UIStoryboardSegue){
     }
 }
-
-extension UIColor {
-    class func theme(offset: Int) -> UIColor {
-        // Colors derived from this
-        // https://color.adobe.com/create/color-wheel/?base=4&rule=Analogous&selected=4&name=My%20Color%20Theme&mode=rgb&rgbvalues=0.04498904441069794,0.4317081288788194,0.899780888213958,0.046989044410697935,0.6858450512468613,0.9397808882139579,0.046989044410697935,0.9397808882139579,0.7075278201582945,0.04498904441069794,0.899780888213958,0.43549101375918065,0,0.8317051612442924,0.8497808882139579&swatchOrder=0,1,2,3,4
-        let colors = [UIColor(netHex:0x0B6EE5),
-                      UIColor(netHex:0x0CAFF0),
-                      UIColor(netHex:0x0CF0B4),
-                      UIColor(netHex:0x0BE56F),
-                      UIColor(netHex:0x00D4D9)]
-        return colors[offset % colors.count]
-    }
-    convenience init(red: Int, green: Int, blue: Int) {
-        assert(red >= 0 && red <= 255, "Invalid red component")
-        assert(green >= 0 && green <= 255, "Invalid green component")
-        assert(blue >= 0 && blue <= 255, "Invalid blue component")
-        
-        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-    }
-    
-    convenience init(netHex:Int) {
-        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
-    }
-}
-

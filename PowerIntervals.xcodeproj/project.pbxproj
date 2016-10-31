@@ -39,6 +39,8 @@
 		9E452FE61D958BE600C96165 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E452FE51D958BE600C96165 /* Realm.framework */; };
 		9E8BB37F1D86337700367E60 /* FakePowerMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8BB37E1D86337700367E60 /* FakePowerMeter.swift */; };
 		9EABF6B71D8C46C200B8AC27 /* IntTimeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EABF6B61D8C46C200B8AC27 /* IntTimeExtension.swift */; };
+		9EB4F46F1DC5567000B7045E /* PowerZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4F46E1DC5567000B7045E /* PowerZone.swift */; };
+		9EB4F4711DC556AB00B7045E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4F4701DC556AB00B7045E /* Color.swift */; };
 		9EC2F8A01DA31C6B00F31CD6 /* beep-hightone.aif in Resources */ = {isa = PBXBuildFile; fileRef = 9EC2F89F1DA31C6B00F31CD6 /* beep-hightone.aif */; };
 		9EE6E48E1DA7E26700E9F3BC /* BluetoothDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE6E48D1DA7E26700E9F3BC /* BluetoothDelegate.swift */; };
 		9EFDBB021D88517E00C56D97 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EFDBB011D88517E00C56D97 /* SystemConfiguration.framework */; };
@@ -106,6 +108,8 @@
 		9E6D52941DB2DEAD005503A1 /* JBChartView-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JBChartView-Bridging-Header.h"; path = "PowerIntervals/JBChartView-Bridging-Header.h"; sourceTree = "<group>"; };
 		9E8BB37E1D86337700367E60 /* FakePowerMeter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakePowerMeter.swift; sourceTree = "<group>"; };
 		9EABF6B61D8C46C200B8AC27 /* IntTimeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntTimeExtension.swift; sourceTree = "<group>"; };
+		9EB4F46E1DC5567000B7045E /* PowerZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PowerZone.swift; path = Model/PowerZone.swift; sourceTree = "<group>"; };
+		9EB4F4701DC556AB00B7045E /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		9EC2F89F1DA31C6B00F31CD6 /* beep-hightone.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-hightone.aif"; sourceTree = "<group>"; };
 		9EE6E48D1DA7E26700E9F3BC /* BluetoothDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BluetoothDelegate.swift; path = PowerIntervals/BluetoothDelegate/BluetoothDelegate.swift; sourceTree = "<group>"; };
 		9EFDBB011D88517E00C56D97 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -201,6 +205,7 @@
 				9EFDBB0D1D8854A600C56D97 /* WahooHardware.swift */,
 				9E452FE21D95841800C96165 /* Utility */,
 				9E452FE11D9583F700C96165 /* Resources */,
+				9EB4F4701DC556AB00B7045E /* Color.swift */,
 			);
 			path = PowerIntervals;
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				9E452FDC1D95813B00C96165 /* PowerSensorDevice.swift */,
+				9EB4F46E1DC5567000B7045E /* PowerZone.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -518,12 +524,14 @@
 				9EE6E48E1DA7E26700E9F3BC /* BluetoothDelegate.swift in Sources */,
 				9E4523901DB2E4B000C380F2 /* JBLineChartDotView.m in Sources */,
 				9E3888CA1D862E8900DFC271 /* PowerMeterDetailViewController.swift in Sources */,
+				9EB4F46F1DC5567000B7045E /* PowerZone.swift in Sources */,
 				9E357AC91DB2CC3000883163 /* WorkoutManager.swift in Sources */,
 				9E4523871DB2E4B000C380F2 /* JBBarChartView.m in Sources */,
 				9E3888C81D862E8900DFC271 /* AppDelegate.swift in Sources */,
 				9EABF6B71D8C46C200B8AC27 /* IntTimeExtension.swift in Sources */,
 				9E452FE01D9581D600C96165 /* DeviceListDataSource.swift in Sources */,
 				9E4523911DB2E4B000C380F2 /* JBLineChartLinesView.m in Sources */,
+				9EB4F4711DC556AB00B7045E /* Color.swift in Sources */,
 				9E145EC31DA1CD6F008F88AE /* HardwareConnectViewController.swift in Sources */,
 				9EFDBB0E1D8854A600C56D97 /* WahooHardware.swift in Sources */,
 				9E45238A1DB2E4B000C380F2 /* JBLineChartView.m in Sources */,

@@ -15,6 +15,7 @@ class DeviceListDataSource: NSObject {
     
     override init() {
         let realm = try! Realm()
+        //TODO may need to only check connected devices
         devices = realm.objects(PowerSensorDevice.self)
     }
 }
@@ -35,7 +36,6 @@ extension DeviceListDataSource: UICollectionViewDataSource {
         if let data = device.currentData {
             cell.power.text = data.formattedPower
             cell.averagePower.text = data.formattedSpeed
-            cell.background.backgroundColor = UIColor.theme(offset: indexPath.row)
         }
         return cell
     }
