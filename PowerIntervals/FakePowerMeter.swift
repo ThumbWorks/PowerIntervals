@@ -33,12 +33,14 @@ class FakePowerMeter {
         createFakeDevice()
         let newTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
             self.time += 1
-            let random = Int(arc4random_uniform(UInt32(self.powerValueToSend / 2))) + self.powerValueToSend
+            let power = max(self.powerValueToSend, 0)
+            let random = Int(arc4random_uniform(UInt32(power / 2))) + power
             try! self.realm.write {
                 // this is all of the data we currently show in the device list
                 guard let data = self.deviceInstance?.currentData else {
                     return
                 }
+                
                 data.instantPower = NSNumber(integerLiteral: random)
                 data.formattedPower = data.instantPower.description + " w"
                 data.accumulatedTime = self.time
