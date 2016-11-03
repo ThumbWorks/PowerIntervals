@@ -32,13 +32,13 @@ class DeviceListViewController: UIViewController {
     
     // zone label constraints
     @IBOutlet weak var vo2MaxVerticalConstraint: NSLayoutConstraint!
-    @IBOutlet weak var lactateThresholdVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var activeRecoveryVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var anaerobicVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var neromuscularVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var tempoVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var enduranceVerticalConstraint: NSLayoutConstraint!
-   
+    @IBOutlet weak var lactateThresholdVerticalConstraint: NSLayoutConstraint!
+    
     override func viewWillAppear(_ animated: Bool) {
         #if !DEBUG
             for button in debugButtons {
@@ -55,8 +55,10 @@ class DeviceListViewController: UIViewController {
         // Chart setup
         chartView.dataSource = self
         chartView.delegate = self
-        
+        chartView.showsLineSelection = false
+        chartView.showsVerticalSelection = false
         chartView.minimumValue = PowerZone.ActiveRecovery.watts - 40
+
         setupNotificationTokens()
     }
 
@@ -90,6 +92,29 @@ class DeviceListViewController: UIViewController {
         let newPowerMeter = FakePowerMeter()
         newPowerMeter.startButton()
         fakePowerMeters.append(newPowerMeter)
+    }
+    
+    var panBegin: CGPoint?
+    
+    @IBAction func swipe(_ sender: UIPanGestureRecognizer) {
+        if sender.state == .began {
+            print("started swipe")
+            panBegin = sender.location(in: view)
+        }
+        if sender.state == .ended {
+            if let panBegin = panBegin {
+                let stopLocation = sender.location(in: view)
+                let dy = panBegin.y - stopLocation.y;
+                print("dy is \(dy)")
+                
+                for fake in fakePowerMeters {
+                    if fake.deviceInstance == selectedDevice {
+                        print("We have a selected device")
+                        fake.powerValueToSend += Int(dy)
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
@@ -127,23 +152,24 @@ class DeviceListViewController: UIViewController {
         let chartHeight = chartView.frame.height
        
         let vo2Max = PowerZone.VO2Max.watts
-        let lt = PowerZone.LactateThreshold.watts
         let activeRecover = PowerZone.ActiveRecovery.watts
         let anaerobic = PowerZone.AnaerobicCapacity.watts
         let endurance = PowerZone.Endurance.watts
         let tempo = PowerZone.Tempo.watts
         let neromuscular = PowerZone.NeroMuscular.watts
+        let lactateThreshold = PowerZone.LactateThreshold.watts
         
         // Formula is ((zone - min) * height) / (max - min)
         let chartHeightOverMaxMinusMin = chartHeight / (max - min)
         
         vo2MaxVerticalConstraint.constant = chartHeightOverMaxMinusMin * (vo2Max - min)
-        lactateThresholdVerticalConstraint.constant = chartHeightOverMaxMinusMin * (lt - min)
         activeRecoveryVerticalConstraint.constant = chartHeightOverMaxMinusMin * (activeRecover - min)
         anaerobicVerticalConstraint.constant = chartHeightOverMaxMinusMin * (anaerobic - min)
         enduranceVerticalConstraint.constant = chartHeightOverMaxMinusMin * (endurance - min)
         tempoVerticalConstraint.constant = chartHeightOverMaxMinusMin * (tempo - min)
         neromuscularVerticalConstraint.constant = chartHeightOverMaxMinusMin * (neromuscular - min)
+        lactateThresholdVerticalConstraint.constant = chartHeightOverMaxMinusMin * (lactateThreshold - min)
+
         UIView.animate(withDuration: 1) {
             self.view.setNeedsLayout()
         }
@@ -153,7 +179,7 @@ class DeviceListViewController: UIViewController {
 extension DeviceListViewController {
     func setupNotificationTokens() {
         let realm = try! Realm()
-        //TODO: This chart reload is happening entirely too often a simple timer would be more efficient
+        
         generalToken = realm.addNotificationBlock { notification, realm in
             self.chartView.reloadData(animated: true)
             self.minLabel.text = String(format: "%.0f", self.chartView.minimumValue)
@@ -172,9 +198,10 @@ extension DeviceListViewController: JBLineChartViewDataSource, JBLineChartViewDe
     func numberOfLines(in lineChartView: JBLineChartView!) -> UInt {
         return 8
     }
-    
+
     func lineChartView(_ lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
-        if let workout = workout, let device = selectedDevice {
+        
+        if let workout = workout, let device = selectedDevice, device.isInvalidated == false {
             let predicate = NSPredicate(format: "deviceID = %@ and watts > 0", device.deviceID)
             return UInt(workout.dataPoints.filter(predicate).count)
         }

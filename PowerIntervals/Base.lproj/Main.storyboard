@@ -365,6 +365,10 @@
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niy-MS-2gu" customClass="JBLineChartView">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="vHl-NI-Xfr" appends="YES" id="4wV-3c-AnW"/>
+                                </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Yk-e0-dvU">
                                 <state key="normal" title="Fake PM"/>
@@ -374,73 +378,90 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uw9-Th-bdl">
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="10"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXe-1e-1vF">
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="10"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VO2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbF-sA-gSs">
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="10"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VO2Max" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbF-sA-gSs">
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Endur" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8j-Kq-SNa">
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="10"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Endurance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8j-Kq-SNa">
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tempo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxw-Py-Rp0">
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="10"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lactate Threshold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrg-xQ-uAP">
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tempo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxw-Py-Rp0">
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neuromuscular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ise-ov-8tv">
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDr-bs-YGR">
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="10"/>
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo8-Ug-3gN">
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="10"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Active Recovery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo8-Ug-3gN">
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCX-Kc-cQ4">
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="10"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="neuromuscular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ise-ov-8tv">
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="10"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anaerobic Capacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCX-Kc-cQ4">
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="niy-MS-2gu" firstAttribute="top" secondItem="qpo-wJ-uWc" secondAttribute="bottom" id="0so-Eb-vgz"/>
+                            <constraint firstItem="Rrg-xQ-uAP" firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="1FE-at-aDc"/>
                             <constraint firstItem="2Yk-e0-dvU" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leadingMargin" constant="38" id="C4X-zO-wqx"/>
                             <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="SCX-Kc-cQ4" secondAttribute="top" constant="120" id="DrQ-YT-3bE"/>
-                            <constraint firstItem="niy-MS-2gu" firstAttribute="leading" secondItem="uw9-Th-bdl" secondAttribute="trailing" id="FHl-MV-gIK"/>
-                            <constraint firstItem="niy-MS-2gu" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leading" constant="30" id="FT5-Tw-jnq"/>
-                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="mo8-Ug-3gN" secondAttribute="top" constant="80" id="FWT-BY-PLv"/>
+                            <constraint firstItem="uw9-Th-bdl" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="leading" constant="8" id="FHl-MV-gIK"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leading" id="FT5-Tw-jnq"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="mo8-Ug-3gN" secondAttribute="top" constant="20" id="FWT-BY-PLv"/>
                             <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="AbF-sA-gSs" secondAttribute="top" constant="100" id="G69-Rn-Wng"/>
-                            <constraint firstItem="mo8-Ug-3gN" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="trailing" id="JMD-5Y-OBU"/>
-                            <constraint firstItem="niy-MS-2gu" firstAttribute="leading" secondItem="BXe-1e-1vF" secondAttribute="trailing" id="LL7-1f-iwf"/>
-                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="Ise-ov-8tv" secondAttribute="top" constant="180" id="OLD-8K-E8k"/>
+                            <constraint firstItem="mo8-Ug-3gN" firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="JMD-5Y-OBU"/>
+                            <constraint firstItem="BXe-1e-1vF" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="leading" constant="8" id="LL7-1f-iwf"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="Ise-ov-8tv" secondAttribute="top" constant="140" id="OLD-8K-E8k"/>
                             <constraint firstItem="qpo-wJ-uWc" firstAttribute="top" secondItem="Jgp-Rr-sOx" secondAttribute="bottom" id="Obg-hN-c1B"/>
                             <constraint firstAttribute="trailing" secondItem="qpo-wJ-uWc" secondAttribute="trailing" id="PlH-bb-Te7"/>
-                            <constraint firstItem="2Yk-e0-dvU" firstAttribute="top" secondItem="niy-MS-2gu" secondAttribute="bottom" constant="-50" id="SqW-nO-Ol2"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="2Yk-e0-dvU" secondAttribute="bottom" id="SqW-nO-Ol2"/>
                             <constraint firstItem="uw9-Th-bdl" firstAttribute="bottom" secondItem="niy-MS-2gu" secondAttribute="bottom" id="Trv-nC-r9e"/>
-                            <constraint firstItem="D8j-Kq-SNa" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="trailing" id="VIM-va-vYZ"/>
-                            <constraint firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" constant="30" id="a9Q-lS-T8z"/>
+                            <constraint firstItem="D8j-Kq-SNa" firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="VIM-va-vYZ"/>
+                            <constraint firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="a9Q-lS-T8z"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="Rrg-xQ-uAP" secondAttribute="top" constant="80" id="aFw-GO-5vo"/>
                             <constraint firstItem="Jgp-Rr-sOx" firstAttribute="top" secondItem="i4e-QG-kAU" secondAttribute="bottom" id="bL1-fy-khp"/>
-                            <constraint firstItem="AbF-sA-gSs" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="trailing" id="boZ-vt-R1Q"/>
+                            <constraint firstItem="AbF-sA-gSs" firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="boZ-vt-R1Q"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Jgp-Rr-sOx" secondAttribute="trailing" constant="-16" id="bsz-of-SRV"/>
                             <constraint firstItem="Jgp-Rr-sOx" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leadingMargin" constant="-16" id="fJf-XM-oWQ"/>
                             <constraint firstItem="BXe-1e-1vF" firstAttribute="top" secondItem="niy-MS-2gu" secondAttribute="top" id="gzS-5E-6oN"/>
-                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="D8j-Kq-SNa" secondAttribute="top" constant="150" id="h3J-PH-wSd"/>
-                            <constraint firstItem="lxw-Py-Rp0" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="trailing" id="o25-ME-xzM"/>
-                            <constraint firstItem="Ise-ov-8tv" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="trailing" id="ofk-iE-kFj"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="D8j-Kq-SNa" secondAttribute="top" constant="40" id="h3J-PH-wSd"/>
+                            <constraint firstItem="lxw-Py-Rp0" firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="o25-ME-xzM"/>
+                            <constraint firstItem="Ise-ov-8tv" firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="ofk-iE-kFj"/>
                             <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="VDr-bs-YGR" secondAttribute="top" constant="90" id="p1Y-DA-vTq"/>
                             <constraint firstItem="K0C-5q-mEt" firstAttribute="top" secondItem="niy-MS-2gu" secondAttribute="bottom" id="pEq-bC-G3w"/>
                             <constraint firstItem="qpo-wJ-uWc" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leading" id="q4V-q8-VNs"/>
-                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="lxw-Py-Rp0" secondAttribute="top" constant="170" id="qzI-xt-h8F"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="lxw-Py-Rp0" secondAttribute="top" constant="60" id="qzI-xt-h8F"/>
                             <constraint firstItem="VDr-bs-YGR" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="trailing" id="vQH-vy-qD3"/>
-                            <constraint firstItem="SCX-Kc-cQ4" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="trailing" id="xDG-nk-1fk"/>
+                            <constraint firstItem="SCX-Kc-cQ4" firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="xDG-nk-1fk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GGB-2X-Zb7"/>
@@ -451,7 +472,7 @@
                         <outlet property="collectionView" destination="qpo-wJ-uWc" id="A5S-O7-ViC"/>
                         <outlet property="dataSource" destination="sA6-tO-nNK" id="5S5-F1-x7m"/>
                         <outlet property="enduranceVerticalConstraint" destination="h3J-PH-wSd" id="uTy-eK-8Fl"/>
-                        <outlet property="lactateThresholdVerticalConstraint" destination="p1Y-DA-vTq" id="aDr-aK-11k"/>
+                        <outlet property="lactateThresholdVerticalConstraint" destination="aFw-GO-5vo" id="rSb-gy-3o9"/>
                         <outlet property="maxLabel" destination="BXe-1e-1vF" id="0UY-ry-sWn"/>
                         <outlet property="minLabel" destination="uw9-Th-bdl" id="pYd-FX-HFo"/>
                         <outlet property="neromuscularVerticalConstraint" destination="OLD-8K-E8k" id="rfR-B4-B7W"/>
@@ -468,6 +489,11 @@
                         <action selector="longPress:" destination="4U5-9q-t9i" id="GZF-Rg-Jgb"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="vHl-NI-Xfr">
+                    <connections>
+                        <action selector="swipe:" destination="4U5-9q-t9i" id="N13-jK-q6K"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="605.60000000000002" y="93.103448275862078"/>
         </scene>
@@ -478,6 +504,6 @@
         <image name="Phone" width="192" height="384"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wFU-7D-SOi"/>
+        <segue reference="g5i-Sc-DOv"/>
     </inferredMetricsTieBreakers>
 </document>
