@@ -11,17 +11,17 @@ import UIKit
 import RealmSwift
 
 class DeviceListViewController: UIViewController {
-    var generalToken: NotificationToken?
+    var deviceUpdateToken: NotificationToken?
     var token: NotificationToken?
-    
-    var fakePowerMeters = [FakePowerMeter]()
-    
+
     var workoutManager: WorkoutManager?
     var workout: GroupWorkout?
     
     var selectedDevice: PowerSensorDevice?
     
     @IBOutlet var dataSource: DeviceListDataSource?
+    
+    var dataPoints: Results<WorkoutDataPoint>?
     
     // UIViews
     @IBOutlet weak var chartView: JBLineChartView!
@@ -39,6 +39,10 @@ class DeviceListViewController: UIViewController {
     @IBOutlet weak var enduranceVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var lactateThresholdVerticalConstraint: NSLayoutConstraint!
     
+    // some debug things
+    var fakePowerMeters = [FakePowerMeter]()
+    var panBegin: CGPoint?
+
     override func viewWillAppear(_ animated: Bool) {
         #if !DEBUG
             for button in debugButtons {
@@ -62,7 +66,6 @@ class DeviceListViewController: UIViewController {
         setupNotificationTokens()
     }
 
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let selectedPath = collectionView.indexPathsForSelectedItems?.first, let powerMeterViewController = segue.destination as? PowerMeterDetailViewController {
@@ -71,7 +74,7 @@ class DeviceListViewController: UIViewController {
     }
     
     deinit {
-        generalToken?.stop()
+        deviceUpdateToken?.stop()
         token?.stop()
     }
     
@@ -83,6 +86,7 @@ class DeviceListViewController: UIViewController {
         
         if collectionView.indexPathsForSelectedItems?.count == 0 {
             selectedDevice = dataSource?.devices.first
+            setupSelectedDeviceToken()
         }
         
         workout = workoutManager.startWorkout()
@@ -93,8 +97,6 @@ class DeviceListViewController: UIViewController {
         newPowerMeter.startButton()
         fakePowerMeters.append(newPowerMeter)
     }
-    
-    var panBegin: CGPoint?
     
     @IBAction func swipe(_ sender: UIPanGestureRecognizer) {
         if sender.state == .began {
@@ -177,15 +179,32 @@ class DeviceListViewController: UIViewController {
 }
 
 extension DeviceListViewController {
-    func setupNotificationTokens() {
-        let realm = try! Realm()
-        
-        generalToken = realm.addNotificationBlock { notification, realm in
-            self.chartView.reloadData(animated: true)
-            self.minLabel.text = String(format: "%.0f", self.chartView.minimumValue)
-            self.maxLabel.text = String(format: "%.0f", self.chartView.maximumValue)
-            self.updateZoneLabels()
+    func setupSelectedDeviceToken() {
+        if let token = deviceUpdateToken {
+            token.stop()
         }
+        
+        guard let device = selectedDevice else {
+            return
+        }
+        let realm = try! Realm()
+        // use selected device id as the predicate
+        let predicate = NSPredicate(format: "deviceID = %@", device.deviceID)
+        dataPoints = realm.objects(WorkoutDataPoint.self).filter(predicate)
+        
+        deviceUpdateToken = dataPoints?.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+            guard let chartView = self?.chartView else {
+                return
+            }
+            chartView.reloadData(animated: true)
+            self?.minLabel.text = String(format: "%.0f", chartView.minimumValue)
+            self?.maxLabel.text = String(format: "%.0f", chartView.maximumValue)
+            self?.updateZoneLabels()
+        }
+    }
+    
+    func setupNotificationTokens() {
+        
         token = dataSource?.devices.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
             if let collectionView = self?.collectionView {
                 collectionView.reloadData()
@@ -201,9 +220,8 @@ extension DeviceListViewController: JBLineChartViewDataSource, JBLineChartViewDe
 
     func lineChartView(_ lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
         
-        if let workout = workout, let device = selectedDevice, device.isInvalidated == false {
-            let predicate = NSPredicate(format: "deviceID = %@ and watts > 0", device.deviceID)
-            return UInt(workout.dataPoints.filter(predicate).count)
+        if let dataPoints = dataPoints {
+            return UInt(dataPoints.count)
         }
         return 0
     }
@@ -214,17 +232,10 @@ extension DeviceListViewController: JBLineChartViewDataSource, JBLineChartViewDe
             return zone.watts
         }
         
-        // device data
-        if let workout = workout, let device = selectedDevice  {
-            let predicate = NSPredicate(format: "time == %d and deviceID == %@ and watts > 0", horizontalIndex, device.deviceID)
-            guard let dataPoint = workout.dataPoints.filter(predicate).first else {
-                return nan("no data")
-            }
-            let watts = CGFloat(dataPoint.watts)
-            return watts
+        if let dataPoints = dataPoints {
+            return CGFloat(dataPoints[Int(horizontalIndex)].watts)
         }
         return 0
-
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
@@ -293,6 +304,7 @@ extension DeviceListViewController: UICollectionViewDelegate {
         if let dataSource = dataSource {
             let aDevice = dataSource.devices[indexPath.row]
             selectedDevice = aDevice
+            setupSelectedDeviceToken()
             chartView.reloadData(animated: true)
             updateZoneLabels()
         }

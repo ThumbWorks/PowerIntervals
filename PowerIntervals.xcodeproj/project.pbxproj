@@ -157,14 +157,6 @@
 			name = HardwareConnectionFlow;
 			sourceTree = "<group>";
 		};
-		9E357AC71DB2CC2600883163 /* WorkoutManager */ = {
-			isa = PBXGroup;
-			children = (
-				9E357AC81DB2CC3000883163 /* WorkoutManager.swift */,
-			);
-			name = WorkoutManager;
-			sourceTree = "<group>";
-		};
 		9E3888BB1D862E8900DFC271 = {
 			isa = PBXGroup;
 			children = (
@@ -190,7 +182,6 @@
 		9E3888C61D862E8900DFC271 /* PowerIntervals */ = {
 			isa = PBXGroup;
 			children = (
-				9E357AC71DB2CC2600883163 /* WorkoutManager */,
 				9E145EC11DA1CD52008F88AE /* HardwareConnectionFlow */,
 				9E452FDE1D9581A100C96165 /* DeviceListView */,
 				9E452FDB1D95811F00C96165 /* Model */,
@@ -326,6 +317,7 @@
 		9E452FDB1D95811F00C96165 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9E357AC81DB2CC3000883163 /* WorkoutManager.swift */,
 				9E452FDC1D95813B00C96165 /* PowerSensorDevice.swift */,
 				9EB4F46E1DC5567000B7045E /* PowerZone.swift */,
 			);
