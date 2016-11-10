@@ -48,6 +48,7 @@
 		9EFDBB061D88518800C56D97 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EFDBB051D88518800C56D97 /* CoreBluetooth.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9EFDBB081D8852C200C56D97 /* WFConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EFDBB071D8852C200C56D97 /* WFConnector.framework */; };
 		9EFDBB0E1D8854A600C56D97 /* WahooHardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFDBB0D1D8854A600C56D97 /* WahooHardware.swift */; };
+		9EFF88051DD2A3CD00A68058 /* ChartDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFF88041DD2A3CD00A68058 /* ChartDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		9EFDBB091D88534700C56D97 /* PowerIntervals-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PowerIntervals-Bridging-Header.h"; sourceTree = "<group>"; };
 		9EFDBB0D1D8854A600C56D97 /* WahooHardware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WahooHardware.swift; sourceTree = "<group>"; };
 		9EFDBB0F1D8861ED00C56D97 /* PowerIntervals.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PowerIntervals.entitlements; sourceTree = "<group>"; };
+		9EFF88041DD2A3CD00A68058 /* ChartDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,8 @@
 				9E145EC11DA1CD52008F88AE /* HardwareConnectionFlow */,
 				9E452FDE1D9581A100C96165 /* DeviceListView */,
 				9E452FDB1D95811F00C96165 /* Model */,
+				9EFF88041DD2A3CD00A68058 /* ChartDataProvider.swift */,
+				9EB4F4701DC556AB00B7045E /* Color.swift */,
 				9EFDBB0F1D8861ED00C56D97 /* PowerIntervals.entitlements */,
 				9E3888C71D862E8900DFC271 /* AppDelegate.swift */,
 				9E3888C91D862E8900DFC271 /* PowerMeterDetailViewController.swift */,
@@ -196,7 +200,6 @@
 				9EFDBB0D1D8854A600C56D97 /* WahooHardware.swift */,
 				9E452FE21D95841800C96165 /* Utility */,
 				9E452FE11D9583F700C96165 /* Resources */,
-				9EB4F4701DC556AB00B7045E /* Color.swift */,
 			);
 			path = PowerIntervals;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				9E45238B1DB2E4B000C380F2 /* JBGradientLineLayer.m in Sources */,
 				9E4523881DB2E4B000C380F2 /* JBGradientBarView.m in Sources */,
 				9E45238D1DB2E4B000C380F2 /* JBLineChartLine.m in Sources */,
+				9EFF88051DD2A3CD00A68058 /* ChartDataProvider.swift in Sources */,
 				9E8BB37F1D86337700367E60 /* FakePowerMeter.swift in Sources */,
 				9E452FDD1D95813B00C96165 /* PowerSensorDevice.swift in Sources */,
 				9E45238E1DB2E4B000C380F2 /* JBLineChartPoint.m in Sources */,

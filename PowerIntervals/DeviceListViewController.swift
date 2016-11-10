@@ -21,7 +21,7 @@ class DeviceListViewController: UIViewController {
     
     @IBOutlet var dataSource: DeviceListDataSource?
     
-    var dataPoints: Results<WorkoutDataPoint>?
+    let chartDataProvider = ChartDataProvider()
     
     // UIViews
     @IBOutlet weak var chartView: JBLineChartView!
@@ -57,8 +57,9 @@ class DeviceListViewController: UIViewController {
         dataSource = DeviceListDataSource()
         
         // Chart setup
-        chartView.dataSource = self
-        chartView.delegate = self
+        chartView.dataSource = chartDataProvider
+        chartView.delegate = chartDataProvider
+
         chartView.showsLineSelection = false
         chartView.showsVerticalSelection = false
         chartView.minimumValue = PowerZone.ActiveRecovery.watts - 40
@@ -190,9 +191,9 @@ extension DeviceListViewController {
         let realm = try! Realm()
         // use selected device id as the predicate
         let predicate = NSPredicate(format: "deviceID = %@", device.deviceID)
-        dataPoints = realm.objects(WorkoutDataPoint.self).filter(predicate)
+        chartDataProvider.dataPoints = realm.objects(WorkoutDataPoint.self).filter(predicate)
         
-        deviceUpdateToken = dataPoints?.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+        deviceUpdateToken = chartDataProvider.dataPoints?.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
             guard let chartView = self?.chartView else {
                 return
             }
@@ -212,92 +213,6 @@ extension DeviceListViewController {
         }
     }
 }
-extension DeviceListViewController: JBLineChartViewDataSource, JBLineChartViewDelegate {
-
-    func numberOfLines(in lineChartView: JBLineChartView!) -> UInt {
-        return 8
-    }
-
-    func lineChartView(_ lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
-        
-        if let dataPoints = dataPoints {
-            return UInt(dataPoints.count)
-        }
-        return 0
-    }
-    
-    func lineChartView(_ lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
-        // zone lines
-        if let zone = PowerZone(rawValue: lineIndex) {
-            return zone.watts
-        }
-        
-        if let dataPoints = dataPoints {
-            return CGFloat(dataPoints[Int(horizontalIndex)].watts)
-        }
-        return 0
-    }
-    
-    func lineChartView(_ lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
-        return 1.0
-    }
-    
-    func lineChartView(_ lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
-        
-        if let zone = PowerZone(rawValue: lineIndex) {
-            return zone.color
-        }
-        return .black
-    }
-    
-    func lineChartView(_ lineChartView: JBLineChartView!, smoothLineAtLineIndex lineIndex: UInt) -> Bool {
-        return true
-    }
-    
-    func lineChartView(_ lineChartView: JBLineChartView!, fillColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
-        if let zone = PowerZone(rawValue: lineIndex) {
-            return zone.fill
-        }
-        return nil
-    }
-}
-//NOTE: BELOW THIS IS THE ALL ON THE SAME CHART IMPLEMENTATION
-//extension DeviceListViewController: JBLineChartViewDataSource, JBLineChartViewDelegate {
-//    func numberOfLines(in lineChartView: JBLineChartView!) -> UInt {
-//        let realm = try! Realm()
-//        let connectedDevices = realm.objects(PowerSensorDevice.self).filter("connected = true")
-//        return UInt(connectedDevices.count)
-//    }
-//    
-//    func lineChartView(_ lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
-//        if let workout = workout, let device = dataSource?.devices[Int(lineIndex)] {
-//            let predicate = NSPredicate(format: "deviceID = %@ and watts > 0", device.deviceID)
-//            return UInt(workout.dataPoints.filter(predicate).count)
-//        }
-//        return 0
-//    }
-//    
-//    func lineChartView(_ lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
-//        
-//        if let workout = workout, let device = dataSource?.devices[Int(lineIndex)]  {
-//            let predicate = NSPredicate(format: "time == %d and deviceID == %@ and watts > 0", horizontalIndex, device.deviceID)
-//            guard let dataPoint = workout.dataPoints.filter(predicate).first else {
-//                return nan("no data")
-//            }
-//            let watts = CGFloat(dataPoint.watts)
-//            return watts
-//        }
-//        return 0
-//    }
-//    
-//    func lineChartView(_ lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
-//        return UIColor.theme(offset: Int(lineIndex))
-//    }
-//    
-//    func lineChartView(_ lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
-//        return 1.0
-//    }
-//}
 
 extension DeviceListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

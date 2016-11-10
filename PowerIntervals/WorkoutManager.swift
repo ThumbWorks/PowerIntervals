@@ -53,11 +53,7 @@ class WorkoutManager: NSObject {
                     guard let power = powerMeter.currentData?.instantPower else {
                         break
                     }
-                    if power.intValue > 0 {
-                        groupWorkout.addDataPoint(time: self.time, deviceID: powerMeter.deviceID, value: power)
-                    } else {
-                        print("ditch the 0")
-                    }
+                    groupWorkout.addDataPoint(time: self.time, deviceID: powerMeter.deviceID, value: power)
                 }
             }
             self.time += 1
