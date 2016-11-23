@@ -9,7 +9,21 @@
 import Foundation
 import RealmSwift
 
-class WorkoutDataPoint: Object {
+class WorkoutDataPoint: Object, Comparable {
+    /// Returns a Boolean value indicating whether the value of the first
+    /// argument is less than that of the second argument.
+    ///
+    /// This function is the only requirement of the `Comparable` protocol. The
+    /// remainder of the relational operator functions are implemented by the
+    /// standard library for any type that conforms to `Comparable`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func <(lhs: WorkoutDataPoint, rhs: WorkoutDataPoint) -> Bool {
+        return lhs.watts.intValue < rhs.watts.intValue
+    }
+
     dynamic var time: Int = 0
     dynamic var watts: NSNumber = NSNumber(integerLiteral: 0)
     dynamic var deviceID: String = ""
@@ -36,7 +50,14 @@ class WorkoutManager: NSObject {
     var time = 0
     var timer: Timer?
 
-    func startWorkout() -> GroupWorkout {
+    func isActive() -> Bool {
+        guard let timer = timer else {
+            return false
+        }
+        return timer.isValid
+    }
+    
+    func startWorkout() {
         let groupWorkout = GroupWorkout()
         let realm = try! Realm()
         try! realm.write {
@@ -59,6 +80,5 @@ class WorkoutManager: NSObject {
             self.time += 1
         }
         timer = newTimer
-        return groupWorkout
     }
 }

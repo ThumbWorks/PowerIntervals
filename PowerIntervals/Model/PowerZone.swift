@@ -7,7 +7,7 @@
 //
 
 enum PowerZone: UInt {
-    case NeroMuscular = 0, AnaerobicCapacity, VO2Max, LactateThreshold, Tempo, Endurance, ActiveRecovery
+    case NeuroMuscular = 0, AnaerobicCapacity, VO2Max, LactateThreshold, Tempo, Endurance, ActiveRecovery
     
     var watts: CGFloat {
         switch self {
@@ -17,7 +17,7 @@ enum PowerZone: UInt {
         case .LactateThreshold: return 315.0
         case .VO2Max: return 360.0
         case .AnaerobicCapacity: return 661.0
-        case .NeroMuscular: return 1000.0
+        case .NeuroMuscular: return 1000.0
         }
     }
     
@@ -29,7 +29,7 @@ enum PowerZone: UInt {
         case .LactateThreshold: return self.color.withAlphaComponent(0.3)
         case .VO2Max: return self.color.withAlphaComponent(0.4)
         case .AnaerobicCapacity: return self.color.withAlphaComponent(0.3)
-        case .NeroMuscular: return self.color.withAlphaComponent(0.3)
+        case .NeuroMuscular: return self.color.withAlphaComponent(0.3)
         }
     }
     var color: UIColor {
@@ -40,7 +40,7 @@ enum PowerZone: UInt {
         case .LactateThreshold: return .yellow
         case .VO2Max: return .orange
         case .AnaerobicCapacity: return .red
-        case .NeroMuscular: return .purple
+        case .NeuroMuscular: return .purple
         }
     }
     

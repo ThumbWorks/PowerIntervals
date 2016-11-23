@@ -63,6 +63,7 @@ class FakePowerMeter {
         } else {
             deviceInstance = PowerSensorDevice()
             deviceInstance?.currentData = PowerSensorData()
+            deviceInstance?.currentData?.instantPower = NSNumber(integerLiteral: powerValueToSend)
             deviceInstance?.deviceID = name
             deviceInstance?.connected = true
             try! realm.write {

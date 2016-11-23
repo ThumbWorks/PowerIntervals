@@ -278,22 +278,12 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eAz-R6-ZEE">
-                                        <state key="normal" title="Start">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="startWorkout:" destination="4U5-9q-t9i" eventType="touchUpInside" id="2jp-4t-mi9"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="4ij-0H-msI"/>
                                     <constraint firstItem="Ugg-fX-P75" firstAttribute="centerY" secondItem="Jgp-Rr-sOx" secondAttribute="centerY" id="cbc-RT-PFn"/>
                                     <constraint firstItem="Ugg-fX-P75" firstAttribute="centerX" secondItem="Jgp-Rr-sOx" secondAttribute="centerX" id="eZg-eL-iiF"/>
-                                    <constraint firstAttribute="trailing" secondItem="eAz-R6-ZEE" secondAttribute="trailing" constant="8" id="etc-Kc-rsF"/>
-                                    <constraint firstItem="eAz-R6-ZEE" firstAttribute="centerY" secondItem="Ugg-fX-P75" secondAttribute="centerY" id="hVf-BH-OXv"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qpo-wJ-uWc">
@@ -475,7 +465,7 @@
                         <outlet property="lactateThresholdVerticalConstraint" destination="aFw-GO-5vo" id="rSb-gy-3o9"/>
                         <outlet property="maxLabel" destination="BXe-1e-1vF" id="0UY-ry-sWn"/>
                         <outlet property="minLabel" destination="uw9-Th-bdl" id="pYd-FX-HFo"/>
-                        <outlet property="neromuscularVerticalConstraint" destination="OLD-8K-E8k" id="rfR-B4-B7W"/>
+                        <outlet property="neuromuscularVerticalConstraint" destination="OLD-8K-E8k" id="zMF-Ma-HFh"/>
                         <outlet property="tempoVerticalConstraint" destination="qzI-xt-h8F" id="EIY-MB-MDB"/>
                         <outlet property="vo2MaxVerticalConstraint" destination="G69-Rn-Wng" id="22g-nI-WLh"/>
                         <outletCollection property="debugButtons" destination="2Yk-e0-dvU" collectionClass="NSMutableArray" id="3eK-sn-tYP"/>

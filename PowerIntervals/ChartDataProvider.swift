@@ -7,33 +7,43 @@
 //
 
 import Foundation
-import RealmSwift
 
 class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDelegate {
-    var dataPoints: Results<WorkoutDataPoint>?
+    var dataPoints = [WorkoutDataPoint]() {
+        didSet {
+            max = dataPoints.max()
+            min = dataPoints.min()
+        }
+    }
 
+    var max: WorkoutDataPoint?
+    var min: WorkoutDataPoint?
+    
     func numberOfLines(in lineChartView: JBLineChartView!) -> UInt {
         return 8
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
-        
-        if let dataPoints = dataPoints {
-            return UInt(dataPoints.count)
-        }
-        return 0
+        return UInt(dataPoints.count)
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
         // zone lines
-        if let zone = PowerZone(rawValue: lineIndex) {
-            return zone.watts
+        if let zone = PowerZone(rawValue: lineIndex), let max = max?.watts.intValue{
+            
+            // special case, neuromuscular
+            if zone == .NeuroMuscular && Int(zone.watts) < max {
+                return CGFloat(max)
+            }
+            
+            if Int(zone.watts) < max {
+                return CGFloat(zone.watts)
+            } else {
+                return CGFloat(max)
+            }
         }
-        
-        if let dataPoints = dataPoints {
-            return CGFloat(dataPoints[Int(horizontalIndex)].watts)
-        }
-        return 0
+
+        return CGFloat(dataPoints[Int(horizontalIndex)].watts)
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {

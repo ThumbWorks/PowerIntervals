@@ -17,6 +17,9 @@ class DeviceListViewController: UIViewController {
     var workoutManager: WorkoutManager?
     var workout: GroupWorkout?
     
+    // Store the query results so we can get the change notifications
+    var realmDataPoints: Results<WorkoutDataPoint>?
+    
     var selectedDevice: PowerSensorDevice?
     
     @IBOutlet var dataSource: DeviceListDataSource?
@@ -34,7 +37,7 @@ class DeviceListViewController: UIViewController {
     @IBOutlet weak var vo2MaxVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var activeRecoveryVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var anaerobicVerticalConstraint: NSLayoutConstraint!
-    @IBOutlet weak var neromuscularVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var neuromuscularVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var tempoVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var enduranceVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var lactateThresholdVerticalConstraint: NSLayoutConstraint!
@@ -51,7 +54,11 @@ class DeviceListViewController: UIViewController {
         #endif
         chartView.reloadData(animated: true)
     }
-        
+    
+    override func viewDidAppear(_ animated: Bool) {
+        startWorkout()
+    }
+    
     override func viewDidLoad() {
         // Set up the data source for the collection view
         dataSource = DeviceListDataSource()
@@ -79,9 +86,13 @@ class DeviceListViewController: UIViewController {
         token?.stop()
     }
     
-    @IBAction func startWorkout(_ sender: AnyObject) {
+    func startWorkout() {
         guard let workoutManager = workoutManager else {
             print("Need a workout manager")
+            return
+        }
+        
+        if workoutManager.isActive() {
             return
         }
         
@@ -90,7 +101,7 @@ class DeviceListViewController: UIViewController {
             setupSelectedDeviceToken()
         }
         
-        workout = workoutManager.startWorkout()
+        workoutManager.startWorkout()
     }
     
     @IBAction func startFakePM(_ sender: AnyObject) {
@@ -152,33 +163,45 @@ class DeviceListViewController: UIViewController {
         let min = chartView.minimumValue
         minLabel.text = String(format: "%.0f", min)
         maxLabel.text = String(format: "%.0f", max)
-        let chartHeight = chartView.frame.height
-       
-        let vo2Max = PowerZone.VO2Max.watts
-        let activeRecover = PowerZone.ActiveRecovery.watts
-        let anaerobic = PowerZone.AnaerobicCapacity.watts
-        let endurance = PowerZone.Endurance.watts
-        let tempo = PowerZone.Tempo.watts
-        let neromuscular = PowerZone.NeroMuscular.watts
-        let lactateThreshold = PowerZone.LactateThreshold.watts
         
-        // Formula is ((zone - min) * height) / (max - min)
-        let chartHeightOverMaxMinusMin = chartHeight / (max - min)
+        updateZoneLabel(constraint: vo2MaxVerticalConstraint, zone: .VO2Max)
+        updateZoneLabel(constraint: activeRecoveryVerticalConstraint, zone: .ActiveRecovery)
+        updateZoneLabel(constraint: anaerobicVerticalConstraint, zone: .AnaerobicCapacity)
+        updateZoneLabel(constraint: enduranceVerticalConstraint, zone: .Endurance)
+        updateZoneLabel(constraint: tempoVerticalConstraint, zone: .Tempo)
+        updateZoneLabel(constraint: neuromuscularVerticalConstraint, zone: .NeuroMuscular)
+        updateZoneLabel(constraint: lactateThresholdVerticalConstraint, zone: .LactateThreshold)
         
-        vo2MaxVerticalConstraint.constant = chartHeightOverMaxMinusMin * (vo2Max - min)
-        activeRecoveryVerticalConstraint.constant = chartHeightOverMaxMinusMin * (activeRecover - min)
-        anaerobicVerticalConstraint.constant = chartHeightOverMaxMinusMin * (anaerobic - min)
-        enduranceVerticalConstraint.constant = chartHeightOverMaxMinusMin * (endurance - min)
-        tempoVerticalConstraint.constant = chartHeightOverMaxMinusMin * (tempo - min)
-        neromuscularVerticalConstraint.constant = chartHeightOverMaxMinusMin * (neromuscular - min)
-        lactateThresholdVerticalConstraint.constant = chartHeightOverMaxMinusMin * (lactateThreshold - min)
+        // special case for neuromuscular
+        print("neuro \(neuromuscularVerticalConstraint.constant), and the max \(max)")
+        if neuromuscularVerticalConstraint.constant < max {
+            print("this is the special case for Neuromuscular")
+        }
 
+        // hide the ones that are greater than the max
         UIView.animate(withDuration: 1) {
             self.view.setNeedsLayout()
         }
     }
+    
+    func updateZoneLabel(constraint: NSLayoutConstraint, zone: PowerZone) {
+        // Formula is ((zone - min) * height) / (max - min)
+        let chartHeight = chartView.frame.height
+        let min = chartView.minimumValue
+        let max = chartView.maximumValue
+
+        let chartHeightOverMaxMinusMin = chartHeight / (max - min)
+        let constant = chartHeightOverMaxMinusMin * (zone.watts - min)
+        
+        if constant > chartHeight {
+            constraint.constant = 100000
+        } else {
+            constraint.constant = constant
+        }
+    }
 }
 
+// notification extension
 extension DeviceListViewController {
     func setupSelectedDeviceToken() {
         if let token = deviceUpdateToken {
@@ -191,15 +214,33 @@ extension DeviceListViewController {
         let realm = try! Realm()
         // use selected device id as the predicate
         let predicate = NSPredicate(format: "deviceID = %@", device.deviceID)
-        chartDataProvider.dataPoints = realm.objects(WorkoutDataPoint.self).filter(predicate)
         
-        deviceUpdateToken = chartDataProvider.dataPoints?.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+        let fetchedDataPoints = realm.objects(WorkoutDataPoint.self).filter(predicate)
+        
+        var dataPoints = [WorkoutDataPoint]()
+        for dataPoint in fetchedDataPoints {
+            dataPoints.append(dataPoint)
+        }
+        realmDataPoints = fetchedDataPoints
+        chartDataProvider.dataPoints = dataPoints
+        
+        deviceUpdateToken = fetchedDataPoints.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+            
             guard let chartView = self?.chartView else {
                 return
             }
+            var dataPoints = [WorkoutDataPoint]()
+            for dataPoint in fetchedDataPoints {
+                dataPoints.append(dataPoint)
+            }
+            self?.chartDataProvider.dataPoints = dataPoints
             chartView.reloadData(animated: true)
-            self?.minLabel.text = String(format: "%.0f", chartView.minimumValue)
-            self?.maxLabel.text = String(format: "%.0f", chartView.maximumValue)
+            
+            if let provider = self?.chartDataProvider, let min = provider.min, let max = provider.max {
+                self?.minLabel.text = String(format: "%@", min.watts)
+                self?.maxLabel.text = String(format: "%@", max.watts)
+            }
+            
             self?.updateZoneLabels()
         }
     }
