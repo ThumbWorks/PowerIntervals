@@ -26,6 +26,14 @@ class DeviceListViewController: UIViewController {
     
     let chartDataProvider = ChartDataProvider()
     
+    @IBOutlet weak var neuromuscularLabel: UILabel!
+    @IBOutlet weak var anaerobicLabel: UILabel!
+    @IBOutlet weak var vo2MaxLabel: UILabel!
+    @IBOutlet weak var lactateLabel: UILabel!
+    @IBOutlet weak var tempoLabel: UILabel!
+    @IBOutlet weak var enduranceLabel: UILabel!
+    @IBOutlet weak var recoveryLabel: UILabel!
+    
     // UIViews
     @IBOutlet weak var chartView: JBLineChartView!
     @IBOutlet weak var maxLabel: UILabel!
@@ -164,40 +172,38 @@ class DeviceListViewController: UIViewController {
         minLabel.text = String(format: "%.0f", min)
         maxLabel.text = String(format: "%.0f", max)
         
-        updateZoneLabel(constraint: vo2MaxVerticalConstraint, zone: .VO2Max)
-        updateZoneLabel(constraint: activeRecoveryVerticalConstraint, zone: .ActiveRecovery)
-        updateZoneLabel(constraint: anaerobicVerticalConstraint, zone: .AnaerobicCapacity)
-        updateZoneLabel(constraint: enduranceVerticalConstraint, zone: .Endurance)
-        updateZoneLabel(constraint: tempoVerticalConstraint, zone: .Tempo)
-        updateZoneLabel(constraint: neuromuscularVerticalConstraint, zone: .NeuroMuscular)
-        updateZoneLabel(constraint: lactateThresholdVerticalConstraint, zone: .LactateThreshold)
-        
-        // special case for neuromuscular
-        print("neuro \(neuromuscularVerticalConstraint.constant), and the max \(max)")
-        if neuromuscularVerticalConstraint.constant < max {
-            print("this is the special case for Neuromuscular")
-        }
+        // attach each of these to the power zone below
+        updateZoneLabel(constraint: neuromuscularVerticalConstraint, attachToWattage: PowerZone.AnaerobicCapacity.watts)
+        updateZoneLabel(constraint: anaerobicVerticalConstraint, attachToWattage: PowerZone.VO2Max.watts)
+        updateZoneLabel(constraint: vo2MaxVerticalConstraint, attachToWattage: PowerZone.LactateThreshold.watts)
+        updateZoneLabel(constraint: lactateThresholdVerticalConstraint, attachToWattage: PowerZone.Tempo.watts)
+        updateZoneLabel(constraint: tempoVerticalConstraint, attachToWattage: PowerZone.Endurance.watts)
+        updateZoneLabel(constraint: enduranceVerticalConstraint, attachToWattage: PowerZone.ActiveRecovery.watts)
 
-        // hide the ones that are greater than the max
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 0.8, animations: {
             self.view.setNeedsLayout()
-        }
+        }, completion: {
+            (value: Bool) in
+            
+            // if there are intersections, hide the labels
+            self.recoveryLabel.isHidden = self.recoveryLabel.frame.intersects(self.enduranceLabel.frame)
+            self.enduranceLabel.isHidden = self.enduranceLabel.frame.intersects(self.tempoLabel.frame)
+            self.tempoLabel.isHidden = self.tempoLabel.frame.intersects(self.lactateLabel.frame)
+            self.lactateLabel.isHidden = self.lactateLabel.frame.intersects(self.vo2MaxLabel.frame)
+            self.vo2MaxLabel.isHidden = self.vo2MaxLabel.frame.intersects(self.anaerobicLabel.frame)
+            self.anaerobicLabel.isHidden = self.anaerobicLabel.frame.intersects(self.neuromuscularLabel.frame)
+        })
     }
     
-    func updateZoneLabel(constraint: NSLayoutConstraint, zone: PowerZone) {
+    func updateZoneLabel(constraint: NSLayoutConstraint, attachToWattage: CGFloat) {
         // Formula is ((zone - min) * height) / (max - min)
         let chartHeight = chartView.frame.height
         let min = chartView.minimumValue
         let max = chartView.maximumValue
 
         let chartHeightOverMaxMinusMin = chartHeight / (max - min)
-        let constant = chartHeightOverMaxMinusMin * (zone.watts - min)
-        
-        if constant > chartHeight {
-            constraint.constant = 100000
-        } else {
-            constraint.constant = constant
-        }
+        let constant = chartHeightOverMaxMinusMin * (attachToWattage - min)
+        constraint.constant = constant
     }
 }
 

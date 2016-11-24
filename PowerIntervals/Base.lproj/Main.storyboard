@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="D7d-8a-rbx">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2659" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="D7d-8a-rbx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,8 +29,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3M-zW-ozi">
+                                <rect key="frame" x="0.0" y="0.0" width="379" height="62"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E1Z-F7-WjZ">
+                                        <rect key="frame" x="10" y="31" width="41" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="Age-kO-CxR"/>
                                         </constraints>
@@ -40,6 +45,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n5M-kf-T5S">
+                                        <rect key="frame" x="151" y="25" width="77" height="32"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                         <state key="normal" title="DeviceID">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,26 +66,31 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="55" translatesAutoresizingMaskIntoConstraints="NO" id="O0o-za-AdU">
+                                <rect key="frame" x="153" y="207" width="69.5" height="127"/>
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="109"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="X9k-lG-ZkP">
+                                <rect key="frame" x="26" y="359" width="323" height="93.5"/>
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="80"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.2.1 timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfH-Sq-2DG">
+                                <rect key="frame" x="16" y="462.5" width="333" height="34"/>
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="29"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="55" translatesAutoresizingMaskIntoConstraints="NO" id="DCn-xI-23h">
+                                <rect key="frame" x="153" y="80" width="69.5" height="127"/>
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="109"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="avg w" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="raU-kZ-awH">
+                                <rect key="frame" x="222.5" y="133.5" width="54" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="geh-CM-aqU"/>
                                 </constraints>
@@ -88,6 +99,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="w" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6T-zO-X7e">
+                                <rect key="frame" x="222.5" y="260.5" width="14" height="20"/>
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -170,18 +182,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="sKA-5E-4Iw"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="sKA-5E-4Iw">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2f-9j-VNo">
+                                <rect key="frame" x="16" y="359.5" width="343" height="119"/>
                                 <string key="text">Connect a Wahoo Fitness Dongle and an Apple 30-pin to Lightning adapter to view Power Meter Data.   You can tap the on the hardware above to order.</string>
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XIJ-4n-05Y">
+                                <rect key="frame" x="16" y="486.5" width="343" height="160.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09y-6x-tWz">
+                                <rect key="frame" x="16" y="617" width="108" height="30"/>
                                 <state key="normal" title="Debug Connect">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -190,19 +207,24 @@
                                 </connections>
                             </button>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AntKey" translatesAutoresizingMaskIntoConstraints="NO" id="Us7-Ra-flF">
+                                <rect key="frame" x="149.5" y="240" width="76" height="65"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="2fa-G1-SxT" appends="YES" id="7cc-sx-Pgi"/>
                                 </connections>
                             </imageView>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="30PinToLightningAdapter" translatesAutoresizingMaskIntoConstraints="NO" id="39b-Jk-HMX">
+                                <rect key="frame" x="149.5" y="151" width="76" height="79"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Byw-6c-yne" appends="YES" id="pjO-tL-cVf"/>
                                 </connections>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Phone" translatesAutoresizingMaskIntoConstraints="NO" id="2GT-Yn-GW9"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Phone" translatesAutoresizingMaskIntoConstraints="NO" id="2GT-Yn-GW9">
+                                <rect key="frame" x="91.5" y="-243" width="192" height="384"/>
+                            </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFo-0T-vh7" userLabel="Connected Label ✅">
+                                <rect key="frame" x="167" y="312" width="41" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -272,8 +294,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jgp-Rr-sOx" userLabel="Header">
+                                <rect key="frame" x="0.0" y="20" width="375" height="42"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nearby Power Meters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugg-fX-P75">
+                                        <rect key="frame" x="97" y="11" width="182" height="20"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -287,6 +311,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qpo-wJ-uWc">
+                                <rect key="frame" x="0.0" y="62" width="375" height="156"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -307,19 +332,23 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MiB-IK-bxd" userLabel="BackgroundView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                     <color key="backgroundColor" red="0.0" green="0.53333333333333333" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Luk-z7-uXc">
+                                                    <rect key="frame" x="33" y="31.5" width="84" height="36.5"/>
                                                     <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="31"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGC-Pf-pCM">
+                                                    <rect key="frame" x="33" y="81.5" width="84" height="36.5"/>
                                                     <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="31"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFe-Z6-1UO">
+                                                    <rect key="frame" x="8" y="8" width="134" height="16.5"/>
                                                     <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -354,6 +383,7 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niy-MS-2gu" customClass="JBLineChartView">
+                                <rect key="frame" x="0.0" y="218" width="375" height="449"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -361,58 +391,76 @@
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Yk-e0-dvU">
+                                <rect key="frame" x="54" y="637" width="58" height="30"/>
                                 <state key="normal" title="Fake PM"/>
                                 <connections>
                                     <action selector="startFakePM:" destination="4U5-9q-t9i" eventType="touchUpInside" id="cvB-VT-Sw9"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uw9-Th-bdl">
+                                <rect key="frame" x="8" y="655" width="6" height="12"/>
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="10"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXe-1e-1vF">
+                                <rect key="frame" x="8" y="218" width="6" height="12"/>
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="10"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VO2Max" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbF-sA-gSs">
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                            <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VO2Max" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbF-sA-gSs">
+                                <rect key="frame" x="0.0" y="548" width="67" height="19"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Endurance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8j-Kq-SNa">
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                            <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Endurance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="2" translatesAutoresizingMaskIntoConstraints="NO" id="D8j-Kq-SNa">
+                                <rect key="frame" x="0.0" y="608" width="86" height="19"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lactate Threshold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrg-xQ-uAP">
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                            <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lactate Threshold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrg-xQ-uAP">
+                                <rect key="frame" x="0.0" y="568" width="144" height="19"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tempo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxw-Py-Rp0">
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                            <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tempo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxw-Py-Rp0">
+                                <rect key="frame" x="0.0" y="588" width="52.5" height="19"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neuromuscular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ise-ov-8tv">
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                            <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neuromuscular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ise-ov-8tv">
+                                <rect key="frame" x="0.0" y="508" width="122" height="19"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDr-bs-YGR">
+                                <rect key="frame" x="375" y="577" width="18" height="20"/>
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Active Recovery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo8-Ug-3gN">
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                <rect key="frame" x="0.0" y="648" width="129" height="19"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anaerobic Capacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCX-Kc-cQ4">
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                            <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anaerobic Capacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCX-Kc-cQ4">
+                                <rect key="frame" x="0.0" y="528" width="155.5" height="19"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -421,52 +469,59 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="niy-MS-2gu" firstAttribute="top" secondItem="qpo-wJ-uWc" secondAttribute="bottom" id="0so-Eb-vgz"/>
-                            <constraint firstItem="Rrg-xQ-uAP" firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="1FE-at-aDc"/>
+                            <constraint firstItem="Rrg-xQ-uAP" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="leading" id="1FE-at-aDc"/>
                             <constraint firstItem="2Yk-e0-dvU" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leadingMargin" constant="38" id="C4X-zO-wqx"/>
-                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="SCX-Kc-cQ4" secondAttribute="top" constant="120" id="DrQ-YT-3bE"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="SCX-Kc-cQ4" secondAttribute="bottom" constant="120" id="DrQ-YT-3bE"/>
                             <constraint firstItem="uw9-Th-bdl" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="leading" constant="8" id="FHl-MV-gIK"/>
                             <constraint firstItem="niy-MS-2gu" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leading" id="FT5-Tw-jnq"/>
-                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="mo8-Ug-3gN" secondAttribute="top" constant="20" id="FWT-BY-PLv"/>
-                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="AbF-sA-gSs" secondAttribute="top" constant="100" id="G69-Rn-Wng"/>
-                            <constraint firstItem="mo8-Ug-3gN" firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="JMD-5Y-OBU"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="mo8-Ug-3gN" secondAttribute="bottom" id="FWT-BY-PLv"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="AbF-sA-gSs" secondAttribute="bottom" constant="100" id="G69-Rn-Wng"/>
+                            <constraint firstItem="mo8-Ug-3gN" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="leading" id="JMD-5Y-OBU"/>
                             <constraint firstItem="BXe-1e-1vF" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="leading" constant="8" id="LL7-1f-iwf"/>
-                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="Ise-ov-8tv" secondAttribute="top" constant="140" id="OLD-8K-E8k"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="Ise-ov-8tv" secondAttribute="bottom" constant="140" id="OLD-8K-E8k"/>
                             <constraint firstItem="qpo-wJ-uWc" firstAttribute="top" secondItem="Jgp-Rr-sOx" secondAttribute="bottom" id="Obg-hN-c1B"/>
                             <constraint firstAttribute="trailing" secondItem="qpo-wJ-uWc" secondAttribute="trailing" id="PlH-bb-Te7"/>
                             <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="2Yk-e0-dvU" secondAttribute="bottom" id="SqW-nO-Ol2"/>
                             <constraint firstItem="uw9-Th-bdl" firstAttribute="bottom" secondItem="niy-MS-2gu" secondAttribute="bottom" id="Trv-nC-r9e"/>
-                            <constraint firstItem="D8j-Kq-SNa" firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="VIM-va-vYZ"/>
+                            <constraint firstItem="D8j-Kq-SNa" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="leading" id="VIM-va-vYZ"/>
                             <constraint firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="a9Q-lS-T8z"/>
-                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="Rrg-xQ-uAP" secondAttribute="top" constant="80" id="aFw-GO-5vo"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="Rrg-xQ-uAP" secondAttribute="bottom" constant="80" id="aFw-GO-5vo"/>
                             <constraint firstItem="Jgp-Rr-sOx" firstAttribute="top" secondItem="i4e-QG-kAU" secondAttribute="bottom" id="bL1-fy-khp"/>
-                            <constraint firstItem="AbF-sA-gSs" firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="boZ-vt-R1Q"/>
+                            <constraint firstItem="AbF-sA-gSs" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="leading" id="boZ-vt-R1Q"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Jgp-Rr-sOx" secondAttribute="trailing" constant="-16" id="bsz-of-SRV"/>
                             <constraint firstItem="Jgp-Rr-sOx" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leadingMargin" constant="-16" id="fJf-XM-oWQ"/>
                             <constraint firstItem="BXe-1e-1vF" firstAttribute="top" secondItem="niy-MS-2gu" secondAttribute="top" id="gzS-5E-6oN"/>
-                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="D8j-Kq-SNa" secondAttribute="top" constant="40" id="h3J-PH-wSd"/>
-                            <constraint firstItem="lxw-Py-Rp0" firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="o25-ME-xzM"/>
-                            <constraint firstItem="Ise-ov-8tv" firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="ofk-iE-kFj"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="D8j-Kq-SNa" secondAttribute="bottom" constant="40" id="h3J-PH-wSd"/>
+                            <constraint firstItem="lxw-Py-Rp0" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="leading" id="o25-ME-xzM"/>
+                            <constraint firstItem="Ise-ov-8tv" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="leading" id="ofk-iE-kFj"/>
                             <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="VDr-bs-YGR" secondAttribute="top" constant="90" id="p1Y-DA-vTq"/>
                             <constraint firstItem="K0C-5q-mEt" firstAttribute="top" secondItem="niy-MS-2gu" secondAttribute="bottom" id="pEq-bC-G3w"/>
                             <constraint firstItem="qpo-wJ-uWc" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leading" id="q4V-q8-VNs"/>
-                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="lxw-Py-Rp0" secondAttribute="top" constant="60" id="qzI-xt-h8F"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="lxw-Py-Rp0" secondAttribute="bottom" constant="60" id="qzI-xt-h8F"/>
                             <constraint firstItem="VDr-bs-YGR" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="trailing" id="vQH-vy-qD3"/>
-                            <constraint firstItem="SCX-Kc-cQ4" firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="xDG-nk-1fk"/>
+                            <constraint firstItem="SCX-Kc-cQ4" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="leading" id="xDG-nk-1fk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GGB-2X-Zb7"/>
                     <connections>
                         <outlet property="activeRecoveryVerticalConstraint" destination="FWT-BY-PLv" id="MjR-Pr-QZK"/>
+                        <outlet property="anaerobicLabel" destination="SCX-Kc-cQ4" id="33K-y8-I0g"/>
                         <outlet property="anaerobicVerticalConstraint" destination="DrQ-YT-3bE" id="K4z-5X-SfS"/>
                         <outlet property="chartView" destination="niy-MS-2gu" id="NKd-WQ-fgn"/>
                         <outlet property="collectionView" destination="qpo-wJ-uWc" id="A5S-O7-ViC"/>
                         <outlet property="dataSource" destination="sA6-tO-nNK" id="5S5-F1-x7m"/>
+                        <outlet property="enduranceLabel" destination="D8j-Kq-SNa" id="8zn-1J-FfH"/>
                         <outlet property="enduranceVerticalConstraint" destination="h3J-PH-wSd" id="uTy-eK-8Fl"/>
+                        <outlet property="lactateLabel" destination="Rrg-xQ-uAP" id="004-9n-Hvl"/>
                         <outlet property="lactateThresholdVerticalConstraint" destination="aFw-GO-5vo" id="rSb-gy-3o9"/>
                         <outlet property="maxLabel" destination="BXe-1e-1vF" id="0UY-ry-sWn"/>
                         <outlet property="minLabel" destination="uw9-Th-bdl" id="pYd-FX-HFo"/>
+                        <outlet property="neuromuscularLabel" destination="Ise-ov-8tv" id="bCo-90-fZY"/>
                         <outlet property="neuromuscularVerticalConstraint" destination="OLD-8K-E8k" id="zMF-Ma-HFh"/>
+                        <outlet property="recoveryLabel" destination="mo8-Ug-3gN" id="SWq-wu-UE8"/>
+                        <outlet property="tempoLabel" destination="lxw-Py-Rp0" id="k66-sO-gqw"/>
                         <outlet property="tempoVerticalConstraint" destination="qzI-xt-h8F" id="EIY-MB-MDB"/>
+                        <outlet property="vo2MaxLabel" destination="AbF-sA-gSs" id="6a0-tk-WDM"/>
                         <outlet property="vo2MaxVerticalConstraint" destination="G69-Rn-Wng" id="22g-nI-WLh"/>
                         <outletCollection property="debugButtons" destination="2Yk-e0-dvU" collectionClass="NSMutableArray" id="3eK-sn-tYP"/>
                     </connections>
