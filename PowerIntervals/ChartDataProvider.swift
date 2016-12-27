@@ -11,31 +11,46 @@ import Foundation
 class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDelegate {
     var dataPoints = [WorkoutDataPoint]() {
         didSet {
-            max = dataPoints.max()
-            min = dataPoints.min()
+            let displayPoints = displayDataPoints()
+            max = displayPoints.max()
+            min = displayPoints.min()
         }
     }
 
     var max: WorkoutDataPoint?
     var min: WorkoutDataPoint?
     
+    var offset: Int = 0
+    
+    func displayDataPoints() -> [WorkoutDataPoint] {
+        let count = Int(dataPoints.count)
+        guard count > 0 else {
+            return dataPoints
+        }
+        let slice = dataPoints[offset...count-1]
+
+        return Array(slice)
+    }
+    
     func numberOfLines(in lineChartView: JBLineChartView!) -> UInt {
         return 8
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
-        return UInt(dataPoints.count)
+        return UInt(displayDataPoints().count)
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
         // zone lines
-        if let zone = PowerZone(rawValue: lineIndex), let max = max?.watts.intValue{
-            
+        if let zone = PowerZone(rawValue: lineIndex), let max = max?.watts.intValue, let min = min?.watts.intValue {
+            if min == max {
+                return CGFloat(0)
+            }
             // special case, neuromuscular
             if zone == .NeuroMuscular && Int(zone.watts) < max {
                 return CGFloat(max)
             }
-            
+
             if Int(zone.watts) < max {
                 return CGFloat(zone.watts)
             } else {
@@ -43,7 +58,7 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
             }
         }
 
-        return CGFloat(dataPoints[Int(horizontalIndex)].watts)
+        return CGFloat(displayDataPoints()[Int(horizontalIndex)].watts)
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
@@ -106,3 +121,13 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
 //        return 1.0
 //    }
 //}
+
+extension ChartDataProvider {
+    func beginLap() {
+        offset = dataPoints.count - 1
+    }
+    
+    func endLap() {
+        offset = 0
+    }
+}

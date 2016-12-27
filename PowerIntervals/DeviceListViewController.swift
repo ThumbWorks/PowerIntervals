@@ -42,13 +42,13 @@ class DeviceListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     // zone label constraints
-    @IBOutlet weak var vo2MaxVerticalConstraint: NSLayoutConstraint!
-    @IBOutlet weak var activeRecoveryVerticalConstraint: NSLayoutConstraint!
-    @IBOutlet weak var anaerobicVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var neuromuscularVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var anaerobicVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var vo2MaxVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var lactateThresholdVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var tempoVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var enduranceVerticalConstraint: NSLayoutConstraint!
-    @IBOutlet weak var lactateThresholdVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var activeRecoveryVerticalConstraint: NSLayoutConstraint!
     
     // some debug things
     var fakePowerMeters = [FakePowerMeter]()
@@ -78,7 +78,6 @@ class DeviceListViewController: UIViewController {
         chartView.showsLineSelection = false
         chartView.showsVerticalSelection = false
         chartView.minimumValue = PowerZone.ActiveRecovery.watts - 40
-
         setupNotificationTokens()
     }
 
@@ -112,6 +111,15 @@ class DeviceListViewController: UIViewController {
         workoutManager.startWorkout()
     }
     
+    @IBAction func beginLap(_ sender: Any) {
+        // set the 0 offset for the data provider
+        chartDataProvider.beginLap()
+    }
+    
+    @IBAction func endLap(_ sender: Any) {
+        chartDataProvider.endLap()
+    }
+    
     @IBAction func startFakePM(_ sender: AnyObject) {
         let newPowerMeter = FakePowerMeter()
         newPowerMeter.startButton()
@@ -127,11 +135,9 @@ class DeviceListViewController: UIViewController {
             if let panBegin = panBegin {
                 let stopLocation = sender.location(in: view)
                 let dy = panBegin.y - stopLocation.y;
-                print("dy is \(dy)")
                 
                 for fake in fakePowerMeters {
                     if fake.deviceInstance == selectedDevice {
-                        print("We have a selected device")
                         fake.powerValueToSend += Int(dy)
                     }
                 }
@@ -168,8 +174,9 @@ class DeviceListViewController: UIViewController {
         if max == 0 {
             return
         }
-        let min = chartView.minimumValue
-        minLabel.text = String(format: "%.0f", min)
+        if let min = chartDataProvider.min?.watts {
+            minLabel.text = String(format: "%@", min)
+        }
         maxLabel.text = String(format: "%.0f", max)
         
         // attach each of these to the power zone below
@@ -196,10 +203,10 @@ class DeviceListViewController: UIViewController {
     }
     
     func updateZoneLabel(constraint: NSLayoutConstraint, attachToWattage: CGFloat) {
-        // Formula is ((zone - min) * height) / (max - min)
-        let chartHeight = chartView.frame.height
         let min = chartView.minimumValue
         let max = chartView.maximumValue
+        // Formula is ((zone - min) * height) / (max - min)
+        let chartHeight = chartView.frame.height
 
         let chartHeightOverMaxMinusMin = chartHeight / (max - min)
         let constant = chartHeightOverMaxMinusMin * (attachToWattage - min)
@@ -228,6 +235,11 @@ extension DeviceListViewController {
             dataPoints.append(dataPoint)
         }
         realmDataPoints = fetchedDataPoints
+        
+        // reset the lap
+        chartDataProvider.endLap()
+        
+        // update the data points
         chartDataProvider.dataPoints = dataPoints
         
         deviceUpdateToken = fetchedDataPoints.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
