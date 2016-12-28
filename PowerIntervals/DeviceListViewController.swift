@@ -40,6 +40,7 @@ class DeviceListViewController: UIViewController {
     @IBOutlet weak var minLabel: UILabel!
     @IBOutlet var debugButtons: [UIButton]!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var searchingView: UIView!
     
     // zone label constraints
     @IBOutlet weak var neuromuscularVerticalConstraint: NSLayoutConstraint!
@@ -145,8 +146,8 @@ class DeviceListViewController: UIViewController {
         }
     }
     
+    // Debug only code for removing fake power meters
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
-        print("long press")
         if sender.state == .began {
             let location = sender.location(in: collectionView)
             guard let indexPath = collectionView.indexPathForItem(at: location) else {
@@ -263,11 +264,48 @@ extension DeviceListViewController {
         }
     }
     
+    func hideSearching() {
+        searchingView.isHidden = true
+    }
+    
+    func showSearching() {
+        searchingView.isHidden = false
+    }
+    
     func setupNotificationTokens() {
         
         token = dataSource?.devices.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
+            
             if let collectionView = self?.collectionView {
-                collectionView.reloadData()
+                
+                switch changes {
+                case .initial:
+                    // Results are now populated and can be accessed without blocking the UI
+                    collectionView.reloadData()
+                    if collectionView.numberOfItems(inSection: 0) == 0 {
+                        self?.showSearching()
+                    }
+                    break
+                case .update(_, let deletions, let insertions, let modifications):
+                    // Query results have changed, so apply them to the TableView
+                    
+                    if insertions.count > 0 && collectionView.numberOfItems(inSection: 0) == 0 {
+                        print("first one added")
+                        self?.hideSearching()
+                    }
+
+                    collectionView.reloadData()
+
+                    if deletions.count > 0 && collectionView.numberOfItems(inSection: 0) == 0 {
+                        print("last one gone")
+                        self?.showSearching()
+                    }
+                    break
+                case .error(let err):
+                    // An error occurred while opening the Realm file on the background worker thread
+                    fatalError("\(err)")
+                    break
+                }
             }
         }
     }
