@@ -41,6 +41,7 @@ class DeviceListViewController: UIViewController {
     @IBOutlet var debugButtons: [UIButton]!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchingView: UIView!
+    @IBOutlet weak var blurView: UIVisualEffectView!
     
     // zone label constraints
     @IBOutlet weak var neuromuscularVerticalConstraint: NSLayoutConstraint!
@@ -266,10 +267,12 @@ extension DeviceListViewController {
     
     func hideSearching() {
         searchingView.isHidden = true
+        blurView.isHidden = true
     }
     
     func showSearching() {
         searchingView.isHidden = false
+        blurView.isHidden = false
     }
     
     func setupNotificationTokens() {
@@ -282,8 +285,11 @@ extension DeviceListViewController {
                 case .initial:
                     // Results are now populated and can be accessed without blocking the UI
                     collectionView.reloadData()
+
                     if collectionView.numberOfItems(inSection: 0) == 0 {
                         self?.showSearching()
+                    } else {
+                        self?.hideSearching()
                     }
                     break
                 case .update(_, let deletions, let insertions, let modifications):
@@ -292,6 +298,10 @@ extension DeviceListViewController {
                     if insertions.count > 0 && collectionView.numberOfItems(inSection: 0) == 0 {
                         print("first one added")
                         self?.hideSearching()
+                        if let dataSource = self?.dataSource {
+                            let aDevice = dataSource.devices[0]
+                            self?.selectDevice(device: aDevice)
+                        }
                     }
 
                     collectionView.reloadData()
@@ -312,13 +322,18 @@ extension DeviceListViewController {
 }
 
 extension DeviceListViewController: UICollectionViewDelegate {
+    func selectDevice(device: PowerSensorDevice) {
+        selectedDevice = device
+        setupSelectedDeviceToken()
+        chartView.reloadData(animated: true)
+        updateZoneLabels()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let dataSource = dataSource {
+            
             let aDevice = dataSource.devices[indexPath.row]
-            selectedDevice = aDevice
-            setupSelectedDeviceToken()
-            chartView.reloadData(animated: true)
-            updateZoneLabels()
+            selectDevice(device: aDevice)
         }
     }
 }

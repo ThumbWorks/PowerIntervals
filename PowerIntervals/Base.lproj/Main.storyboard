@@ -495,6 +495,14 @@
                                     <outletCollection property="gestureRecognizers" destination="vHl-NI-Xfr" appends="YES" id="bBW-g9-whG"/>
                                 </connections>
                             </view>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1YI-6r-Hce">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aiu-Jn-3aQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nXS-Tu-Aqb" userLabel="searching UI">
                                 <rect key="frame" x="67" y="269.5" width="240" height="128"/>
                                 <subviews>
@@ -538,6 +546,8 @@
                             <constraint firstItem="niy-MS-2gu" firstAttribute="top" secondItem="qpo-wJ-uWc" secondAttribute="bottom" id="0so-Eb-vgz"/>
                             <constraint firstItem="0fN-jy-GvZ" firstAttribute="top" secondItem="niy-MS-2gu" secondAttribute="top" id="7Ja-BI-64v"/>
                             <constraint firstItem="2Yk-e0-dvU" firstAttribute="trailing" secondItem="AsX-J7-rTX" secondAttribute="trailingMargin" id="C4X-zO-wqx"/>
+                            <constraint firstItem="1YI-6r-Hce" firstAttribute="top" secondItem="i4e-QG-kAU" secondAttribute="bottom" id="CbM-E1-MqC"/>
+                            <constraint firstItem="K0C-5q-mEt" firstAttribute="top" secondItem="1YI-6r-Hce" secondAttribute="bottom" id="D1c-fw-fvP"/>
                             <constraint firstItem="niy-MS-2gu" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leading" id="FT5-Tw-jnq"/>
                             <constraint firstItem="nXS-Tu-Aqb" firstAttribute="centerX" secondItem="AsX-J7-rTX" secondAttribute="centerX" id="OYi-Dw-DEO"/>
                             <constraint firstItem="qpo-wJ-uWc" firstAttribute="top" secondItem="Jgp-Rr-sOx" secondAttribute="bottom" id="Obg-hN-c1B"/>
@@ -545,6 +555,8 @@
                             <constraint firstItem="0fN-jy-GvZ" firstAttribute="width" secondItem="niy-MS-2gu" secondAttribute="width" id="RwV-lC-Dfw"/>
                             <constraint firstItem="niy-MS-2gu" firstAttribute="centerY" secondItem="2Yk-e0-dvU" secondAttribute="centerY" id="SqW-nO-Ol2"/>
                             <constraint firstItem="nXS-Tu-Aqb" firstAttribute="centerY" secondItem="AsX-J7-rTX" secondAttribute="centerY" id="Stv-zS-jSn"/>
+                            <constraint firstAttribute="trailing" secondItem="1YI-6r-Hce" secondAttribute="trailing" id="V44-nU-vgk"/>
+                            <constraint firstItem="1YI-6r-Hce" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leading" id="VtE-LM-8YG"/>
                             <constraint firstItem="0fN-jy-GvZ" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="leading" id="XpG-8d-n2m"/>
                             <constraint firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="a9Q-lS-T8z"/>
                             <constraint firstItem="Jgp-Rr-sOx" firstAttribute="top" secondItem="i4e-QG-kAU" secondAttribute="bottom" id="bL1-fy-khp"/>
@@ -560,6 +572,7 @@
                         <outlet property="activeRecoveryVerticalConstraint" destination="LSs-sS-zhc" id="UEO-dZ-z5e"/>
                         <outlet property="anaerobicLabel" destination="SCX-Kc-cQ4" id="33K-y8-I0g"/>
                         <outlet property="anaerobicVerticalConstraint" destination="gG1-aN-qfm" id="76V-c6-ALk"/>
+                        <outlet property="blurView" destination="1YI-6r-Hce" id="Bnq-0c-viv"/>
                         <outlet property="chartView" destination="niy-MS-2gu" id="NKd-WQ-fgn"/>
                         <outlet property="collectionView" destination="qpo-wJ-uWc" id="A5S-O7-ViC"/>
                         <outlet property="dataSource" destination="sA6-tO-nNK" id="5S5-F1-x7m"/>
