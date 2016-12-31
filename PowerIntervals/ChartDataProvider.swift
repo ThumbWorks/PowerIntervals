@@ -130,4 +130,19 @@ extension ChartDataProvider {
     func endLap() {
         offset = 0
     }
+    
+    func showDefaultData() {
+
+        let dataPoint1 = WorkoutDataPoint()
+        dataPoint1.time = 0
+        dataPoint1.watts = 1000
+        dataPoint1.deviceID = "dummy"
+
+        let dataPoint2 = WorkoutDataPoint()
+        dataPoint2.time = 1
+        dataPoint2.watts = 1001
+        dataPoint2.deviceID = "dummy"
+        dataPoints = [dataPoint1, dataPoint2]
+
+    }
 }

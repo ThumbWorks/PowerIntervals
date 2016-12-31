@@ -62,7 +62,6 @@ class DeviceListViewController: UIViewController {
                 button.isHidden = true
             }
         #endif
-        chartView.reloadData(animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -273,6 +272,9 @@ extension DeviceListViewController {
     func showSearching() {
         searchingView.isHidden = false
         blurView.isHidden = false
+        // tell the chart to show dummy data
+        chartDataProvider.showDefaultData()
+        chartView.reloadData()
     }
     
     func setupNotificationTokens() {
