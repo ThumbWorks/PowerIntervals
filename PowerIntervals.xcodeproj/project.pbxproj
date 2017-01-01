@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5FFAB2951E17338200012FED /* SearchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFAB2941E17338200012FED /* SearchingView.swift */; };
+		5FFAB2981E1794DD00012FED /* SetZoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFAB2971E1794DD00012FED /* SetZoneViewController.swift */; };
 		9E145EC31DA1CD6F008F88AE /* HardwareConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E145EC21DA1CD6F008F88AE /* HardwareConnectViewController.swift */; };
 		9E145EC41DA21D4E008F88AE /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E452FE51D958BE600C96165 /* Realm.framework */; };
 		9E145EC51DA21D52008F88AE /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E452FE31D958BDE00C96165 /* RealmSwift.framework */; };
@@ -62,6 +64,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5FFAB2941E17338200012FED /* SearchingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchingView.swift; sourceTree = "<group>"; };
+		5FFAB2971E1794DD00012FED /* SetZoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetZoneViewController.swift; path = SetZoneView/SetZoneViewController.swift; sourceTree = "<group>"; };
 		9E145EC21DA1CD6F008F88AE /* HardwareConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HardwareConnectViewController.swift; path = HardwareConnectionFlow/HardwareConnectViewController.swift; sourceTree = "<group>"; };
 		9E1CC2B61D911527008AF139 /* DejaVuSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DejaVuSans.ttf; sourceTree = "<group>"; };
 		9E357AC81DB2CC3000883163 /* WorkoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
@@ -151,6 +155,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5FFAB2931E17336C00012FED /* SearchingView */ = {
+			isa = PBXGroup;
+			children = (
+				5FFAB2941E17338200012FED /* SearchingView.swift */,
+			);
+			name = SearchingView;
+			sourceTree = "<group>";
+		};
+		5FFAB2961E1794C100012FED /* SetZoneView */ = {
+			isa = PBXGroup;
+			children = (
+				5FFAB2971E1794DD00012FED /* SetZoneViewController.swift */,
+			);
+			name = SetZoneView;
+			sourceTree = "<group>";
+		};
 		9E145EC11DA1CD52008F88AE /* HardwareConnectionFlow */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +204,8 @@
 		9E3888C61D862E8900DFC271 /* PowerIntervals */ = {
 			isa = PBXGroup;
 			children = (
+				5FFAB2961E1794C100012FED /* SetZoneView */,
+				5FFAB2931E17336C00012FED /* SearchingView */,
 				9E145EC11DA1CD52008F88AE /* HardwareConnectionFlow */,
 				9E452FDE1D9581A100C96165 /* DeviceListView */,
 				9E452FDB1D95811F00C96165 /* Model */,
@@ -517,10 +539,12 @@
 				9E45238E1DB2E4B000C380F2 /* JBLineChartPoint.m in Sources */,
 				9E4523861DB2E4B000C380F2 /* NSMutableArray+JBStack.m in Sources */,
 				9E45238F1DB2E4B000C380F2 /* JBLineChartDotsView.m in Sources */,
+				5FFAB2981E1794DD00012FED /* SetZoneViewController.swift in Sources */,
 				9EE6E48E1DA7E26700E9F3BC /* BluetoothDelegate.swift in Sources */,
 				9E4523901DB2E4B000C380F2 /* JBLineChartDotView.m in Sources */,
 				9E3888CA1D862E8900DFC271 /* PowerMeterDetailViewController.swift in Sources */,
 				9EB4F46F1DC5567000B7045E /* PowerZone.swift in Sources */,
+				5FFAB2951E17338200012FED /* SearchingView.swift in Sources */,
 				9E357AC91DB2CC3000883163 /* WorkoutManager.swift in Sources */,
 				9E4523871DB2E4B000C380F2 /* JBBarChartView.m in Sources */,
 				9E3888C81D862E8900DFC271 /* AppDelegate.swift in Sources */,

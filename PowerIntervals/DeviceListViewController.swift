@@ -40,8 +40,6 @@ class DeviceListViewController: UIViewController {
     @IBOutlet weak var minLabel: UILabel!
     @IBOutlet var debugButtons: [UIButton]!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var searchingView: UIView!
-    @IBOutlet weak var blurView: UIVisualEffectView!
     
     // zone label constraints
     @IBOutlet weak var neuromuscularVerticalConstraint: NSLayoutConstraint!
@@ -81,9 +79,16 @@ class DeviceListViewController: UIViewController {
         chartView.minimumValue = PowerZone.ActiveRecovery.watts - 40
         setupNotificationTokens()
     }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == "SearchingSegueID" {
+            let dest = segue.destination as! SearchingViewController
+            print("this is searching")
+            dest.createFakePMFromSearch = {
+                print("tapped")
+                self.startFakePM(self)
+            }
+        }
+
         if let selectedPath = collectionView.indexPathsForSelectedItems?.first, let powerMeterViewController = segue.destination as? PowerMeterDetailViewController {
             powerMeterViewController.powerMeter = dataSource?.devices[selectedPath.row]
         }
@@ -265,13 +270,12 @@ extension DeviceListViewController {
     }
     
     func hideSearching() {
-        searchingView.isHidden = true
-        blurView.isHidden = true
+       dismiss(animated: true)
     }
     
     func showSearching() {
-        searchingView.isHidden = false
-        blurView.isHidden = false
+        performSegue(withIdentifier: "SearchingSegueID", sender: nil)
+
         // tell the chart to show dummy data
         chartDataProvider.showDefaultData()
         chartView.reloadData()
@@ -343,4 +347,12 @@ extension DeviceListViewController: UICollectionViewDelegate {
 extension DeviceListViewController {
     @IBAction func unwindToDeviceListView(sender: UIStoryboardSegue){
     }
+}
+
+class SearchingViewController: UIViewController {
+    var createFakePMFromSearch: (() -> ())?
+    @IBAction func tapped() {
+        createFakePMFromSearch!()
+    }
+
 }

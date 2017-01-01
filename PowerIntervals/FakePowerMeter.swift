@@ -55,7 +55,7 @@ class FakePowerMeter {
     }
     
     func createFakeDevice() {
-        let name = "fake \(arc4random() % 2000)"
+        let name = "PM \(arc4random() % 2000)"
         let predicate = NSPredicate(format: "deviceID = %@", name)
         let queryResults = realm.objects(PowerSensorDevice.self).filter(predicate)
         if let persistedDevice = queryResults.first {
