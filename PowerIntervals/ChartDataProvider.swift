@@ -17,6 +17,8 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
         }
     }
 
+    var zones: PowerZone?
+    
     var max: WorkoutDataPoint?
     var min: WorkoutDataPoint?
     
@@ -42,23 +44,37 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
     
     func lineChartView(_ lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
         // zone lines
-        if let zone = PowerZone(rawValue: lineIndex), let max = max?.watts.intValue, let min = min?.watts.intValue {
+        if let max = max?.watts.intValue, let min = min?.watts.intValue, let zones = zones {
             if min == max {
                 return CGFloat(0)
             }
-            // special case, neuromuscular
-            if zone == .NeuroMuscular && Int(zone.watts) < max {
-                return CGFloat(max)
-            }
-
-            if Int(zone.watts) < max {
-                return CGFloat(zone.watts)
-            } else {
-                return CGFloat(max)
+            
+            switch lineIndex {
+                
+                // Neuromuscular is a special case because apparently you can go over it
+            case 0:
+                if let maximum = [max, zones.neuromuscular].max() {
+                    return CGFloat(maximum)
+                } else {
+                    return 0
+                }
+            case 1:
+                return CGFloat(zones.anaerobicCapacity)
+            case 2:
+                return CGFloat(zones.VO2Max)
+            case 3:
+                return CGFloat(zones.lactateThreshold)
+            case 4:
+                return CGFloat(zones.tempo)
+            case 5:
+                return CGFloat(zones.endurance)
+            case 6:
+                return CGFloat(zones.activeRecovery)
+            default:
+                return CGFloat(displayDataPoints()[Int(horizontalIndex)].watts)
             }
         }
-
-        return CGFloat(displayDataPoints()[Int(horizontalIndex)].watts)
+        return 0
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
@@ -66,8 +82,7 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
-        
-        if let zone = PowerZone(rawValue: lineIndex) {
+        if let zone = PowerZoneAttributes(rawValue: lineIndex) {
             return zone.color
         }
         return .black
@@ -78,7 +93,7 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
     }
     
     func lineChartView(_ lineChartView: JBLineChartView!, fillColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
-        if let zone = PowerZone(rawValue: lineIndex) {
+        if let zone = PowerZoneAttributes(rawValue: lineIndex) {
             return zone.fill
         }
         return nil
@@ -132,7 +147,7 @@ extension ChartDataProvider {
     }
     
     func showDefaultData() {
-
+        endLap()
         let dataPoint1 = WorkoutDataPoint()
         dataPoint1.time = 0
         dataPoint1.watts = 1000

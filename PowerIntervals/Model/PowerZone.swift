@@ -6,7 +6,7 @@
 //  Copyright © 2016 Thumbworks. All rights reserved.
 //
 
-struct PowerZone2 {
+struct PowerZone {
     let neuromuscular: Int
     let anaerobicCapacity: Int
     let VO2Max: Int
@@ -16,21 +16,9 @@ struct PowerZone2 {
     let activeRecovery: Int
 }
 
-enum PowerZone: UInt {
+enum PowerZoneAttributes: UInt {
     case NeuroMuscular = 0, AnaerobicCapacity, VO2Max, LactateThreshold, Tempo, Endurance, ActiveRecovery
-    
-    var watts: CGFloat {
-        switch self {
-        case .ActiveRecovery: return 165.0
-        case .Endurance: return 225.0
-        case .Tempo: return 270.0
-        case .LactateThreshold: return 315.0
-        case .VO2Max: return 360.0
-        case .AnaerobicCapacity: return 661.0
-        case .NeuroMuscular: return 1000.0
-        }
-    }
-    
+
     var fill: UIColor {
         switch self {
         case .ActiveRecovery: return self.color
@@ -63,7 +51,7 @@ enum PowerZone: UInt {
         case .LactateThreshold: return "Lactate Threshold"
         case .VO2Max: return "VO2Max"
         case .AnaerobicCapacity: return "Anaerobic Capacity"
-        case .NeuroMuscular: return "Neuro Muscular"
+        case .NeuroMuscular: return "Neuromuscular"
         }
     }
     

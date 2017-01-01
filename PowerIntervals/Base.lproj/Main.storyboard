@@ -682,7 +682,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="endLap:" destination="4U5-9q-t9i" eventType="touchDragInside" id="G0A-3Z-35p"/>
+                                            <action selector="endLap:" destination="4U5-9q-t9i" eventType="touchUpInside" id="2h7-05-ng2"/>
                                         </connections>
                                     </button>
                                 </subviews>

@@ -13,7 +13,7 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    var completion: ((PowerZone2) -> ())?
+    var completion: ((PowerZone) -> Void)?
     
     var values: [Int] = [0,0,0,0,0,0,0]
     
@@ -27,19 +27,19 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
         
         switch indexPath.row {
         case 0:
-            cell.zoneNameLabel.text = PowerZone.NeuroMuscular.name
+            cell.zoneNameLabel.text = PowerZoneAttributes.NeuroMuscular.name
         case 1:
-            cell.zoneNameLabel.text = PowerZone.AnaerobicCapacity.name
+            cell.zoneNameLabel.text = PowerZoneAttributes.AnaerobicCapacity.name
         case 2:
-            cell.zoneNameLabel.text = PowerZone.VO2Max.name
+            cell.zoneNameLabel.text = PowerZoneAttributes.VO2Max.name
         case 3:
-            cell.zoneNameLabel.text = PowerZone.LactateThreshold.name
+            cell.zoneNameLabel.text = PowerZoneAttributes.LactateThreshold.name
         case 4:
-            cell.zoneNameLabel.text = PowerZone.Tempo.name
+            cell.zoneNameLabel.text = PowerZoneAttributes.Tempo.name
         case 5:
-            cell.zoneNameLabel.text = PowerZone.Endurance.name
+            cell.zoneNameLabel.text = PowerZoneAttributes.Endurance.name
         case 6:
-            cell.zoneNameLabel.text = PowerZone.ActiveRecovery.name
+            cell.zoneNameLabel.text = PowerZoneAttributes.ActiveRecovery.name
         default:
             //no op
             print("unknown row number when setting zones")
@@ -58,29 +58,23 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
             for cell in tableView.visibleCells {
                 if (cell.contentView.subviews.contains(textField)) {
                     if let index = tableView.indexPath(for: cell)?.row {
-                        
                         let newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
-
                         if let i = Int(newString) {
-                            
                             values[index] = i
                         }
                     }
                 }
             }
-            
         } else {
-            print("Test string contained non-digit characters.")
             return false
         }
-        
-        print("string is \(string)")
         return true
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         print("val \(textField.text)")
     }
+    
     @IBAction func doneButtonTapped(_ sender: Any) {
         // do some error checking
         print("vals = \(values)")
@@ -99,7 +93,7 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
             return
         }
         
-        let zone = PowerZone2(neuromuscular: values[0], anaerobicCapacity: values[1], VO2Max: values[2], lactateThreshold: values[0], tempo: values[0],endurance: values[0], activeRecovery: values[0])
+        let zone = PowerZone(neuromuscular: values[0], anaerobicCapacity: values[1], VO2Max: values[2], lactateThreshold: values[3], tempo: values[4],endurance: values[5], activeRecovery: values[6])
         
         print("zone \(zone)")
         

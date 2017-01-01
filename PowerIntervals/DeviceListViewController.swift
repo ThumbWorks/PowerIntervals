@@ -53,7 +53,8 @@ class DeviceListViewController: UIViewController {
     // some debug things
     var fakePowerMeters = [FakePowerMeter]()
     var panBegin: CGPoint?
-
+    var zones: PowerZone?
+    
     override func viewWillAppear(_ animated: Bool) {
         #if !DEBUG
             for button in debugButtons {
@@ -64,9 +65,13 @@ class DeviceListViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         startWorkout()
+        if zones == nil {
+            performSegue(withIdentifier: "SetZonesSegueID", sender: nil)
+        }
     }
     
     override func viewDidLoad() {
+        
         // Set up the data source for the collection view
         dataSource = DeviceListDataSource()
         
@@ -76,18 +81,29 @@ class DeviceListViewController: UIViewController {
 
         chartView.showsLineSelection = false
         chartView.showsVerticalSelection = false
-        chartView.minimumValue = PowerZone.ActiveRecovery.watts - 40
+
         setupNotificationTokens()
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SearchingSegueID" {
             let dest = segue.destination as! SearchingViewController
-            print("this is searching")
             dest.createFakePMFromSearch = {
                 print("tapped")
                 self.startFakePM(self)
             }
         }
+        
+        if segue.identifier == "SetZonesSegueID" {
+            let dest = segue.destination as! SetZoneViewController
+            dest.completion =  { (zones) in
+                print("cool \(zones)")
+                self.zones = zones
+                self.chartDataProvider.zones = zones
+                self.dismiss(animated: true)
+            }
+        }
+
 
         if let selectedPath = collectionView.indexPathsForSelectedItems?.first, let powerMeterViewController = segue.destination as? PowerMeterDetailViewController {
             powerMeterViewController.powerMeter = dataSource?.devices[selectedPath.row]
@@ -185,14 +201,15 @@ class DeviceListViewController: UIViewController {
         }
         maxLabel.text = String(format: "%.0f", max)
         
-        // attach each of these to the power zone below
-        updateZoneLabel(constraint: neuromuscularVerticalConstraint, attachToWattage: PowerZone.AnaerobicCapacity.watts)
-        updateZoneLabel(constraint: anaerobicVerticalConstraint, attachToWattage: PowerZone.VO2Max.watts)
-        updateZoneLabel(constraint: vo2MaxVerticalConstraint, attachToWattage: PowerZone.LactateThreshold.watts)
-        updateZoneLabel(constraint: lactateThresholdVerticalConstraint, attachToWattage: PowerZone.Tempo.watts)
-        updateZoneLabel(constraint: tempoVerticalConstraint, attachToWattage: PowerZone.Endurance.watts)
-        updateZoneLabel(constraint: enduranceVerticalConstraint, attachToWattage: PowerZone.ActiveRecovery.watts)
-
+        if let zones = zones {
+            // attach each of these to the power zone below
+            updateZoneLabel(constraint: neuromuscularVerticalConstraint, attachToWattage: zones.anaerobicCapacity)
+            updateZoneLabel(constraint: anaerobicVerticalConstraint, attachToWattage: zones.VO2Max)
+            updateZoneLabel(constraint: vo2MaxVerticalConstraint, attachToWattage: zones.lactateThreshold)
+            updateZoneLabel(constraint: lactateThresholdVerticalConstraint, attachToWattage: zones.tempo)
+            updateZoneLabel(constraint: tempoVerticalConstraint, attachToWattage: zones.endurance)
+            updateZoneLabel(constraint: enduranceVerticalConstraint, attachToWattage: zones.activeRecovery)
+        }
         UIView.animate(withDuration: 0.8, animations: {
             self.view.setNeedsLayout()
         }, completion: {
@@ -208,14 +225,14 @@ class DeviceListViewController: UIViewController {
         })
     }
     
-    func updateZoneLabel(constraint: NSLayoutConstraint, attachToWattage: CGFloat) {
+    func updateZoneLabel(constraint: NSLayoutConstraint, attachToWattage: Int) {
         let min = chartView.minimumValue
         let max = chartView.maximumValue
         // Formula is ((zone - min) * height) / (max - min)
         let chartHeight = chartView.frame.height
 
         let chartHeightOverMaxMinusMin = chartHeight / (max - min)
-        let constant = chartHeightOverMaxMinusMin * (attachToWattage - min)
+        let constant = chartHeightOverMaxMinusMin * (CGFloat(attachToWattage) - min)
         constraint.constant = constant
     }
 }
