@@ -5,15 +5,23 @@
 //  Created by Roderic on 10/29/16.
 //  Copyright © 2016 Thumbworks. All rights reserved.
 //
+import RealmSwift
 
-struct PowerZone {
-    let neuromuscular: Int
-    let anaerobicCapacity: Int
-    let VO2Max: Int
-    let lactateThreshold: Int
-    let tempo: Int
-    let endurance: Int
-    let activeRecovery: Int
+class PowerZone: Object {
+    
+    override static func primaryKey() -> String? {
+        return "uniqueID"
+    }
+    
+    dynamic var uniqueID = "uniqueID"
+    
+    dynamic var neuromuscular: Int = 0
+    dynamic var anaerobicCapacity: Int = 0
+    dynamic var VO2Max: Int = 0
+    dynamic var lactateThreshold: Int = 0
+    dynamic var tempo: Int = 0
+    dynamic var endurance: Int = 0
+    dynamic var activeRecovery: Int = 0
 }
 
 enum PowerZoneAttributes: UInt {

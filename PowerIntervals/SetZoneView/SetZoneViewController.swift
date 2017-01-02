@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFieldDelegate {
     
@@ -70,10 +71,6 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
         }
         return true
     }
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print("val \(textField.text)")
-    }
     
     @IBAction func doneButtonTapped(_ sender: Any) {
         // do some error checking
@@ -81,7 +78,7 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
         var current = values[0]
         for i in 1...6 {
             let newValue = values[i]
-            if newValue > current && newValue > 0 {
+            if newValue >= current || newValue <= 0 {
                 print("invalid")
                 return
             }
@@ -93,21 +90,47 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
             return
         }
         
-        let zone = PowerZone(neuromuscular: values[0], anaerobicCapacity: values[1], VO2Max: values[2], lactateThreshold: values[3], tempo: values[4],endurance: values[5], activeRecovery: values[6])
+        let realm = try! Realm()
         
-        print("zone \(zone)")
+        let zonesArray = realm.objects(PowerZone.self)
+        
+        // there should only be one
+        if zonesArray.count > 1 {
+            print("We've got more devices than we should have. This could be problematic")
+        }
+        
+        var userZones: PowerZone
+        var isUpdate: Bool
+        if let zones = zonesArray.first {
+            userZones = zones
+            isUpdate = true
+        } else {
+            userZones = PowerZone()
+            isUpdate = false
+        }
+        
+        // now save the zones object
+        try! realm.write {
+            // update the object if it exists, otherwise create it
+            userZones.neuromuscular = values[0]
+            userZones.anaerobicCapacity = values[1]
+            userZones.VO2Max = values[2]
+            userZones.lactateThreshold = values[3]
+            userZones.tempo = values[4]
+            userZones.endurance = values[5]
+            userZones.activeRecovery = values[6]
+            
+            realm.add(userZones, update: isUpdate)
+        }
         
         // pass it back through the closure
         if let completion = completion {
-            completion(zone)
+            completion(userZones)
         }
     }
 }
 
 class SetZoneCell: UITableViewCell {
     @IBOutlet weak var zoneNameLabel: UILabel!
-    
     @IBOutlet weak var zoneValueTextField: UITextField!
-    
-    
 }

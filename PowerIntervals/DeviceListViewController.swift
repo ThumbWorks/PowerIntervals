@@ -65,8 +65,17 @@ class DeviceListViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         startWorkout()
-        if zones == nil {
+        
+        let realm = try! Realm()
+        
+        let zonesArray = realm.objects(PowerZone.self)
+        
+        if zonesArray.count == 0 {
             performSegue(withIdentifier: "SetZonesSegueID", sender: nil)
+        } else if zonesArray.count == 1 {
+            zones = zonesArray.first
+        } else {
+            print("for some reason we have more than 1 zones object")
         }
     }
     
@@ -100,7 +109,11 @@ class DeviceListViewController: UIViewController {
                 print("cool \(zones)")
                 self.zones = zones
                 self.chartDataProvider.zones = zones
-                self.dismiss(animated: true)
+                self.dismiss(animated: true, completion: { 
+                    if self.collectionView.numberOfItems(inSection: 0) == 0 {
+                        self.showSearching()
+                    }
+                })
             }
         }
     }
@@ -305,7 +318,9 @@ extension DeviceListViewController {
                     collectionView.reloadData()
 
                     if collectionView.numberOfItems(inSection: 0) == 0 {
-                        self?.showSearching()
+                        if self?.zones != nil {
+                            self?.showSearching()
+                        }
                     } else {
                         self?.hideSearching()
                     }

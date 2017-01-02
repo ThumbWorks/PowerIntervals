@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 class FakePowerMeter {
-    var powerValueToSend = 450
+    var powerValueToSend = 0
     var timer : Timer?
     var time = 0.0
     var deviceInstance: PowerSensorDevice?
