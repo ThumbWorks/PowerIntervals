@@ -138,143 +138,6 @@
             </objects>
             <point key="canvasLocation" x="1397.5999999999999" y="-543.77811094452773"/>
         </scene>
-        <!--Power Meter Detail View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="PowerMeterDetailViewController" customModule="PowerIntervals" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j3M-zW-ozi">
-                                <rect key="frame" x="0.0" y="0.0" width="379" height="62"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E1Z-F7-WjZ">
-                                        <rect key="frame" x="10" y="31" width="41" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="Age-kO-CxR"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
-                                        <state key="normal" title="back">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="Jde-cW-BJN" kind="unwind" unwindAction="unwindToDeviceListViewWithSender:" id="j1b-oa-qcx"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n5M-kf-T5S">
-                                        <rect key="frame" x="151" y="25" width="77" height="32"/>
-                                        <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
-                                        <state key="normal" title="DeviceID">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="changeName:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gBy-qx-mtW"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="n5M-kf-T5S" firstAttribute="centerY" secondItem="E1Z-F7-WjZ" secondAttribute="centerY" id="0v7-DM-uil"/>
-                                    <constraint firstAttribute="bottom" secondItem="E1Z-F7-WjZ" secondAttribute="bottom" constant="11" id="B3G-Fl-5qT"/>
-                                    <constraint firstItem="n5M-kf-T5S" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="E1Z-F7-WjZ" secondAttribute="trailing" constant="10" id="Hft-YQ-9oa"/>
-                                    <constraint firstItem="E1Z-F7-WjZ" firstAttribute="leading" secondItem="j3M-zW-ozi" secondAttribute="leading" constant="10" id="Xo6-pn-qco"/>
-                                    <constraint firstItem="n5M-kf-T5S" firstAttribute="centerX" secondItem="j3M-zW-ozi" secondAttribute="centerX" id="bSx-fU-jX3"/>
-                                    <constraint firstAttribute="height" constant="62" id="jyX-c0-yWN"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="55" translatesAutoresizingMaskIntoConstraints="NO" id="O0o-za-AdU">
-                                <rect key="frame" x="153.5" y="207" width="69.5" height="127"/>
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="109"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="X9k-lG-ZkP">
-                                <rect key="frame" x="26" y="359" width="323" height="93.5"/>
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="80"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.2.1 timer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfH-Sq-2DG">
-                                <rect key="frame" x="16" y="462.5" width="333" height="34"/>
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="29"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="55" translatesAutoresizingMaskIntoConstraints="NO" id="DCn-xI-23h">
-                                <rect key="frame" x="153.5" y="80" width="69.5" height="127"/>
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="109"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="avg w" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="raU-kZ-awH">
-                                <rect key="frame" x="223" y="133.5" width="54" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="54" id="geh-CM-aqU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="w" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6T-zO-X7e">
-                                <rect key="frame" x="223" y="260.5" width="14" height="20"/>
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="O0o-za-AdU" secondAttribute="trailing" constant="10" id="2ys-3z-QYn"/>
-                            <constraint firstItem="S6T-zO-X7e" firstAttribute="centerY" secondItem="O0o-za-AdU" secondAttribute="centerY" id="3Ly-UW-hzn"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="X9k-lG-ZkP" secondAttribute="trailing" constant="10" id="3T4-TP-UWA"/>
-                            <constraint firstItem="O0o-za-AdU" firstAttribute="top" secondItem="DCn-xI-23h" secondAttribute="bottom" id="7Ex-CV-hnC"/>
-                            <constraint firstItem="DCn-xI-23h" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="85D-oJ-PJ9"/>
-                            <constraint firstItem="X9k-lG-ZkP" firstAttribute="top" secondItem="O0o-za-AdU" secondAttribute="bottom" constant="25" id="Igz-tL-6sf"/>
-                            <constraint firstItem="X9k-lG-ZkP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="RHf-uG-SLu"/>
-                            <constraint firstItem="rfH-Sq-2DG" firstAttribute="top" secondItem="X9k-lG-ZkP" secondAttribute="bottom" constant="10" id="YNd-ig-TwS"/>
-                            <constraint firstAttribute="trailing" secondItem="rfH-Sq-2DG" secondAttribute="trailing" constant="26" id="a1O-ZX-WUa"/>
-                            <constraint firstItem="raU-kZ-awH" firstAttribute="leading" secondItem="DCn-xI-23h" secondAttribute="trailing" id="i1G-W1-IWh"/>
-                            <constraint firstItem="j3M-zW-ozi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="iXe-7V-8fp"/>
-                            <constraint firstItem="rfH-Sq-2DG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="jao-Jn-xWc"/>
-                            <constraint firstItem="X9k-lG-ZkP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="l9l-er-L2C"/>
-                            <constraint firstItem="DCn-xI-23h" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="60" id="m49-5F-0pv"/>
-                            <constraint firstItem="raU-kZ-awH" firstAttribute="centerY" secondItem="DCn-xI-23h" secondAttribute="centerY" id="owm-qg-b1A"/>
-                            <constraint firstItem="j3M-zW-ozi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="pLA-f0-zn6"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="DCn-xI-23h" secondAttribute="trailing" constant="10" id="tHu-5z-0Kb"/>
-                            <constraint firstItem="DCn-xI-23h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="uvA-d3-BlZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="j3M-zW-ozi" secondAttribute="trailing" constant="-20" id="xtU-D8-CMU"/>
-                            <constraint firstItem="O0o-za-AdU" firstAttribute="centerX" secondItem="DCn-xI-23h" secondAttribute="centerX" id="yTZ-8R-Q7D"/>
-                            <constraint firstItem="S6T-zO-X7e" firstAttribute="leading" secondItem="O0o-za-AdU" secondAttribute="trailing" id="z1B-XK-P4H"/>
-                            <constraint firstItem="O0o-za-AdU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="zuR-Ja-lwM"/>
-                        </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="jb8-gt-JaM" appends="YES" id="zPh-8q-er0"/>
-                        </connections>
-                    </view>
-                    <connections>
-                        <outlet property="avgWattsLabel" destination="DCn-xI-23h" id="iJy-4T-BiB"/>
-                        <outlet property="deviceNameLabel" destination="n5M-kf-T5S" id="n2h-Eu-buf"/>
-                        <outlet property="headerView" destination="j3M-zW-ozi" id="QeL-oY-5Hr"/>
-                        <outlet property="startupTimerLabel" destination="rfH-Sq-2DG" id="2kd-8M-FmA"/>
-                        <outlet property="timeLabel" destination="X9k-lG-ZkP" id="s4L-Ds-eh9"/>
-                        <outlet property="wattsLabel" destination="O0o-za-AdU" id="hPL-9h-ebh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="jb8-gt-JaM">
-                    <connections>
-                        <action selector="viewTappedWithRecognizer:" destination="BYZ-38-t0r" id="fwJ-OB-pjF"/>
-                    </connections>
-                </tapGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="2418" y="93"/>
-        </scene>
         <!--Searching View Controller-->
         <scene sceneID="bTG-Fr-fIS">
             <objects>
@@ -372,118 +235,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RgX-R9-Zni" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-924" y="93"/>
-        </scene>
-        <!--Hardware Connect View Controller-->
-        <scene sceneID="Ual-kY-RYu">
-            <objects>
-                <viewController id="CbC-GR-6Bo" customClass="HardwareConnectViewController" customModule="PowerIntervals" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="e1E-ZX-JYR"/>
-                        <viewControllerLayoutGuide type="bottom" id="biH-LY-RHb"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="yC6-9B-dry">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="sKA-5E-4Iw">
-                                <rect key="frame" x="169" y="315" width="37" height="37"/>
-                            </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2f-9j-VNo">
-                                <rect key="frame" x="16" y="359.5" width="343" height="119"/>
-                                <string key="text">Connect a Wahoo Fitness Dongle and an Apple 30-pin to Lightning adapter to view Power Meter Data.   You can tap the on the hardware above to order.</string>
-                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XIJ-4n-05Y">
-                                <rect key="frame" x="16" y="486.5" width="343" height="160.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09y-6x-tWz">
-                                <rect key="frame" x="16" y="617" width="108" height="30"/>
-                                <state key="normal" title="Debug Connect">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="debugConnectHardware:" destination="CbC-GR-6Bo" eventType="touchUpInside" id="bcH-3e-fsE"/>
-                                </connections>
-                            </button>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AntKey" translatesAutoresizingMaskIntoConstraints="NO" id="Us7-Ra-flF">
-                                <rect key="frame" x="149.5" y="240" width="76" height="65"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="2fa-G1-SxT" appends="YES" id="7cc-sx-Pgi"/>
-                                </connections>
-                            </imageView>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="30PinToLightningAdapter" translatesAutoresizingMaskIntoConstraints="NO" id="39b-Jk-HMX">
-                                <rect key="frame" x="149.5" y="151" width="76" height="79"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Byw-6c-yne" appends="YES" id="pjO-tL-cVf"/>
-                                </connections>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Phone" translatesAutoresizingMaskIntoConstraints="NO" id="2GT-Yn-GW9">
-                                <rect key="frame" x="91.5" y="-243" width="192" height="384"/>
-                            </imageView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✅" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFo-0T-vh7" userLabel="Connected Label ✅">
-                                <rect key="frame" x="167" y="312" width="41" height="43"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="39b-Jk-HMX" firstAttribute="centerX" secondItem="yC6-9B-dry" secondAttribute="centerX" id="21O-vk-wTg"/>
-                            <constraint firstItem="biH-LY-RHb" firstAttribute="top" secondItem="09y-6x-tWz" secondAttribute="bottom" constant="20" id="26p-Yv-yYx"/>
-                            <constraint firstItem="2GT-Yn-GW9" firstAttribute="centerX" secondItem="yC6-9B-dry" secondAttribute="centerX" id="AKm-Wu-Ssc"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="v2f-9j-VNo" secondAttribute="trailing" id="AeU-o2-uNp"/>
-                            <constraint firstItem="sKA-5E-4Iw" firstAttribute="top" secondItem="Us7-Ra-flF" secondAttribute="bottom" constant="10" id="B63-Ic-cxN"/>
-                            <constraint firstItem="sKA-5E-4Iw" firstAttribute="centerY" secondItem="yC6-9B-dry" secondAttribute="centerY" id="H8E-4i-sqn"/>
-                            <constraint firstItem="v2f-9j-VNo" firstAttribute="top" secondItem="sKA-5E-4Iw" secondAttribute="bottom" constant="7.5" id="HbI-SI-bdS"/>
-                            <constraint firstItem="Us7-Ra-flF" firstAttribute="top" secondItem="39b-Jk-HMX" secondAttribute="bottom" constant="10" id="JGW-rx-ijm"/>
-                            <constraint firstItem="biH-LY-RHb" firstAttribute="top" secondItem="XIJ-4n-05Y" secondAttribute="bottom" constant="20" id="TpA-b7-s4W"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="XIJ-4n-05Y" secondAttribute="trailing" id="bMw-xT-3PG"/>
-                            <constraint firstItem="VFo-0T-vh7" firstAttribute="centerY" secondItem="sKA-5E-4Iw" secondAttribute="centerY" id="kuV-mR-E3D"/>
-                            <constraint firstItem="XIJ-4n-05Y" firstAttribute="top" secondItem="v2f-9j-VNo" secondAttribute="bottom" constant="8" id="n1C-3V-iYF"/>
-                            <constraint firstItem="Us7-Ra-flF" firstAttribute="centerX" secondItem="yC6-9B-dry" secondAttribute="centerX" id="n7F-QK-RZY"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="XIJ-4n-05Y" secondAttribute="leading" id="njK-a7-2OR"/>
-                            <constraint firstItem="VFo-0T-vh7" firstAttribute="centerX" secondItem="sKA-5E-4Iw" secondAttribute="centerX" id="oH2-Tr-oWV"/>
-                            <constraint firstItem="sKA-5E-4Iw" firstAttribute="centerX" secondItem="yC6-9B-dry" secondAttribute="centerX" id="pWd-Oz-mzx"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="09y-6x-tWz" secondAttribute="leading" id="pZ8-lG-V9N"/>
-                            <constraint firstItem="Us7-Ra-flF" firstAttribute="top" secondItem="2GT-Yn-GW9" secondAttribute="bottom" constant="99" id="qNq-81-Ulc"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="v2f-9j-VNo" secondAttribute="leading" id="y0O-pJ-2as"/>
-                            <constraint firstItem="v2f-9j-VNo" firstAttribute="centerX" secondItem="sKA-5E-4Iw" secondAttribute="centerX" id="yRw-Z1-u5V"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="ZyE-cT-sU7"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <connections>
-                        <outlet property="adapterDongleVerticalConstraint" destination="JGW-rx-ijm" id="XMX-L4-IPY"/>
-                        <outlet property="connectedLabel" destination="VFo-0T-vh7" id="l9l-fJ-pGt"/>
-                        <outlet property="debugButton" destination="09y-6x-tWz" id="q7J-q0-91A"/>
-                        <outlet property="debugTextField" destination="XIJ-4n-05Y" id="DTG-3n-vkY"/>
-                        <outlet property="instructionsLabel" destination="v2f-9j-VNo" id="J2A-UB-oOx"/>
-                        <outlet property="phoneDongleVerticalConstraint" destination="qNq-81-Ulc" id="kwH-e2-MjF"/>
-                        <outlet property="spinner" destination="sKA-5E-4Iw" id="PP3-7Z-Cce"/>
-                        <segue destination="4U5-9q-t9i" kind="show" identifier="HardwareConnectedSegueID" id="wFU-7D-SOi"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dRJ-XS-LXs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="2fa-G1-SxT">
-                    <connections>
-                        <action selector="tapAntKey:" destination="CbC-GR-6Bo" id="G7X-i2-oIV"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="Byw-6c-yne">
-                    <connections>
-                        <action selector="tap30PinConnector:" destination="CbC-GR-6Bo" id="KJj-qN-2fc"/>
-                    </connections>
-                </tapGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="-231" y="739"/>
+            <point key="canvasLocation" x="-11" y="93"/>
         </scene>
         <!--Device List View Controller-->
         <scene sceneID="tQb-pf-BTz">
@@ -501,7 +253,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="42"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nearby Power Meters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugg-fX-P75">
-                                        <rect key="frame" x="96.5" y="11" width="182" height="20"/>
+                                        <rect key="frame" x="97" y="11" width="182" height="20"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -770,7 +522,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eeb-dx-hfS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Jde-cW-BJN" userLabel="Exit" sceneMemberID="exit"/>
                 <customObject id="sA6-tO-nNK" customClass="DeviceListDataSource" customModule="PowerIntervals" customModuleProvider="target"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ZSU-eY-Mo7">
                     <connections>
@@ -786,12 +537,4 @@
             <point key="canvasLocation" x="605.60000000000002" y="93.103448275862078"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="30PinToLightningAdapter" width="76" height="79"/>
-        <image name="AntKey" width="76" height="65"/>
-        <image name="Phone" width="192" height="384"/>
-    </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="g5i-Sc-DOv"/>
-    </inferredMetricsTieBreakers>
 </document>

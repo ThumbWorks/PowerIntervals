@@ -103,11 +103,6 @@ class DeviceListViewController: UIViewController {
                 self.dismiss(animated: true)
             }
         }
-
-
-        if let selectedPath = collectionView.indexPathsForSelectedItems?.first, let powerMeterViewController = segue.destination as? PowerMeterDetailViewController {
-            powerMeterViewController.powerMeter = dataSource?.devices[selectedPath.row]
-        }
     }
     
     deinit {
@@ -315,7 +310,7 @@ extension DeviceListViewController {
                         self?.hideSearching()
                     }
                     break
-                case .update(_, let deletions, let insertions, let modifications):
+                case .update(_, let deletions, let insertions, _):
                     // Query results have changed, so apply them to the TableView
                     
                     if insertions.count > 0 && collectionView.numberOfItems(inSection: 0) == 0 {
