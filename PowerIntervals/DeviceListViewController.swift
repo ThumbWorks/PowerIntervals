@@ -78,6 +78,9 @@ class DeviceListViewController: UIViewController {
         } else if zonesArray.count == 1 {
             zones = zonesArray.first
             chartDataProvider.zones = zones
+            if self.dataSource?.devices.count == 0 {
+                showSearching()
+            }
         } else {
             print("for some reason we have more than 1 zones object")
         }
