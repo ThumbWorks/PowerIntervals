@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import RealmSwift
+import Mixpanel
 
 class DeviceListViewController: UIViewController {
     var deviceUpdateToken: NotificationToken?
@@ -64,6 +65,8 @@ class DeviceListViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        Mixpanel.mainInstance().track(event: "DeviceListViewController appeared")
+
         startWorkout()
         
         let realm = try! Realm()
@@ -74,13 +77,13 @@ class DeviceListViewController: UIViewController {
             performSegue(withIdentifier: "SetZonesSegueID", sender: nil)
         } else if zonesArray.count == 1 {
             zones = zonesArray.first
+            chartDataProvider.zones = zones
         } else {
             print("for some reason we have more than 1 zones object")
         }
     }
     
     override func viewDidLoad() {
-        
         // Set up the data source for the collection view
         dataSource = DeviceListDataSource()
         
@@ -317,7 +320,7 @@ extension DeviceListViewController {
                     // Results are now populated and can be accessed without blocking the UI
                     collectionView.reloadData()
 
-                    if collectionView.numberOfItems(inSection: 0) == 0 {
+                    if self?.dataSource?.devices.count == 0 {
                         if self?.zones != nil {
                             self?.showSearching()
                         }
@@ -377,6 +380,11 @@ extension DeviceListViewController {
 }
 
 class SearchingViewController: UIViewController {
+    
+    override func viewDidAppear(_ animated: Bool) {
+        Mixpanel.mainInstance().track(event: "SearchingView appeared")
+    }
+    
     var createFakePMFromSearch: (() -> ())?
     @IBAction func tapped() {
         createFakePMFromSearch!()

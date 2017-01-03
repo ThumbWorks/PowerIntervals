@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import Mixpanel
 
 class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFieldDelegate {
     
@@ -17,6 +18,10 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
     var completion: ((PowerZone) -> Void)?
     
     var values: [Int] = [0,0,0,0,0,0,0]
+    
+    override func viewDidAppear(_ animated: Bool) {
+        Mixpanel.mainInstance().track(event: "SetZoneViewController appeared")
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 7
@@ -80,10 +85,18 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
             let newValue = values[i]
             if newValue >= current || newValue <= 0 {
                 print("invalid")
+                Mixpanel.mainInstance().track(event: "Invalid zones")
+                
+                let alert = UIAlertController(title: "Invalid Zones", message: "Zone Thresholds must be decreasing", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                self.present(alert, animated: true)
                 return
             }
             current = newValue
         }
+        
+        Mixpanel.mainInstance().track(event: "Valid zones")
+
         // set the zones object
         print("all checks out, set the object")
         guard completion != nil else {

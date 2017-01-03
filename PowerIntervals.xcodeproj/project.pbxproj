@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5FE61D8A1E1AE060006E8BD0 /* Mixpanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE61D891E1AE060006E8BD0 /* Mixpanel.framework */; };
+		5FE61D8F1E1B0EE7006E8BD0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE61D8E1E1B0EE7006E8BD0 /* Constants.swift */; };
 		5FFAB2951E17338200012FED /* SearchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFAB2941E17338200012FED /* SearchingView.swift */; };
 		5FFAB2981E1794DD00012FED /* SetZoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFAB2971E1794DD00012FED /* SetZoneViewController.swift */; };
 		9E145EC41DA21D4E008F88AE /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E452FE51D958BE600C96165 /* Realm.framework */; };
@@ -62,6 +64,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5FE61D891E1AE060006E8BD0 /* Mixpanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mixpanel.framework; path = Carthage/Build/iOS/Mixpanel.framework; sourceTree = "<group>"; };
+		5FE61D8E1E1B0EE7006E8BD0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
 		5FFAB2941E17338200012FED /* SearchingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchingView.swift; sourceTree = "<group>"; };
 		5FFAB2971E1794DD00012FED /* SetZoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetZoneViewController.swift; path = SetZoneView/SetZoneViewController.swift; sourceTree = "<group>"; };
 		9E1CC2B61D911527008AF139 /* DejaVuSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DejaVuSans.ttf; sourceTree = "<group>"; };
@@ -112,7 +116,7 @@
 		9EB4F46E1DC5567000B7045E /* PowerZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PowerZone.swift; path = Model/PowerZone.swift; sourceTree = "<group>"; };
 		9EB4F4701DC556AB00B7045E /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		9EC2F89F1DA31C6B00F31CD6 /* beep-hightone.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-hightone.aif"; sourceTree = "<group>"; };
-		9EE6E48D1DA7E26700E9F3BC /* BluetoothDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BluetoothDelegate.swift; path = PowerIntervals/BluetoothDelegate/BluetoothDelegate.swift; sourceTree = "<group>"; };
+		9EE6E48D1DA7E26700E9F3BC /* BluetoothDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BluetoothDelegate.swift; path = BluetoothDelegate/BluetoothDelegate.swift; sourceTree = "<group>"; };
 		9EFDBB011D88517E00C56D97 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9EFDBB031D88518300C56D97 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		9EFDBB051D88518800C56D97 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -128,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FE61D8A1E1AE060006E8BD0 /* Mixpanel.framework in Frameworks */,
 				9E452FE61D958BE600C96165 /* Realm.framework in Frameworks */,
 				9E452FE41D958BDE00C96165 /* RealmSwift.framework in Frameworks */,
 				9EFDBB081D8852C200C56D97 /* WFConnector.framework in Frameworks */,
@@ -178,7 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				9E6D52941DB2DEAD005503A1 /* JBChartView-Bridging-Header.h */,
-				9EE6E48D1DA7E26700E9F3BC /* BluetoothDelegate.swift */,
 				9E3888C61D862E8900DFC271 /* PowerIntervals */,
 				9E3888DB1D862E8900DFC271 /* PowerIntervalsTests */,
 				9E4523641DB2E48B00C380F2 /* Libraries */,
@@ -204,6 +208,7 @@
 				9E145EC11DA1CD52008F88AE /* HardwareConnectionFlow */,
 				9E452FDE1D9581A100C96165 /* DeviceListView */,
 				9E452FDB1D95811F00C96165 /* Model */,
+				9EE6E48D1DA7E26700E9F3BC /* BluetoothDelegate.swift */,
 				9EFF88041DD2A3CD00A68058 /* ChartDataProvider.swift */,
 				9EB4F4701DC556AB00B7045E /* Color.swift */,
 				9EFDBB0F1D8861ED00C56D97 /* PowerIntervals.entitlements */,
@@ -213,6 +218,7 @@
 				9E3888CE1D862E8900DFC271 /* Assets.xcassets */,
 				9E3888D01D862E8900DFC271 /* LaunchScreen.storyboard */,
 				9E3888D31D862E8900DFC271 /* Info.plist */,
+				5FE61D8E1E1B0EE7006E8BD0 /* Constants.swift */,
 				9EFDBB0D1D8854A600C56D97 /* WahooHardware.swift */,
 				9E452FE21D95841800C96165 /* Utility */,
 				9E452FE11D9583F700C96165 /* Resources */,
@@ -373,6 +379,7 @@
 		9EFDBAFE1D88517400C56D97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5FE61D891E1AE060006E8BD0 /* Mixpanel.framework */,
 				9E452FE51D958BE600C96165 /* Realm.framework */,
 				9E452FE31D958BDE00C96165 /* RealmSwift.framework */,
 				9E4472161D90EFB600CFECCE /* Fabric.framework */,
@@ -397,6 +404,7 @@
 				9E3888C21D862E8900DFC271 /* Resources */,
 				9E4472151D90EF8F00CFECCE /* ShellScript */,
 				9E452FE71D958BFF00C96165 /* ShellScript */,
+				5FE61D8B1E1AF6B5006E8BD0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -489,6 +497,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5FE61D8B1E1AF6B5006E8BD0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$CONFIGURATION\" == \"Distribution\" ]]; then\n  KEYCHAINS=`security list-keychains`\n\n  if ! [[ \"$KEYCHAINS\" =~ \"PowerIntervals.keychain\" ]]; then\n    open PowerIntervals.keychain\n  fi\n\n  MIXPANEL_TOKEN=`security find-generic-password -a roderic -s Mixpanel -w`\n  perl -p -i -e \"s/MIXPANEL_TOKEN_PLACEHOLDER/$MIXPANEL_TOKEN/g\" \"$SRCROOT/Constants.swift\"\nfi";
+		};
 		9E4472151D90EF8F00CFECCE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -510,6 +531,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Mixpanel.framework",
 			);
 			outputPaths = (
 			);
@@ -550,6 +572,7 @@
 				9E4523891DB2E4B000C380F2 /* JBChartView.m in Sources */,
 				9E452FDA1D956FA600C96165 /* DeviceListViewController.swift in Sources */,
 				9E45238C1DB2E4B000C380F2 /* JBShapeLineLayer.m in Sources */,
+				5FE61D8F1E1B0EE7006E8BD0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

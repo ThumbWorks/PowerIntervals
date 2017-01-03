@@ -10,6 +10,7 @@
 import UIKit
 import Fabric
 import Crashlytics
+import Mixpanel
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if isRunningTests {
             return true
         }
+
+        let token:Constants = .MIXPANEL_TOKEN
+        let mixpanel = Mixpanel.initialize(token: token.rawValue)
+        mixpanel.track(event: "App Launch")
+    
         // Create the Bluetooth Delegate
         btDelegate = BluetoothDelegate()
         btDelegate?.start()

@@ -9,6 +9,7 @@
 import Foundation
 import CoreBluetooth
 import RealmSwift
+import Mixpanel
 
 class BluetoothDelegate: NSObject {
     let queue = DispatchQueue(label: "bluetoothDelegateQueue")
@@ -30,6 +31,10 @@ class BluetoothDelegate: NSObject {
 
 extension BluetoothDelegate: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        
+        let properties: Properties = ["state": central.state.rawValue]
+        Mixpanel.mainInstance().track(event: "centralManagerDidUpdateState", properties:properties)
+
         switch central.state {
             
         case .poweredOff:
@@ -59,9 +64,16 @@ extension BluetoothDelegate: CBCentralManagerDelegate {
     }
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        
         if let name = peripheral.name {
             print("Did discover peripheral \(name)")
+            let properties: Properties = ["RSSI": RSSI.floatValue, "name": name, "state": peripheral.state.rawValue]
+            Mixpanel.mainInstance().track(event: "centralManagerDidDiscoverPeripheral", properties:properties)
+        } else {
+            let properties: Properties = ["RSSI": RSSI.floatValue]
+            Mixpanel.mainInstance().track(event: "centralManagerDidDiscoverPeripheral", properties:properties)
         }
+        
         guard let peripherals = peripherals, let manager = manager else {
             print("We can't connect to a peripheral until we have a manager and set of peripherals")
             return
@@ -107,14 +119,26 @@ extension BluetoothDelegate: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Swift.Error?) {
         print("Did fail to connect to peripheral \(peripheral.name)")
+        if let error = error {
+            let properties: Properties = ["error": error.localizedDescription]
+            Mixpanel.mainInstance().track(event: "centralManagerDidFailWithError", properties:properties)
+        }
+        else {
+            Mixpanel.mainInstance().track(event: "centralManagerDidFailWithError")
+        }
+        
+
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Swift.Error?) {
         if let error = error {
             print("Disconnect peripheral with error: \(error.localizedDescription)")
+            let properties: Properties = ["error": error.localizedDescription]
+            Mixpanel.mainInstance().track(event: "centralManagerDidDisconnectWithError", properties:properties)
             return
         }
         if let index = peripherals?.index(of: peripheral) {
+            Mixpanel.mainInstance().track(event: "centralManagerDidDisconnectWithoutError")
             _ = peripherals?.remove(at: index)
         }
     }
@@ -160,8 +184,7 @@ extension PeripheralDelegate: CBPeripheralDelegate {
         if let error = error {
             print("error when getting an update \(error.localizedDescription)")
         }
-        print("The power data is, \(characteristic.toPowerData())")
-        
+        print("The power data is, \(characteristic.toPowerData())")        
         let realm = try! Realm()
         
         let predicate = NSPredicate(format: "deviceID == %@", peripheral.identifier.uuidString)
