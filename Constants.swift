@@ -10,4 +10,5 @@ import Foundation
 
 enum Constants: String {
     case MIXPANEL_TOKEN = "MIXPANEL_TOKEN_PLACEHOLDER"
+    case SMOOCH_TOKEN = "SMOOCH_TOKEN_PLACEHOLDER"
 }

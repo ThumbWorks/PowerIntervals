@@ -55,7 +55,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="YGr-8H-YrG">
-                                    <rect key="frame" x="0.0" y="72" width="359" height="50"/>
+                                    <rect key="frame" x="0.0" y="72" width="359" height="100"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ph3-qJ-8rl">
@@ -68,11 +68,23 @@
                                                 <action selector="doneButtonTapped:" destination="Rqf-PG-eqL" eventType="touchUpInside" id="6PQ-KR-Jjt"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVI-b0-Gae">
+                                            <rect key="frame" x="127" y="34" width="121" height="32"/>
+                                            <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                            <state key="normal" title="help/feedback">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="startAChat:" destination="Rqf-PG-eqL" eventType="touchUpInside" id="aIB-n6-VNj"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="Ph3-qJ-8rl" firstAttribute="centerY" secondItem="YGr-8H-YrG" secondAttribute="centerY" id="AtN-rM-9qa"/>
+                                        <constraint firstItem="Ph3-qJ-8rl" firstAttribute="top" secondItem="YGr-8H-YrG" secondAttribute="top" constant="9" id="9PC-yF-rUf"/>
+                                        <constraint firstItem="CVI-b0-Gae" firstAttribute="centerX" secondItem="YGr-8H-YrG" secondAttribute="centerX" constant="8" id="SQN-di-SHs"/>
                                         <constraint firstItem="Ph3-qJ-8rl" firstAttribute="centerX" secondItem="YGr-8H-YrG" secondAttribute="centerX" id="m39-UN-S8w"/>
+                                        <constraint firstItem="CVI-b0-Gae" firstAttribute="centerY" secondItem="YGr-8H-YrG" secondAttribute="centerY" id="ntx-I9-TVJ"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -253,7 +265,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="42"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nearby Power Meters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugg-fX-P75">
-                                        <rect key="frame" x="97" y="11" width="182" height="20"/>
+                                        <rect key="frame" x="97.5" y="11" width="182" height="20"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>

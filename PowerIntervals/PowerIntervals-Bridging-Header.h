@@ -15,3 +15,5 @@
 #import "JBChartView.h"
 #import "JBBarChartView.h"
 #import "JBLineChartView.h"
+
+#import <Smooch/Smooch.h>

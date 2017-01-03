@@ -77,6 +77,11 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
         return true
     }
     
+    @IBAction func startAChat(_ sender: Any) {
+        Smooch.initWith(SKTSettings(appToken: Constants.SMOOCH_TOKEN.rawValue))
+        Smooch.show()
+    }
+    
     @IBAction func doneButtonTapped(_ sender: Any) {
         // do some error checking
         print("vals = \(values)")
