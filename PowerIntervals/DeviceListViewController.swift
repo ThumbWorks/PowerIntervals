@@ -144,6 +144,23 @@ class DeviceListViewController: UIViewController {
         workoutManager.startWorkout()
     }
     
+    @IBAction func clear(_ sender: Any) {
+        print("clear")
+        
+        // An out of bounds occurs when we attempt to clear mid lap
+        endLap(self)
+        
+        // get the selected device
+        if let device = selectedDevice {
+            let realm = try! Realm()
+            try! realm.write {
+                let predicate = NSPredicate(format: "deviceID = %@", device.deviceID)
+                let dataPoints = realm.objects(WorkoutDataPoint.self).filter(predicate)
+                realm.delete(dataPoints)
+            }
+        }
+    }
+    
     @IBAction func beginLap(_ sender: Any) {
         // set the 0 offset for the data provider
         chartDataProvider.beginLap()

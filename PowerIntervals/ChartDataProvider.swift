@@ -139,7 +139,9 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
 
 extension ChartDataProvider {
     func beginLap() {
-        offset = dataPoints.count - 1
+        if dataPoints.count > 0 {
+            offset = dataPoints.count - 1
+        }
     }
     
     func endLap() {

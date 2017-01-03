@@ -265,7 +265,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="42"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nearby Power Meters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugg-fX-P75">
-                                        <rect key="frame" x="97.5" y="11" width="182" height="20"/>
+                                        <rect key="frame" x="96.5" y="11" width="182" height="20"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -449,6 +449,15 @@
                                             <action selector="endLap:" destination="4U5-9q-t9i" eventType="touchUpInside" id="2h7-05-ng2"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LC9-s0-zHU">
+                                        <rect key="frame" x="229" y="419" width="36" height="30"/>
+                                        <state key="normal" title="Clear">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clear:" destination="4U5-9q-t9i" eventType="touchUpInside" id="OuW-HM-zQv"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -461,6 +470,7 @@
                                     <constraint firstAttribute="bottom" secondItem="lxw-Py-Rp0" secondAttribute="bottom" constant="60" id="HyY-ye-R5b"/>
                                     <constraint firstItem="uw9-Th-bdl" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" constant="10" id="Iqi-GK-QaQ"/>
                                     <constraint firstAttribute="bottom" secondItem="mo8-Ug-3gN" secondAttribute="bottom" constant="20" id="LSs-sS-zhc"/>
+                                    <constraint firstItem="LC9-s0-zHU" firstAttribute="centerY" secondItem="rOy-M4-P3d" secondAttribute="centerY" id="OER-Dh-Nny"/>
                                     <constraint firstItem="Ise-ov-8tv" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" id="Ovh-V0-xtz"/>
                                     <constraint firstAttribute="bottom" secondItem="D8j-Kq-SNa" secondAttribute="bottom" constant="40" id="Qow-6b-sPb"/>
                                     <constraint firstItem="SCX-Kc-cQ4" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" id="ZUr-9B-ao9"/>
@@ -469,6 +479,7 @@
                                     <constraint firstAttribute="bottom" secondItem="AbF-sA-gSs" secondAttribute="bottom" constant="100" id="f6e-rq-i1H"/>
                                     <constraint firstAttribute="bottom" secondItem="SCX-Kc-cQ4" secondAttribute="bottom" constant="120" id="gG1-aN-qfm"/>
                                     <constraint firstItem="lxw-Py-Rp0" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" id="gcn-EA-j71"/>
+                                    <constraint firstItem="rOy-M4-P3d" firstAttribute="leading" secondItem="LC9-s0-zHU" secondAttribute="trailing" constant="16" id="i9Z-Jr-XXB"/>
                                     <constraint firstAttribute="bottom" secondItem="UrJ-Up-pN4" secondAttribute="bottom" id="jny-X7-JC1"/>
                                     <constraint firstItem="D8j-Kq-SNa" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" id="nHH-T6-zfo"/>
                                     <constraint firstAttribute="trailing" secondItem="UrJ-Up-pN4" secondAttribute="trailing" id="r84-0D-F1p"/>
