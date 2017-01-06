@@ -18,6 +18,13 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
     var completion: ((PowerZone) -> Void)?
     
     var values: [Int] = [0,0,0,0,0,0,0]
+    var originalZones: PowerZone? {
+        didSet {
+            if let originalZones = originalZones {
+                values = [originalZones.neuromuscular, originalZones.anaerobicCapacity, originalZones.VO2Max, originalZones.lactateThreshold, originalZones.tempo, originalZones.endurance, originalZones.activeRecovery]
+            }
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         Mixpanel.mainInstance().track(event: "SetZoneViewController appeared")
@@ -34,18 +41,39 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
         switch indexPath.row {
         case 0:
             cell.zoneNameLabel.text = PowerZoneAttributes.NeuroMuscular.name
+            if let originalZones = originalZones {
+                cell.zoneValueTextField.text = String(originalZones.neuromuscular)
+            }
         case 1:
             cell.zoneNameLabel.text = PowerZoneAttributes.AnaerobicCapacity.name
+            if let originalZones = originalZones {
+                cell.zoneValueTextField.text = String(originalZones.anaerobicCapacity)
+            }
         case 2:
             cell.zoneNameLabel.text = PowerZoneAttributes.VO2Max.name
+            if let originalZones = originalZones {
+                cell.zoneValueTextField.text = String(originalZones.VO2Max)
+            }
         case 3:
             cell.zoneNameLabel.text = PowerZoneAttributes.LactateThreshold.name
+            if let originalZones = originalZones {
+                cell.zoneValueTextField.text = String(originalZones.lactateThreshold)
+            }
         case 4:
             cell.zoneNameLabel.text = PowerZoneAttributes.Tempo.name
+            if let originalZones = originalZones {
+                cell.zoneValueTextField.text = String(originalZones.tempo)
+            }
         case 5:
             cell.zoneNameLabel.text = PowerZoneAttributes.Endurance.name
+            if let originalZones = originalZones {
+                cell.zoneValueTextField.text = String(originalZones.endurance)
+            }
         case 6:
             cell.zoneNameLabel.text = PowerZoneAttributes.ActiveRecovery.name
+            if let originalZones = originalZones {
+                cell.zoneValueTextField.text = String(originalZones.activeRecovery)
+            }
         default:
             //no op
             print("unknown row number when setting zones")
@@ -91,7 +119,6 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
             if newValue >= current || newValue <= 0 {
                 print("invalid")
                 Mixpanel.mainInstance().track(event: "Invalid zones")
-                
                 let alert = UIAlertController(title: "Invalid Zones", message: "Zone Thresholds must be decreasing", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default))
                 self.present(alert, animated: true)

@@ -111,6 +111,7 @@ class DeviceListViewController: UIViewController {
         
         if segue.identifier == "SetZonesSegueID" {
             let dest = segue.destination as! SetZoneViewController
+            dest.originalZones = zones
             dest.completion =  { (zones) in
                 print("cool \(zones)")
                 self.zones = zones
