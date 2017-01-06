@@ -517,7 +517,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"$CONFIGURATION\" == \"Distribution\" ]]; then\n  KEYCHAINS=`security list-keychains`\n\n  if ! [[ \"$KEYCHAINS\" =~ \"PowerIntervals.keychain\" ]]; then\n    open PowerIntervals.keychain\n  fi\n\n  SMOOCH_TOKEN=`security find-generic-password -a roderic -s Smooch -w`\n  perl -p -i -e \"s/SMOOCH_TOKEN_PLACEHOLDER/$SMOOCH_TOKEN/g\" \"$SRCROOT/Constants.swift\"\n\n\n  MIXPANEL_TOKEN=`security find-generic-password -a roderic -s Mixpanel -w`\n  perl -p -i -e \"s/MIXPANEL_TOKEN_PLACEHOLDER/$MIXPANEL_TOKEN/g\" \"$SRCROOT/Constants.swift\"\nfi";
+			shellScript = "echo \"checking if distribution\"\necho $CONFIGURATION\nif [[ \"$CONFIGURATION\" == \"Release\" ]]; then\n  echo \"It is dist\"\n  KEYCHAINS=`security list-keychains`\n\n  if ! [[ \"$KEYCHAINS\" =~ \"PowerIntervals.keychain\" ]]; then\n    open PowerIntervals.keychain\n  fi\n\n  SMOOCH_TOKEN=`security find-generic-password -a roderic -s Smooch -w`\n  perl -p -i -e \"s/SMOOCH_TOKEN_PLACEHOLDER/$SMOOCH_TOKEN/g\" \"$SRCROOT/Constants.swift\"\n\n\n  MIXPANEL_TOKEN=`security find-generic-password -a roderic -s Mixpanel -w`\n  perl -p -i -e \"s/MIXPANEL_TOKEN_PLACEHOLDER/$MIXPANEL_TOKEN/g\" \"$SRCROOT/Constants.swift\"\nfi\n\necho \"Done with that script\"";
 		};
 		9E4472151D90EF8F00CFECCE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
