@@ -41,36 +41,43 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
         switch indexPath.row {
         case 0:
             cell.zoneNameLabel.text = PowerZoneAttributes.NeuroMuscular.name
+            cell.zoneValueTextField.backgroundColor = PowerZoneAttributes.NeuroMuscular.color.withAlphaComponent(0.5)
             if let originalZones = originalZones {
                 cell.zoneValueTextField.text = String(originalZones.neuromuscular)
             }
         case 1:
             cell.zoneNameLabel.text = PowerZoneAttributes.AnaerobicCapacity.name
+            cell.zoneValueTextField.backgroundColor = PowerZoneAttributes.AnaerobicCapacity.color.withAlphaComponent(0.5)
             if let originalZones = originalZones {
                 cell.zoneValueTextField.text = String(originalZones.anaerobicCapacity)
             }
         case 2:
             cell.zoneNameLabel.text = PowerZoneAttributes.VO2Max.name
+            cell.zoneValueTextField.backgroundColor = PowerZoneAttributes.VO2Max.color.withAlphaComponent(0.5)
             if let originalZones = originalZones {
                 cell.zoneValueTextField.text = String(originalZones.VO2Max)
             }
         case 3:
             cell.zoneNameLabel.text = PowerZoneAttributes.LactateThreshold.name
+            cell.zoneValueTextField.backgroundColor = PowerZoneAttributes.LactateThreshold.color.withAlphaComponent(0.5)
             if let originalZones = originalZones {
                 cell.zoneValueTextField.text = String(originalZones.lactateThreshold)
             }
         case 4:
             cell.zoneNameLabel.text = PowerZoneAttributes.Tempo.name
+            cell.zoneValueTextField.backgroundColor = PowerZoneAttributes.Tempo.color.withAlphaComponent(0.5)
             if let originalZones = originalZones {
                 cell.zoneValueTextField.text = String(originalZones.tempo)
             }
         case 5:
             cell.zoneNameLabel.text = PowerZoneAttributes.Endurance.name
+            cell.zoneValueTextField.backgroundColor = PowerZoneAttributes.Endurance.color.withAlphaComponent(0.5)
             if let originalZones = originalZones {
                 cell.zoneValueTextField.text = String(originalZones.endurance)
             }
         case 6:
             cell.zoneNameLabel.text = PowerZoneAttributes.ActiveRecovery.name
+            cell.zoneValueTextField.backgroundColor = PowerZoneAttributes.ActiveRecovery.color.withAlphaComponent(0.5)
             if let originalZones = originalZones {
                 cell.zoneValueTextField.text = String(originalZones.activeRecovery)
             }

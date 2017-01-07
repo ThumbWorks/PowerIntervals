@@ -152,14 +152,23 @@ extension ChartDataProvider {
         endLap()
         let dataPoint1 = WorkoutDataPoint()
         dataPoint1.time = 0
-        dataPoint1.watts = 1000
+        dataPoint1.watts = 0
         dataPoint1.deviceID = "dummy"
 
         let dataPoint2 = WorkoutDataPoint()
-        dataPoint2.time = 1
+        dataPoint2.time = 100
         dataPoint2.watts = 1001
         dataPoint2.deviceID = "dummy"
         dataPoints = [dataPoint1, dataPoint2]
 
+        let newPowerZone = PowerZone()
+        newPowerZone.neuromuscular = 1000
+        newPowerZone.anaerobicCapacity = 759
+        newPowerZone.VO2Max = 600
+        newPowerZone.lactateThreshold = 500
+        newPowerZone.tempo = 350
+        newPowerZone.endurance = 200
+        newPowerZone.activeRecovery = 100
+        zones = newPowerZone
     }
 }

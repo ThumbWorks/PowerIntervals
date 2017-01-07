@@ -70,10 +70,11 @@ class DeviceListViewController: UIViewController {
         startWorkout()
         
         let realm = try! Realm()
-        
         let zonesArray = realm.objects(PowerZone.self)
         
         if zonesArray.count == 0 {
+            chartDataProvider.showDefaultData()
+            chartView.reloadData()
             performSegue(withIdentifier: "SetZonesSegueID", sender: nil)
         } else if zonesArray.count == 1 {
             zones = zonesArray.first
