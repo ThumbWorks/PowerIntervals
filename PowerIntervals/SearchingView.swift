@@ -14,3 +14,10 @@ class SearchingView: UIView {
         clipsToBounds = true
     }
 }
+
+class RoundedTableView: UITableView {
+    override func awakeFromNib() {
+        layer.cornerRadius = 8.0
+        clipsToBounds = true
+    }
+}

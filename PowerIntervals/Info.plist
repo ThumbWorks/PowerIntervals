@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>8</string>
+	<string>10</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -42,6 +42,10 @@
 	<true/>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Connects with Bluetooth Cycling peripherals</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Sending Bug reports to the developer</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Sending Bug reports to the developer</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>external-accessory</string>
