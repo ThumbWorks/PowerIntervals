@@ -74,6 +74,7 @@ class DeviceListViewController: UIViewController {
         
         if zonesArray.count == 0 {
             chartDataProvider.showDefaultData()
+            zones = chartDataProvider.zones
             chartView.reloadData()
             performSegue(withIdentifier: "SetZonesSegueID", sender: nil)
         } else if zonesArray.count == 1 {
