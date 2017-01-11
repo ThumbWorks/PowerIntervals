@@ -156,6 +156,15 @@ class DeviceListViewController: UIViewController {
         // An out of bounds occurs when we attempt to clear mid lap
         endLap(self)
         
+        // hide all of the labels
+        self.recoveryLabel.isHidden = true
+        self.enduranceLabel.isHidden = true
+        self.tempoLabel.isHidden = true
+        self.lactateLabel.isHidden = true
+        self.vo2MaxLabel.isHidden = true
+        self.anaerobicLabel.isHidden = true
+        self.neuromuscularLabel.isHidden = true
+        
         // get the selected device
         if let device = selectedDevice {
             let realm = try! Realm()
@@ -226,47 +235,69 @@ class DeviceListViewController: UIViewController {
     }
     
     func updateZoneLabels() {
-        let max = chartView.maximumValue
+        guard let max = chartDataProvider.max?.watts else { return }
+        guard let zones = zones else {
+            print("No zones set when we attempted to update the labels")
+            return
+        }
         if max == 0 {
             return
         }
         if let min = chartDataProvider.min?.watts {
-            minLabel.text = String(format: "%@", min)
+            let string = String(format: "%@", min)
+            minLabel.text = string
         }
-        maxLabel.text = String(format: "%.0f", max)
         
-        if let zones = zones {
-            // attach each of these to the power zone below
-            updateZoneLabel(constraint: neuromuscularVerticalConstraint, attachToWattage: zones.anaerobicCapacity)
-            updateZoneLabel(constraint: anaerobicVerticalConstraint, attachToWattage: zones.VO2Max)
-            updateZoneLabel(constraint: vo2MaxVerticalConstraint, attachToWattage: zones.lactateThreshold)
-            updateZoneLabel(constraint: lactateThresholdVerticalConstraint, attachToWattage: zones.tempo)
-            updateZoneLabel(constraint: tempoVerticalConstraint, attachToWattage: zones.endurance)
-            updateZoneLabel(constraint: enduranceVerticalConstraint, attachToWattage: zones.activeRecovery)
-        }
+        maxLabel.text = String(format: "%@", max)
+        
+        // attach each of these to the power zone below
+        updateZoneLabel(constraint: neuromuscularVerticalConstraint, attachToWattage: zones.anaerobicCapacity)
+        updateZoneLabel(constraint: anaerobicVerticalConstraint, attachToWattage: zones.VO2Max)
+        updateZoneLabel(constraint: vo2MaxVerticalConstraint, attachToWattage: zones.lactateThreshold)
+        updateZoneLabel(constraint: lactateThresholdVerticalConstraint, attachToWattage: zones.tempo)
+        updateZoneLabel(constraint: tempoVerticalConstraint, attachToWattage: zones.endurance)
+        updateZoneLabel(constraint: enduranceVerticalConstraint, attachToWattage: zones.activeRecovery)
+        
         UIView.animate(withDuration: 0.8, animations: {
             self.view.setNeedsLayout()
         }, completion: {
             (value: Bool) in
             
             // if there are intersections, hide the labels
-            self.recoveryLabel.isHidden = self.recoveryLabel.frame.intersects(self.enduranceLabel.frame)
             self.enduranceLabel.isHidden = self.enduranceLabel.frame.intersects(self.tempoLabel.frame)
             self.tempoLabel.isHidden = self.tempoLabel.frame.intersects(self.lactateLabel.frame)
             self.lactateLabel.isHidden = self.lactateLabel.frame.intersects(self.vo2MaxLabel.frame)
             self.vo2MaxLabel.isHidden = self.vo2MaxLabel.frame.intersects(self.anaerobicLabel.frame)
             self.anaerobicLabel.isHidden = self.anaerobicLabel.frame.intersects(self.neuromuscularLabel.frame)
+            
+            self.recoveryLabel.isHidden = self.recoveryLabel.frame.intersects(self.enduranceLabel.frame)
+            // and if the chart min is greater than 0, hide the recovery label
+            if let min = self.chartDataProvider.min?.watts {
+                self.recoveryLabel.isHidden = min.intValue > 0
+            }
         })
+        
     }
     
     func updateZoneLabel(constraint: NSLayoutConstraint, attachToWattage: Int) {
-        let min = chartView.minimumValue
-        let max = chartView.maximumValue
+        let range = chartView.maximumValue - chartView.minimumValue
+        if range == 0 {
+            return
+        }
+        
+        guard let minDataValue = chartDataProvider.min?.watts.intValue else {return}
+        guard let maxDataValue = chartDataProvider.max?.watts.intValue else {return}
+        
+        if maxDataValue < attachToWattage || minDataValue > attachToWattage {
+            constraint.constant = CGFloat.greatestFiniteMagnitude
+            return
+        }
+        
         // Formula is ((zone - min) * height) / (max - min)
         let chartHeight = chartView.frame.height
 
-        let chartHeightOverMaxMinusMin = chartHeight / (max - min)
-        let constant = chartHeightOverMaxMinusMin * (CGFloat(attachToWattage) - min)
+        let pixelsPerWatt = chartHeight / range
+        let constant = pixelsPerWatt * CGFloat(attachToWattage - minDataValue)
         constraint.constant = constant
     }
 }
@@ -312,7 +343,8 @@ extension DeviceListViewController {
             chartView.reloadData(animated: true)
             
             if let provider = self?.chartDataProvider, let min = provider.min, let max = provider.max {
-                self?.minLabel.text = String(format: "%@", min.watts)
+                let string = String(format: "%@", min.watts)
+                self?.minLabel.text = string
                 self?.maxLabel.text = String(format: "%@", max.watts)
             }
             

@@ -42,6 +42,22 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
         return UInt(displayDataPoints().count)
     }
     
+    // If a given zone is above or below the range we are showing, it may throw off our display
+    // This method aims to hide the zones that are out of the range of the actual data. If the
+    // zone is above the current max, then we return max. If it is below min, we return min,
+    // otherwise we return the zone - min. Subtracting min keeps the data in the window.
+    func regulate(zoneValue: Int, min: Int, max: Int) -> CGFloat {
+        var ret: Int
+        if max < zoneValue {
+            ret = max
+        } else if min > zoneValue {
+            ret = min
+        } else {
+            ret = zoneValue
+        }
+        return CGFloat(ret - min)
+    }
+    
     func lineChartView(_ lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
         // zone lines
         if let max = max?.watts.intValue, let min = min?.watts.intValue, let zones = zones {
@@ -50,28 +66,27 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
             }
             
             switch lineIndex {
-                
-                // Neuromuscular is a special case because apparently you can go over it
-            case 0:
-                if let maximum = [max, zones.neuromuscular].max() {
-                    return CGFloat(maximum)
-                } else {
-                    return 0
+                // Neuromuscular is a special case, you can go over it
+            case PowerZoneAttributes.NeuroMuscular.rawValue:
+                let zoneValue = zones.neuromuscular
+                if max > zoneValue {
+                    return CGFloat(max - min)
                 }
-            case 1:
-                return CGFloat(zones.anaerobicCapacity)
-            case 2:
-                return CGFloat(zones.VO2Max)
-            case 3:
-                return CGFloat(zones.lactateThreshold)
-            case 4:
-                return CGFloat(zones.tempo)
-            case 5:
-                return CGFloat(zones.endurance)
-            case 6:
-                return CGFloat(zones.activeRecovery)
+                return regulate(zoneValue: zones.neuromuscular, min: min, max: max)
+            case PowerZoneAttributes.AnaerobicCapacity.rawValue:
+                return regulate(zoneValue: zones.anaerobicCapacity, min: min, max: max)
+            case PowerZoneAttributes.VO2Max.rawValue:
+                return regulate(zoneValue: zones.VO2Max, min: min, max: max)
+            case PowerZoneAttributes.LactateThreshold.rawValue:
+                return regulate(zoneValue: zones.lactateThreshold, min: min, max: max)
+            case PowerZoneAttributes.Tempo.rawValue:
+                return regulate(zoneValue: zones.tempo, min: min, max: max)
+            case PowerZoneAttributes.Endurance.rawValue:
+                return regulate(zoneValue: zones.endurance, min: min, max: max)
+            case PowerZoneAttributes.ActiveRecovery.rawValue:
+                return regulate(zoneValue: zones.activeRecovery, min: min, max: max)
             default:
-                return CGFloat(displayDataPoints()[Int(horizontalIndex)].watts)
+                return CGFloat(displayDataPoints()[Int(horizontalIndex)].watts.intValue - min)
             }
         }
         return 0
