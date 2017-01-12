@@ -56,6 +56,8 @@ class FormattedCollectionViewSensorCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         layer.cornerRadius = 8.0
+        layer.borderColor = UIColor.white.cgColor
+        layer.borderWidth = 1.0
         clipsToBounds = true
     }
 }

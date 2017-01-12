@@ -100,6 +100,14 @@ class DeviceListViewController: UIViewController {
         chartView.showsVerticalSelection = false
 
         setupNotificationTokens()
+        hideLabels()
+        activeRecoveryVerticalConstraint.constant = 0
+        enduranceVerticalConstraint.constant = 0
+        tempoVerticalConstraint.constant = 0
+        lactateThresholdVerticalConstraint.constant = 0
+        vo2MaxVerticalConstraint.constant = 0
+        anaerobicVerticalConstraint.constant = 0
+        neuromuscularVerticalConstraint.constant = 0
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -115,7 +123,6 @@ class DeviceListViewController: UIViewController {
             let dest = segue.destination as! SetZoneViewController
             dest.originalZones = zones
             dest.completion =  { (zones) in
-                print("cool \(zones)")
                 self.zones = zones
                 self.chartDataProvider.zones = zones
                 self.dismiss(animated: true, completion: { 
@@ -150,13 +157,7 @@ class DeviceListViewController: UIViewController {
         workoutManager.startWorkout()
     }
     
-    @IBAction func clear(_ sender: Any) {
-        print("clear")
-        
-        // An out of bounds occurs when we attempt to clear mid lap
-        endLap(self)
-        
-        // hide all of the labels
+    func hideLabels() {
         self.recoveryLabel.isHidden = true
         self.enduranceLabel.isHidden = true
         self.tempoLabel.isHidden = true
@@ -164,6 +165,16 @@ class DeviceListViewController: UIViewController {
         self.vo2MaxLabel.isHidden = true
         self.anaerobicLabel.isHidden = true
         self.neuromuscularLabel.isHidden = true
+    }
+    
+    @IBAction func clear(_ sender: Any) {
+        print("clear")
+        
+        // An out of bounds occurs when we attempt to clear mid lap
+        chartDataProvider.endLap()
+        
+        // hide all of the labels
+        hideLabels()
         
         // get the selected device
         if let device = selectedDevice {
@@ -176,13 +187,17 @@ class DeviceListViewController: UIViewController {
         }
     }
     
-    @IBAction func beginLap(_ sender: Any) {
+    @IBAction func beginLap(_ sender: UIButton) {
         // set the 0 offset for the data provider
-        chartDataProvider.beginLap()
-    }
-    
-    @IBAction func endLap(_ sender: Any) {
-        chartDataProvider.endLap()
+        if chartDataProvider.isInLap() {
+            chartDataProvider.endLap()
+            sender.backgroundColor = .clear
+            sender.setTitleColor(.white, for: .normal)
+        } else {
+            chartDataProvider.beginLap()
+            sender.backgroundColor = .white
+            sender.setTitleColor(.powerBlue, for: .normal)
+        }
     }
     
     @IBAction func startFakePM(_ sender: AnyObject) {
@@ -233,9 +248,29 @@ class DeviceListViewController: UIViewController {
             }
         }
     }
+    override func viewDidLayoutSubviews() {
+        // if there are intersections, hide the labels        
+        enduranceLabel.isHidden = self.enduranceLabel.frame.intersects(self.tempoLabel.frame)
+        tempoLabel.isHidden = self.tempoLabel.frame.intersects(self.lactateLabel.frame)
+        lactateLabel.isHidden = self.lactateLabel.frame.intersects(self.vo2MaxLabel.frame)
+        vo2MaxLabel.isHidden = self.vo2MaxLabel.frame.intersects(self.anaerobicLabel.frame)
+        anaerobicLabel.isHidden = self.anaerobicLabel.frame.intersects(self.neuromuscularLabel.frame)
+
+        guard let zones = zones else {return}
+        if let max = self.chartDataProvider.max?.watts {
+            neuromuscularLabel.isHidden = max.intValue < zones.neuromuscular
+        }
+        
+        self.recoveryLabel.isHidden = self.recoveryLabel.frame.intersects(self.enduranceLabel.frame)
+        // and if the chart min is greater than 0, hide the recovery label
+        if let min = self.chartDataProvider.min?.watts {
+            self.recoveryLabel.isHidden = min.intValue > zones.endurance
+        }
+    }
     
     func updateZoneLabels() {
         guard let max = chartDataProvider.max?.watts else { return }
+        guard let min = chartDataProvider.min?.watts else { return }
         guard let zones = zones else {
             print("No zones set when we attempted to update the labels")
             return
@@ -243,11 +278,8 @@ class DeviceListViewController: UIViewController {
         if max == 0 {
             return
         }
-        if let min = chartDataProvider.min?.watts {
-            let string = String(format: "%@", min)
-            minLabel.text = string
-        }
         
+        minLabel.text = String(format: "%@", min)
         maxLabel.text = String(format: "%@", max)
         
         // attach each of these to the power zone below
@@ -258,25 +290,7 @@ class DeviceListViewController: UIViewController {
         updateZoneLabel(constraint: tempoVerticalConstraint, attachToWattage: zones.endurance)
         updateZoneLabel(constraint: enduranceVerticalConstraint, attachToWattage: zones.activeRecovery)
         
-        UIView.animate(withDuration: 0.8, animations: {
-            self.view.setNeedsLayout()
-        }, completion: {
-            (value: Bool) in
-            
-            // if there are intersections, hide the labels
-            self.enduranceLabel.isHidden = self.enduranceLabel.frame.intersects(self.tempoLabel.frame)
-            self.tempoLabel.isHidden = self.tempoLabel.frame.intersects(self.lactateLabel.frame)
-            self.lactateLabel.isHidden = self.lactateLabel.frame.intersects(self.vo2MaxLabel.frame)
-            self.vo2MaxLabel.isHidden = self.vo2MaxLabel.frame.intersects(self.anaerobicLabel.frame)
-            self.anaerobicLabel.isHidden = self.anaerobicLabel.frame.intersects(self.neuromuscularLabel.frame)
-            
-            self.recoveryLabel.isHidden = self.recoveryLabel.frame.intersects(self.enduranceLabel.frame)
-            // and if the chart min is greater than 0, hide the recovery label
-            if let min = self.chartDataProvider.min?.watts {
-                self.recoveryLabel.isHidden = min.intValue > 0
-            }
-        })
-        
+        view.setNeedsLayout()
     }
     
     func updateZoneLabel(constraint: NSLayoutConstraint, attachToWattage: Int) {
@@ -339,6 +353,7 @@ extension DeviceListViewController {
             for dataPoint in fetchedDataPoints {
                 dataPoints.append(dataPoint)
             }
+
             self?.chartDataProvider.dataPoints = dataPoints
             chartView.reloadData(animated: true)
             
@@ -347,7 +362,7 @@ extension DeviceListViewController {
                 self?.minLabel.text = string
                 self?.maxLabel.text = String(format: "%@", max.watts)
             }
-            
+
             self?.updateZoneLabels()
         }
     }
@@ -388,6 +403,7 @@ extension DeviceListViewController {
                     
                     if insertions.count > 0 && collectionView.numberOfItems(inSection: 0) == 0 {
                         print("first one added")
+                        self?.zones = self?.chartDataProvider.zones
                         self?.hideSearching()
                         if let dataSource = self?.dataSource {
                             let aDevice = dataSource.devices[0]
@@ -399,6 +415,7 @@ extension DeviceListViewController {
 
                     if deletions.count > 0 && collectionView.numberOfItems(inSection: 0) == 0 {
                         print("last one gone")
+                        self?.hideLabels()
                         self?.showSearching()
                     }
                     break

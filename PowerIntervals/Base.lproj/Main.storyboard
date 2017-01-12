@@ -50,7 +50,7 @@
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ngt-3g-RLf" customClass="RoundedTableView" customModule="PowerIntervals" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ngt-3g-RLf">
                                 <rect key="frame" x="16" y="98.5" width="343" height="470"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.2322843309859155" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -164,6 +164,12 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="Rqf-PG-eqL" id="bw0-L8-ARp"/>
                                 </connections>
@@ -257,6 +263,12 @@
                                     <constraint firstItem="Qat-zR-Xkb" firstAttribute="top" secondItem="Ptf-Dl-MaK" secondAttribute="bottom" constant="8" id="s1s-9V-1Oa"/>
                                     <constraint firstItem="Ptf-Dl-MaK" firstAttribute="leading" secondItem="pZe-kL-SWP" secondAttribute="leading" constant="8" id="sNO-Io-sfd"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBound" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -309,7 +321,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="42"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nearby Power Meters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugg-fX-P75">
-                                        <rect key="frame" x="96.5" y="11" width="182" height="20"/>
+                                        <rect key="frame" x="97" y="11" width="182" height="20"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -336,7 +348,7 @@
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qpo-wJ-uWc">
                                 <rect key="frame" x="0.0" y="62" width="375" height="156"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="156" id="yKb-Ur-c0k"/>
@@ -360,19 +372,19 @@
                                                     <color key="backgroundColor" red="0.0" green="0.53333333333333333" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Luk-z7-uXc">
-                                                    <rect key="frame" x="33" y="31.5" width="84" height="36.5"/>
+                                                    <rect key="frame" x="33" y="31" width="84" height="37"/>
                                                     <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="31"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGC-Pf-pCM">
-                                                    <rect key="frame" x="33" y="81.5" width="84" height="36.5"/>
+                                                    <rect key="frame" x="33" y="82" width="84" height="37"/>
                                                     <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="31"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFe-Z6-1UO">
-                                                    <rect key="frame" x="8" y="8" width="134" height="16.5"/>
+                                                    <rect key="frame" x="8" y="8" width="134" height="17"/>
                                                     <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -406,127 +418,126 @@
                                     <outletCollection property="gestureRecognizers" destination="ZSU-eY-Mo7" appends="YES" id="dyJ-aM-BDF"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UrJ-Up-pN4" userLabel="Lap Button">
+                                <rect key="frame" x="197.5" y="228" width="31" height="32"/>
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                <state key="normal" title="Lap">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="beginLap:" destination="4U5-9q-t9i" eventType="touchUpInside" id="3XX-6X-Bey"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LC9-s0-zHU">
+                                <rect key="frame" x="132.5" y="228" width="45" height="32"/>
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                <state key="normal" title="Clear">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clear:" destination="4U5-9q-t9i" eventType="touchUpInside" id="OuW-HM-zQv"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niy-MS-2gu" customClass="JBLineChartView">
-                                <rect key="frame" x="0.0" y="218" width="375" height="449"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="262" width="375" height="405"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0fN-jy-GvZ" userLabel="Chart View Label Wrapper">
-                                <rect key="frame" x="0.0" y="218" width="375" height="449"/>
+                                <rect key="frame" x="0.0" y="262" width="375" height="405"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXe-1e-1vF">
-                                        <rect key="frame" x="10" y="0.0" width="6" height="12"/>
+                                        <rect key="frame" x="359" y="0.0" width="6" height="12"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="10"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uw9-Th-bdl">
-                                        <rect key="frame" x="10" y="429" width="6" height="12"/>
+                                        <rect key="frame" x="359" y="385" width="6" height="12"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="10"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neuromuscular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ise-ov-8tv">
-                                        <rect key="frame" x="0.0" y="290" width="122" height="19"/>
+                                        <rect key="frame" x="0.0" y="246" width="122" height="19"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anaerobic Capacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCX-Kc-cQ4">
-                                        <rect key="frame" x="0.0" y="310" width="155.5" height="19"/>
+                                        <rect key="frame" x="0.0" y="266" width="155.5" height="19"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VO2Max" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbF-sA-gSs">
-                                        <rect key="frame" x="0.0" y="330" width="67" height="19"/>
+                                        <rect key="frame" x="0.0" y="286" width="67" height="19"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lactate Threshold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrg-xQ-uAP">
-                                        <rect key="frame" x="0.0" y="350" width="144" height="19"/>
+                                        <rect key="frame" x="0.0" y="306" width="144" height="19"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tempo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxw-Py-Rp0">
-                                        <rect key="frame" x="0.0" y="370" width="52.5" height="19"/>
+                                        <rect key="frame" x="0.0" y="326" width="52.5" height="19"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Endurance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="2" translatesAutoresizingMaskIntoConstraints="NO" id="D8j-Kq-SNa">
-                                        <rect key="frame" x="0.0" y="400" width="86" height="19"/>
+                                        <rect key="frame" x="0.0" y="356" width="86" height="19"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Active Recovery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo8-Ug-3gN">
-                                        <rect key="frame" x="0.0" y="430" width="129" height="19"/>
+                                        <rect key="frame" x="0.0" y="386" width="129" height="19"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UrJ-Up-pN4" userLabel="Lap Button">
-                                        <rect key="frame" x="345" y="419" width="30" height="30"/>
-                                        <state key="normal" title="Lap">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="beginLap:" destination="4U5-9q-t9i" eventType="touchUpInside" id="3XX-6X-Bey"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOy-M4-P3d">
-                                        <rect key="frame" x="281" y="419" width="56" height="30"/>
-                                        <state key="normal" title="End Lap">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="endLap:" destination="4U5-9q-t9i" eventType="touchUpInside" id="2h7-05-ng2"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LC9-s0-zHU">
-                                        <rect key="frame" x="229" y="419" width="36" height="30"/>
-                                        <state key="normal" title="Clear">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="clear:" destination="4U5-9q-t9i" eventType="touchUpInside" id="OuW-HM-zQv"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="BXe-1e-1vF" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" constant="10" id="1mQ-Xk-fUa"/>
+                                    <constraint firstAttribute="trailing" secondItem="BXe-1e-1vF" secondAttribute="trailing" constant="10" id="1mQ-Xk-fUa"/>
                                     <constraint firstAttribute="bottom" secondItem="Ise-ov-8tv" secondAttribute="bottom" constant="140" id="7X1-TY-viY"/>
                                     <constraint firstItem="Rrg-xQ-uAP" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" id="9VO-A5-xae"/>
-                                    <constraint firstItem="rOy-M4-P3d" firstAttribute="centerY" secondItem="UrJ-Up-pN4" secondAttribute="centerY" id="B8q-AA-LDm"/>
                                     <constraint firstItem="mo8-Ug-3gN" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" id="EBv-yW-gpA"/>
                                     <constraint firstItem="BXe-1e-1vF" firstAttribute="top" secondItem="0fN-jy-GvZ" secondAttribute="top" id="F09-hY-d0l"/>
                                     <constraint firstAttribute="bottom" secondItem="lxw-Py-Rp0" secondAttribute="bottom" constant="60" id="HyY-ye-R5b"/>
-                                    <constraint firstItem="uw9-Th-bdl" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" constant="10" id="Iqi-GK-QaQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="uw9-Th-bdl" secondAttribute="trailing" constant="10" id="Iqi-GK-QaQ"/>
                                     <constraint firstAttribute="bottom" secondItem="mo8-Ug-3gN" secondAttribute="bottom" id="LSs-sS-zhc"/>
-                                    <constraint firstItem="LC9-s0-zHU" firstAttribute="centerY" secondItem="rOy-M4-P3d" secondAttribute="centerY" id="OER-Dh-Nny"/>
                                     <constraint firstItem="Ise-ov-8tv" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" id="Ovh-V0-xtz"/>
                                     <constraint firstAttribute="bottom" secondItem="D8j-Kq-SNa" secondAttribute="bottom" constant="30" id="Qow-6b-sPb"/>
                                     <constraint firstItem="SCX-Kc-cQ4" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" id="ZUr-9B-ao9"/>
-                                    <constraint firstItem="UrJ-Up-pN4" firstAttribute="leading" secondItem="rOy-M4-P3d" secondAttribute="trailing" constant="8" id="Zws-PD-ZK2"/>
                                     <constraint firstAttribute="bottom" secondItem="uw9-Th-bdl" secondAttribute="bottom" constant="8" id="eJ4-ic-DZG"/>
                                     <constraint firstAttribute="bottom" secondItem="AbF-sA-gSs" secondAttribute="bottom" constant="100" id="f6e-rq-i1H"/>
                                     <constraint firstAttribute="bottom" secondItem="SCX-Kc-cQ4" secondAttribute="bottom" constant="120" id="gG1-aN-qfm"/>
                                     <constraint firstItem="lxw-Py-Rp0" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" id="gcn-EA-j71"/>
-                                    <constraint firstItem="rOy-M4-P3d" firstAttribute="leading" secondItem="LC9-s0-zHU" secondAttribute="trailing" constant="16" id="i9Z-Jr-XXB"/>
-                                    <constraint firstAttribute="bottom" secondItem="UrJ-Up-pN4" secondAttribute="bottom" id="jny-X7-JC1"/>
                                     <constraint firstItem="D8j-Kq-SNa" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" id="nHH-T6-zfo"/>
-                                    <constraint firstAttribute="trailing" secondItem="UrJ-Up-pN4" secondAttribute="trailing" id="r84-0D-F1p"/>
                                     <constraint firstAttribute="bottom" secondItem="Rrg-xQ-uAP" secondAttribute="bottom" constant="80" id="rzm-ea-66j"/>
                                     <constraint firstItem="AbF-sA-gSs" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" id="uYV-eK-kK4"/>
                                 </constraints>
@@ -535,32 +546,36 @@
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Yk-e0-dvU">
-                                <rect key="frame" x="172.5" y="642" width="30" height="30"/>
+                                <rect key="frame" x="173" y="642" width="30" height="30"/>
                                 <state key="normal" title="."/>
                                 <connections>
                                     <action selector="startFakePM:" destination="4U5-9q-t9i" eventType="touchUpInside" id="cvB-VT-Sw9"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="niy-MS-2gu" firstAttribute="top" secondItem="qpo-wJ-uWc" secondAttribute="bottom" id="0so-Eb-vgz"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="top" secondItem="qpo-wJ-uWc" secondAttribute="bottom" constant="44" id="0so-Eb-vgz"/>
                             <constraint firstItem="0fN-jy-GvZ" firstAttribute="top" secondItem="niy-MS-2gu" secondAttribute="top" id="7Ja-BI-64v"/>
                             <constraint firstItem="2Yk-e0-dvU" firstAttribute="centerX" secondItem="AsX-J7-rTX" secondAttribute="centerXWithinMargins" id="C4X-zO-wqx"/>
                             <constraint firstItem="niy-MS-2gu" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leading" id="FT5-Tw-jnq"/>
+                            <constraint firstItem="LC9-s0-zHU" firstAttribute="top" secondItem="qpo-wJ-uWc" secondAttribute="bottom" constant="10" id="Lm9-V3-nNq"/>
                             <constraint firstItem="qpo-wJ-uWc" firstAttribute="top" secondItem="Jgp-Rr-sOx" secondAttribute="bottom" id="Obg-hN-c1B"/>
                             <constraint firstAttribute="trailing" secondItem="qpo-wJ-uWc" secondAttribute="trailing" id="PlH-bb-Te7"/>
                             <constraint firstItem="0fN-jy-GvZ" firstAttribute="width" secondItem="niy-MS-2gu" secondAttribute="width" id="RwV-lC-Dfw"/>
                             <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="2Yk-e0-dvU" secondAttribute="centerY" constant="10" id="SqW-nO-Ol2"/>
                             <constraint firstItem="0fN-jy-GvZ" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="leading" id="XpG-8d-n2m"/>
+                            <constraint firstItem="UrJ-Up-pN4" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="centerX" constant="10" id="YSG-fQ-beT"/>
                             <constraint firstAttribute="trailing" secondItem="niy-MS-2gu" secondAttribute="trailing" id="a9Q-lS-T8z"/>
                             <constraint firstItem="Jgp-Rr-sOx" firstAttribute="top" secondItem="i4e-QG-kAU" secondAttribute="bottom" id="bL1-fy-khp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Jgp-Rr-sOx" secondAttribute="trailing" constant="-16" id="bsz-of-SRV"/>
                             <constraint firstItem="Jgp-Rr-sOx" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leadingMargin" constant="-16" id="fJf-XM-oWQ"/>
                             <constraint firstItem="0fN-jy-GvZ" firstAttribute="height" secondItem="niy-MS-2gu" secondAttribute="height" id="jMH-Xg-mGb"/>
+                            <constraint firstItem="UrJ-Up-pN4" firstAttribute="top" secondItem="qpo-wJ-uWc" secondAttribute="bottom" constant="10" id="p3d-go-8Ef"/>
                             <constraint firstItem="K0C-5q-mEt" firstAttribute="top" secondItem="niy-MS-2gu" secondAttribute="bottom" id="pEq-bC-G3w"/>
                             <constraint firstItem="qpo-wJ-uWc" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="leading" id="q4V-q8-VNs"/>
+                            <constraint firstAttribute="centerX" secondItem="LC9-s0-zHU" secondAttribute="trailing" constant="10" id="ujv-bY-Xkc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GGB-2X-Zb7"/>
@@ -601,7 +616,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="610" y="70"/>
+            <point key="canvasLocation" x="608.79999999999995" y="69.715142428785612"/>
         </scene>
     </scenes>
 </document>

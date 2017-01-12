@@ -235,7 +235,6 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
         Mixpanel.mainInstance().track(event: "Valid zones")
 
         // set the zones object
-        print("all checks out, set the object")
         guard completion != nil else {
             return
         }
