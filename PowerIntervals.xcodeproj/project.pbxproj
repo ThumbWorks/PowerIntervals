@@ -400,12 +400,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E3888E11D862E8A00DFC271 /* Build configuration list for PBXNativeTarget "PowerIntervals" */;
 			buildPhases = (
+				5FE61D8B1E1AF6B5006E8BD0 /* ShellScript */,
 				9E3888C01D862E8900DFC271 /* Sources */,
 				9E3888C11D862E8900DFC271 /* Frameworks */,
 				9E3888C21D862E8900DFC271 /* Resources */,
 				9E4472151D90EF8F00CFECCE /* ShellScript */,
 				9E452FE71D958BFF00C96165 /* ShellScript */,
-				5FE61D8B1E1AF6B5006E8BD0 /* ShellScript */,
 			);
 			buildRules = (
 			);
