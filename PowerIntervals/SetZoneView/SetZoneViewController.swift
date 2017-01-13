@@ -18,6 +18,9 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
     @IBOutlet weak var centerYConstraint: NSLayoutConstraint!
     var completion: ((PowerZone) -> Void)?
     
+    var panBegin: CGPoint?
+    var panningCell: SetZoneCell?
+    
     var values: [Int] = [0,0,0,0,0,0,0]
     var originalZones: PowerZone? {
         didSet {
@@ -188,7 +191,7 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
+       
         let badCharacters = NSCharacterSet.decimalDigits.inverted
         if (string.rangeOfCharacter(from: badCharacters) == nil) {
            // This is a number, so far we're good
@@ -275,6 +278,40 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
         // pass it back through the closure
         if let completion = completion {
             completion(userZones)
+        }
+    }
+    @IBAction func pan(_ sender: UIPanGestureRecognizer) {
+        // We mark the place where this pan has begun. 
+        // We also mark the cell where the pan started
+        if sender.state == .began {
+            panBegin = sender.location(in: tableView)
+            if let panBegin = panBegin, let indexPath = tableView.indexPathForRow(at: panBegin) {
+                panningCell = tableView.cellForRow(at: indexPath) as! SetZoneCell?
+            }
+        }
+        
+        // Now that the pan has changed:
+        // 1. get the stop location
+        // 2. determine if it was a vertical or negative y delta
+        // 3) Adjust the textField accordingly
+        // 4) adjust the values array accordingly
+        if sender.state == .changed {
+            guard let oldPan = panBegin else {return}
+            let stopLocation = sender.location(in: tableView)
+            let dy = (oldPan.y - stopLocation.y) > 0 ? 1 : -1;
+            if let text = panningCell?.zoneValueTextField.text, let num = Int(text) {
+                panningCell?.zoneValueTextField.text = String(num + dy)
+                if let cell = panningCell, let row = tableView.indexPath(for: cell)?.row {
+                    values[row] = num
+                }
+            }
+            panBegin = stopLocation
+        }
+        
+        // We're done with panning, clear the stored state
+        if sender.state == .ended {
+            panBegin = nil
+            panningCell = nil
         }
     }
 }

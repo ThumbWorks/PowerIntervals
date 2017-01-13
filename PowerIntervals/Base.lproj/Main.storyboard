@@ -172,6 +172,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="Rqf-PG-eqL" id="bw0-L8-ARp"/>
+                                    <outletCollection property="gestureRecognizers" destination="Ij3-tZ-MXT" appends="YES" id="c31-9s-KzR"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -194,6 +195,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pch-K1-PZt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Ij3-tZ-MXT">
+                    <connections>
+                        <action selector="pan:" destination="Rqf-PG-eqL" id="ohm-Fh-AF3"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1397.5999999999999" y="-543.77811094452773"/>
         </scene>
@@ -321,7 +327,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="42"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nearby Power Meters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugg-fX-P75">
-                                        <rect key="frame" x="97" y="11" width="182" height="20"/>
+                                        <rect key="frame" x="96.5" y="11" width="182" height="20"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
