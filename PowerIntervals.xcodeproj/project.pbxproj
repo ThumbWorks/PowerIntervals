@@ -10,6 +10,8 @@
 		5FE61D8A1E1AE060006E8BD0 /* Mixpanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE61D891E1AE060006E8BD0 /* Mixpanel.framework */; };
 		5FE61D8F1E1B0EE7006E8BD0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE61D8E1E1B0EE7006E8BD0 /* Constants.swift */; };
 		5FE61D911E1B750D006E8BD0 /* Smooch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE61D901E1B750D006E8BD0 /* Smooch.framework */; };
+		5FF5EE071E2948FB00D7F121 /* ChartDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5EE061E2948FB00D7F121 /* ChartDataProviderTests.swift */; };
+		5FF5EE0C1E294D5B00D7F121 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5EE0B1E294D5B00D7F121 /* Logger.swift */; };
 		5FFAB2981E1794DD00012FED /* SetZoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFAB2971E1794DD00012FED /* SetZoneViewController.swift */; };
 		9E145EC41DA21D4E008F88AE /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E452FE51D958BE600C96165 /* Realm.framework */; };
 		9E145EC51DA21D52008F88AE /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E452FE31D958BDE00C96165 /* RealmSwift.framework */; };
@@ -54,7 +56,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9E3888D91D862E8900DFC271 /* PBXContainerItemProxy */ = {
+		5FF5EE091E294D0E00D7F121 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9E3888BC1D862E8900DFC271 /* Project object */;
 			proxyType = 1;
@@ -67,6 +69,8 @@
 		5FE61D891E1AE060006E8BD0 /* Mixpanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mixpanel.framework; path = Carthage/Build/iOS/Mixpanel.framework; sourceTree = "<group>"; };
 		5FE61D8E1E1B0EE7006E8BD0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
 		5FE61D901E1B750D006E8BD0 /* Smooch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Smooch.framework; path = Carthage/Build/iOS/Smooch.framework; sourceTree = "<group>"; };
+		5FF5EE061E2948FB00D7F121 /* ChartDataProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataProviderTests.swift; sourceTree = "<group>"; };
+		5FF5EE0B1E294D5B00D7F121 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		5FFAB2971E1794DD00012FED /* SetZoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetZoneViewController.swift; path = SetZoneView/SetZoneViewController.swift; sourceTree = "<group>"; };
 		9E1CC2B61D911527008AF139 /* DejaVuSans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DejaVuSans.ttf; sourceTree = "<group>"; };
 		9E357AC81DB2CC3000883163 /* WorkoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutManager.swift; sourceTree = "<group>"; };
@@ -157,6 +161,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5FF5EE081E294CC300D7F121 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				5FF5EE0B1E294D5B00D7F121 /* Logger.swift */,
+			);
+			name = Logging;
+			sourceTree = "<group>";
+		};
 		5FFAB2931E17336C00012FED /* SearchingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +215,7 @@
 		9E3888C61D862E8900DFC271 /* PowerIntervals */ = {
 			isa = PBXGroup;
 			children = (
+				5FF5EE081E294CC300D7F121 /* Logging */,
 				5FFAB2961E1794C100012FED /* SetZoneView */,
 				5FFAB2931E17336C00012FED /* SearchingView */,
 				9E145EC11DA1CD52008F88AE /* HardwareConnectionFlow */,
@@ -231,6 +244,7 @@
 			children = (
 				9E3888DC1D862E8A00DFC271 /* PowerIntervalsTests.swift */,
 				9E3888DE1D862E8A00DFC271 /* Info.plist */,
+				5FF5EE061E2948FB00D7F121 /* ChartDataProviderTests.swift */,
 			);
 			path = PowerIntervalsTests;
 			sourceTree = "<group>";
@@ -427,7 +441,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9E3888DA1D862E8900DFC271 /* PBXTargetDependency */,
+				5FF5EE0A1E294D0E00D7F121 /* PBXTargetDependency */,
 			);
 			name = PowerIntervalsTests;
 			productName = PowerIntervalsTests;
@@ -557,6 +571,7 @@
 				9E4523881DB2E4B000C380F2 /* JBGradientBarView.m in Sources */,
 				9E45238D1DB2E4B000C380F2 /* JBLineChartLine.m in Sources */,
 				9EFF88051DD2A3CD00A68058 /* ChartDataProvider.swift in Sources */,
+				5FF5EE0C1E294D5B00D7F121 /* Logger.swift in Sources */,
 				9E8BB37F1D86337700367E60 /* FakePowerMeter.swift in Sources */,
 				9E452FDD1D95813B00C96165 /* PowerSensorDevice.swift in Sources */,
 				9E45238E1DB2E4B000C380F2 /* JBLineChartPoint.m in Sources */,
@@ -587,16 +602,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E3888DD1D862E8A00DFC271 /* PowerIntervalsTests.swift in Sources */,
+				5FF5EE071E2948FB00D7F121 /* ChartDataProviderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9E3888DA1D862E8900DFC271 /* PBXTargetDependency */ = {
+		5FF5EE0A1E294D0E00D7F121 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9E3888C31D862E8900DFC271 /* PowerIntervals */;
-			targetProxy = 9E3888D91D862E8900DFC271 /* PBXContainerItemProxy */;
+			targetProxy = 5FF5EE091E294D0E00D7F121 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

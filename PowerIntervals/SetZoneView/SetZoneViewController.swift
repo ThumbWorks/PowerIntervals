@@ -8,7 +8,6 @@
 
 import Foundation
 import RealmSwift
-import Mixpanel
 
 class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate {
     
@@ -31,7 +30,7 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Mixpanel.mainInstance().track(event: "SetZoneViewController appeared")
+        Logger.track(event: "SetZoneViewController appeared")
         NotificationCenter.default.addObserver(self, selector: #selector(SetZoneViewController.keyboardNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SetZoneViewController.keyboardNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
@@ -226,7 +225,7 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
             let newValue = values[i]
             if newValue >= current || newValue <= 0 {
                 print("invalid")
-                Mixpanel.mainInstance().track(event: "Invalid zones")
+                Logger.track(event: "Invalid zones")
                 let alert = UIAlertController(title: "Invalid Zones", message: "Zone Thresholds must be decreasing", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default))
                 self.present(alert, animated: true)
@@ -235,7 +234,7 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
             current = newValue
         }
         
-        Mixpanel.mainInstance().track(event: "Valid zones")
+        Logger.track(event: "Valid zones")
 
         // set the zones object
         guard completion != nil else {

@@ -33,7 +33,7 @@ extension BluetoothDelegate: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         
         let properties: Properties = ["state": central.state.rawValue]
-        Mixpanel.mainInstance().track(event: "centralManagerDidUpdateState", properties:properties)
+        Logger.track(event: "centralManagerDidUpdateState", properties:properties)
 
         switch central.state {
             
@@ -68,10 +68,10 @@ extension BluetoothDelegate: CBCentralManagerDelegate {
         if let name = peripheral.name {
             print("Did discover peripheral \(name)")
             let properties: Properties = ["RSSI": RSSI.floatValue, "name": name, "state": peripheral.state.rawValue]
-            Mixpanel.mainInstance().track(event: "centralManagerDidDiscoverPeripheral", properties:properties)
+            Logger.track(event: "centralManagerDidDiscoverPeripheral", properties:properties)
         } else {
             let properties: Properties = ["RSSI": RSSI.floatValue]
-            Mixpanel.mainInstance().track(event: "centralManagerDidDiscoverPeripheral", properties:properties)
+            Logger.track(event: "centralManagerDidDiscoverPeripheral", properties:properties)
         }
         
         guard let peripherals = peripherals, let manager = manager else {
@@ -85,9 +85,11 @@ extension BluetoothDelegate: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        print("did connect to peripheral")
         if let name = peripheral.name {
             print("Did connect to peripheral \(name)")
         }
+        
         let services = CBUUID.powerMeter()
         peripheral.delegate = peripheralDelegate
         
@@ -104,6 +106,9 @@ extension BluetoothDelegate: CBCentralManagerDelegate {
             device = PowerSensorDevice()
             // set the deviceIDString only when we create it
             device?.deviceID = peripheral.identifier.uuidString
+            if let name = peripheral.name {
+                device?.userDefinedName = name
+            }
         }
         
         try! realm.write {
@@ -121,10 +126,10 @@ extension BluetoothDelegate: CBCentralManagerDelegate {
         print("Did fail to connect to peripheral \(peripheral.name)")
         if let error = error {
             let properties: Properties = ["error": error.localizedDescription]
-            Mixpanel.mainInstance().track(event: "centralManagerDidFailWithError", properties:properties)
+            Logger.track(event: "centralManagerDidFailWithError", properties:properties)
         }
         else {
-            Mixpanel.mainInstance().track(event: "centralManagerDidFailWithError")
+            Logger.track(event: "centralManagerDidFailWithError")
         }
         
 
@@ -134,11 +139,11 @@ extension BluetoothDelegate: CBCentralManagerDelegate {
         if let error = error {
             print("Disconnect peripheral with error: \(error.localizedDescription)")
             let properties: Properties = ["error": error.localizedDescription]
-            Mixpanel.mainInstance().track(event: "centralManagerDidDisconnectWithError", properties:properties)
+            Logger.track(event: "centralManagerDidDisconnectWithError", properties:properties)
             return
         }
         if let index = peripherals?.index(of: peripheral) {
-            Mixpanel.mainInstance().track(event: "centralManagerDidDisconnectWithoutError")
+            Logger.track(event: "centralManagerDidDisconnectWithoutError")
             _ = peripherals?.remove(at: index)
         }
     }

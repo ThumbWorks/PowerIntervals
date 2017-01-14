@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import RealmSwift
-import Mixpanel
 
 class DeviceListViewController: UIViewController {
     var deviceUpdateToken: NotificationToken?
@@ -65,7 +64,7 @@ class DeviceListViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Mixpanel.mainInstance().track(event: "DeviceListViewController appeared")
+        Logger.track(event: "DeviceListViewController appeared")
 
         startWorkout()
         
@@ -454,7 +453,7 @@ extension DeviceListViewController {
 class SearchingViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
-        Mixpanel.mainInstance().track(event: "SearchingView appeared")
+        Logger.track(event: "SearchingView appeared")
     }
     
     var createFakePMFromSearch: (() -> ())?
