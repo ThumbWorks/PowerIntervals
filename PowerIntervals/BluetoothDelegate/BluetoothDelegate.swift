@@ -266,14 +266,13 @@ extension CBCharacteristic {
             
             data.copyBytes(to: &bytes, count:data.count)
             let data16 = bytes.map { UInt16($0) }
-            
+            // Per https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.cycling_power_measurement.xml
+            // We are looking for the bits that represent the instantaneous power
+            // Testing showed that this is element 2 of 13
             if data16.count == 1 {
                 watts = data16[0]
             } else {
-                watts = 256 * data16[1] + data16[0]
-            }
-            if watts == 16 {
-                print("This is 16")
+                watts = data16[2]
             }
         }
         return watts
