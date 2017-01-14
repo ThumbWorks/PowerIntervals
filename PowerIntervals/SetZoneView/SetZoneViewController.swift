@@ -20,11 +20,11 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
     var panBegin: CGPoint?
     var panningCell: SetZoneCell?
     
-    var values: [Int] = [0,0,0,0,0,0,0]
+    var values: [Int] = [0,0,0,0,0,0]
     var originalZones: PowerZone? {
         didSet {
             if let originalZones = originalZones {
-                values = [originalZones.neuromuscular, originalZones.anaerobicCapacity, originalZones.VO2Max, originalZones.lactateThreshold, originalZones.tempo, originalZones.endurance, originalZones.activeRecovery]
+                values = [originalZones.neuromuscular, originalZones.anaerobicCapacity, originalZones.VO2Max, originalZones.lactateThreshold, originalZones.tempo, originalZones.endurance]
             }
         }
     }
@@ -79,7 +79,7 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return values.count
     }
     
     func decorateCell(cell: SetZoneCell, zoneName: String, color: UIColor, zoneValue: Int, hasNextButton: Bool) {
@@ -132,13 +132,8 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
                              zoneName: PowerZoneAttributes.Endurance.name,
                              color: PowerZoneAttributes.Endurance.color,
                              zoneValue: originalZones.endurance,
-                             hasNextButton: true)
-            case 6:
-                decorateCell(cell: cell,
-                             zoneName: PowerZoneAttributes.ActiveRecovery.name,
-                             color: PowerZoneAttributes.ActiveRecovery.color,
-                             zoneValue: originalZones.activeRecovery,
                              hasNextButton: false)
+           
                 
             default:
                 //no op
@@ -221,7 +216,7 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
         // do some error checking
         print("vals = \(values)")
         var current = values[0]
-        for i in 1...6 {
+        for i in 1...values.count - 1 {
             let newValue = values[i]
             if newValue >= current || newValue <= 0 {
                 print("invalid")
@@ -269,7 +264,6 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
             userZones.lactateThreshold = values[3]
             userZones.tempo = values[4]
             userZones.endurance = values[5]
-            userZones.activeRecovery = values[6]
             
             realm.add(userZones, update: isUpdate)
         }

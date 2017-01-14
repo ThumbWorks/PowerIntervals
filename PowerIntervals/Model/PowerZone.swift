@@ -25,14 +25,14 @@ class PowerZone: Object {
 }
 
 enum PowerZoneAttributes: UInt {
-    case NeuroMuscular = 0, AnaerobicCapacity, VO2Max, LactateThreshold, Tempo, Endurance, ActiveRecovery
+    case NeuroMuscular = 1, AnaerobicCapacity, VO2Max, LactateThreshold, Tempo, Endurance, ActiveRecovery
 
     var fill: UIColor {
         switch self {
         case .ActiveRecovery: return self.color
         case .Endurance: return self.color.withAlphaComponent(0.5)
         case .Tempo: return self.color.withAlphaComponent(0.5)
-        case .LactateThreshold: return self.color.withAlphaComponent(0.3)
+        case .LactateThreshold: return self.color.withAlphaComponent(0.5)
         case .VO2Max: return self.color.withAlphaComponent(0.4)
         case .AnaerobicCapacity: return self.color.withAlphaComponent(0.3)
         case .NeuroMuscular: return self.color.withAlphaComponent(0.3)

@@ -282,12 +282,12 @@ class DeviceListViewController: UIViewController {
         maxLabel.text = String(format: "%@", max)
         
         // attach each of these to the power zone below
-        updateZoneLabel(constraint: neuromuscularVerticalConstraint, attachToWattage: zones.anaerobicCapacity)
-        updateZoneLabel(constraint: anaerobicVerticalConstraint, attachToWattage: zones.VO2Max)
-        updateZoneLabel(constraint: vo2MaxVerticalConstraint, attachToWattage: zones.lactateThreshold)
-        updateZoneLabel(constraint: lactateThresholdVerticalConstraint, attachToWattage: zones.tempo)
-        updateZoneLabel(constraint: tempoVerticalConstraint, attachToWattage: zones.endurance)
-        updateZoneLabel(constraint: enduranceVerticalConstraint, attachToWattage: zones.activeRecovery)
+        updateZoneLabel(constraint: neuromuscularVerticalConstraint, attachToWattage: zones.neuromuscular)
+        updateZoneLabel(constraint: anaerobicVerticalConstraint, attachToWattage: zones.anaerobicCapacity)
+        updateZoneLabel(constraint: vo2MaxVerticalConstraint, attachToWattage: zones.VO2Max)
+        updateZoneLabel(constraint: lactateThresholdVerticalConstraint, attachToWattage: zones.lactateThreshold)
+        updateZoneLabel(constraint: tempoVerticalConstraint, attachToWattage: zones.tempo)
+        updateZoneLabel(constraint: enduranceVerticalConstraint, attachToWattage: zones.endurance)
         
         view.setNeedsLayout()
     }

@@ -34,11 +34,11 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
         return Array(slice)
     }
     
-    func numberOfLines(in lineChartView: JBLineChartView!) -> UInt {
+    func numberOfLines(in _: JBLineChartView!) -> UInt {
         return 8
     }
     
-    func lineChartView(_ lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
+    func lineChartView(_ _: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
         return UInt(displayDataPoints().count)
     }
     
@@ -58,7 +58,7 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
         return CGFloat(ret - min)
     }
     
-    func lineChartView(_ lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
+    func lineChartView(_ _: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
         // zone lines
         if let max = max?.watts.intValue, let min = min?.watts.intValue, let zones = zones {
             if min == max {
@@ -66,12 +66,11 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
             }
             
             switch lineIndex {
-                // Neuromuscular is a special case, you can go over it
+                // The top line should equal the max. Essentially the one before Neuro
+            case PowerZoneAttributes.NeuroMuscular.rawValue - 1:
+                return CGFloat(max - min)
+                
             case PowerZoneAttributes.NeuroMuscular.rawValue:
-                let zoneValue = zones.neuromuscular
-                if max > zoneValue {
-                    return CGFloat(max - min)
-                }
                 return regulate(zoneValue: zones.neuromuscular, min: min, max: max)
             case PowerZoneAttributes.AnaerobicCapacity.rawValue:
                 return regulate(zoneValue: zones.anaerobicCapacity, min: min, max: max)
@@ -83,8 +82,6 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
                 return regulate(zoneValue: zones.tempo, min: min, max: max)
             case PowerZoneAttributes.Endurance.rawValue:
                 return regulate(zoneValue: zones.endurance, min: min, max: max)
-            case PowerZoneAttributes.ActiveRecovery.rawValue:
-                return regulate(zoneValue: zones.activeRecovery, min: min, max: max)
             default:
                 return CGFloat(displayDataPoints()[Int(horizontalIndex)].watts.intValue - min)
             }
@@ -92,65 +89,36 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
         return 0
     }
     
-    func lineChartView(_ lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
+    func lineChartView(_ _: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
         return 1.0
     }
     
-    func lineChartView(_ lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
-        if let zone = PowerZoneAttributes(rawValue: lineIndex) {
+    func lineChartView(_ _: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+     
+        if lineIndex == 0 {
+            return PowerZoneAttributes.NeuroMuscular.color
+        }
+        
+        if let zone = PowerZoneAttributes(rawValue: lineIndex + 1) {
             return zone.color
         }
         return .black
     }
     
-    func lineChartView(_ lineChartView: JBLineChartView!, smoothLineAtLineIndex lineIndex: UInt) -> Bool {
+    func lineChartView(_ _: JBLineChartView!, smoothLineAtLineIndex lineIndex: UInt) -> Bool {
         return true
     }
     
-    func lineChartView(_ lineChartView: JBLineChartView!, fillColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
-        if let zone = PowerZoneAttributes(rawValue: lineIndex) {
+    func lineChartView(_ _: JBLineChartView!, fillColorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
+        if lineIndex == 0 {
+            return PowerZoneAttributes.NeuroMuscular.fill
+        }
+        if let zone = PowerZoneAttributes(rawValue: lineIndex + 1) {
             return zone.fill
         }
-        return nil
+        return .clear
     }
 }
-//NOTE: BELOW THIS IS THE ALL ON THE SAME CHART IMPLEMENTATION
-//extension DeviceListViewController: JBLineChartViewDataSource, JBLineChartViewDelegate {
-//    func numberOfLines(in lineChartView: JBLineChartView!) -> UInt {
-//        let realm = try! Realm()
-//        let connectedDevices = realm.objects(PowerSensorDevice.self).filter("connected = true")
-//        return UInt(connectedDevices.count)
-//    }
-//
-//    func lineChartView(_ lineChartView: JBLineChartView!, numberOfVerticalValuesAtLineIndex lineIndex: UInt) -> UInt {
-//        if let workout = workout, let device = dataSource?.devices[Int(lineIndex)] {
-//            let predicate = NSPredicate(format: "deviceID = %@ and watts > 0", device.deviceID)
-//            return UInt(workout.dataPoints.filter(predicate).count)
-//        }
-//        return 0
-//    }
-//
-//    func lineChartView(_ lineChartView: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
-//
-//        if let workout = workout, let device = dataSource?.devices[Int(lineIndex)]  {
-//            let predicate = NSPredicate(format: "time == %d and deviceID == %@ and watts > 0", horizontalIndex, device.deviceID)
-//            guard let dataPoint = workout.dataPoints.filter(predicate).first else {
-//                return nan("no data")
-//            }
-//            let watts = CGFloat(dataPoint.watts)
-//            return watts
-//        }
-//        return 0
-//    }
-//
-//    func lineChartView(_ lineChartView: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
-//        return UIColor.theme(offset: Int(lineIndex))
-//    }
-//
-//    func lineChartView(_ lineChartView: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
-//        return 1.0
-//    }
-//}
 
 extension ChartDataProvider {
     func isInLap() -> Bool {
@@ -187,7 +155,6 @@ extension ChartDataProvider {
         newPowerZone.lactateThreshold = 500
         newPowerZone.tempo = 350
         newPowerZone.endurance = 200
-        newPowerZone.activeRecovery = 100
         zones = newPowerZone
     }
 }
