@@ -124,6 +124,7 @@ class DeviceListViewController: UIViewController {
             dest.completion =  { (zones) in
                 self.zones = zones
                 self.chartDataProvider.zones = zones
+                print("dismiss set zones")
                 self.dismiss(animated: true, completion: { 
                     if self.collectionView.numberOfItems(inSection: 0) == 0 {
                         self.showSearching()
@@ -207,7 +208,6 @@ class DeviceListViewController: UIViewController {
     
     @IBAction func swipe(_ sender: UIPanGestureRecognizer) {
         if sender.state == .began {
-            print("started swipe")
             panBegin = sender.location(in: view)
         }
         if sender.state == .ended {
@@ -370,7 +370,9 @@ extension DeviceListViewController {
     }
     
     func hideSearching() {
-       dismiss(animated: true)
+        if self.presentedViewController?.isKind(of: SearchingViewController.self) == true {
+            dismiss(animated: true)
+        }
     }
     
     func showSearching() {
