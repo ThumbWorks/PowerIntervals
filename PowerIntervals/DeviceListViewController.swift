@@ -301,8 +301,11 @@ class DeviceListViewController: UIViewController {
         guard let minDataValue = chartDataProvider.min?.watts.intValue else {return}
         guard let maxDataValue = chartDataProvider.max?.watts.intValue else {return}
         
-        if maxDataValue < attachToWattage || minDataValue > attachToWattage {
-            constraint.constant = CGFloat.greatestFiniteMagnitude
+        if maxDataValue < attachToWattage {
+            constraint.constant = CGFloat(maxDataValue)
+            return
+        } else if  minDataValue > attachToWattage {
+            constraint.constant = -50
             return
         }
         
