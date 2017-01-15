@@ -35,7 +35,6 @@ extension DeviceListDataSource: UICollectionViewDataSource {
         }
         if let data = device.currentData {
             cell.power.text = data.formattedPower
-            cell.averagePower.text = data.formattedSpeed
         }
         return cell
     }
@@ -46,12 +45,10 @@ class FormattedCollectionViewSensorCell: UICollectionViewCell {
     @IBOutlet weak var background: UIView!
     @IBOutlet weak var sensorID: UILabel!
     @IBOutlet weak var power: UILabel!
-    @IBOutlet weak var averagePower: UILabel!
     
     override func prepareForReuse() {
         sensorID.text = nil
         power.text = "0"
-        averagePower.text = "0"
     }
     
     override func awakeFromNib() {

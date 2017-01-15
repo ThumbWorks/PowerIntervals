@@ -8,7 +8,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -327,7 +326,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="42"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nearby Power Meters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugg-fX-P75">
-                                        <rect key="frame" x="96.5" y="11" width="182" height="20"/>
+                                        <rect key="frame" x="97" y="11" width="182" height="20"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -353,45 +352,39 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qpo-wJ-uWc">
-                                <rect key="frame" x="0.0" y="62" width="375" height="156"/>
+                                <rect key="frame" x="0.0" y="62" width="375" height="100"/>
                                 <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="156" id="yKb-Ur-c0k"/>
+                                    <constraint firstAttribute="height" constant="100" id="yKb-Ur-c0k"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="3" minimumInteritemSpacing="3" id="0nY-jA-F18">
-                                    <size key="itemSize" width="150" height="150"/>
+                                    <size key="itemSize" width="150" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="3" minY="0.0" maxX="3" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FormattedCollectionViewSensorCellID" id="Lrv-N3-b0r" customClass="FormattedCollectionViewSensorCell" customModule="PowerIntervals" customModuleProvider="target">
-                                        <rect key="frame" x="3" y="3" width="150" height="150"/>
+                                        <rect key="frame" x="3" y="0.0" width="150" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MiB-IK-bxd" userLabel="BackgroundView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
                                                     <color key="backgroundColor" red="0.0" green="0.53333333333333333" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Luk-z7-uXc">
-                                                    <rect key="frame" x="33" y="31" width="84" height="37"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="watts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGC-Pf-pCM">
+                                                    <rect key="frame" x="33" y="36.5" width="85" height="37"/>
                                                     <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="31"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGC-Pf-pCM">
-                                                    <rect key="frame" x="33" y="82" width="84" height="37"/>
-                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="31"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFe-Z6-1UO">
-                                                    <rect key="frame" x="8" y="8" width="134" height="17"/>
-                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="14"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="power meter name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFe-Z6-1UO">
+                                                    <rect key="frame" x="8" y="8" width="134" height="13"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="11"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -399,19 +392,16 @@
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="MiB-IK-bxd" secondAttribute="bottom" id="0Ch-AW-lKV"/>
-                                            <constraint firstItem="Luk-z7-uXc" firstAttribute="centerY" secondItem="Lrv-N3-b0r" secondAttribute="centerY" multiplier="0.66" id="Au1-st-Fmw"/>
                                             <constraint firstItem="MiB-IK-bxd" firstAttribute="top" secondItem="Lrv-N3-b0r" secondAttribute="top" id="JfM-ep-su0"/>
                                             <constraint firstItem="XFe-Z6-1UO" firstAttribute="top" secondItem="Lrv-N3-b0r" secondAttribute="topMargin" id="RRq-6b-aIC"/>
                                             <constraint firstItem="cGC-Pf-pCM" firstAttribute="centerX" secondItem="Lrv-N3-b0r" secondAttribute="centerX" id="Uhv-sW-H8z"/>
                                             <constraint firstAttribute="trailing" secondItem="MiB-IK-bxd" secondAttribute="trailing" id="Wdp-el-8eI"/>
-                                            <constraint firstItem="Luk-z7-uXc" firstAttribute="centerX" secondItem="Lrv-N3-b0r" secondAttribute="centerX" id="bPb-iq-rRe"/>
-                                            <constraint firstItem="cGC-Pf-pCM" firstAttribute="centerY" secondItem="Lrv-N3-b0r" secondAttribute="centerY" multiplier="1.33" id="eQH-Zm-BhU"/>
+                                            <constraint firstItem="cGC-Pf-pCM" firstAttribute="centerY" secondItem="Lrv-N3-b0r" secondAttribute="centerY" constant="5" id="eQH-Zm-BhU"/>
                                             <constraint firstAttribute="leadingMargin" secondItem="XFe-Z6-1UO" secondAttribute="leading" id="p4B-w8-9tZ"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="XFe-Z6-1UO" secondAttribute="trailing" id="wZP-7e-KdE"/>
                                             <constraint firstItem="MiB-IK-bxd" firstAttribute="leading" secondItem="Lrv-N3-b0r" secondAttribute="leading" id="yOF-AH-N3s"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="averagePower" destination="Luk-z7-uXc" id="cZr-qe-7Oi"/>
                                             <outlet property="background" destination="MiB-IK-bxd" id="zju-DY-8ET"/>
                                             <outlet property="power" destination="cGC-Pf-pCM" id="eyk-2n-vye"/>
                                             <outlet property="sensorID" destination="XFe-Z6-1UO" id="BAH-7W-BRQ"/>
@@ -425,7 +415,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UrJ-Up-pN4" userLabel="Lap Button">
-                                <rect key="frame" x="197.5" y="228" width="31" height="32"/>
+                                <rect key="frame" x="197.5" y="172" width="31" height="32"/>
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                 <state key="normal" title="Lap">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -444,7 +434,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LC9-s0-zHU">
-                                <rect key="frame" x="132.5" y="228" width="45" height="32"/>
+                                <rect key="frame" x="132.5" y="172" width="45" height="32"/>
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                 <state key="normal" title="Clear">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -457,12 +447,12 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niy-MS-2gu" customClass="JBLineChartView">
-                                <rect key="frame" x="0.0" y="262" width="375" height="405"/>
+                                <rect key="frame" x="0.0" y="206" width="375" height="461"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0fN-jy-GvZ" userLabel="Chart View Label Wrapper">
-                                <rect key="frame" x="0.0" y="262" width="375" height="405"/>
+                                <rect key="frame" x="0.0" y="206" width="375" height="461"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXe-1e-1vF">
                                         <rect key="frame" x="359" y="0.0" width="6" height="12"/>
@@ -471,55 +461,55 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uw9-Th-bdl">
-                                        <rect key="frame" x="359" y="385" width="6" height="12"/>
+                                        <rect key="frame" x="359" y="441" width="6" height="12"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="10"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neuromuscular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ise-ov-8tv">
-                                        <rect key="frame" x="0.0" y="246" width="122" height="19"/>
+                                        <rect key="frame" x="0.0" y="302" width="122" height="19"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anaerobic Capacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCX-Kc-cQ4">
-                                        <rect key="frame" x="0.0" y="266" width="155.5" height="19"/>
+                                        <rect key="frame" x="0.0" y="322" width="155.5" height="19"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VO2Max" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbF-sA-gSs">
-                                        <rect key="frame" x="0.0" y="286" width="67" height="19"/>
+                                        <rect key="frame" x="0.0" y="342" width="67" height="19"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lactate Threshold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrg-xQ-uAP">
-                                        <rect key="frame" x="0.0" y="306" width="144" height="19"/>
+                                        <rect key="frame" x="0.0" y="362" width="144" height="19"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tempo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxw-Py-Rp0">
-                                        <rect key="frame" x="0.0" y="326" width="52.5" height="19"/>
+                                        <rect key="frame" x="0.0" y="382" width="52.5" height="19"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Endurance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="2" translatesAutoresizingMaskIntoConstraints="NO" id="D8j-Kq-SNa">
-                                        <rect key="frame" x="0.0" y="356" width="86" height="19"/>
+                                        <rect key="frame" x="0.0" y="412" width="86" height="19"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Active Recovery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo8-Ug-3gN">
-                                        <rect key="frame" x="0.0" y="386" width="129" height="19"/>
+                                        <rect key="frame" x="0.0" y="442" width="129" height="19"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

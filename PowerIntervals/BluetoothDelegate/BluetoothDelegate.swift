@@ -189,7 +189,6 @@ extension PeripheralDelegate: CBPeripheralDelegate {
         if let error = error {
             print("error when getting an update \(error.localizedDescription)")
         }
-        print("The power data is, \(characteristic.toPowerData())")        
         let realm = try! Realm()
         
         let predicate = NSPredicate(format: "deviceID == %@", peripheral.identifier.uuidString)
@@ -203,7 +202,6 @@ extension PeripheralDelegate: CBPeripheralDelegate {
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Swift.Error?) {
-        print("didUpdateNotificationState")
         if let error = error {
             print("We got an error \(error.localizedDescription)")
             return
@@ -267,6 +265,12 @@ extension CBCharacteristic {
             data.copyBytes(to: &bytes, count:data.count)
             let data16 = bytes.map { UInt16($0) }
             // Per https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.cycling_power_measurement.xml
+            
+//            print("some space \n\n")
+//            for i in 0...9 {
+//                print("\(i) : \(data[i])")
+//            }
+            
             // We are looking for the bits that represent the instantaneous power
             // Testing showed that this is element 2 of 13
             if data16.count == 1 {
