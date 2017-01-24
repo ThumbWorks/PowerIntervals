@@ -16,16 +16,15 @@ class DeviceListViewController: UIViewController {
 
     var workoutManager: WorkoutManager?
     var workout: GroupWorkout?
-    
+    var zones: PowerZone?
+
     // Store the query results so we can get the change notifications
     var realmDataPoints: Results<WorkoutDataPoint>?
-    
     var selectedDevice: PowerSensorDevice?
-    
     @IBOutlet var dataSource: DeviceListDataSource?
-    
     let chartDataProvider = ChartDataProvider()
     
+    // Power Zone Labels
     @IBOutlet weak var neuromuscularLabel: UILabel!
     @IBOutlet weak var anaerobicLabel: UILabel!
     @IBOutlet weak var vo2MaxLabel: UILabel!
@@ -34,15 +33,18 @@ class DeviceListViewController: UIViewController {
     @IBOutlet weak var enduranceLabel: UILabel!
     @IBOutlet weak var recoveryLabel: UILabel!
     
+    // Lap related components
+    @IBOutlet weak var countdownLabel: UILabel!
+    @IBOutlet weak var lapButton: UIButton!
+    var countdownTimer: Timer?
+    var duration: UInt = 0
+
     // UIViews
     @IBOutlet weak var chartView: JBLineChartView!
     @IBOutlet weak var maxLabel: UILabel!
     @IBOutlet weak var minLabel: UILabel!
     @IBOutlet var debugButtons: [UIButton]!
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    // Lap Button
-    @IBOutlet weak var lapButton: UIButton!
     
     // zone label constraints
     @IBOutlet weak var neuromuscularVerticalConstraint: NSLayoutConstraint!
@@ -53,10 +55,11 @@ class DeviceListViewController: UIViewController {
     @IBOutlet weak var enduranceVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var activeRecoveryVerticalConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var chartTopConstraint: NSLayoutConstraint!
+    
     // some debug things
     var fakePowerMeters = [FakePowerMeter]()
     var panBegin: CGPoint?
-    var zones: PowerZone?
     
     override func viewWillAppear(_ animated: Bool) {
         #if !DEBUG
@@ -110,20 +113,24 @@ class DeviceListViewController: UIViewController {
         vo2MaxVerticalConstraint.constant = 0
         anaerobicVerticalConstraint.constant = 0
         neuromuscularVerticalConstraint.constant = 0
+        chartTopConstraint.constant = 0
     }
-    
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "StartLapSegueID" {
             let dest = segue.destination as! StartLapViewController
             dest.tappedZone = { (duration) in
-                print("duration \(duration)")
                 self.dismiss(animated: true)
                 
                 if duration == 0 {
                     return
                 }
-                //TODO: at this point I need to start the timer
+                
+                self.showCountdown()
+                self.duration = duration
+                self.startTimer()
+                
                 self.chartDataProvider.beginLap()
                 self.lapButton.backgroundColor = .white
                 self.lapButton.setTitleColor(.powerBlue, for: .normal)
@@ -173,16 +180,6 @@ class DeviceListViewController: UIViewController {
         workoutManager.startWorkout()
     }
     
-    func hideLabels() {
-        self.recoveryLabel.isHidden = true
-        self.enduranceLabel.isHidden = true
-        self.tempoLabel.isHidden = true
-        self.lactateLabel.isHidden = true
-        self.vo2MaxLabel.isHidden = true
-        self.anaerobicLabel.isHidden = true
-        self.neuromuscularLabel.isHidden = true
-    }
-    
     @IBAction func clear(_ sender: Any) {
         print("clear")
         
@@ -209,11 +206,38 @@ class DeviceListViewController: UIViewController {
             chartDataProvider.endLap()
             sender.backgroundColor = .clear
             sender.setTitleColor(.white, for: .normal)
+            hideCountdown()
+            countdownTimer?.invalidate()
+            countdownTimer = nil
         } else {
             performSegue(withIdentifier: "StartLapSegueID", sender: nil)
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        // if there are intersections, hide the labels        
+        enduranceLabel.isHidden = self.enduranceLabel.frame.intersects(self.tempoLabel.frame)
+        tempoLabel.isHidden = self.tempoLabel.frame.intersects(self.lactateLabel.frame)
+        lactateLabel.isHidden = self.lactateLabel.frame.intersects(self.vo2MaxLabel.frame)
+        vo2MaxLabel.isHidden = self.vo2MaxLabel.frame.intersects(self.anaerobicLabel.frame)
+        anaerobicLabel.isHidden = self.anaerobicLabel.frame.intersects(self.neuromuscularLabel.frame)
+
+        guard let zones = zones else {return}
+        if let max = self.chartDataProvider.max?.watts {
+            neuromuscularLabel.isHidden = max.intValue < zones.neuromuscular
+        }
+        
+        self.recoveryLabel.isHidden = self.recoveryLabel.frame.intersects(self.enduranceLabel.frame)
+        // and if the chart min is greater than 0, hide the recovery label
+        if let min = self.chartDataProvider.min?.watts {
+            self.recoveryLabel.isHidden = min.intValue > zones.endurance
+        }
+    }
+}
+
+// Debug things
+extension DeviceListViewController {
+    // Debug code for starting a fake PM
     @IBAction func startFakePM(_ sender: AnyObject) {
         let newPowerMeter = FakePowerMeter()
         newPowerMeter.startButton()
@@ -261,26 +285,10 @@ class DeviceListViewController: UIViewController {
             }
         }
     }
-    
-    override func viewDidLayoutSubviews() {
-        // if there are intersections, hide the labels        
-        enduranceLabel.isHidden = self.enduranceLabel.frame.intersects(self.tempoLabel.frame)
-        tempoLabel.isHidden = self.tempoLabel.frame.intersects(self.lactateLabel.frame)
-        lactateLabel.isHidden = self.lactateLabel.frame.intersects(self.vo2MaxLabel.frame)
-        vo2MaxLabel.isHidden = self.vo2MaxLabel.frame.intersects(self.anaerobicLabel.frame)
-        anaerobicLabel.isHidden = self.anaerobicLabel.frame.intersects(self.neuromuscularLabel.frame)
+}
 
-        guard let zones = zones else {return}
-        if let max = self.chartDataProvider.max?.watts {
-            neuromuscularLabel.isHidden = max.intValue < zones.neuromuscular
-        }
-        
-        self.recoveryLabel.isHidden = self.recoveryLabel.frame.intersects(self.enduranceLabel.frame)
-        // and if the chart min is greater than 0, hide the recovery label
-        if let min = self.chartDataProvider.min?.watts {
-            self.recoveryLabel.isHidden = min.intValue > zones.endurance
-        }
-    }
+// notification extension
+extension DeviceListViewController {
     
     func updateZoneLabels() {
         guard let max = chartDataProvider.max?.watts else { return }
@@ -327,15 +335,51 @@ class DeviceListViewController: UIViewController {
         
         // Formula is ((zone - min) * height) / (max - min)
         let chartHeight = chartView.frame.height
-
+        
         let pixelsPerWatt = chartHeight / range
         let constant = pixelsPerWatt * CGFloat(attachToWattage - minDataValue)
         constraint.constant = constant + 5
     }
-}
-
-// notification extension
-extension DeviceListViewController {
+    
+    func startTimer() {
+        countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+            self.countdownLabel.text = self.duration.stringForTime()
+            if self.duration == 0 {
+                timer.invalidate()
+                self.lapButton.backgroundColor = .clear
+                self.lapButton.setTitleColor(.white, for: .normal)
+                self.countdownTimer = nil
+                self.hideCountdown()
+            } else {
+                self.duration = self.duration - 1
+            }
+        }
+    }
+    
+    func hideLabels() {
+        self.recoveryLabel.isHidden = true
+        self.enduranceLabel.isHidden = true
+        self.tempoLabel.isHidden = true
+        self.lactateLabel.isHidden = true
+        self.vo2MaxLabel.isHidden = true
+        self.anaerobicLabel.isHidden = true
+        self.neuromuscularLabel.isHidden = true
+    }
+    
+    func hideCountdown() {
+        self.chartTopConstraint.constant = 0
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+            self.view.layoutSubviews()
+        })
+    }
+    
+    func showCountdown() {
+        self.chartTopConstraint.constant = 85
+        UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveEaseInOut, animations: {
+            self.view.layoutSubviews()
+        })
+    }
+    
     func setupSelectedDeviceToken() {
         if let token = deviceUpdateToken {
             token.stop()
