@@ -55,6 +55,10 @@ class DeviceListViewController: UIViewController {
     @IBOutlet weak var enduranceVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var activeRecoveryVerticalConstraint: NSLayoutConstraint!
     
+    // convencience collections
+    @IBOutlet var zoneConstraintsCollection: [NSLayoutConstraint]!
+    @IBOutlet var zoneLabelCollection: [UILabel]!
+    
     @IBOutlet weak var chartTopConstraint: NSLayoutConstraint!
     
     // some debug things
@@ -106,14 +110,11 @@ class DeviceListViewController: UIViewController {
 
         setupNotificationTokens()
         hideLabels()
-        activeRecoveryVerticalConstraint.constant = 0
-        enduranceVerticalConstraint.constant = 0
-        tempoVerticalConstraint.constant = 0
-        lactateThresholdVerticalConstraint.constant = 0
-        vo2MaxVerticalConstraint.constant = 0
-        anaerobicVerticalConstraint.constant = 0
-        neuromuscularVerticalConstraint.constant = 0
+        
         chartTopConstraint.constant = 0
+        for constraint in zoneConstraintsCollection {
+            constraint.constant = 0
+        }
     }
         
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -350,6 +351,7 @@ extension DeviceListViewController {
                 self.lapButton.setTitleColor(.white, for: .normal)
                 self.countdownTimer = nil
                 self.hideCountdown()
+                self.chartDataProvider.endLap()
             } else {
                 self.duration = self.duration - 1
             }
@@ -357,13 +359,9 @@ extension DeviceListViewController {
     }
     
     func hideLabels() {
-        self.recoveryLabel.isHidden = true
-        self.enduranceLabel.isHidden = true
-        self.tempoLabel.isHidden = true
-        self.lactateLabel.isHidden = true
-        self.vo2MaxLabel.isHidden = true
-        self.anaerobicLabel.isHidden = true
-        self.neuromuscularLabel.isHidden = true
+        for zone in zoneLabelCollection {
+            zone.isHidden = true
+        }
     }
     
     func hideCountdown() {

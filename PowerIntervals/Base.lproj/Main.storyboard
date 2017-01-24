@@ -850,6 +850,14 @@
                         <outlet property="vo2MaxLabel" destination="AbF-sA-gSs" id="6a0-tk-WDM"/>
                         <outlet property="vo2MaxVerticalConstraint" destination="f6e-rq-i1H" id="pW6-Gj-nGM"/>
                         <outletCollection property="debugButtons" destination="2Yk-e0-dvU" collectionClass="NSMutableArray" id="3eK-sn-tYP"/>
+                        <outletCollection property="zoneConstraintsCollection" destination="7X1-TY-viY" collectionClass="NSMutableArray" id="u2V-Uf-5eB"/>
+                        <outletCollection property="zoneConstraintsCollection" destination="gG1-aN-qfm" collectionClass="NSMutableArray" id="412-1E-8x2"/>
+                        <outletCollection property="zoneConstraintsCollection" destination="f6e-rq-i1H" collectionClass="NSMutableArray" id="iJR-u8-p6n"/>
+                        <outletCollection property="zoneConstraintsCollection" destination="rzm-ea-66j" collectionClass="NSMutableArray" id="4c5-Ha-cKt"/>
+                        <outletCollection property="zoneConstraintsCollection" destination="HyY-ye-R5b" collectionClass="NSMutableArray" id="H0f-rD-T3y"/>
+                        <outletCollection property="zoneConstraintsCollection" destination="Qow-6b-sPb" collectionClass="NSMutableArray" id="OSM-W1-41Q"/>
+                        <outletCollection property="zoneConstraintsCollection" destination="LSs-sS-zhc" collectionClass="NSMutableArray" id="WUR-51-uSJ"/>
+                        <outletCollection property="zoneLabelCollection" destination="mo8-Ug-3gN" collectionClass="NSMutableArray" id="vNx-qI-3SI"/>
                         <segue destination="JBl-bu-do5" kind="presentation" identifier="SearchingSegueID" id="VhI-eB-sGA"/>
                         <segue destination="ID8-iR-w2t" kind="presentation" identifier="StartLapSegueID" id="83g-nI-vTa"/>
                     </connections>
