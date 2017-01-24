@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F90DEA31E2E93060067F744 /* StartLapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F90DEA21E2E93060067F744 /* StartLapViewController.swift */; };
+		5F90DEA51E2E93140067F744 /* LapDurationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F90DEA41E2E93140067F744 /* LapDurationCell.swift */; };
+		5F979BAD1E3089A3009FF7DA /* CustomDurationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F979BAC1E3089A3009FF7DA /* CustomDurationPickerViewController.swift */; };
 		5FE61D8A1E1AE060006E8BD0 /* Mixpanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE61D891E1AE060006E8BD0 /* Mixpanel.framework */; };
 		5FE61D8F1E1B0EE7006E8BD0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE61D8E1E1B0EE7006E8BD0 /* Constants.swift */; };
 		5FE61D911E1B750D006E8BD0 /* Smooch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE61D901E1B750D006E8BD0 /* Smooch.framework */; };
@@ -66,6 +69,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F90DEA21E2E93060067F744 /* StartLapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartLapViewController.swift; sourceTree = "<group>"; };
+		5F90DEA41E2E93140067F744 /* LapDurationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LapDurationCell.swift; sourceTree = "<group>"; };
+		5F979BAC1E3089A3009FF7DA /* CustomDurationPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomDurationPickerViewController.swift; path = Classes/CustomDurationPickerViewController.swift; sourceTree = "<group>"; };
 		5FE61D891E1AE060006E8BD0 /* Mixpanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mixpanel.framework; path = Carthage/Build/iOS/Mixpanel.framework; sourceTree = "<group>"; };
 		5FE61D8E1E1B0EE7006E8BD0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
 		5FE61D901E1B750D006E8BD0 /* Smooch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Smooch.framework; path = Carthage/Build/iOS/Smooch.framework; sourceTree = "<group>"; };
@@ -161,6 +167,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F90DEA11E2E92F50067F744 /* Start Lap */ = {
+			isa = PBXGroup;
+			children = (
+				5F979BAC1E3089A3009FF7DA /* CustomDurationPickerViewController.swift */,
+				5F90DEA21E2E93060067F744 /* StartLapViewController.swift */,
+				5F90DEA41E2E93140067F744 /* LapDurationCell.swift */,
+			);
+			name = "Start Lap";
+			sourceTree = "<group>";
+		};
 		5FF5EE081E294CC300D7F121 /* Logging */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +251,7 @@
 				9EFDBB0D1D8854A600C56D97 /* WahooHardware.swift */,
 				9E452FE21D95841800C96165 /* Utility */,
 				9E452FE11D9583F700C96165 /* Resources */,
+				5F90DEA11E2E92F50067F744 /* Start Lap */,
 			);
 			path = PowerIntervals;
 			sourceTree = "<group>";
@@ -580,7 +597,9 @@
 				5FFAB2981E1794DD00012FED /* SetZoneViewController.swift in Sources */,
 				9EE6E48E1DA7E26700E9F3BC /* BluetoothDelegate.swift in Sources */,
 				9E4523901DB2E4B000C380F2 /* JBLineChartDotView.m in Sources */,
+				5F90DEA31E2E93060067F744 /* StartLapViewController.swift in Sources */,
 				9EB4F46F1DC5567000B7045E /* PowerZone.swift in Sources */,
+				5F979BAD1E3089A3009FF7DA /* CustomDurationPickerViewController.swift in Sources */,
 				9E357AC91DB2CC3000883163 /* WorkoutManager.swift in Sources */,
 				9E4523871DB2E4B000C380F2 /* JBBarChartView.m in Sources */,
 				9E3888C81D862E8900DFC271 /* AppDelegate.swift in Sources */,
@@ -593,6 +612,7 @@
 				9E4523891DB2E4B000C380F2 /* JBChartView.m in Sources */,
 				9E452FDA1D956FA600C96165 /* DeviceListViewController.swift in Sources */,
 				9E45238C1DB2E4B000C380F2 /* JBShapeLineLayer.m in Sources */,
+				5F90DEA51E2E93140067F744 /* LapDurationCell.swift in Sources */,
 				5FE61D8F1E1B0EE7006E8BD0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -41,6 +41,9 @@ class DeviceListViewController: UIViewController {
     @IBOutlet var debugButtons: [UIButton]!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    // Lap Button
+    @IBOutlet weak var lapButton: UIButton!
+    
     // zone label constraints
     @IBOutlet weak var neuromuscularVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var anaerobicVerticalConstraint: NSLayoutConstraint!
@@ -110,15 +113,28 @@ class DeviceListViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SearchingSegueID" {
+        
+        if segue.identifier == "StartLapSegueID" {
+            let dest = segue.destination as! StartLapViewController
+            dest.tappedZone = { (duration) in
+                print("duration \(duration)")
+                self.dismiss(animated: true)
+                
+                if duration == 0 {
+                    return
+                }
+                //TODO: at this point I need to start the timer
+                self.chartDataProvider.beginLap()
+                self.lapButton.backgroundColor = .white
+                self.lapButton.setTitleColor(.powerBlue, for: .normal)
+            }
+        } else if segue.identifier == "SearchingSegueID" {
             let dest = segue.destination as! SearchingViewController
             dest.createFakePMFromSearch = {
                 print("tapped")
                 self.startFakePM(self)
             }
-        }
-        
-        if segue.identifier == "SetZonesSegueID" {
+        } else if segue.identifier == "SetZonesSegueID" {
             let dest = segue.destination as! SetZoneViewController
             dest.originalZones = zones
             dest.completion =  { (zones) in
@@ -194,9 +210,7 @@ class DeviceListViewController: UIViewController {
             sender.backgroundColor = .clear
             sender.setTitleColor(.white, for: .normal)
         } else {
-            chartDataProvider.beginLap()
-            sender.backgroundColor = .white
-            sender.setTitleColor(.powerBlue, for: .normal)
+            performSegue(withIdentifier: "StartLapSegueID", sender: nil)
         }
     }
     
@@ -247,6 +261,7 @@ class DeviceListViewController: UIViewController {
             }
         }
     }
+    
     override func viewDidLayoutSubviews() {
         // if there are intersections, hide the labels        
         enduranceLabel.isHidden = self.enduranceLabel.frame.intersects(self.tempoLabel.frame)
@@ -272,6 +287,7 @@ class DeviceListViewController: UIViewController {
         guard let min = chartDataProvider.min?.watts else { return }
         guard let zones = zones else {
             print("No zones set when we attempted to update the labels")
+            hideLabels()
             return
         }
         if max == 0 {
@@ -314,7 +330,7 @@ class DeviceListViewController: UIViewController {
 
         let pixelsPerWatt = chartHeight / range
         let constant = pixelsPerWatt * CGFloat(attachToWattage - minDataValue)
-        constraint.constant = constant
+        constraint.constant = constant + 5
     }
 }
 
