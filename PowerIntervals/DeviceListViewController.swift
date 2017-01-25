@@ -33,6 +33,8 @@ class DeviceListViewController: UIViewController {
     @IBOutlet weak var enduranceLabel: UILabel!
     @IBOutlet weak var recoveryLabel: UILabel!
     
+    @IBOutlet weak var intervalAverageLabel: UILabel!
+    
     // Interval related components
     @IBOutlet weak var countdownLabel: UILabel!
     @IBOutlet weak var intervalButton: UIButton!
@@ -54,6 +56,7 @@ class DeviceListViewController: UIViewController {
     @IBOutlet weak var tempoVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var enduranceVerticalConstraint: NSLayoutConstraint!
     @IBOutlet weak var activeRecoveryVerticalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var averageValueVerticalConstraing: NSLayoutConstraint!
     
     // convencience collections
     @IBOutlet var zoneConstraintsCollection: [NSLayoutConstraint]!
@@ -135,6 +138,7 @@ class DeviceListViewController: UIViewController {
                 self.chartDataProvider.beginInterval()
                 self.intervalButton.backgroundColor = .white
                 self.intervalButton.setTitleColor(.powerBlue, for: .normal)
+                self.intervalAverageLabel.isHidden = false
             }
         } else if segue.identifier == "SearchingSegueID" {
             let dest = segue.destination as! SearchingViewController
@@ -209,6 +213,7 @@ class DeviceListViewController: UIViewController {
             hideCountdown()
             countdownTimer?.invalidate()
             countdownTimer = nil
+            intervalAverageLabel.isHidden = true
         } else {
             performSegue(withIdentifier: "StartIntervalSegueID", sender: nil)
         }
@@ -313,6 +318,11 @@ extension DeviceListViewController {
         updateZoneLabel(constraint: tempoVerticalConstraint, attachToWattage: zones.tempo)
         updateZoneLabel(constraint: enduranceVerticalConstraint, attachToWattage: zones.endurance)
         
+        if chartDataProvider.isInInterval() {
+            let average = chartDataProvider.intervalAverage()
+            updateZoneLabel(constraint: averageValueVerticalConstraing, attachToWattage: Int(average))
+        }
+        
         view.setNeedsLayout()
     }
     
@@ -351,8 +361,11 @@ extension DeviceListViewController {
                 self.countdownTimer = nil
                 self.hideCountdown()
                 self.chartDataProvider.endInterval()
+                self.intervalAverageLabel.text = ""
             } else {
                 self.duration = self.duration - 1
+                let provider = self.chartDataProvider
+                self.intervalAverageLabel.text = String(provider.intervalAverage())
             }
         }
     }

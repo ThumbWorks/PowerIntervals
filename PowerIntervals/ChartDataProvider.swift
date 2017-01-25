@@ -92,7 +92,7 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
                 return CGFloat(displayDataPoints()[Int(horizontalIndex)].watts.uintValue - min)
 
             default:
-                let average = Int(intervalAverage(dataPoints: displayDataPoints()))
+                let average = Int(intervalAverage())
                 return regulate(zoneValue: average, min: min, max: max)
             }
         }
@@ -135,12 +135,12 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
 }
 
 extension ChartDataProvider {
-    func intervalAverage(dataPoints: [WorkoutDataPoint]) -> UInt {
+    func intervalAverage() -> UInt {
         var sum:UInt = 0
-        for point in dataPoints {
+        for point in displayDataPoints() {
             sum = sum + point.watts.uintValue
         }
-        return sum / UInt(dataPoints.count)
+        return sum / UInt(displayDataPoints().count)
     }
     
     func isInInterval() -> Bool {

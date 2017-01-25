@@ -764,12 +764,20 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3st-zT-K2b">
+                                        <rect key="frame" x="299" y="219" width="66" height="19"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="BXe-1e-1vF" secondAttribute="trailing" constant="10" id="1mQ-Xk-fUa"/>
                                     <constraint firstAttribute="bottom" secondItem="Ise-ov-8tv" secondAttribute="bottom" constant="140" id="7X1-TY-viY"/>
                                     <constraint firstItem="Rrg-xQ-uAP" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" constant="10" id="9VO-A5-xae"/>
+                                    <constraint firstAttribute="trailing" secondItem="3st-zT-K2b" secondAttribute="trailing" constant="10" id="E9O-Wi-syb"/>
                                     <constraint firstItem="mo8-Ug-3gN" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" constant="10" id="EBv-yW-gpA"/>
                                     <constraint firstItem="BXe-1e-1vF" firstAttribute="top" secondItem="0fN-jy-GvZ" secondAttribute="top" id="F09-hY-d0l"/>
                                     <constraint firstAttribute="bottom" secondItem="lxw-Py-Rp0" secondAttribute="bottom" constant="60" id="HyY-ye-R5b"/>
@@ -777,6 +785,7 @@
                                     <constraint firstAttribute="bottom" secondItem="mo8-Ug-3gN" secondAttribute="bottom" id="LSs-sS-zhc"/>
                                     <constraint firstItem="Ise-ov-8tv" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" constant="10" id="Ovh-V0-xtz"/>
                                     <constraint firstAttribute="bottom" secondItem="D8j-Kq-SNa" secondAttribute="bottom" constant="30" id="Qow-6b-sPb"/>
+                                    <constraint firstAttribute="bottom" secondItem="3st-zT-K2b" secondAttribute="bottom" constant="140" id="YNm-hi-z9C"/>
                                     <constraint firstItem="SCX-Kc-cQ4" firstAttribute="leading" secondItem="0fN-jy-GvZ" secondAttribute="leading" constant="10" id="ZUr-9B-ao9"/>
                                     <constraint firstAttribute="bottom" secondItem="uw9-Th-bdl" secondAttribute="bottom" constant="8" id="eJ4-ic-DZG"/>
                                     <constraint firstAttribute="bottom" secondItem="AbF-sA-gSs" secondAttribute="bottom" constant="100" id="f6e-rq-i1H"/>
@@ -830,6 +839,7 @@
                         <outlet property="activeRecoveryVerticalConstraint" destination="LSs-sS-zhc" id="UEO-dZ-z5e"/>
                         <outlet property="anaerobicLabel" destination="SCX-Kc-cQ4" id="33K-y8-I0g"/>
                         <outlet property="anaerobicVerticalConstraint" destination="gG1-aN-qfm" id="76V-c6-ALk"/>
+                        <outlet property="averageValueVerticalConstraing" destination="YNm-hi-z9C" id="QWU-lK-mSJ"/>
                         <outlet property="chartTopConstraint" destination="Yg1-xs-4sk" id="vHW-5j-3kE"/>
                         <outlet property="chartView" destination="niy-MS-2gu" id="NKd-WQ-fgn"/>
                         <outlet property="collectionView" destination="qpo-wJ-uWc" id="A5S-O7-ViC"/>
@@ -837,6 +847,7 @@
                         <outlet property="dataSource" destination="sA6-tO-nNK" id="5S5-F1-x7m"/>
                         <outlet property="enduranceLabel" destination="D8j-Kq-SNa" id="8zn-1J-FfH"/>
                         <outlet property="enduranceVerticalConstraint" destination="Qow-6b-sPb" id="XJP-fc-HPC"/>
+                        <outlet property="intervalAverageLabel" destination="3st-zT-K2b" id="mdU-r8-lwA"/>
                         <outlet property="intervalButton" destination="UrJ-Up-pN4" id="a1O-T4-yXo"/>
                         <outlet property="lactateLabel" destination="Rrg-xQ-uAP" id="004-9n-Hvl"/>
                         <outlet property="lactateThresholdVerticalConstraint" destination="rzm-ea-66j" id="wCS-5v-vcZ"/>
@@ -858,6 +869,8 @@
                         <outletCollection property="zoneConstraintsCollection" destination="Qow-6b-sPb" collectionClass="NSMutableArray" id="OSM-W1-41Q"/>
                         <outletCollection property="zoneConstraintsCollection" destination="LSs-sS-zhc" collectionClass="NSMutableArray" id="WUR-51-uSJ"/>
                         <outletCollection property="zoneLabelCollection" destination="mo8-Ug-3gN" collectionClass="NSMutableArray" id="vNx-qI-3SI"/>
+                        <outletCollection property="zoneLabelCollection" destination="3st-zT-K2b" collectionClass="NSMutableArray" id="hj7-xm-44S"/>
+                        <outletCollection property="zoneConstraintsCollection" destination="YNm-hi-z9C" collectionClass="NSMutableArray" id="ugU-yi-T3X"/>
                         <segue destination="JBl-bu-do5" kind="presentation" identifier="SearchingSegueID" id="VhI-eB-sGA"/>
                         <segue destination="ID8-iR-w2t" kind="presentation" identifier="StartIntervalSegueID" id="83g-nI-vTa"/>
                     </connections>
