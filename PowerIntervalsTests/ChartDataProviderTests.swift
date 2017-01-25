@@ -64,6 +64,27 @@ class ChartDataProviderTests: XCTestCase {
 
     }
     
+    func testLapAverage() {
+        let chartDataProvider = ChartDataProvider()
+        chartDataProvider.beginLap()
+        chartDataProvider.dataPoints = dataPoints
+        chartDataProvider.zones = powerZones
+        
+        // Standard stuff
+        XCTAssertEqual(1001, chartDataProvider.lineChartView(nil, verticalValueForHorizontalIndex: 0, atLineIndex: 0))
+        XCTAssertEqual(1000, chartDataProvider.lineChartView(nil, verticalValueForHorizontalIndex: 0, atLineIndex: 1))
+        XCTAssertEqual(759, chartDataProvider.lineChartView(nil, verticalValueForHorizontalIndex: 0, atLineIndex: 2))
+        XCTAssertEqual(600, chartDataProvider.lineChartView(nil, verticalValueForHorizontalIndex: 0, atLineIndex: 3))
+        XCTAssertEqual(500, chartDataProvider.lineChartView(nil, verticalValueForHorizontalIndex: 0, atLineIndex: 4))
+        XCTAssertEqual(350, chartDataProvider.lineChartView(nil, verticalValueForHorizontalIndex: 0, atLineIndex: 5))
+        XCTAssertEqual(200, chartDataProvider.lineChartView(nil, verticalValueForHorizontalIndex: 0, atLineIndex: 6))
+        XCTAssertEqual(0, chartDataProvider.lineChartView(nil, verticalValueForHorizontalIndex: 0, atLineIndex: 7))
+
+        // The real test
+        let averageLine = chartDataProvider.lineChartView(nil, verticalValueForHorizontalIndex: 0, atLineIndex: 8)
+        XCTAssertEqual(averageLine, 500)
+
+    }
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

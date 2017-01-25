@@ -20,11 +20,11 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
     var panBegin: CGPoint?
     var panningCell: SetZoneCell?
     
-    var values: [Int] = [0,0,0,0,0,0]
+    var values: [UInt] = [0,0,0,0,0,0]
     var originalZones: PowerZone? {
         didSet {
             if let originalZones = originalZones {
-                values = [originalZones.neuromuscular, originalZones.anaerobicCapacity, originalZones.VO2Max, originalZones.lactateThreshold, originalZones.tempo, originalZones.endurance]
+                values = [UInt(originalZones.neuromuscular), UInt(originalZones.anaerobicCapacity), UInt(originalZones.VO2Max), UInt(originalZones.lactateThreshold), UInt(originalZones.tempo), UInt(originalZones.endurance)]
             }
         }
     }
@@ -195,7 +195,7 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
                 if (cell.contentView.subviews.contains(textField)) {
                     if let index = tableView.indexPath(for: cell)?.row {
                         let newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
-                        if let i = Int(newString) {
+                        if let i = UInt(newString) {
                             values[index] = i
                         }
                     }
@@ -258,12 +258,12 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
         // now save the zones object
         try! realm.write {
             // update the object if it exists, otherwise create it
-            userZones.neuromuscular = values[0]
-            userZones.anaerobicCapacity = values[1]
-            userZones.VO2Max = values[2]
-            userZones.lactateThreshold = values[3]
-            userZones.tempo = values[4]
-            userZones.endurance = values[5]
+            userZones.neuromuscular = Int(values[0])
+            userZones.anaerobicCapacity = Int(values[1])
+            userZones.VO2Max = Int(values[2])
+            userZones.lactateThreshold = Int(values[3])
+            userZones.tempo = Int(values[4])
+            userZones.endurance = Int(values[5])
             
             realm.add(userZones, update: isUpdate)
         }
@@ -295,7 +295,7 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
             if let text = panningCell?.zoneValueTextField.text, let num = Int(text) {
                 panningCell?.zoneValueTextField.text = String(num + dy)
                 if let cell = panningCell, let row = tableView.indexPath(for: cell)?.row {
-                    values[row] = num
+                    values[row] = UInt(num)
                 }
             }
             panBegin = stopLocation

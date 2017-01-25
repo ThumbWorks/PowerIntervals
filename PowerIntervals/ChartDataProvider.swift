@@ -9,6 +9,7 @@
 import Foundation
 
 class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDelegate {
+    
     var dataPoints = [WorkoutDataPoint]() {
         didSet {
             let displayPoints = displayDataPoints()
@@ -35,6 +36,9 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
     }
     
     func numberOfLines(in _: JBLineChartView!) -> UInt {
+        if isInLap() {
+            return 9
+        }
         return 8
     }
     
@@ -46,21 +50,21 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
     // This method aims to hide the zones that are out of the range of the actual data. If the
     // zone is above the current max, then we return max. If it is below min, we return min,
     // otherwise we return the zone - min. Subtracting min keeps the data in the window.
-    func regulate(zoneValue: Int, min: Int, max: Int) -> CGFloat {
-        var ret: Int
-        if max < zoneValue {
+    func regulate(zoneValue: Int, min: UInt, max: UInt) -> CGFloat {
+        var ret: UInt
+        if max < UInt(zoneValue) {
             ret = max
-        } else if min > zoneValue {
+        } else if min > UInt(zoneValue) {
             ret = min
         } else {
-            ret = zoneValue
+            ret = UInt(zoneValue)
         }
         return CGFloat(ret - min)
     }
     
     func lineChartView(_ _: JBLineChartView!, verticalValueForHorizontalIndex horizontalIndex: UInt, atLineIndex lineIndex: UInt) -> CGFloat {
         // zone lines
-        if let max = max?.watts.intValue, let min = min?.watts.intValue, let zones = zones {
+        if let max = max?.watts.uintValue, let min = min?.watts.uintValue, let zones = zones {
             if min == max {
                 return CGFloat(0)
             }
@@ -82,8 +86,14 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
                 return regulate(zoneValue: zones.tempo, min: min, max: max)
             case PowerZoneAttributes.Endurance.rawValue:
                 return regulate(zoneValue: zones.endurance, min: min, max: max)
+                
+                // 7 is the actual power that the meter recorded since we don't show active recovery threshold (0)
+            case 7:
+                return CGFloat(displayDataPoints()[Int(horizontalIndex)].watts.uintValue - min)
+
             default:
-                return CGFloat(displayDataPoints()[Int(horizontalIndex)].watts.intValue - min)
+                let average = Int(lapAverage(dataPoints: displayDataPoints()))
+                return regulate(zoneValue: average, min: min, max: max)
             }
         }
         return 0
@@ -101,6 +111,10 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
         
         if let zone = PowerZoneAttributes(rawValue: lineIndex + 1) {
             return zone.color
+        }
+        
+        if lineIndex == 8 {
+            return .white
         }
         return .black
     }
@@ -121,6 +135,14 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
 }
 
 extension ChartDataProvider {
+    func lapAverage(dataPoints: [WorkoutDataPoint]) -> UInt {
+        var sum:UInt = 0
+        for point in dataPoints {
+            sum = sum + point.watts.uintValue
+        }
+        return sum / UInt(dataPoints.count)
+    }
+    
     func isInLap() -> Bool {
         return offset != 0
     }
