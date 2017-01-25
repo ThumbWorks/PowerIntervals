@@ -125,13 +125,14 @@ class DeviceListViewController: UIViewController {
         if segue.identifier == "StartIntervalSegueID" {
             let dest = segue.destination as! StartIntervalViewController
             dest.tappedZone = { (duration) in
-                self.dismiss(animated: true)
-                
+                self.dismiss(animated: true, completion: { 
+                    self.showCountdown()
+                })
+
                 if duration == 0 {
                     return
                 }
                 
-                self.showCountdown()
                 self.duration = duration
                 self.startTimer()
                 
@@ -385,7 +386,7 @@ extension DeviceListViewController {
     
     func showCountdown() {
         self.chartTopConstraint.constant = 85
-        UIView.animate(withDuration: 0.5, delay: 0.5, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
             self.view.layoutSubviews()
         })
     }
