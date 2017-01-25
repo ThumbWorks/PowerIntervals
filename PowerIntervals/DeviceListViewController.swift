@@ -33,9 +33,9 @@ class DeviceListViewController: UIViewController {
     @IBOutlet weak var enduranceLabel: UILabel!
     @IBOutlet weak var recoveryLabel: UILabel!
     
-    // Lap related components
+    // Interval related components
     @IBOutlet weak var countdownLabel: UILabel!
-    @IBOutlet weak var lapButton: UIButton!
+    @IBOutlet weak var intervalButton: UIButton!
     var countdownTimer: Timer?
     var duration: UInt = 0
 
@@ -119,8 +119,8 @@ class DeviceListViewController: UIViewController {
         
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "StartLapSegueID" {
-            let dest = segue.destination as! StartLapViewController
+        if segue.identifier == "StartIntervalSegueID" {
+            let dest = segue.destination as! StartIntervalViewController
             dest.tappedZone = { (duration) in
                 self.dismiss(animated: true)
                 
@@ -132,9 +132,9 @@ class DeviceListViewController: UIViewController {
                 self.duration = duration
                 self.startTimer()
                 
-                self.chartDataProvider.beginLap()
-                self.lapButton.backgroundColor = .white
-                self.lapButton.setTitleColor(.powerBlue, for: .normal)
+                self.chartDataProvider.beginInterval()
+                self.intervalButton.backgroundColor = .white
+                self.intervalButton.setTitleColor(.powerBlue, for: .normal)
             }
         } else if segue.identifier == "SearchingSegueID" {
             let dest = segue.destination as! SearchingViewController
@@ -182,10 +182,9 @@ class DeviceListViewController: UIViewController {
     }
     
     @IBAction func clear(_ sender: Any) {
-        print("clear")
         
-        // An out of bounds occurs when we attempt to clear mid lap
-        chartDataProvider.endLap()
+        // An out of bounds occurs when we attempt to clear mid interval
+        chartDataProvider.endInterval()
         
         // hide all of the labels
         hideLabels()
@@ -201,17 +200,17 @@ class DeviceListViewController: UIViewController {
         }
     }
     
-    @IBAction func beginLap(_ sender: UIButton) {
+    @IBAction func beginInterval(_ sender: UIButton) {
         // set the 0 offset for the data provider
-        if chartDataProvider.isInLap() {
-            chartDataProvider.endLap()
+        if chartDataProvider.isInInterval() {
+            chartDataProvider.endInterval()
             sender.backgroundColor = .clear
             sender.setTitleColor(.white, for: .normal)
             hideCountdown()
             countdownTimer?.invalidate()
             countdownTimer = nil
         } else {
-            performSegue(withIdentifier: "StartLapSegueID", sender: nil)
+            performSegue(withIdentifier: "StartIntervalSegueID", sender: nil)
         }
     }
     
@@ -347,11 +346,11 @@ extension DeviceListViewController {
             self.countdownLabel.text = self.duration.stringForTime()
             if self.duration == 0 {
                 timer.invalidate()
-                self.lapButton.backgroundColor = .clear
-                self.lapButton.setTitleColor(.white, for: .normal)
+                self.intervalButton.backgroundColor = .clear
+                self.intervalButton.setTitleColor(.white, for: .normal)
                 self.countdownTimer = nil
                 self.hideCountdown()
-                self.chartDataProvider.endLap()
+                self.chartDataProvider.endInterval()
             } else {
                 self.duration = self.duration - 1
             }
@@ -398,8 +397,8 @@ extension DeviceListViewController {
         }
         realmDataPoints = fetchedDataPoints
         
-        // reset the lap
-        chartDataProvider.endLap()
+        // reset the interval
+        chartDataProvider.endInterval()
         
         // update the data points
         chartDataProvider.dataPoints = dataPoints

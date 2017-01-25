@@ -36,7 +36,7 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
     }
     
     func numberOfLines(in _: JBLineChartView!) -> UInt {
-        if isInLap() {
+        if isInInterval() {
             return 9
         }
         return 8
@@ -92,7 +92,7 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
                 return CGFloat(displayDataPoints()[Int(horizontalIndex)].watts.uintValue - min)
 
             default:
-                let average = Int(lapAverage(dataPoints: displayDataPoints()))
+                let average = Int(intervalAverage(dataPoints: displayDataPoints()))
                 return regulate(zoneValue: average, min: min, max: max)
             }
         }
@@ -135,7 +135,7 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
 }
 
 extension ChartDataProvider {
-    func lapAverage(dataPoints: [WorkoutDataPoint]) -> UInt {
+    func intervalAverage(dataPoints: [WorkoutDataPoint]) -> UInt {
         var sum:UInt = 0
         for point in dataPoints {
             sum = sum + point.watts.uintValue
@@ -143,22 +143,22 @@ extension ChartDataProvider {
         return sum / UInt(dataPoints.count)
     }
     
-    func isInLap() -> Bool {
+    func isInInterval() -> Bool {
         return offset != 0
     }
     
-    func beginLap() {
+    func beginInterval() {
         if dataPoints.count > 0 {
             offset = dataPoints.count - 1
         }
     }
     
-    func endLap() {
+    func endInterval() {
         offset = 0
     }
     
     func showDefaultData() {
-        endLap()
+        endInterval()
         let dataPoint1 = WorkoutDataPoint()
         dataPoint1.time = 0
         dataPoint1.watts = 0

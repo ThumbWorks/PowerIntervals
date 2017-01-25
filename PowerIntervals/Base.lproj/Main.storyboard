@@ -295,10 +295,10 @@
             </objects>
             <point key="canvasLocation" x="1397.5999999999999" y="92.203898050974516"/>
         </scene>
-        <!--Start Lap View Controller-->
+        <!--Start Interval View Controller-->
         <scene sceneID="phF-Do-MQX">
             <objects>
-                <viewController modalPresentationStyle="overCurrentContext" id="ID8-iR-w2t" customClass="StartLapViewController" customModule="PowerIntervals" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overCurrentContext" id="ID8-iR-w2t" customClass="StartIntervalViewController" customModule="PowerIntervals" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SEB-SZ-RVn"/>
                         <viewControllerLayoutGuide type="bottom" id="h5u-Y5-rGm"/>
@@ -345,7 +345,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LapDurationCellID" id="XHV-mZ-8Nk" customClass="LapDurationCell" customModule="PowerIntervals" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IntervalDurationCellID" id="XHV-mZ-8Nk" customClass="IntervalDurationCell" customModule="PowerIntervals" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="105" height="98"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -541,7 +541,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="D7d-8a-rbx" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y7H-ND-KK1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Y7H-ND-KK1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -679,7 +679,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="beginLap:" destination="4U5-9q-t9i" eventType="touchUpInside" id="3XX-6X-Bey"/>
+                                    <action selector="beginInterval:" destination="4U5-9q-t9i" eventType="touchUpInside" id="FJ2-z8-Q4f"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LC9-s0-zHU">
@@ -837,9 +837,9 @@
                         <outlet property="dataSource" destination="sA6-tO-nNK" id="5S5-F1-x7m"/>
                         <outlet property="enduranceLabel" destination="D8j-Kq-SNa" id="8zn-1J-FfH"/>
                         <outlet property="enduranceVerticalConstraint" destination="Qow-6b-sPb" id="XJP-fc-HPC"/>
+                        <outlet property="intervalButton" destination="UrJ-Up-pN4" id="a1O-T4-yXo"/>
                         <outlet property="lactateLabel" destination="Rrg-xQ-uAP" id="004-9n-Hvl"/>
                         <outlet property="lactateThresholdVerticalConstraint" destination="rzm-ea-66j" id="wCS-5v-vcZ"/>
-                        <outlet property="lapButton" destination="UrJ-Up-pN4" id="Tzc-UN-Nqz"/>
                         <outlet property="maxLabel" destination="BXe-1e-1vF" id="0UY-ry-sWn"/>
                         <outlet property="minLabel" destination="uw9-Th-bdl" id="OvB-Sw-weW"/>
                         <outlet property="neuromuscularLabel" destination="Ise-ov-8tv" id="bCo-90-fZY"/>
@@ -859,7 +859,7 @@
                         <outletCollection property="zoneConstraintsCollection" destination="LSs-sS-zhc" collectionClass="NSMutableArray" id="WUR-51-uSJ"/>
                         <outletCollection property="zoneLabelCollection" destination="mo8-Ug-3gN" collectionClass="NSMutableArray" id="vNx-qI-3SI"/>
                         <segue destination="JBl-bu-do5" kind="presentation" identifier="SearchingSegueID" id="VhI-eB-sGA"/>
-                        <segue destination="ID8-iR-w2t" kind="presentation" identifier="StartLapSegueID" id="83g-nI-vTa"/>
+                        <segue destination="ID8-iR-w2t" kind="presentation" identifier="StartIntervalSegueID" id="83g-nI-vTa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eeb-dx-hfS" userLabel="First Responder" sceneMemberID="firstResponder"/>

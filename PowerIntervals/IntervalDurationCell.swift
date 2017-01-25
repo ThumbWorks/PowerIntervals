@@ -1,5 +1,5 @@
 //
-//  LapDurationCell.swift
+//  IntervalDurationCell.swift
 //  PowerIntervals
 //
 //  Created by Roderic Campbell on 1/17/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LapDurationCell: UICollectionViewCell {
+class IntervalDurationCell: UICollectionViewCell {
     
     @IBOutlet weak var coloredBackgroundView: UIView!
     @IBOutlet weak var durationLabel: UILabel!

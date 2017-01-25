@@ -1,5 +1,5 @@
 //
-//  StartLapViewController.swift
+//  StartIntervalViewController.swift
 //  PowerIntervals
 //
 //  Created by Roderic Campbell on 1/17/17.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-class StartLapViewController: UIViewController {
+class StartIntervalViewController: UIViewController {
     var tappedZone: ((_: UInt) -> ())?
 
     @IBOutlet weak var datePicker: UIDatePicker!
     
 }
 
-extension StartLapViewController: UICollectionViewDelegate {
+extension StartIntervalViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if indexPath.row == 0 {
@@ -54,26 +54,26 @@ extension StartLapViewController: UICollectionViewDelegate {
     }
 }
 
-extension StartLapViewController: UICollectionViewDelegateFlowLayout {
+extension StartIntervalViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width / 2, height: collectionView.frame.size.height / 3)
     }
 }
 
-extension StartLapViewController: UICollectionViewDataSource {
+extension StartIntervalViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 6
     }
     
-    func decorateCell(cell: LapDurationCell, withZone zone: PowerZoneAttributes) {
+    func decorateCell(cell: IntervalDurationCell, withZone zone: PowerZoneAttributes) {
         cell.coloredBackgroundView.backgroundColor = zone.fill
         cell.zoneLabel.text = zone.name
         cell.durationLabel.text = zone.duration
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LapDurationCellID", for: indexPath) as! LapDurationCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "IntervalDurationCellID", for: indexPath) as! IntervalDurationCell
         
         if let zone = PowerZoneAttributes(rawValue: UInt(indexPath.row)) {
             decorateCell(cell: cell, withZone: zone)

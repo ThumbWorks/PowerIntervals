@@ -64,9 +64,9 @@ class ChartDataProviderTests: XCTestCase {
 
     }
     
-    func testLapAverage() {
+    func testIntervalAverage() {
         let chartDataProvider = ChartDataProvider()
-        chartDataProvider.beginLap()
+        chartDataProvider.beginInterval()
         chartDataProvider.dataPoints = dataPoints
         chartDataProvider.zones = powerZones
         
