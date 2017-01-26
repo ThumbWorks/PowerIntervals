@@ -207,7 +207,15 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
         return true
     }
     
+    @IBAction func visitThumbworks(_ sender: Any) {
+        Logger.track(event: "Visit Thumbworks")
+        if let url = URL(string: "http://thumbworks.io") {
+            UIApplication.shared.open(url, options:[:] )
+        }
+    }
+    
     @IBAction func startAChat(_ sender: Any) {
+        Logger.track(event: "Start chat")
         Smooch.initWith(SKTSettings(appToken: Constants.SMOOCH_TOKEN.rawValue))
         Smooch.show()
     }

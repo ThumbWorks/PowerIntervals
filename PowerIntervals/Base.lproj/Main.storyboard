@@ -36,34 +36,78 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j5s-qh-2td">
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j5s-qh-2td">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="qje-j7-0aA">
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="qje-j7-0aA">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVI-b0-Gae">
+                                                        <rect key="frame" x="10" y="606" width="355" height="25"/>
+                                                        <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="11"/>
+                                                        <state key="normal" title="Leave Feedback">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="startAChat:" destination="Rqf-PG-eqL" eventType="touchUpInside" id="aIB-n6-VNj"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uu9-co-Xzd">
+                                                        <rect key="frame" x="132" y="576" width="111" height="33"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="33" id="6sh-BZ-5pZ"/>
+                                                            <constraint firstAttribute="width" constant="111" id="gnd-ww-o56"/>
+                                                        </constraints>
+                                                        <state key="normal" image="ThumbworksLogo"/>
+                                                        <connections>
+                                                            <action selector="visitThumbworks:" destination="Rqf-PG-eqL" eventType="touchUpInside" id="Gnu-TE-zgf"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6X-cp-mdO">
+                                                        <rect key="frame" x="137" y="553" width="100" height="25"/>
+                                                        <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="11"/>
+                                                        <state key="normal" title="Lovingly Made by:"/>
+                                                        <connections>
+                                                            <action selector="visitThumbworks:" destination="Rqf-PG-eqL" eventType="touchUpInside" id="oPW-hB-Ho0"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="d6X-cp-mdO" firstAttribute="centerX" secondItem="qje-j7-0aA" secondAttribute="centerX" id="2oa-mG-wlw"/>
+                                                    <constraint firstItem="CVI-b0-Gae" firstAttribute="leading" secondItem="qje-j7-0aA" secondAttribute="leading" constant="10" id="MkA-I4-cxd"/>
+                                                    <constraint firstItem="CVI-b0-Gae" firstAttribute="top" secondItem="Uu9-co-Xzd" secondAttribute="bottom" constant="-3" id="W47-od-PxM"/>
+                                                    <constraint firstItem="Uu9-co-Xzd" firstAttribute="top" secondItem="d6X-cp-mdO" secondAttribute="bottom" constant="-2" id="Yq4-4h-aMg"/>
+                                                    <constraint firstItem="Uu9-co-Xzd" firstAttribute="centerX" secondItem="qje-j7-0aA" secondAttribute="centerX" id="fxU-Cq-0UM"/>
+                                                    <constraint firstAttribute="trailing" secondItem="CVI-b0-Gae" secondAttribute="trailing" constant="10" id="v8v-8X-dZ2"/>
+                                                </constraints>
                                             </view>
                                             <vibrancyEffect>
                                                 <blurEffect style="dark"/>
                                             </vibrancyEffect>
                                         </visualEffectView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="j5s-qh-2td" secondAttribute="bottom" id="2gA-SG-BpV"/>
+                                        <constraint firstAttribute="trailing" secondItem="j5s-qh-2td" secondAttribute="trailing" id="TAH-ci-Nci"/>
+                                        <constraint firstItem="j5s-qh-2td" firstAttribute="leading" secondItem="lWk-1b-YEt" secondAttribute="leading" id="YlI-Xh-yTJ"/>
+                                        <constraint firstItem="j5s-qh-2td" firstAttribute="top" secondItem="lWk-1b-YEt" secondAttribute="top" id="qJA-Mo-LTU"/>
+                                    </constraints>
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ngt-3g-RLf">
-                                <rect key="frame" x="16" y="98.5" width="343" height="470"/>
+                                <rect key="frame" x="16" y="124" width="343" height="420"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.2322843309859155" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="470" id="W7h-OK-VrH"/>
+                                    <constraint firstAttribute="height" constant="420" id="W7h-OK-VrH"/>
                                 </constraints>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="1PD-qX-6rb">
                                     <rect key="frame" x="0.0" y="0.0" width="343" height="88"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your zone thresholds" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDS-v3-67x">
-                                            <rect key="frame" x="16.5" y="12" width="310" height="64"/>
+                                            <rect key="frame" x="17" y="12" width="310" height="64"/>
                                             <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -78,7 +122,7 @@
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="YGr-8H-YrG">
-                                    <rect key="frame" x="0.0" y="160" width="343" height="67"/>
+                                    <rect key="frame" x="0.0" y="380" width="343" height="47"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LcW-N2-oWi" userLabel="Separator">
@@ -99,23 +143,11 @@
                                                 <action selector="doneButtonTapped:" destination="Rqf-PG-eqL" eventType="touchUpInside" id="6PQ-KR-Jjt"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVI-b0-Gae">
-                                            <rect key="frame" x="246" y="42" width="89" height="25"/>
-                                            <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="11"/>
-                                            <state key="normal" title="Leave Feedback">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="startAChat:" destination="Rqf-PG-eqL" eventType="touchUpInside" id="aIB-n6-VNj"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="CVI-b0-Gae" secondAttribute="trailing" constant="8" id="3Ka-Ed-BHi"/>
                                         <constraint firstItem="Ph3-qJ-8rl" firstAttribute="top" secondItem="YGr-8H-YrG" secondAttribute="top" constant="9" id="9PC-yF-rUf"/>
                                         <constraint firstAttribute="trailing" secondItem="LcW-N2-oWi" secondAttribute="trailing" id="GKu-mo-s1f"/>
-                                        <constraint firstAttribute="bottom" secondItem="CVI-b0-Gae" secondAttribute="bottom" id="fxv-xe-X4d"/>
                                         <constraint firstItem="Ph3-qJ-8rl" firstAttribute="centerX" secondItem="YGr-8H-YrG" secondAttribute="centerX" id="m39-UN-S8w"/>
                                         <constraint firstItem="LcW-N2-oWi" firstAttribute="top" secondItem="YGr-8H-YrG" secondAttribute="top" constant="2" id="sN0-wL-Tny"/>
                                         <constraint firstItem="LcW-N2-oWi" firstAttribute="leading" secondItem="YGr-8H-YrG" secondAttribute="leading" id="sTx-OP-hgl"/>
@@ -130,7 +162,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkb-7Q-q7S">
-                                                    <rect key="frame" x="8" y="11.5" width="239" height="20"/>
+                                                    <rect key="frame" x="8" y="12" width="239" height="20"/>
                                                     <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -164,6 +196,216 @@
                                             <outlet property="zoneValueTextField" destination="Y1A-x7-8ci" id="QVp-MZ-TY9"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="18V-Do-fd5" customClass="SetZoneCell" customModule="PowerIntervals" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="160" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="18V-Do-fd5" id="zEO-bT-b51">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bd9-hm-VsB">
+                                                    <rect key="frame" x="8" y="12" width="239" height="20"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wCH-x5-jnv">
+                                                    <rect key="frame" x="255" y="7" width="80" height="30"/>
+                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="wdw-ea-gs1"/>
+                                                    </constraints>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Rqf-PG-eqL" id="PMx-lP-1gQ"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wCH-x5-jnv" secondAttribute="trailing" id="6dU-Xf-7zZ"/>
+                                                <constraint firstItem="Bd9-hm-VsB" firstAttribute="centerY" secondItem="zEO-bT-b51" secondAttribute="centerY" id="LMI-9W-Auh"/>
+                                                <constraint firstItem="wCH-x5-jnv" firstAttribute="centerY" secondItem="zEO-bT-b51" secondAttribute="centerY" id="P76-Q4-qg9"/>
+                                                <constraint firstItem="wCH-x5-jnv" firstAttribute="leading" secondItem="Bd9-hm-VsB" secondAttribute="trailing" constant="8" id="bC6-L1-bgt"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="Bd9-hm-VsB" secondAttribute="leading" id="klv-ln-nRr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="zoneNameLabel" destination="Bd9-hm-VsB" id="6u5-Oc-f4l"/>
+                                            <outlet property="zoneValueTextField" destination="wCH-x5-jnv" id="mux-Dj-nCP"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="I21-Xa-7Yy" customClass="SetZoneCell" customModule="PowerIntervals" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="204" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I21-Xa-7Yy" id="6B4-ae-LiM">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfR-1e-vx8">
+                                                    <rect key="frame" x="8" y="12" width="239" height="20"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wrN-2n-Pc9">
+                                                    <rect key="frame" x="255" y="7" width="80" height="30"/>
+                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="a53-K0-klo"/>
+                                                    </constraints>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Rqf-PG-eqL" id="05l-AN-Rdo"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="vfR-1e-vx8" firstAttribute="centerY" secondItem="6B4-ae-LiM" secondAttribute="centerY" id="FGk-y1-ZYq"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="vfR-1e-vx8" secondAttribute="leading" id="ZFT-MH-aAg"/>
+                                                <constraint firstItem="wrN-2n-Pc9" firstAttribute="centerY" secondItem="6B4-ae-LiM" secondAttribute="centerY" id="dkb-kM-g6h"/>
+                                                <constraint firstItem="wrN-2n-Pc9" firstAttribute="leading" secondItem="vfR-1e-vx8" secondAttribute="trailing" constant="8" id="edE-G1-9qx"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wrN-2n-Pc9" secondAttribute="trailing" id="jc9-Nt-cXS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="zoneNameLabel" destination="vfR-1e-vx8" id="Zou-RA-tcz"/>
+                                            <outlet property="zoneValueTextField" destination="wrN-2n-Pc9" id="Pgh-Ci-mAs"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="ylQ-ww-amR" customClass="SetZoneCell" customModule="PowerIntervals" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="248" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ylQ-ww-amR" id="h4e-zY-1MR">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWF-ZL-rpU">
+                                                    <rect key="frame" x="8" y="12" width="239" height="20"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WMd-e0-SXm">
+                                                    <rect key="frame" x="255" y="7" width="80" height="30"/>
+                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="N0p-mY-GcA"/>
+                                                    </constraints>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Rqf-PG-eqL" id="M8X-cs-Xp8"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="WMd-e0-SXm" secondAttribute="trailing" id="404-bC-3mw"/>
+                                                <constraint firstItem="WMd-e0-SXm" firstAttribute="centerY" secondItem="h4e-zY-1MR" secondAttribute="centerY" id="72Z-g8-FRo"/>
+                                                <constraint firstItem="gWF-ZL-rpU" firstAttribute="centerY" secondItem="h4e-zY-1MR" secondAttribute="centerY" id="Mhu-eP-KdU"/>
+                                                <constraint firstItem="WMd-e0-SXm" firstAttribute="leading" secondItem="gWF-ZL-rpU" secondAttribute="trailing" constant="8" id="aZ8-PW-QbI"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="gWF-ZL-rpU" secondAttribute="leading" id="jBi-uX-U6J"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="zoneNameLabel" destination="gWF-ZL-rpU" id="Lce-HO-Ebx"/>
+                                            <outlet property="zoneValueTextField" destination="WMd-e0-SXm" id="py0-Zl-9ku"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="c0H-zp-ClY" customClass="SetZoneCell" customModule="PowerIntervals" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="292" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c0H-zp-ClY" id="6zC-lG-4Cz">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heI-uP-seu">
+                                                    <rect key="frame" x="8" y="12" width="239" height="20"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2oQ-hc-IR2">
+                                                    <rect key="frame" x="255" y="7" width="80" height="30"/>
+                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="xGA-SR-49C"/>
+                                                    </constraints>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Rqf-PG-eqL" id="b4e-0e-Sz0"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="leadingMargin" secondItem="heI-uP-seu" secondAttribute="leading" id="5QL-9w-LKM"/>
+                                                <constraint firstItem="2oQ-hc-IR2" firstAttribute="centerY" secondItem="6zC-lG-4Cz" secondAttribute="centerY" id="IHj-M6-LMM"/>
+                                                <constraint firstItem="heI-uP-seu" firstAttribute="centerY" secondItem="6zC-lG-4Cz" secondAttribute="centerY" id="VX5-cj-IDX"/>
+                                                <constraint firstItem="2oQ-hc-IR2" firstAttribute="leading" secondItem="heI-uP-seu" secondAttribute="trailing" constant="8" id="nZu-7t-15c"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="2oQ-hc-IR2" secondAttribute="trailing" id="ndx-MB-77h"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="zoneNameLabel" destination="heI-uP-seu" id="8hH-p3-7Nz"/>
+                                            <outlet property="zoneValueTextField" destination="2oQ-hc-IR2" id="ThX-AR-LjI"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Unv-9S-Suy" customClass="SetZoneCell" customModule="PowerIntervals" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="336" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Unv-9S-Suy" id="ibn-6b-rGf">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KaV-ln-IxG">
+                                                    <rect key="frame" x="8" y="12" width="239" height="20"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dz5-bu-8c4">
+                                                    <rect key="frame" x="255" y="7" width="80" height="30"/>
+                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="4l3-c9-S2w"/>
+                                                    </constraints>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Rqf-PG-eqL" id="5d8-gr-Aff"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="leadingMargin" secondItem="KaV-ln-IxG" secondAttribute="leading" id="1Ls-kv-azj"/>
+                                                <constraint firstItem="Dz5-bu-8c4" firstAttribute="leading" secondItem="KaV-ln-IxG" secondAttribute="trailing" constant="8" id="2F6-g4-zeV"/>
+                                                <constraint firstItem="KaV-ln-IxG" firstAttribute="centerY" secondItem="ibn-6b-rGf" secondAttribute="centerY" id="dQO-dh-63P"/>
+                                                <constraint firstItem="Dz5-bu-8c4" firstAttribute="centerY" secondItem="ibn-6b-rGf" secondAttribute="centerY" id="o27-Uu-3YU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Dz5-bu-8c4" secondAttribute="trailing" id="xPk-81-zop"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="zoneNameLabel" destination="KaV-ln-IxG" id="SaJ-C9-CWv"/>
+                                            <outlet property="zoneValueTextField" destination="Dz5-bu-8c4" id="dOz-Iu-fCD"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -182,15 +424,15 @@
                         <constraints>
                             <constraint firstItem="6y6-d8-yzI" firstAttribute="top" secondItem="1E2-x2-MWU" secondAttribute="bottom" constant="-20" id="1GA-hv-kgj"/>
                             <constraint firstItem="Vqn-HO-aT1" firstAttribute="top" secondItem="6y6-d8-yzI" secondAttribute="bottom" id="4K5-rk-xJO"/>
-                            <constraint firstItem="Ngt-3g-RLf" firstAttribute="centerY" secondItem="VkA-dc-Sie" secondAttribute="centerY" id="5IL-G5-SpU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ngt-3g-RLf" secondAttribute="trailing" id="FFM-26-cYK"/>
                             <constraint firstItem="6y6-d8-yzI" firstAttribute="leading" secondItem="VkA-dc-Sie" secondAttribute="leading" id="Hc5-Cr-1U0"/>
                             <constraint firstItem="Ngt-3g-RLf" firstAttribute="leading" secondItem="VkA-dc-Sie" secondAttribute="leadingMargin" id="MJO-DE-R6q"/>
+                            <constraint firstItem="Ngt-3g-RLf" firstAttribute="top" secondItem="1E2-x2-MWU" secondAttribute="bottom" constant="104" id="NII-p8-z6e"/>
                             <constraint firstAttribute="trailing" secondItem="6y6-d8-yzI" secondAttribute="trailing" id="jif-vS-aT9"/>
+                            <constraint firstItem="d6X-cp-mdO" firstAttribute="top" secondItem="Ngt-3g-RLf" secondAttribute="bottom" constant="9" id="niq-xA-xMr"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="centerYConstraint" destination="5IL-G5-SpU" id="dgL-Ce-2cr"/>
                         <outlet property="doneButton" destination="Ph3-qJ-8rl" id="QY3-14-s7b"/>
                         <outlet property="tableView" destination="Ngt-3g-RLf" id="4TU-Ud-t6z"/>
                     </connections>
@@ -455,7 +697,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NeuroMuscular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nNa-V5-Jsb">
-                                            <rect key="frame" x="105.5" y="62" width="165.5" height="26"/>
+                                            <rect key="frame" x="105" y="62" width="165.5" height="26"/>
                                             <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="22"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -566,7 +808,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbJ-MW-PrM">
-                                <rect key="frame" x="77" y="214" width="220" height="66.5"/>
+                                <rect key="frame" x="77.5" y="214" width="220" height="66.5"/>
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="57"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -581,9 +823,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XkB-Li-sQN">
-                                        <rect key="frame" x="8" y="5" width="53" height="32"/>
+                                        <rect key="frame" x="8" y="5" width="70" height="32"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
-                                        <state key="normal" title="Zones">
+                                        <state key="normal" title="Settings">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -626,7 +868,7 @@
                                                     <color key="backgroundColor" red="0.0" green="0.53333333333333333" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="watts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGC-Pf-pCM">
-                                                    <rect key="frame" x="33" y="36.5" width="85" height="37"/>
+                                                    <rect key="frame" x="32.5" y="36.5" width="85" height="37"/>
                                                     <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="31"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -891,4 +1133,7 @@
             <point key="canvasLocation" x="608.79999999999995" y="69.715142428785612"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ThumbworksLogo" width="333" height="99"/>
+    </resources>
 </document>

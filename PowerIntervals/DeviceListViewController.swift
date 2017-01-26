@@ -187,7 +187,7 @@ class DeviceListViewController: UIViewController {
     }
     
     @IBAction func clear(_ sender: Any) {
-        
+        Logger.track(event: "Clear button tapped")
         // An out of bounds occurs when we attempt to clear mid interval
         chartDataProvider.endInterval()
         
@@ -206,6 +206,7 @@ class DeviceListViewController: UIViewController {
     }
     
     @IBAction func beginInterval(_ sender: UIButton) {
+        Logger.track(event: "Interval button tapped")
         // set the 0 offset for the data provider
         if chartDataProvider.isInInterval() {
             chartDataProvider.endInterval()

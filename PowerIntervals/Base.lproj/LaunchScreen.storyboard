@@ -1,31 +1,203 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RqU-Xk-ewF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="DejaVuSans.ttf">
+            <string>DejaVuSans</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="EHf-IW-A2E">
+        <scene sceneID="1Ml-y2-gd9">
             <objects>
-                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                <viewController definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" id="RqU-Xk-ewF" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
-                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                        <viewControllerLayoutGuide type="top" id="iZh-Qj-3tp"/>
+                        <viewControllerLayoutGuide type="bottom" id="BwN-bm-W2b"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                    <view key="view" contentMode="scaleToFill" id="1x6-cw-Lzq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bea-Hr-ZqJ" userLabel="Header">
+                                <rect key="frame" x="0.0" y="20" width="375" height="42"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Power Meters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgJ-N2-pY0">
+                                        <rect key="frame" x="130" y="11" width="115" height="20"/>
+                                        <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yhv-kc-IVp">
+                                        <rect key="frame" x="8" y="5" width="70" height="32"/>
+                                        <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                        <state key="normal" title="Settings">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Yhv-kc-IVp" firstAttribute="leading" secondItem="bea-Hr-ZqJ" secondAttribute="leading" constant="8" id="2Te-GS-k7J"/>
+                                    <constraint firstAttribute="height" constant="42" id="6Xw-Ws-ZIw"/>
+                                    <constraint firstItem="cgJ-N2-pY0" firstAttribute="centerX" secondItem="bea-Hr-ZqJ" secondAttribute="centerX" id="9JI-zs-7wm"/>
+                                    <constraint firstItem="Yhv-kc-IVp" firstAttribute="centerY" secondItem="bea-Hr-ZqJ" secondAttribute="centerY" id="Im7-zy-Oqs"/>
+                                    <constraint firstItem="cgJ-N2-pY0" firstAttribute="centerY" secondItem="bea-Hr-ZqJ" secondAttribute="centerY" id="pFg-hZ-Ow0"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UlN-8Q-ebT">
+                                <rect key="frame" x="0.0" y="62" width="375" height="100"/>
+                                <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="cUr-vp-JTl"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="3" minimumInteritemSpacing="3" id="SNa-5r-AeW">
+                                    <size key="itemSize" width="150" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="3" minY="0.0" maxX="3" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FormattedCollectionViewSensorCellID" id="oIz-RF-sPX">
+                                        <rect key="frame" x="3" y="0.0" width="150" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5D2-wm-Ieu" userLabel="BackgroundView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgB-rv-AD9">
+                                                    <rect key="frame" x="75" y="55" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="31"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HmS-A6-PFV">
+                                                    <rect key="frame" x="8" y="8" width="134" height="0.0"/>
+                                                    <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="11"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="HmS-A6-PFV" firstAttribute="top" secondItem="oIz-RF-sPX" secondAttribute="topMargin" id="A7x-Ad-F8b"/>
+                                            <constraint firstItem="hgB-rv-AD9" firstAttribute="centerX" secondItem="oIz-RF-sPX" secondAttribute="centerX" id="Etg-jg-2eL"/>
+                                            <constraint firstItem="5D2-wm-Ieu" firstAttribute="top" secondItem="oIz-RF-sPX" secondAttribute="top" id="MMh-xA-W8B"/>
+                                            <constraint firstItem="5D2-wm-Ieu" firstAttribute="leading" secondItem="oIz-RF-sPX" secondAttribute="leading" id="NSx-e9-5Yp"/>
+                                            <constraint firstItem="hgB-rv-AD9" firstAttribute="centerY" secondItem="oIz-RF-sPX" secondAttribute="centerY" constant="5" id="Rxs-qT-QI3"/>
+                                            <constraint firstAttribute="trailing" secondItem="5D2-wm-Ieu" secondAttribute="trailing" id="Tox-pj-XAk"/>
+                                            <constraint firstAttribute="bottom" secondItem="5D2-wm-Ieu" secondAttribute="bottom" id="Ukr-Hh-T3E"/>
+                                            <constraint firstAttribute="leadingMargin" secondItem="HmS-A6-PFV" secondAttribute="leading" id="ZE1-JM-gre"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="HmS-A6-PFV" secondAttribute="trailing" id="tgN-YA-add"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="background" destination="5D2-wm-Ieu" id="0hz-0k-qKk"/>
+                                            <outlet property="power" destination="hgB-rv-AD9" id="tFJ-L3-huE"/>
+                                            <outlet property="sensorID" destination="HmS-A6-PFV" id="YFv-QA-1XT"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="delegate" destination="RqU-Xk-ewF" id="TtO-Lq-oA2"/>
+                                    <outletCollection property="gestureRecognizers" destination="ZnZ-fL-4qi" appends="YES" id="NaT-7b-24Q"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQq-6C-Zmc" userLabel="Lap Button">
+                                <rect key="frame" x="198" y="172" width="66" height="32"/>
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                <state key="normal" title="Interval">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="beginInterval:" destination="RqU-Xk-ewF" eventType="touchUpInside" id="Kzx-an-VtN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1O-Y0-RNX">
+                                <rect key="frame" x="133" y="172" width="45" height="32"/>
+                                <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
+                                <state key="normal" title="Clear">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clear:" destination="RqU-Xk-ewF" eventType="touchUpInside" id="SxP-3L-Dxy"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fj9-70-I0F">
+                                <rect key="frame" x="0.0" y="204" width="375" height="463"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xL5-EN-Fnu">
+                                <rect key="frame" x="173" y="642" width="30" height="30"/>
+                                <state key="normal" title="."/>
+                                <connections>
+                                    <action selector="startFakePM:" destination="RqU-Xk-ewF" eventType="touchUpInside" id="MTg-Dw-GaO"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="fj9-70-I0F" firstAttribute="top" secondItem="eQq-6C-Zmc" secondAttribute="bottom" id="32p-H0-6vr"/>
+                            <constraint firstItem="o1O-Y0-RNX" firstAttribute="top" secondItem="UlN-8Q-ebT" secondAttribute="bottom" constant="10" id="8G3-cw-DKK"/>
+                            <constraint firstItem="bea-Hr-ZqJ" firstAttribute="leading" secondItem="1x6-cw-Lzq" secondAttribute="leadingMargin" constant="-16" id="IfC-NV-7UC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bea-Hr-ZqJ" secondAttribute="trailing" constant="-16" id="JNC-lW-bAk"/>
+                            <constraint firstItem="xL5-EN-Fnu" firstAttribute="centerX" secondItem="1x6-cw-Lzq" secondAttribute="centerXWithinMargins" id="KEt-nP-vXK"/>
+                            <constraint firstAttribute="trailing" secondItem="UlN-8Q-ebT" secondAttribute="trailing" id="Mie-w5-Y1W"/>
+                            <constraint firstItem="bea-Hr-ZqJ" firstAttribute="top" secondItem="iZh-Qj-3tp" secondAttribute="bottom" id="NzK-IM-gyS"/>
+                            <constraint firstItem="BwN-bm-W2b" firstAttribute="top" secondItem="fj9-70-I0F" secondAttribute="bottom" id="R13-d5-Lar"/>
+                            <constraint firstItem="fj9-70-I0F" firstAttribute="leading" secondItem="1x6-cw-Lzq" secondAttribute="leading" id="YLm-gJ-5CX"/>
+                            <constraint firstAttribute="trailing" secondItem="fj9-70-I0F" secondAttribute="trailing" id="ZFF-Hg-vUk"/>
+                            <constraint firstItem="UlN-8Q-ebT" firstAttribute="top" secondItem="bea-Hr-ZqJ" secondAttribute="bottom" id="cXA-MX-twF"/>
+                            <constraint firstItem="UlN-8Q-ebT" firstAttribute="leading" secondItem="1x6-cw-Lzq" secondAttribute="leading" id="e3p-gM-fko"/>
+                            <constraint firstItem="fj9-70-I0F" firstAttribute="bottom" secondItem="xL5-EN-Fnu" secondAttribute="centerY" constant="10" id="i6z-1K-N9P"/>
+                            <constraint firstItem="eQq-6C-Zmc" firstAttribute="leading" secondItem="1x6-cw-Lzq" secondAttribute="centerX" constant="10" id="l2e-Ql-wFP"/>
+                            <constraint firstAttribute="centerX" secondItem="o1O-Y0-RNX" secondAttribute="trailing" constant="10" id="oKq-LB-AgE"/>
+                            <constraint firstItem="eQq-6C-Zmc" firstAttribute="top" secondItem="UlN-8Q-ebT" secondAttribute="bottom" constant="10" id="t7K-oz-oG6"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="6Gg-at-3pw"/>
+                    <connections>
+                        <outlet property="chartTopConstraint" destination="32p-H0-6vr" id="vMV-nQ-hk3"/>
+                        <outlet property="chartView" destination="fj9-70-I0F" id="LiE-7X-wG6"/>
+                        <outlet property="collectionView" destination="UlN-8Q-ebT" id="FAq-qH-qef"/>
+                        <outlet property="intervalButton" destination="eQq-6C-Zmc" id="c0B-rL-VzC"/>
+                        <outletCollection property="debugButtons" destination="xL5-EN-Fnu" collectionClass="NSMutableArray" id="i3V-CC-KGU"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bG9-Q1-ZqB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ZnZ-fL-4qi">
+                    <connections>
+                        <action selector="longPress:" destination="RqU-Xk-ewF" id="dLE-1y-mJ9"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="XoS-rJ-Qzb">
+                    <connections>
+                        <action selector="swipe:" destination="RqU-Xk-ewF" id="4hm-Um-aCV"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="608.79999999999995" y="69.715142428785612"/>
         </scene>
     </scenes>
 </document>
