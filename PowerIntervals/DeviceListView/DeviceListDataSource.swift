@@ -39,34 +39,3 @@ extension DeviceListDataSource: UICollectionViewDataSource {
         return cell
     }
 }
-
-class FormattedCollectionViewSensorCell: UICollectionViewCell {
-    
-    @IBOutlet weak var background: UIView!
-    @IBOutlet weak var sensorID: UILabel!
-    @IBOutlet weak var power: UILabel!
-    
-    override func prepareForReuse() {
-        sensorID.text = nil
-        power.text = "0"
-    }
-    
-    override func awakeFromNib() {
-        layer.cornerRadius = 8.0
-        layer.borderColor = UIColor.white.cgColor
-        layer.borderWidth = 1.0
-        clipsToBounds = true
-    }
-}
-
-class FormattedSensorCell: UITableViewCell {
-    @IBOutlet weak var sensorID: UILabel!
-    @IBOutlet weak var power: UILabel!
-    @IBOutlet weak var speed: UILabel!
-    
-    override func prepareForReuse() {
-        sensorID.text = nil
-        power.text = "0"
-        speed.text = "0"
-    }
-}

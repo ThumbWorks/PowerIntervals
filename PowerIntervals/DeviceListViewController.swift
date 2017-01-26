@@ -526,16 +526,3 @@ extension DeviceListViewController {
     @IBAction func unwindToDeviceListView(sender: UIStoryboardSegue){
     }
 }
-
-class SearchingViewController: UIViewController {
-    
-    override func viewDidAppear(_ animated: Bool) {
-        Logger.track(event: "SearchingView appeared")
-    }
-    
-    var createFakePMFromSearch: (() -> ())?
-    @IBAction func tapped() {
-        createFakePMFromSearch!()
-    }
-
-}

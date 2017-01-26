@@ -316,8 +316,3 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
         }
     }
 }
-
-class SetZoneCell: UITableViewCell {
-    @IBOutlet weak var zoneNameLabel: UILabel!
-    @IBOutlet weak var zoneValueTextField: UITextField!
-}
