@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F8099FA1E3C20D600BA93CD /* PowerIntervalsTestingData.realm in Resources */ = {isa = PBXBuildFile; fileRef = 5F8099F91E3C20D600BA93CD /* PowerIntervalsTestingData.realm */; };
 		5F860F321E39CF1200C26024 /* SetZoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F860F311E39CF1200C26024 /* SetZoneCell.swift */; };
 		5F860F341E39D61F00C26024 /* FormattedCollectionViewSensorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F860F331E39D61F00C26024 /* FormattedCollectionViewSensorCell.swift */; };
 		5F860F361E39D65500C26024 /* SearchingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F860F351E39D65500C26024 /* SearchingViewController.swift */; };
+		5F860F3E1E39D81E00C26024 /* PowerIntervalsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F860F3D1E39D81E00C26024 /* PowerIntervalsUITests.swift */; };
+		5F860F461E39D89600C26024 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F860F451E39D89600C26024 /* SnapshotHelper.swift */; };
 		5F90DEA31E2E93060067F744 /* StartIntervalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F90DEA21E2E93060067F744 /* StartIntervalViewController.swift */; };
 		5F90DEA51E2E93140067F744 /* IntervalDurationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F90DEA41E2E93140067F744 /* IntervalDurationCell.swift */; };
 		5F979BAD1E3089A3009FF7DA /* CustomDurationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F979BAC1E3089A3009FF7DA /* CustomDurationPickerViewController.swift */; };
@@ -62,6 +65,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5F860F401E39D81E00C26024 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9E3888BC1D862E8900DFC271 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E3888C31D862E8900DFC271;
+			remoteInfo = PowerIntervals;
+		};
 		5FF5EE091E294D0E00D7F121 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9E3888BC1D862E8900DFC271 /* Project object */;
@@ -72,9 +82,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F8099F91E3C20D600BA93CD /* PowerIntervalsTestingData.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = PowerIntervalsTestingData.realm; sourceTree = "<group>"; };
 		5F860F311E39CF1200C26024 /* SetZoneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SetZoneCell.swift; path = SetZoneView/SetZoneCell.swift; sourceTree = "<group>"; };
 		5F860F331E39D61F00C26024 /* FormattedCollectionViewSensorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormattedCollectionViewSensorCell.swift; path = DeviceListView/FormattedCollectionViewSensorCell.swift; sourceTree = "<group>"; };
 		5F860F351E39D65500C26024 /* SearchingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchingViewController.swift; sourceTree = "<group>"; };
+		5F860F3B1E39D81E00C26024 /* PowerIntervalsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PowerIntervalsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F860F3D1E39D81E00C26024 /* PowerIntervalsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerIntervalsUITests.swift; sourceTree = "<group>"; };
+		5F860F3F1E39D81E00C26024 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F860F451E39D89600C26024 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		5F90DEA21E2E93060067F744 /* StartIntervalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartIntervalViewController.swift; sourceTree = "<group>"; };
 		5F90DEA41E2E93140067F744 /* IntervalDurationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalDurationCell.swift; sourceTree = "<group>"; };
 		5F979BAC1E3089A3009FF7DA /* CustomDurationPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomDurationPickerViewController.swift; path = Classes/CustomDurationPickerViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +159,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5F860F381E39D81E00C26024 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9E3888C11D862E8900DFC271 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -173,6 +195,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F860F3C1E39D81E00C26024 /* PowerIntervalsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5F8099F91E3C20D600BA93CD /* PowerIntervalsTestingData.realm */,
+				5F860F451E39D89600C26024 /* SnapshotHelper.swift */,
+				5F860F3D1E39D81E00C26024 /* PowerIntervalsUITests.swift */,
+				5F860F3F1E39D81E00C26024 /* Info.plist */,
+			);
+			path = PowerIntervalsUITests;
+			sourceTree = "<group>";
+		};
 		5F90DEA11E2E92F50067F744 /* Start Interval */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +255,7 @@
 				9E3888C61D862E8900DFC271 /* PowerIntervals */,
 				9E3888DB1D862E8900DFC271 /* PowerIntervalsTests */,
 				9E4523641DB2E48B00C380F2 /* Libraries */,
+				5F860F3C1E39D81E00C26024 /* PowerIntervalsUITests */,
 				9E3888C51D862E8900DFC271 /* Products */,
 				9EFDBAFE1D88517400C56D97 /* Frameworks */,
 			);
@@ -232,6 +266,7 @@
 			children = (
 				9E3888C41D862E8900DFC271 /* PowerIntervals.app */,
 				9E3888D81D862E8900DFC271 /* PowerIntervalsTests.xctest */,
+				5F860F3B1E39D81E00C26024 /* PowerIntervalsUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -436,6 +471,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5F860F3A1E39D81E00C26024 /* PowerIntervalsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F860F421E39D81E00C26024 /* Build configuration list for PBXNativeTarget "PowerIntervalsUITests" */;
+			buildPhases = (
+				5F860F371E39D81E00C26024 /* Sources */,
+				5F860F381E39D81E00C26024 /* Frameworks */,
+				5F860F391E39D81E00C26024 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5F860F411E39D81E00C26024 /* PBXTargetDependency */,
+			);
+			name = PowerIntervalsUITests;
+			productName = PowerIntervalsUITests;
+			productReference = 5F860F3B1E39D81E00C26024 /* PowerIntervalsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		9E3888C31D862E8900DFC271 /* PowerIntervals */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E3888E11D862E8A00DFC271 /* Build configuration list for PBXNativeTarget "PowerIntervals" */;
@@ -480,10 +533,16 @@
 		9E3888BC1D862E8900DFC271 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Thumbworks;
 				TargetAttributes = {
+					5F860F3A1E39D81E00C26024 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = F4WTN36U2F;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 9E3888C31D862E8900DFC271;
+					};
 					9E3888C31D862E8900DFC271 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = F4WTN36U2F;
@@ -516,11 +575,20 @@
 			targets = (
 				9E3888C31D862E8900DFC271 /* PowerIntervals */,
 				9E3888D71D862E8900DFC271 /* PowerIntervalsTests */,
+				5F860F3A1E39D81E00C26024 /* PowerIntervalsUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5F860F391E39D81E00C26024 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F8099FA1E3C20D600BA93CD /* PowerIntervalsTestingData.realm in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9E3888C21D862E8900DFC271 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -589,6 +657,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5F860F371E39D81E00C26024 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F860F3E1E39D81E00C26024 /* PowerIntervalsUITests.swift in Sources */,
+				5F860F461E39D89600C26024 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9E3888C01D862E8900DFC271 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -641,6 +718,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5F860F411E39D81E00C26024 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E3888C31D862E8900DFC271 /* PowerIntervals */;
+			targetProxy = 5F860F401E39D81E00C26024 /* PBXContainerItemProxy */;
+		};
 		5FF5EE0A1E294D0E00D7F121 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9E3888C31D862E8900DFC271 /* PowerIntervals */;
@@ -668,6 +750,37 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5F860F431E39D81E00C26024 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = F4WTN36U2F;
+				INFOPLIST_FILE = PowerIntervalsUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.thumbworks.PowerIntervalsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = PowerIntervals;
+			};
+			name = Debug;
+		};
+		5F860F441E39D81E00C26024 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = F4WTN36U2F;
+				INFOPLIST_FILE = PowerIntervalsUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.thumbworks.PowerIntervalsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = PowerIntervals;
+			};
+			name = Release;
+		};
 		9E3888DF1D862E8A00DFC271 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -852,6 +965,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5F860F421E39D81E00C26024 /* Build configuration list for PBXNativeTarget "PowerIntervalsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F860F431E39D81E00C26024 /* Debug */,
+				5F860F441E39D81E00C26024 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9E3888BF1D862E8900DFC271 /* Build configuration list for PBXProject "PowerIntervals" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

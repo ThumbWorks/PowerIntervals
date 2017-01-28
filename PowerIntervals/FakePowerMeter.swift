@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 
 class FakePowerMeter {
+    var name: String?
     var powerValueToSend = 10
     var timer : Timer?
     var time = 0.0
@@ -55,8 +56,11 @@ class FakePowerMeter {
     }
     
     func createFakeDevice() {
-        let name = "PM \(arc4random() % 2000)"
-        let predicate = NSPredicate(format: "deviceID = %@", name)
+        var powerMeterName = "PM \(arc4random() % 2000)"
+        if let name = name {
+            powerMeterName = name
+        }
+        let predicate = NSPredicate(format: "deviceID = %@", powerMeterName)
         let queryResults = realm.objects(PowerSensorDevice.self).filter(predicate)
         if let persistedDevice = queryResults.first {
             deviceInstance = persistedDevice
@@ -64,7 +68,7 @@ class FakePowerMeter {
             deviceInstance = PowerSensorDevice()
             deviceInstance?.currentData = PowerSensorData()
             deviceInstance?.currentData?.instantPower = NSNumber(integerLiteral: powerValueToSend)
-            deviceInstance?.deviceID = name
+            deviceInstance?.deviceID = powerMeterName
             deviceInstance?.connected = true
             try! realm.write {
                 realm.add(deviceInstance!)

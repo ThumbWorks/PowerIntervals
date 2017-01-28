@@ -12,11 +12,11 @@ import RealmSwift
 
 class DeviceListDataSource: NSObject {
     var devices: Results<PowerSensorDevice>
-    
-    override init() {
-        let realm = try! Realm()
+    let devicesRealm: Realm
+    init(realm: Realm) {
+        devicesRealm = realm
         //TODO may need to only check connected devices
-        devices = realm.objects(PowerSensorDevice.self)
+        devices = devicesRealm.objects(PowerSensorDevice.self)
     }
 }
 

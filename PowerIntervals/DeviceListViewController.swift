@@ -17,7 +17,8 @@ class DeviceListViewController: UIViewController {
     var workoutManager: WorkoutManager?
     var workout: GroupWorkout?
     var zones: PowerZone?
-
+    var realm: Realm?
+    
     // Store the query results so we can get the change notifications
     var realmDataPoints: Results<WorkoutDataPoint>?
     var selectedDevice: PowerSensorDevice?
@@ -80,15 +81,14 @@ class DeviceListViewController: UIViewController {
         Logger.track(event: "DeviceListViewController appeared")
 
         startWorkout()
-        
-        let realm = try! Realm()
+        guard let realm = realm else {return}
         let zonesArray = realm.objects(PowerZone.self)
         
         if zonesArray.count == 0 {
             chartDataProvider.showDefaultData()
             zones = chartDataProvider.zones
             chartView.reloadData()
-            performSegue(withIdentifier: "SetZonesSegueID", sender: nil)
+            showZones()
         } else if zonesArray.count == 1 {
             zones = zonesArray.first
             chartDataProvider.zones = zones
@@ -101,8 +101,19 @@ class DeviceListViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
+            let path = Bundle.main.path(forResource: "PowerIntervalsTestingData", ofType: "realm")
+            guard let urlPath = path else {return}
+            let url = URL(fileURLWithPath: urlPath)
+            var config = Realm.Configuration()
+            config.fileURL = url
+            realm = try! Realm.init(configuration: config)
+        } else {
+            realm = try! Realm()
+        }
         // Set up the data source for the collection view
-        dataSource = DeviceListDataSource()
+        dataSource = DeviceListDataSource(realm: realm!)
+        collectionView.dataSource = dataSource
         
         // Chart setup
         chartView.dataSource = chartDataProvider
@@ -195,8 +206,7 @@ class DeviceListViewController: UIViewController {
         hideLabels()
         
         // get the selected device
-        if let device = selectedDevice {
-            let realm = try! Realm()
+        if let device = selectedDevice, let realm = realm {
             try! realm.write {
                 let predicate = NSPredicate(format: "deviceID = %@", device.deviceID)
                 let dataPoints = realm.objects(WorkoutDataPoint.self).filter(predicate)
@@ -247,6 +257,17 @@ extension DeviceListViewController {
     // Debug code for starting a fake PM
     @IBAction func startFakePM(_ sender: AnyObject) {
         let newPowerMeter = FakePowerMeter()
+//        let numberExisting = dataSource!.collectionView(collectionView, numberOfItemsInSection: 0)
+//        switch numberExisting {
+//        case 0:
+//            newPowerMeter.name = "Stages Crank"
+//        case 1:
+//            newPowerMeter.name = "Tacx Stationary"
+//        case 2:
+//            newPowerMeter.name = "PowerTap Hub"
+//        default:
+//            print("No name for this PM")
+//        }
         newPowerMeter.startButton()
         fakePowerMeters.append(newPowerMeter)
     }
@@ -277,7 +298,7 @@ extension DeviceListViewController {
                 print("Long press not on a cell")
                 return
             }
-            let realm = try! Realm()
+            guard let realm = realm else {return}
             try! realm.write {
                 guard let device = dataSource?.devices[indexPath.row] else {
                     print("The device doesn't exist at this index path")
@@ -400,7 +421,7 @@ extension DeviceListViewController {
         guard let device = selectedDevice else {
             return
         }
-        let realm = try! Realm()
+        guard let realm = realm else {return}
         // use selected device id as the predicate
         let predicate = NSPredicate(format: "deviceID = %@", device.deviceID)
         
@@ -453,6 +474,10 @@ extension DeviceListViewController {
         // tell the chart to show dummy data
         chartDataProvider.showDefaultData()
         chartView.reloadData()
+    }
+    
+    func showZones() {
+        performSegue(withIdentifier: "SetZonesSegueID", sender: nil)
     }
     
     func setupNotificationTokens() {
@@ -515,8 +540,8 @@ extension DeviceListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let dataSource = dataSource {
-            
             let aDevice = dataSource.devices[indexPath.row]
+            print("Bundle.main.bundlePath \(Bundle.main.bundlePath)")
             selectDevice(device: aDevice)
         }
     }

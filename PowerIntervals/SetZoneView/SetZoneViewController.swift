@@ -14,7 +14,7 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var centerYConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tableYConstraint: NSLayoutConstraint!
     var completion: ((PowerZone) -> Void)?
     
     var panBegin: CGPoint?
@@ -59,15 +59,15 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
                     // At this point we are dealing with the appropriate textView
                     let textField = view
                     let frame = cell.convert(textField.frame, to: self.view)
-                    cellOffset = frame.origin.y - centerYConstraint.constant
+                    cellOffset = frame.origin.y - tableYConstraint.constant
 
                     // If the keyboard is above the cell's offset, then adjust the tableview up
                     if convertedKeyboardEndFrame.minY < cellOffset {
                         let const =  convertedKeyboardEndFrame.minY - cellOffset - 44
-                        centerYConstraint.constant = const
+                        tableYConstraint.constant = const
                     } else {
                         // otherwise set it back to centered vertically
-                        centerYConstraint.constant = 0
+                        tableYConstraint.constant = 0
                     }
                 }
             }
