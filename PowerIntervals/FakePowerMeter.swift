@@ -65,14 +65,15 @@ class FakePowerMeter {
         if let persistedDevice = queryResults.first {
             deviceInstance = persistedDevice
         } else {
-            deviceInstance = PowerSensorDevice()
-            deviceInstance?.currentData = PowerSensorData()
-            deviceInstance?.currentData?.instantPower = NSNumber(integerLiteral: powerValueToSend)
-            deviceInstance?.deviceID = powerMeterName
-            deviceInstance?.connected = true
+            let newDeviceInstance = PowerSensorDevice()
+            newDeviceInstance.currentData = PowerSensorData()
+            newDeviceInstance.currentData?.instantPower = NSNumber(integerLiteral: powerValueToSend)
+            newDeviceInstance.deviceID = powerMeterName
+            newDeviceInstance.connected = true
             try! realm.write {
-                realm.add(deviceInstance!)
+                realm.add(newDeviceInstance)
             }
+            deviceInstance = newDeviceInstance
         }
     }
     
