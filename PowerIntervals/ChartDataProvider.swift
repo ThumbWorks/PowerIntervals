@@ -100,7 +100,7 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
     }
     
     func lineChartView(_ _: JBLineChartView!, widthForLineAtLineIndex lineIndex: UInt) -> CGFloat {
-        return 1.0
+        return 2.0
     }
     
     func lineChartView(_ _: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {

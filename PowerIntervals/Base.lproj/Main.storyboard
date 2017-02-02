@@ -489,28 +489,38 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pZe-kL-SWP" userLabel="searching UI">
-                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <rect key="frame" x="67" y="270" width="240" height="127"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searching for power meters" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ptf-Dl-MaK">
-                                        <rect key="frame" x="8" y="26" width="224" height="40"/>
+                                        <rect key="frame" x="8" y="10" width="224" height="40"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Qat-zR-Xkb">
-                                        <rect key="frame" x="110" y="74" width="20" height="20"/>
+                                        <rect key="frame" x="110" y="58" width="20" height="20"/>
                                     </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get close to a BTLE power meter and start pedaling" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xp4-4Z-3Hh">
+                                        <rect key="frame" x="8" y="84" width="224" height="33"/>
+                                        <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.228515625" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Ptf-Dl-MaK" firstAttribute="centerX" secondItem="pZe-kL-SWP" secondAttribute="centerX" id="2Rc-w1-yeW"/>
+                                    <constraint firstItem="Ptf-Dl-MaK" firstAttribute="top" secondItem="pZe-kL-SWP" secondAttribute="top" constant="10" id="KcB-MI-APw"/>
                                     <constraint firstItem="Qat-zR-Xkb" firstAttribute="centerX" secondItem="pZe-kL-SWP" secondAttribute="centerX" id="Lda-21-v28"/>
+                                    <constraint firstItem="xp4-4Z-3Hh" firstAttribute="centerX" secondItem="Qat-zR-Xkb" secondAttribute="centerX" id="NJU-wj-gL2"/>
                                     <constraint firstAttribute="trailing" secondItem="Ptf-Dl-MaK" secondAttribute="trailing" constant="8" id="NV8-fi-BbV"/>
-                                    <constraint firstAttribute="height" constant="128" id="Ncd-Bc-qKj"/>
-                                    <constraint firstItem="Qat-zR-Xkb" firstAttribute="centerY" secondItem="pZe-kL-SWP" secondAttribute="centerY" constant="20" id="Q3h-Bm-IF1"/>
                                     <constraint firstAttribute="width" constant="240" id="YGI-Qt-nJc"/>
+                                    <constraint firstAttribute="bottom" secondItem="xp4-4Z-3Hh" secondAttribute="bottom" constant="10" id="Zru-ev-ejr"/>
+                                    <constraint firstItem="xp4-4Z-3Hh" firstAttribute="top" secondItem="Qat-zR-Xkb" secondAttribute="bottom" constant="6" id="qj6-uP-00s"/>
                                     <constraint firstItem="Qat-zR-Xkb" firstAttribute="top" secondItem="Ptf-Dl-MaK" secondAttribute="bottom" constant="8" id="s1s-9V-1Oa"/>
                                     <constraint firstItem="Ptf-Dl-MaK" firstAttribute="leading" secondItem="pZe-kL-SWP" secondAttribute="leading" constant="8" id="sNO-Io-sfd"/>
+                                    <constraint firstAttribute="trailing" secondItem="xp4-4Z-3Hh" secondAttribute="trailing" constant="8" id="wQd-dB-kJS"/>
+                                    <constraint firstItem="xp4-4Z-3Hh" firstAttribute="leading" secondItem="pZe-kL-SWP" secondAttribute="leading" constant="8" id="yHP-k7-cBD"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -783,7 +793,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="D7d-8a-rbx" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Y7H-ND-KK1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y7H-ND-KK1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

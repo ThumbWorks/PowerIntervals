@@ -81,7 +81,9 @@ class DeviceListViewController: UIViewController {
         Logger.track(event: "DeviceListViewController appeared")
 
         startWorkout()
-        guard let realm = realm else {return}
+        guard let realm = realm else {
+            return
+        }
         let zonesArray = realm.objects(PowerZone.self)
         
         if zonesArray.count == 0 {
@@ -101,9 +103,14 @@ class DeviceListViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") {
+        
+        let isRunningTests = NSClassFromString("XCTestCase") != nil
+        if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") || isRunningTests {
             let path = Bundle.main.path(forResource: "PowerIntervalsTestingData", ofType: "realm")
-            guard let urlPath = path else {return}
+            guard let urlPath = path else {
+                print("The test data was not found")
+                return
+            }
             let url = URL(fileURLWithPath: urlPath)
             var config = Realm.Configuration()
             config.fileURL = url
@@ -130,7 +137,7 @@ class DeviceListViewController: UIViewController {
             constraint.constant = 0
         }
     }
-        
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "StartIntervalSegueID" {
@@ -232,19 +239,22 @@ class DeviceListViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        // if there are intersections, hide the labels        
-        enduranceLabel.isHidden = self.enduranceLabel.frame.intersects(self.tempoLabel.frame)
-        tempoLabel.isHidden = self.tempoLabel.frame.intersects(self.lactateLabel.frame)
-        lactateLabel.isHidden = self.lactateLabel.frame.intersects(self.vo2MaxLabel.frame)
-        vo2MaxLabel.isHidden = self.vo2MaxLabel.frame.intersects(self.anaerobicLabel.frame)
-        anaerobicLabel.isHidden = self.anaerobicLabel.frame.intersects(self.neuromuscularLabel.frame)
 
+        // if there are intersections, hide the labels
+        let delta = CGFloat(20.0)
+        enduranceLabel.isHidden =  (tempoVerticalConstraint.constant - enduranceVerticalConstraint.constant < delta)
+        tempoLabel.isHidden = (lactateThresholdVerticalConstraint.constant - tempoVerticalConstraint.constant < delta)
+        lactateLabel.isHidden = (vo2MaxVerticalConstraint.constant - lactateThresholdVerticalConstraint.constant < delta)
+        vo2MaxLabel.isHidden = (anaerobicVerticalConstraint.constant - vo2MaxVerticalConstraint.constant < delta)
+        anaerobicLabel.isHidden = (neuromuscularVerticalConstraint.constant - anaerobicVerticalConstraint.constant < delta)
+        
         guard let zones = zones else {return}
         if let max = self.chartDataProvider.max?.watts {
             neuromuscularLabel.isHidden = max.intValue < zones.neuromuscular
         }
         
-        self.recoveryLabel.isHidden = self.recoveryLabel.frame.intersects(self.enduranceLabel.frame)
+        recoveryLabel.isHidden = (enduranceVerticalConstraint.constant - activeRecoveryVerticalConstraint.constant < delta)
+
         // and if the chart min is greater than 0, hide the recovery label
         if let min = self.chartDataProvider.min?.watts {
             self.recoveryLabel.isHidden = min.intValue > zones.endurance
@@ -355,8 +365,14 @@ extension DeviceListViewController {
             return
         }
         
-        guard let minDataValue = chartDataProvider.min?.watts.intValue else {return}
-        guard let maxDataValue = chartDataProvider.max?.watts.intValue else {return}
+        guard let minDataValue = chartDataProvider.min?.watts.intValue else {
+            print("the min data value was nil")
+            return
+        }
+        guard let maxDataValue = chartDataProvider.max?.watts.intValue else {
+            print("the min data value was nil")
+            return
+        }
         
         if maxDataValue < attachToWattage {
             constraint.constant = CGFloat(maxDataValue)
@@ -368,7 +384,6 @@ extension DeviceListViewController {
         
         // Formula is ((zone - min) * height) / (max - min)
         let chartHeight = chartView.frame.height
-        
         let pixelsPerWatt = chartHeight / range
         let constant = pixelsPerWatt * CGFloat(attachToWattage - minDataValue)
         constraint.constant = constant + 5
@@ -376,6 +391,7 @@ extension DeviceListViewController {
     
     func startTimer() {
         countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+            // so that we can update the labels for the screenshot
             self.countdownLabel.text = self.duration.stringForTime()
             if self.duration == 0 {
                 timer.invalidate()
@@ -403,6 +419,8 @@ extension DeviceListViewController {
         self.chartTopConstraint.constant = 0
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
             self.view.layoutSubviews()
+        }, completion: { (_) in
+            self.updateZoneLabels()
         })
     }
     
@@ -410,6 +428,8 @@ extension DeviceListViewController {
         self.chartTopConstraint.constant = 85
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
             self.view.layoutSubviews()
+        }, completion: { (_) in
+            self.updateZoneLabels()
         })
     }
     
@@ -483,7 +503,6 @@ extension DeviceListViewController {
     func setupNotificationTokens() {
         
         token = dataSource?.devices.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
-            
             if let collectionView = self?.collectionView {
                 
                 switch changes {

@@ -22,6 +22,12 @@ platform :ios do
     carthage
   end
 
+
+  lane :frame do
+      snapshot
+      frameit(white: true, path: './fastlane/screenshots')
+  end
+
   desc "Runs all the tests"
   lane :test do
     scan

@@ -37,25 +37,22 @@ class PowerIntervalsUITests: XCTestCase {
         app.launch()
         
         // The first power meter's chart
-        snapshot("Short Chart")
+        snapshot("Workout")
         
         // Tap on the 2nd power meter and get a picture
         app.collectionViews.staticTexts["1101 w"].tap()
+        snapshot("Beautiful")
 
         // Start the interval flow
         app.buttons["Interval"].tap()
-        snapshot("Interval Selection")
+        snapshot("IntervalSetup")
 
         // Begin an actual Interval
         app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element(boundBy: 1).tap()
-        
-        // Wait a few seconds and grab an image mid snapshot
-        sleep(4)
-        snapshot("Mid Interval")
 
         // Go to the settings/zone selection
         XCUIApplication().buttons["Settings"].tap()
-        snapshot("Settings View")
+        snapshot("Zones")
 
     }
     
