@@ -793,7 +793,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="D7d-8a-rbx" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y7H-ND-KK1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Y7H-ND-KK1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -948,7 +948,7 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niy-MS-2gu" customClass="JBLineChartView">
                                 <rect key="frame" x="0.0" y="289" width="375" height="378"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0fN-jy-GvZ" userLabel="Chart View Label Wrapper">
@@ -1012,7 +1012,7 @@
                                         <rect key="frame" x="10" y="359" width="129" height="19"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="16"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="0.0" green="0.53333333329999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label hidden="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3st-zT-K2b">
@@ -1051,7 +1051,7 @@
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Yk-e0-dvU">
-                                <rect key="frame" x="173" y="642" width="30" height="30"/>
+                                <rect key="frame" x="172.5" y="627" width="30" height="30"/>
                                 <state key="normal" title="."/>
                                 <connections>
                                     <action selector="startFakePM:" destination="4U5-9q-t9i" eventType="touchUpInside" id="cvB-VT-Sw9"/>
@@ -1069,7 +1069,7 @@
                             <constraint firstItem="qpo-wJ-uWc" firstAttribute="top" secondItem="Jgp-Rr-sOx" secondAttribute="bottom" id="Obg-hN-c1B"/>
                             <constraint firstAttribute="trailing" secondItem="qpo-wJ-uWc" secondAttribute="trailing" id="PlH-bb-Te7"/>
                             <constraint firstItem="0fN-jy-GvZ" firstAttribute="width" secondItem="niy-MS-2gu" secondAttribute="width" id="RwV-lC-Dfw"/>
-                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="2Yk-e0-dvU" secondAttribute="centerY" constant="10" id="SqW-nO-Ol2"/>
+                            <constraint firstItem="niy-MS-2gu" firstAttribute="bottom" secondItem="2Yk-e0-dvU" secondAttribute="bottom" constant="10" id="SqW-nO-Ol2"/>
                             <constraint firstItem="0fN-jy-GvZ" firstAttribute="leading" secondItem="niy-MS-2gu" secondAttribute="leading" id="XpG-8d-n2m"/>
                             <constraint firstItem="UrJ-Up-pN4" firstAttribute="leading" secondItem="AsX-J7-rTX" secondAttribute="centerX" constant="10" id="YSG-fQ-beT"/>
                             <constraint firstItem="niy-MS-2gu" firstAttribute="top" secondItem="UrJ-Up-pN4" secondAttribute="bottom" constant="85" id="Yg1-xs-4sk"/>
