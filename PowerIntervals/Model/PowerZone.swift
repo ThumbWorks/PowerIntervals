@@ -54,7 +54,7 @@ enum PowerZoneAttributes: UInt {
     
     var color: UIColor {
         switch self {
-        case .ActiveRecovery: return .lightGray
+        case .ActiveRecovery: return .white
         case .Endurance: return .blue
         case .Tempo: return .green
         case .LactateThreshold: return .yellow
