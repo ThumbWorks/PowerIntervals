@@ -137,10 +137,14 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
 extension ChartDataProvider {
     func intervalAverage() -> UInt {
         var sum:UInt = 0
-        for point in displayDataPoints() {
+        let points = displayDataPoints()
+        for point in points {
             sum = sum + point.watts.uintValue
         }
-        return sum / UInt(displayDataPoints().count)
+        if points.count == 0 {
+            return 0
+        }
+        return sum / UInt(points.count)
     }
     
     func isInInterval() -> Bool {
