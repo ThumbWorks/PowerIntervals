@@ -59,10 +59,6 @@ extension BluetoothDelegate: CBCentralManagerDelegate {
         }
     }
     
-    func centralManager(_ central: CBCentralManager, willRestoreState dict: [String : Any]) {
-        print("will restore state \(dict))")
-    }
-
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
         if let name = peripheral.name {
@@ -266,17 +262,53 @@ extension CBCharacteristic {
             let data16 = bytes.map { UInt16($0) }
             // Per https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.characteristic.cycling_power_measurement.xml
             
-//            print("some space \n\n")
-//            for i in 0...9 {
-//                print("\(i) : \(data[i])")
+            //  Print the debug bytes. Could change based on power meter capabilities
+//            var string = ""
+//            for i in data {
+//                string = string + " \(i) - "
 //            }
+//            print(string)
+            
+            // Settings debug
+//            let settings = data[0] // mandatory
+            
+//            let pedalPowerPresent = (settings & 0)
+//            let balanceReferenceIsLeft = (settings & 1)
+//            let accumulatedTorque = (settings & 2)
+//            let accumulatedTorqueSourceCrank = (settings & 4) // wheel otherwise probably
+//            let wheelRevolutionDataPresent = (settings & 8)
+//            let crankRevolutionDataPresent = (settings & 16)
+//            let extremeForceMagintudePresent = (settings & 32)
+//            let extremeTorqueMagnitudePresent = (settings & 64)
+//            let extremeAnglesPresent = (settings & 128)
+            
+            // bits 9 - 12
+//            let topDeadSpotAnglePresent = (settings & 256)
+//            let bottomDeadSpotAnglePresent = (settings & 512)
+//            let accumulatedEnergyPresent = (settings & 1024)
+//            let offsetCompensationIndicator = (settings & 2048)
+            
+//            print("\(pedalPowerPresent>0 ? "pedal power" : "not pedal power")\n\(balanceReferenceIsLeft>0 ? "Balance is left" : "Balance is not left")\n\(accumulatedTorque>0 ? "Has accumulated torque" : "Does not have accumulated Torque")")
+//            print("\(accumulatedTorqueSourceCrank>0 ? "acc torque on crank" : "acc torque not on crank")\n\(wheelRevolutionDataPresent>0 ? "Wheel data present" : "Wheel data not present")\n\(crankRevolutionDataPresent>0 ? "Crank data present" : "Crank data not present")")
+//            print("\(extremeForceMagintudePresent>0 ? "Extreme force magnitude present" : "Extreme force magnitude not present")\n\(extremeTorqueMagnitudePresent>0 ? "Extreme torque magnitude present" : "Extreme torque magnitude not present")\n\(extremeAnglesPresent>0 ? "Extreme angles present" : "Extreme angles not present")")
+            
+            
+//            let wattage = data[1] + data[2] // mandatory
+//            let pedalPowerBalance = data[3] // optional
+//            let accumulatedTorque1 = data[4] + data[5] // optional (tacx has it)
+//            let wheelRevolutionData = data[6] + data[7] + data[8] + data[9] // c1
+//            let lastWheelEventTime = data[10] + data[11] // c1
+//            let cumulativeCrankRevolutions = data[12] + data[13] // c2
+//            let lastCrankEventTime = data[14] + data[15] // c2
+//            let maxForce = data[16] + data[17]
+//            let minForce = data[18] + data[19]
             
             // We are looking for the bits that represent the instantaneous power
             // Testing showed that this is element 2 of 13
             if data16.count == 1 {
                 watts = data16[0]
             } else {
-                watts = data16[2]
+                watts = (data16[3]) << 8 + data16[2]
             }
         }
         return watts
