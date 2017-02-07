@@ -1,1 +1,3 @@
+Power Intervals aims to provide a different visual engagement with your cycling power data. It provides a simple interface for viewing your wattage over time. You can quickly run an interval and see in a simple interface, what your current interval average is. 
 
+Syncing with one or more Power Meters should be frictionless. You should be able to use this app in a class setting or with several power meters around.
