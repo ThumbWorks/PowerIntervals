@@ -26,6 +26,11 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
     var offset: Int = 0
     
     func displayDataPoints() -> [WorkoutDataPoint] {
+        for point in dataPoints {
+            if point.isInvalidated {
+                return []
+            }
+        }
         let count = Int(dataPoints.count)
         guard count > 0 else {
             return dataPoints

@@ -217,6 +217,8 @@ class DeviceListViewController: UIViewController {
             try! realm.write {
                 let predicate = NSPredicate(format: "deviceID = %@", device.deviceID)
                 let dataPoints = realm.objects(WorkoutDataPoint.self).filter(predicate)
+                // ensure that the chart data provider gets an empty array to avoid a crash
+                chartDataProvider.dataPoints = [WorkoutDataPoint]()
                 realm.delete(dataPoints)
             }
         }
@@ -465,7 +467,8 @@ extension DeviceListViewController {
                 return
             }
             var dataPoints = [WorkoutDataPoint]()
-            for dataPoint in fetchedDataPoints {
+            // add the extra defensive isInvalidated check
+            for dataPoint in fetchedDataPoints where !dataPoint.isInvalidated {
                 dataPoints.append(dataPoint)
             }
 
@@ -560,7 +563,6 @@ extension DeviceListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let dataSource = dataSource {
             let aDevice = dataSource.devices[indexPath.row]
-            print("Bundle.main.bundlePath \(Bundle.main.bundlePath)")
             selectDevice(device: aDevice)
         }
     }
