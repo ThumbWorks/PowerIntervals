@@ -59,10 +59,7 @@
 		9EC2F8A01DA31C6B00F31CD6 /* beep-hightone.aif in Resources */ = {isa = PBXBuildFile; fileRef = 9EC2F89F1DA31C6B00F31CD6 /* beep-hightone.aif */; };
 		9EE6E48E1DA7E26700E9F3BC /* BluetoothDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE6E48D1DA7E26700E9F3BC /* BluetoothDelegate.swift */; };
 		9EFDBB021D88517E00C56D97 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EFDBB011D88517E00C56D97 /* SystemConfiguration.framework */; };
-		9EFDBB041D88518300C56D97 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EFDBB031D88518300C56D97 /* ExternalAccessory.framework */; };
 		9EFDBB061D88518800C56D97 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EFDBB051D88518800C56D97 /* CoreBluetooth.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		9EFDBB081D8852C200C56D97 /* WFConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EFDBB071D8852C200C56D97 /* WFConnector.framework */; };
-		9EFDBB0E1D8854A600C56D97 /* WahooHardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFDBB0D1D8854A600C56D97 /* WahooHardware.swift */; };
 		9EFF88051DD2A3CD00A68058 /* ChartDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFF88041DD2A3CD00A68058 /* ChartDataProvider.swift */; };
 /* End PBXBuildFile section */
 
@@ -153,11 +150,9 @@
 		9EC2F89F1DA31C6B00F31CD6 /* beep-hightone.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-hightone.aif"; sourceTree = "<group>"; };
 		9EE6E48D1DA7E26700E9F3BC /* BluetoothDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BluetoothDelegate.swift; path = BluetoothDelegate/BluetoothDelegate.swift; sourceTree = "<group>"; };
 		9EFDBB011D88517E00C56D97 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		9EFDBB031D88518300C56D97 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		9EFDBB051D88518800C56D97 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		9EFDBB071D8852C200C56D97 /* WFConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WFConnector.framework; path = PowerIntervals/WFConnector.framework; sourceTree = "<group>"; };
 		9EFDBB091D88534700C56D97 /* PowerIntervals-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PowerIntervals-Bridging-Header.h"; sourceTree = "<group>"; };
-		9EFDBB0D1D8854A600C56D97 /* WahooHardware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WahooHardware.swift; sourceTree = "<group>"; };
 		9EFDBB0F1D8861ED00C56D97 /* PowerIntervals.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PowerIntervals.entitlements; sourceTree = "<group>"; };
 		9EFF88041DD2A3CD00A68058 /* ChartDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,10 +173,8 @@
 				5FE61D8A1E1AE060006E8BD0 /* Mixpanel.framework in Frameworks */,
 				9E452FE61D958BE600C96165 /* Realm.framework in Frameworks */,
 				9E452FE41D958BDE00C96165 /* RealmSwift.framework in Frameworks */,
-				9EFDBB081D8852C200C56D97 /* WFConnector.framework in Frameworks */,
 				9E4472181D90EFB600CFECCE /* Fabric.framework in Frameworks */,
 				9EFDBB061D88518800C56D97 /* CoreBluetooth.framework in Frameworks */,
-				9EFDBB041D88518300C56D97 /* ExternalAccessory.framework in Frameworks */,
 				9E4472191D90EFB600CFECCE /* Crashlytics.framework in Frameworks */,
 				9EFDBB021D88517E00C56D97 /* SystemConfiguration.framework in Frameworks */,
 			);
@@ -297,7 +290,6 @@
 				9E3888D01D862E8900DFC271 /* LaunchScreen.storyboard */,
 				9E3888D31D862E8900DFC271 /* Info.plist */,
 				5FE61D8E1E1B0EE7006E8BD0 /* Constants.swift */,
-				9EFDBB0D1D8854A600C56D97 /* WahooHardware.swift */,
 				9E452FE21D95841800C96165 /* Utility */,
 				9E452FE11D9583F700C96165 /* Resources */,
 				5F90DEA11E2E92F50067F744 /* Start Interval */,
@@ -468,7 +460,6 @@
 				9E4472171D90EFB600CFECCE /* Crashlytics.framework */,
 				9EFDBB071D8852C200C56D97 /* WFConnector.framework */,
 				9EFDBB051D88518800C56D97 /* CoreBluetooth.framework */,
-				9EFDBB031D88518300C56D97 /* ExternalAccessory.framework */,
 				9EFDBB011D88517E00C56D97 /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
@@ -556,6 +547,9 @@
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
+							};
+							com.apple.WAC = {
+								enabled = 0;
 							};
 						};
 					};
@@ -704,7 +698,6 @@
 				9E452FE01D9581D600C96165 /* DeviceListDataSource.swift in Sources */,
 				9E4523911DB2E4B000C380F2 /* JBLineChartLinesView.m in Sources */,
 				9EB4F4711DC556AB00B7045E /* Color.swift in Sources */,
-				9EFDBB0E1D8854A600C56D97 /* WahooHardware.swift in Sources */,
 				9E45238A1DB2E4B000C380F2 /* JBLineChartView.m in Sources */,
 				9E4523891DB2E4B000C380F2 /* JBChartView.m in Sources */,
 				9E452FDA1D956FA600C96165 /* DeviceListViewController.swift in Sources */,

@@ -80,8 +80,4 @@ class FakePowerMeter {
     func stop() {
         timer?.invalidate()
     }
-    
-    deinit {
-        PowerSensorDevice.deleteDevice(identifierString: "FakeDeviceID")
-    }
 }
