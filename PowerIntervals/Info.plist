@@ -48,7 +48,6 @@
 	<string>Sending Bug reports to the developer</string>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>external-accessory</string>
 		<string>bluetooth-central</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
