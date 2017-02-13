@@ -12,6 +12,7 @@ import RealmSwift
 
 class DeviceListDataSource: NSObject {
     var devices: Results<PowerSensorDevice>
+    var selectedDevice: PowerSensorDevice?
     let devicesRealm: Realm
     init(realm: Realm) {
         devicesRealm = realm
@@ -28,6 +29,11 @@ extension DeviceListDataSource: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FormattedCollectionViewSensorCellID", for: indexPath) as! FormattedCollectionViewSensorCell
         let device = devices[indexPath.row]
+        
+        // make the selected device's cell a bit different than the rest
+        let isSelected = device == selectedDevice
+        cell.background.backgroundColor = isSelected ? UIColor.powerBlue.withAlphaComponent(0.6) : UIColor.powerBlue
+        
         if let name = device.userDefinedName {
             cell.sensorID.text = name
         } else {

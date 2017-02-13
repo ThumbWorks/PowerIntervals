@@ -550,16 +550,17 @@ extension DeviceListViewController {
             }
         }
     }
+    func selectDevice(device: PowerSensorDevice) {
+        selectedDevice = device
+        dataSource?.selectedDevice = device
+        setupSelectedDeviceToken()
+        chartView.reloadData(animated: true)
+        collectionView.reloadData()
+        updateZoneLabels()
+    }
 }
 
 extension DeviceListViewController: UICollectionViewDelegate {
-    func selectDevice(device: PowerSensorDevice) {
-        selectedDevice = device
-        setupSelectedDeviceToken()
-        chartView.reloadData(animated: true)
-        updateZoneLabels()
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let dataSource = dataSource {
             let aDevice = dataSource.devices[indexPath.row]
