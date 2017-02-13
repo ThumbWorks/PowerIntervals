@@ -254,13 +254,10 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
         }
         
         var userZones: PowerZone
-        var isUpdate: Bool
         if let zones = zonesArray.first {
             userZones = zones
-            isUpdate = true
         } else {
             userZones = PowerZone()
-            isUpdate = false
         }
         
         // now save the zones object
@@ -273,7 +270,7 @@ class SetZoneViewController: UIViewController, UITableViewDataSource, UITextFiel
             userZones.tempo = Int(values[4])
             userZones.endurance = Int(values[5])
             
-            realm.add(userZones, update: isUpdate)
+            realm.add(userZones, update: true)
         }
         
         // pass it back through the closure
