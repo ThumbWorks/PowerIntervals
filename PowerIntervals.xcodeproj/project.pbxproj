@@ -32,7 +32,6 @@
 		9E3888CD1D862E8900DFC271 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E3888CB1D862E8900DFC271 /* Main.storyboard */; };
 		9E3888CF1D862E8900DFC271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E3888CE1D862E8900DFC271 /* Assets.xcassets */; };
 		9E3888D21D862E8900DFC271 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E3888D01D862E8900DFC271 /* LaunchScreen.storyboard */; };
-		9E3888DD1D862E8A00DFC271 /* PowerIntervalsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3888DC1D862E8A00DFC271 /* PowerIntervalsTests.swift */; };
 		9E4472181D90EFB600CFECCE /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4472161D90EFB600CFECCE /* Fabric.framework */; };
 		9E4472191D90EFB600CFECCE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4472171D90EFB600CFECCE /* Crashlytics.framework */; };
 		9E4523861DB2E4B000C380F2 /* NSMutableArray+JBStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4523681DB2E4B000C380F2 /* NSMutableArray+JBStack.m */; };
@@ -109,7 +108,6 @@
 		9E3888D11D862E8900DFC271 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E3888D31D862E8900DFC271 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E3888D81D862E8900DFC271 /* PowerIntervalsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PowerIntervalsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9E3888DC1D862E8A00DFC271 /* PowerIntervalsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerIntervalsTests.swift; sourceTree = "<group>"; };
 		9E3888DE1D862E8A00DFC271 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E4472161D90EFB600CFECCE /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		9E4472171D90EFB600CFECCE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -300,7 +298,6 @@
 		9E3888DB1D862E8900DFC271 /* PowerIntervalsTests */ = {
 			isa = PBXGroup;
 			children = (
-				9E3888DC1D862E8A00DFC271 /* PowerIntervalsTests.swift */,
 				9E3888DE1D862E8A00DFC271 /* Info.plist */,
 				5FF5EE061E2948FB00D7F121 /* ChartDataProviderTests.swift */,
 			);
@@ -711,7 +708,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E3888DD1D862E8A00DFC271 /* PowerIntervalsTests.swift in Sources */,
 				5FF5EE071E2948FB00D7F121 /* ChartDataProviderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
