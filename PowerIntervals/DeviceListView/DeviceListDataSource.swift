@@ -16,7 +16,7 @@ class DeviceListDataSource: NSObject {
     init(realm: Realm) {
         devicesRealm = realm
         //TODO may need to only check connected devices
-        devices = devicesRealm.objects(PowerSensorDevice.self)
+        devices = devicesRealm.objects(PowerSensorDevice.self).sorted(byKeyPath: "connected", ascending: false)
     }
 }
 
@@ -36,6 +36,15 @@ extension DeviceListDataSource: UICollectionViewDataSource {
         if let data = device.currentData {
             cell.power.text = data.formattedPower
         }
+        
+        if device.connected {
+            cell.sensorID.textColor = .white
+            cell.power.textColor = .white
+        } else {
+            cell.sensorID.textColor = UIColor.white.withAlphaComponent(0.5)
+            cell.power.textColor = UIColor.white.withAlphaComponent(0.5)
+        }
+        
         return cell
     }
 }

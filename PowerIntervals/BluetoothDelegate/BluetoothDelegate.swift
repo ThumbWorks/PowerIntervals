@@ -21,6 +21,14 @@ class BluetoothDelegate: NSObject {
         //TODO maybe we can do this lazily
         manager = CBCentralManager(delegate: self, queue: queue)
         peripherals = NSMutableArray()
+        
+        let realm = try! Realm()
+        let devices = realm.objects(PowerSensorDevice.self)
+        try! realm.write {
+            for device in devices {
+                device.connected = false
+            }
+        }
     }
     
     func stop() {
@@ -94,9 +102,7 @@ extension BluetoothDelegate: CBCentralManagerDelegate {
         let realm = try! Realm()
         
         let predicate = NSPredicate(format: "deviceID == %@", peripheral.identifier.uuidString)
-        
         var device = realm.objects(PowerSensorDevice.self).filter(predicate).first
-        
         // create a new one if we don't have it
         if device == nil {
             device = PowerSensorDevice()
@@ -115,6 +121,7 @@ extension BluetoothDelegate: CBCentralManagerDelegate {
                 realm.add(device)
             }
         }
+        
         peripheral.discoverServices([services])
     }
     
@@ -136,11 +143,19 @@ extension BluetoothDelegate: CBCentralManagerDelegate {
             print("Disconnect peripheral with error: \(error.localizedDescription)")
             let properties: Properties = ["error": error.localizedDescription]
             Logger.track(event: "centralManagerDidDisconnectWithError", properties:properties)
-            return
         }
         if let index = peripherals?.index(of: peripheral) {
             Logger.track(event: "centralManagerDidDisconnectWithoutError")
             _ = peripherals?.remove(at: index)
+            
+            // disconnect the device in realm
+            let predicate = NSPredicate(format: "deviceID == %@", peripheral.identifier.uuidString)
+            let realm = try! Realm()
+            if let device = realm.objects(PowerSensorDevice.self).filter(predicate).first {
+                try! realm.write {
+                    device.connected = false
+                }
+            }
         }
     }
 }
