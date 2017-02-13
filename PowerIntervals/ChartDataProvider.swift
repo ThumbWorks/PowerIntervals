@@ -180,13 +180,15 @@ extension ChartDataProvider {
         dataPoint2.deviceID = "dummy"
         dataPoints = [dataPoint1, dataPoint2]
 
-        let newPowerZone = PowerZone()
-        newPowerZone.neuromuscular = 1000
-        newPowerZone.anaerobicCapacity = 759
-        newPowerZone.VO2Max = 600
-        newPowerZone.lactateThreshold = 500
-        newPowerZone.tempo = 350
-        newPowerZone.endurance = 200
-        zones = newPowerZone
+        if zones == nil {
+            let newPowerZone = PowerZone()
+            newPowerZone.neuromuscular = 1000
+            newPowerZone.anaerobicCapacity = 759
+            newPowerZone.VO2Max = 600
+            newPowerZone.lactateThreshold = 500
+            newPowerZone.tempo = 350
+            newPowerZone.endurance = 200
+            zones = newPowerZone
+        }
     }
 }
