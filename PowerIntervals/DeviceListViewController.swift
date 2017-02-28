@@ -104,6 +104,7 @@ class DeviceListViewController: UIViewController {
     
     override func viewDidLoad() {
         
+        UIApplication.shared.isIdleTimerDisabled = true
         let isRunningTests = NSClassFromString("XCTestCase") != nil
         if UserDefaults.standard.bool(forKey: "FASTLANE_SNAPSHOT") || isRunningTests {
             let path = Bundle.main.path(forResource: "PowerIntervalsTestingData", ofType: "realm")
