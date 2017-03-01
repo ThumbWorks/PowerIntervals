@@ -10,9 +10,6 @@ import Foundation
 
 class StartIntervalViewController: UIViewController {
     var tappedZone: ((_: UInt) -> ())?
-
-    @IBOutlet weak var datePicker: UIDatePicker!
-    
 }
 
 extension StartIntervalViewController: UICollectionViewDelegate {
@@ -43,7 +40,7 @@ extension StartIntervalViewController: UICollectionViewDelegate {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        let dest = segue.destination as! CustomDurationPickerViewController
+        var dest = segue.destination as! DurationSelector
         dest.doneSelectingDuration = { (duration) in
             self.dismiss(animated: false, completion: {
                 if let tappedZone = self.tappedZone {

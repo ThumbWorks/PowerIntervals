@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CustomDurationPickerViewController: UIViewController {
+class CustomDurationPickerViewController: UIViewController, DurationSelector {
     var doneSelectingDuration: ((_: UInt) -> ())?
     
     @IBOutlet weak var zoneColor: UIView!
