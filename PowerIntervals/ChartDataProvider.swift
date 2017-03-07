@@ -181,14 +181,15 @@ extension ChartDataProvider {
         dataPoints = [dataPoint1, dataPoint2]
 
         if zones == nil {
-            let newPowerZone = PowerZone()
-            newPowerZone.neuromuscular = 1000
-            newPowerZone.anaerobicCapacity = 759
-            newPowerZone.VO2Max = 600
-            newPowerZone.lactateThreshold = 500
-            newPowerZone.tempo = 350
-            newPowerZone.endurance = 200
-            zones = newPowerZone
+            let powerZones = PowerZone()
+            powerZones.neuromuscular = 400
+            powerZones.anaerobicCapacity = 350
+            powerZones.VO2Max = 300
+            powerZones.lactateThreshold = 200
+            powerZones.tempo = 150
+            powerZones.endurance = 100
+            powerZones.activeRecovery = 75
+            zones = powerZones
         }
     }
 }
