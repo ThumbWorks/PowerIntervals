@@ -73,6 +73,7 @@
 		5F979BAD1E3089A3009FF7DA /* CustomDurationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F979BAC1E3089A3009FF7DA /* CustomDurationPickerViewController.swift */; };
 		5FB5CD011E3F15E800AB35C3 /* PowerIntervalsTestingData.realm in Resources */ = {isa = PBXBuildFile; fileRef = 5F8099F91E3C20D600BA93CD /* PowerIntervalsTestingData.realm */; };
 		5FB5CD031E3F172300AB35C3 /* PowerIntervalsTestingData.realm in Resources */ = {isa = PBXBuildFile; fileRef = 5F8099F91E3C20D600BA93CD /* PowerIntervalsTestingData.realm */; };
+		5FB8F3731E7320F6003C4FB0 /* SmoochLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5FB8F3721E7320F6003C4FB0 /* SmoochLocalizable.strings */; };
 		5FDA29A31E71A2DE00816463 /* DeviceListViewControlleriOSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDA29A21E71A2DE00816463 /* DeviceListViewControlleriOSExtension.swift */; };
 		5FE61D8A1E1AE060006E8BD0 /* Mixpanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE61D891E1AE060006E8BD0 /* Mixpanel.framework */; };
 		5FE61D8F1E1B0EE7006E8BD0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE61D8E1E1B0EE7006E8BD0 /* Constants.swift */; };
@@ -193,6 +194,7 @@
 		5F979BAC1E3089A3009FF7DA /* CustomDurationPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomDurationPickerViewController.swift; path = Classes/CustomDurationPickerViewController.swift; sourceTree = "<group>"; };
 		5FB5CCFF1E3F0D9E00AB35C3 /* title.strings */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = title.strings; path = "../fastlane/screenshots/en-US/title.strings"; sourceTree = "<group>"; };
 		5FB5CD001E3F0DF400AB35C3 /* keyword.strings */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = keyword.strings; path = "../fastlane/screenshots/en-US/keyword.strings"; sourceTree = "<group>"; };
+		5FB8F3721E7320F6003C4FB0 /* SmoochLocalizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = SmoochLocalizable.strings; sourceTree = "<group>"; };
 		5FDA29A21E71A2DE00816463 /* DeviceListViewControlleriOSExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceListViewControlleriOSExtension.swift; sourceTree = "<group>"; };
 		5FE61D891E1AE060006E8BD0 /* Mixpanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mixpanel.framework; path = Carthage/Build/iOS/Mixpanel.framework; sourceTree = "<group>"; };
 		5FE61D8E1E1B0EE7006E8BD0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
@@ -584,6 +586,7 @@
 				9EFDBB091D88534700C56D97 /* PowerIntervals-Bridging-Header.h */,
 				5F32CA4E1E65EC9300EF7FA9 /* PowerIntervalsTV-Bridging-Header.h */,
 				9EABF6B61D8C46C200B8AC27 /* IntTimeExtension.swift */,
+				5FB8F3721E7320F6003C4FB0 /* SmoochLocalizable.strings */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -837,6 +840,7 @@
 				9E1CC2B71D911527008AF139 /* DejaVuSans.ttf in Resources */,
 				5FB5CD031E3F172300AB35C3 /* PowerIntervalsTestingData.realm in Resources */,
 				9E3888CD1D862E8900DFC271 /* Main.storyboard in Resources */,
+				5FB8F3731E7320F6003C4FB0 /* SmoochLocalizable.strings in Resources */,
 				9EC2F8A01DA31C6B00F31CD6 /* beep-hightone.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

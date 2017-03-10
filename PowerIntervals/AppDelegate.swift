@@ -24,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
 
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().barTintColor = .powerBlue
+        UINavigationBar.appearance().titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.white]
+        
         Logger.start()
         Logger.track(event: "App Launch")
     
