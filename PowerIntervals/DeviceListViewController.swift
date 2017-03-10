@@ -389,7 +389,7 @@ extension DeviceListViewController {
         let chartHeight = chartView.frame.height
         let pixelsPerWatt = chartHeight / range
         let constant = pixelsPerWatt * CGFloat(attachToWattage - minDataValue)
-        constraint.constant = constant + 5
+        constraint.constant = constant
     }
     
     func startTimer() {

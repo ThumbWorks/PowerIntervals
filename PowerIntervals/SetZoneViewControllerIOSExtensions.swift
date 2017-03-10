@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import Mixpanel
 
 extension SetZoneViewController {
     @IBAction func startAChat(_ sender: Any) {
-        Logger.track(event: "Start chat")
+        let properties: Properties = ["view": "SetZoneViewController"]
+        Logger.track(event: "Start chat", properties: properties)
         Smooch.initWith(SKTSettings(appToken: Constants.SMOOCH_TOKEN.rawValue))
         Smooch.show()
     }
@@ -81,7 +83,6 @@ extension SetZoneViewController {
                 }
             }
         }
-        
         UIView.animate(withDuration: animationDuration, delay: 0.0, options: animationCurve, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
