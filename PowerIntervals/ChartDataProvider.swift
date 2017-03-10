@@ -110,19 +110,17 @@ class ChartDataProvider: NSObject, JBLineChartViewDataSource, JBLineChartViewDel
     }
     
     func lineChartView(_ _: JBLineChartView!, colorForLineAtLineIndex lineIndex: UInt) -> UIColor! {
-     
-        if lineIndex == 0 {
-            return PowerZoneAttributes.NeuroMuscular.color
+
+        // wattage line
+        if lineIndex == 7 {
+            return .black
         }
         
-        if let zone = PowerZoneAttributes(rawValue: lineIndex + 1) {
-            return zone.color
-        }
-        
+        // interval average line
         if lineIndex == 8 {
             return .white
         }
-        return .black
+        return .clear
     }
     
     func lineChartView(_ _: JBLineChartView!, smoothLineAtLineIndex lineIndex: UInt) -> Bool {
