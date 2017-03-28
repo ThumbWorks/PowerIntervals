@@ -84,8 +84,14 @@ class DeviceListViewController: UIViewController {
         guard let realm = realm else {
             return
         }
-        let zonesArray = realm.objects(PowerZone.self)
         
+        // determine if we need to present anything
+        if presentedViewController != nil {
+            print("don't present anything, we're already presenting")
+            return
+        }
+        
+        let zonesArray = realm.objects(PowerZone.self)
         if zonesArray.count == 0 {
             chartDataProvider.showDefaultData()
             zones = chartDataProvider.zones

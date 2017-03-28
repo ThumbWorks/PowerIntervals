@@ -74,6 +74,8 @@
 		5FB5CD011E3F15E800AB35C3 /* PowerIntervalsTestingData.realm in Resources */ = {isa = PBXBuildFile; fileRef = 5F8099F91E3C20D600BA93CD /* PowerIntervalsTestingData.realm */; };
 		5FB5CD031E3F172300AB35C3 /* PowerIntervalsTestingData.realm in Resources */ = {isa = PBXBuildFile; fileRef = 5F8099F91E3C20D600BA93CD /* PowerIntervalsTestingData.realm */; };
 		5FB8F3731E7320F6003C4FB0 /* SmoochLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5FB8F3721E7320F6003C4FB0 /* SmoochLocalizable.strings */; };
+		5FB8F3751E73BEEB003C4FB0 /* StravaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB8F3741E73BEEB003C4FB0 /* StravaKit.framework */; };
+		5FB8F3781E73C811003C4FB0 /* FetchAthleteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB8F3771E73C811003C4FB0 /* FetchAthleteOperation.swift */; };
 		5FDA29A31E71A2DE00816463 /* DeviceListViewControlleriOSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDA29A21E71A2DE00816463 /* DeviceListViewControlleriOSExtension.swift */; };
 		5FE61D8A1E1AE060006E8BD0 /* Mixpanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE61D891E1AE060006E8BD0 /* Mixpanel.framework */; };
 		5FE61D8F1E1B0EE7006E8BD0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE61D8E1E1B0EE7006E8BD0 /* Constants.swift */; };
@@ -195,6 +197,8 @@
 		5FB5CCFF1E3F0D9E00AB35C3 /* title.strings */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = title.strings; path = "../fastlane/screenshots/en-US/title.strings"; sourceTree = "<group>"; };
 		5FB5CD001E3F0DF400AB35C3 /* keyword.strings */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = keyword.strings; path = "../fastlane/screenshots/en-US/keyword.strings"; sourceTree = "<group>"; };
 		5FB8F3721E7320F6003C4FB0 /* SmoochLocalizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = SmoochLocalizable.strings; sourceTree = "<group>"; };
+		5FB8F3741E73BEEB003C4FB0 /* StravaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StravaKit.framework; path = Carthage/Build/iOS/StravaKit.framework; sourceTree = "<group>"; };
+		5FB8F3771E73C811003C4FB0 /* FetchAthleteOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchAthleteOperation.swift; sourceTree = "<group>"; };
 		5FDA29A21E71A2DE00816463 /* DeviceListViewControlleriOSExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceListViewControlleriOSExtension.swift; sourceTree = "<group>"; };
 		5FE61D891E1AE060006E8BD0 /* Mixpanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mixpanel.framework; path = Carthage/Build/iOS/Mixpanel.framework; sourceTree = "<group>"; };
 		5FE61D8E1E1B0EE7006E8BD0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FB8F3751E73BEEB003C4FB0 /* StravaKit.framework in Frameworks */,
 				5FE61D911E1B750D006E8BD0 /* Smooch.framework in Frameworks */,
 				5FE61D8A1E1AE060006E8BD0 /* Mixpanel.framework in Frameworks */,
 				9E452FE61D958BE600C96165 /* Realm.framework in Frameworks */,
@@ -443,6 +448,14 @@
 			name = "Start Interval";
 			sourceTree = "<group>";
 		};
+		5FB8F3761E73C7F6003C4FB0 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				5FB8F3771E73C811003C4FB0 /* FetchAthleteOperation.swift */,
+			);
+			name = Operations;
+			sourceTree = "<group>";
+		};
 		5FF5EE081E294CC300D7F121 /* Logging */ = {
 			isa = PBXGroup;
 			children = (
@@ -509,6 +522,7 @@
 		9E3888C61D862E8900DFC271 /* PowerIntervals */ = {
 			isa = PBXGroup;
 			children = (
+				5FB8F3761E73C7F6003C4FB0 /* Operations */,
 				5FF5EE081E294CC300D7F121 /* Logging */,
 				5FFAB2961E1794C100012FED /* SetZoneView */,
 				5FFAB2931E17336C00012FED /* SearchingView */,
@@ -594,6 +608,7 @@
 		9EFDBAFE1D88517400C56D97 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5FB8F3741E73BEEB003C4FB0 /* StravaKit.framework */,
 				5F32CA471E65E98D00EF7FA9 /* Mixpanel.framework */,
 				5F32CA421E65E94000EF7FA9 /* Realm.framework */,
 				5F32CA431E65E94000EF7FA9 /* RealmSwift.framework */,
@@ -883,7 +898,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"checking if distribution\"\necho $CONFIGURATION\nif [[ \"$CONFIGURATION\" == \"Release\" ]]; then\n  echo \"It is dist\"\n  KEYCHAINS=`security list-keychains`\n\n  if ! [[ \"$KEYCHAINS\" =~ \"PowerIntervals.keychain\" ]]; then\n    open PowerIntervals.keychain\n  fi\n\n  SMOOCH_TOKEN=`security find-generic-password -a roderic -s Smooch -w`\n  perl -p -i -e \"s/SMOOCH_TOKEN_PLACEHOLDER/$SMOOCH_TOKEN/g\" \"$SRCROOT/Constants.swift\"\n\n\n  MIXPANEL_TOKEN=`security find-generic-password -a roderic -s Mixpanel -w`\n  perl -p -i -e \"s/MIXPANEL_TOKEN_PLACEHOLDER/$MIXPANEL_TOKEN/g\" \"$SRCROOT/Constants.swift\"\nfi\n\necho \"Done with that script\"";
+			shellScript = "echo \"checking if distribution\"\necho $CONFIGURATION\nif [[ \"$CONFIGURATION\" == \"Release\" ]]; then\n  echo \"It is dist\"\n  KEYCHAINS=`security list-keychains`\n\n  if ! [[ \"$KEYCHAINS\" =~ \"PowerIntervals.keychain\" ]]; then\n    open PowerIntervals.keychain\n  fi\n\n  SMOOCH_TOKEN=`security find-generic-password -a roderic -s Smooch -w`\n  perl -p -i -e \"s/SMOOCH_TOKEN_PLACEHOLDER/$SMOOCH_TOKEN/g\" \"$SRCROOT/Constants.swift\"\n\n  STRAVA_SECRET = `security find-generic-password -a roderic -s StravaSecret -w`\n  perl -p -i -e \"s/STRAVA_SECRET_PLACEHOLDER/$STRAVA_SECRET/g\" \"$SRCROOT/Constants.swift\"\n\n\n  STRAVA_CLIENTID = `security find-generic-password -a roderic -s StravaClientID -w`\n  perl -p -i -e \"s/STRAVA_CLIENTID_PLACEHOLDER/$STRAVA_CLIENTID/g\" \"$SRCROOT/Constants.swift\"\n\n  MIXPANEL_TOKEN=`security find-generic-password -a roderic -s Mixpanel -w`\n  perl -p -i -e \"s/MIXPANEL_TOKEN_PLACEHOLDER/$MIXPANEL_TOKEN/g\" \"$SRCROOT/Constants.swift\"\nfi\n\necho \"Done with that script\"";
 		};
 		9E4472151D90EF8F00CFECCE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -908,6 +923,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Mixpanel.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Smooch.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/StravaKit.framework",
 			);
 			outputPaths = (
 			);
@@ -999,6 +1015,7 @@
 				5F860F341E39D61F00C26024 /* FormattedCollectionViewSensorCell.swift in Sources */,
 				5FFAB2981E1794DD00012FED /* SetZoneViewController.swift in Sources */,
 				9EE6E48E1DA7E26700E9F3BC /* BluetoothDelegate.swift in Sources */,
+				5FB8F3781E73C811003C4FB0 /* FetchAthleteOperation.swift in Sources */,
 				5F32C9FC1E65E61800EF7FA9 /* JBGradientBarView.m in Sources */,
 				5F90DEA31E2E93060067F744 /* StartIntervalViewController.swift in Sources */,
 				5F32CA591E65EE2300EF7FA9 /* DurationSelector.swift in Sources */,

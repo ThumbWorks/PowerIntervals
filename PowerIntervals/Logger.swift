@@ -11,6 +11,14 @@ import Mixpanel
 
 class Logger {
     
+    class func updatePerson(name: String, email: String?) {
+        let instance = Mixpanel.mainInstance()
+        if let email = email {
+            instance.identify(distinctId: email)
+        }
+        Mixpanel.mainInstance().people.set(property: "name", to: name)
+    }
+    
     class func start() {
         let isRunningTests = NSClassFromString("XCTestCase") != nil
         if isRunningTests {

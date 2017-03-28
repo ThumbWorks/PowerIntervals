@@ -10,6 +10,7 @@
 import UIKit
 import Fabric
 import Crashlytics
+import StravaKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -46,6 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Fabric.with([Crashlytics.self])
         return true
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return Strava.openURL(url, sourceApplication: sourceApplication)
     }
 }
 
