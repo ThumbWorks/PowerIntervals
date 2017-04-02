@@ -40,7 +40,7 @@ class SetZoneViewController: UIViewController, UITextFieldDelegate, UIGestureRec
             connectWithStravaButton.isHidden = true
             startViewDidLoadInitializationChain()
         } else {
-            connectWithStravaButton.isHidden = false
+//            connectWithStravaButton.isHidden = false
         }
         NotificationCenter.default.addObserver(self, selector: #selector(stravaAuthorizationCompleted(_:)), name: NSNotification.Name(rawValue: StravaAuthorizationCompletedNotification), object: nil)
     }
@@ -101,7 +101,7 @@ class SetZoneViewController: UIViewController, UITextFieldDelegate, UIGestureRec
                 }
                 if success == true {
                     print("success")
-                    self.connectWithStravaButton.isHidden = false
+//                    self.connectWithStravaButton.isHidden = false
                 }
             })
         }
