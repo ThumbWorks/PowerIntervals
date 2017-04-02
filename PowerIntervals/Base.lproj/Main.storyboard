@@ -813,7 +813,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="D7d-8a-rbx" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Y7H-ND-KK1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y7H-ND-KK1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -858,6 +858,7 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XkB-Li-sQN" userLabel="Crank">
                                         <rect key="frame" x="8" y="9" width="25" height="25"/>
+                                        <accessibility key="accessibilityConfiguration" label="Settings"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="fxr-qk-Hy4"/>
                                             <constraint firstAttribute="width" secondItem="XkB-Li-sQN" secondAttribute="height" multiplier="1:1" id="wJU-QT-D6X"/>
