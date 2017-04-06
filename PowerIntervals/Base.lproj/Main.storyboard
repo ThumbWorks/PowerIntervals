@@ -43,14 +43,14 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCv-8F-oXG">
-                                                        <rect key="frame" x="294" y="42.5" width="71" height="24"/>
+                                                        <rect key="frame" x="294" y="515.5" width="71" height="24"/>
                                                         <state key="normal" image="Powered By Strava"/>
                                                         <connections>
                                                             <action selector="deAuthenticateStrava:" destination="Rqf-PG-eqL" eventType="touchUpInside" id="Sj3-mB-5Li"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uu9-co-Xzd" userLabel="Thumbworks Button">
-                                                        <rect key="frame" x="10" y="42" width="111" height="33"/>
+                                                        <rect key="frame" x="10" y="515" width="111" height="33"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="33" id="6sh-BZ-5pZ"/>
                                                             <constraint firstAttribute="width" constant="111" id="gnd-ww-o56"/>
@@ -61,7 +61,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6X-cp-mdO">
-                                                        <rect key="frame" x="36" y="36" width="41" height="23"/>
+                                                        <rect key="frame" x="36" y="509" width="41" height="23"/>
                                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="9"/>
                                                         <state key="normal" title="Made by:"/>
                                                         <connections>
@@ -130,7 +130,7 @@
                                             </constraints>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ph3-qJ-8rl">
-                                            <rect key="frame" x="155" y="9" width="45" height="32"/>
+                                            <rect key="frame" x="157" y="9" width="41" height="32"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                             <state key="normal" title="Done">
@@ -439,13 +439,13 @@
                             <constraint firstItem="6y6-d8-yzI" firstAttribute="top" secondItem="1E2-x2-MWU" secondAttribute="bottom" constant="-20" id="1GA-hv-kgj"/>
                             <constraint firstItem="Vqn-HO-aT1" firstAttribute="top" secondItem="6y6-d8-yzI" secondAttribute="bottom" id="4K5-rk-xJO"/>
                             <constraint firstItem="SnW-2f-2fZ" firstAttribute="centerX" secondItem="VkA-dc-Sie" secondAttribute="centerX" id="4dy-ju-nEv"/>
+                            <constraint firstItem="Uu9-co-Xzd" firstAttribute="top" secondItem="Ngt-3g-RLf" secondAttribute="bottom" constant="10" id="9dO-82-2Ya"/>
                             <constraint firstAttribute="trailing" secondItem="Ngt-3g-RLf" secondAttribute="trailing" constant="10" id="FFM-26-cYK"/>
                             <constraint firstItem="6y6-d8-yzI" firstAttribute="leading" secondItem="VkA-dc-Sie" secondAttribute="leading" id="Hc5-Cr-1U0"/>
                             <constraint firstItem="Ngt-3g-RLf" firstAttribute="leading" secondItem="VkA-dc-Sie" secondAttribute="leading" constant="10" id="MJO-DE-R6q"/>
                             <constraint firstItem="Ngt-3g-RLf" firstAttribute="top" secondItem="1E2-x2-MWU" secondAttribute="bottom" constant="65" id="NII-p8-z6e"/>
                             <constraint firstItem="CVI-b0-Gae" firstAttribute="centerY" secondItem="SnW-2f-2fZ" secondAttribute="centerY" id="OF8-l5-5j0"/>
                             <constraint firstItem="Ngt-3g-RLf" firstAttribute="top" secondItem="SnW-2f-2fZ" secondAttribute="bottom" constant="10" id="Q18-ec-MUv"/>
-                            <constraint firstItem="CVI-b0-Gae" firstAttribute="centerY" secondItem="Uu9-co-Xzd" secondAttribute="centerY" id="hb2-nE-gee"/>
                             <constraint firstAttribute="trailing" secondItem="6y6-d8-yzI" secondAttribute="trailing" id="jif-vS-aT9"/>
                             <constraint firstAttribute="trailing" secondItem="CVI-b0-Gae" secondAttribute="trailing" constant="10" id="vqM-PA-Fia"/>
                         </constraints>
@@ -509,19 +509,19 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pZe-kL-SWP" userLabel="searching UI">
-                                <rect key="frame" x="67" y="270" width="240" height="127"/>
+                                <rect key="frame" x="67" y="280" width="240" height="107"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Searching for power meters" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ptf-Dl-MaK">
-                                        <rect key="frame" x="8" y="10" width="224" height="40"/>
+                                        <rect key="frame" x="8" y="10" width="224" height="20"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Qat-zR-Xkb">
-                                        <rect key="frame" x="110" y="58" width="20" height="20"/>
+                                        <rect key="frame" x="110" y="38" width="20" height="20"/>
                                     </activityIndicatorView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get close to a BTLE power meter and start pedaling" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xp4-4Z-3Hh">
-                                        <rect key="frame" x="8" y="84" width="224" height="33"/>
+                                        <rect key="frame" x="8" y="64" width="224" height="33"/>
                                         <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -727,7 +727,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NeuroMuscular" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nNa-V5-Jsb">
-                                            <rect key="frame" x="105.5" y="62" width="165.5" height="26"/>
+                                            <rect key="frame" x="113.5" y="62" width="150" height="26"/>
                                             <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="22"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -838,7 +838,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbJ-MW-PrM">
-                                <rect key="frame" x="77.5" y="214" width="220" height="68"/>
+                                <rect key="frame" x="78" y="214" width="220" height="68"/>
                                 <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="57"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -916,7 +916,7 @@
                                                     <color key="backgroundColor" red="0.0" green="0.53333333333333333" blue="0.79607843137254897" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="watts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGC-Pf-pCM">
-                                                    <rect key="frame" x="32.5" y="37" width="85" height="37"/>
+                                                    <rect key="frame" x="33" y="37" width="85" height="37"/>
                                                     <fontDescription key="fontDescription" name="DejaVuSans" family="DejaVu Sans" pointSize="31"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
